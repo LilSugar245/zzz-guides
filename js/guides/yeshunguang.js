@@ -52,7 +52,7 @@ export function generateYeShunguangGuide() {
                                     <span class="font-bold text-xs text-zinc-500">+ 2pc BranchBlade Song (ou Woodpecker/Puffer)</span>
                                 </div>
                             </div>
-                            <p class="text-xs font-semibold bg-black/40 p-3 rounded-lg border border-zinc-800 text-zinc-300">Boost <span class="text-[#3bbedb] font-black">les DMG physiques</span> et le TC si l'allié est dans un voile d'éther.</p>
+                            <p class="text-xs font-semibold bg-black/40 p-3 rounded-lg border border-zinc-800 text-zinc-300">Boost <span class="text-[#3bbedb] font-black">les DMG physiques</span> et le DC si l'allié est dans un voile d'éther.</p>
                         </div>
                     </div>
                 </div>
