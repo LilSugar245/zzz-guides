@@ -129,21 +129,21 @@ export function generateClaretGuide() {
                     <h3 class="text-white font-display font-black text-2xl uppercase border-l-4 border-[#3182eb] pl-4 leading-none tracking-wide mb-6">Moteurs</h3>
                     <div class="flex flex-col gap-3">
                         <div class="flex gap-4 p-3.5 rounded-xl border border-[#3182eb]/30 bg-[#121212] shadow-[0_0_15px_rgba(49,130,235,0.05)] hover:border-[#3182eb]/80 transition-colors group">
-                            <div class="w-16 h-16 bg-black rounded-lg border border-zinc-700 overflow-hidden"><img src="assets/W-Engine/Crimson_Thirst.png" onerror="this.src='https://placehold.co/100/111/fff?text=CT';" class="w-full h-full object-cover group-hover:scale-110 transition-transform"></div>
+                            <div class="w-16 h-16 bg-black rounded-lg border border-zinc-700 overflow-hidden"><img src="assets/W-Engine/W-Engine_Crimson_Thirst.png" onerror="this.onerror=null; this.src='assets/W-Engine/Crimson_Thirst.png';" class="w-full h-full object-cover group-hover:scale-110 transition-transform"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] bg-[#3182eb]/10 text-[#3182eb] border border-[#3182eb]/20 px-2 py-0.5 rounded uppercase font-black w-fit mb-1.5">Baseline 100% (Indispensable)</span>
                                 <span class="font-black text-sm uppercase text-white tracking-wide">Crimson Thirst</span>
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/Catty_Luck.png" onerror="this.src='https://placehold.co/100/111/fff?text=CL';" class="w-full h-full object-cover"></div>
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Catty_Luck.png" onerror="this.onerror=null; this.src='assets/W-Engine/Catty_Luck.png';" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Alt F2P (80.55%)</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">Catty Luck</span>
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/Bloodmarrow_Coffer.png" onerror="this.src='https://placehold.co/100/111/fff?text=BC';" class="w-full h-full object-cover"></div>
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Bloodmarrow_Coffer.png" onerror="this.onerror=null; this.src='assets/W-Engine/Bloodmarrow_Coffer.png';" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Alt (77.48%)</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">Bloodmarrow Coffer</span>
@@ -171,7 +171,7 @@ export function generateClaretGuide() {
                         <div class="w-6 h-px bg-zinc-700"></div>
                         <div class="flex flex-col items-center gap-3">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#f05432] bg-black overflow-hidden relative">
-                                <img src="assets/Agents/Agent_Feu.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/f05432?text=F'">
+                                <img src="assets/Agents/Norma.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/f05432?text=F'">
                             </div>
                         </div>
                         <div class="w-6 h-px bg-zinc-700"></div>
@@ -197,7 +197,7 @@ export function generateClaretGuide() {
                         <div class="w-6 h-px bg-zinc-700"></div>
                         <div class="flex flex-col items-center gap-3">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#3bbedb] bg-black overflow-hidden relative">
-                                <img src="assets/Agents/Agent_Vent.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/3bbedb?text=V'">
+                                <img src="assets/Agents/Velina.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/3bbedb?text=V'">
                             </div>
                         </div>
                         <div class="w-6 h-px bg-zinc-700"></div>
