@@ -119,21 +119,21 @@ export function generateYeShunguangGuide() {
                     <h3 class="text-white font-display font-black text-2xl uppercase border-l-4 border-[#3bbedb] pl-4 leading-none tracking-wide mb-6">Moteurs</h3>
                     <div class="flex flex-col gap-3">
                         <div class="flex gap-4 p-3.5 rounded-xl border border-[#3bbedb]/30 bg-[#121212] shadow-[0_0_15px_rgba(59,190,219,0.05)] hover:border-[#3bbedb]/80 transition-colors group">
-                            <div class="w-16 h-16 bg-black rounded-lg border border-zinc-700 overflow-hidden"><img src="assets/W-Engine/Cloudcleave_Radiance.png" onerror="this.src='https://placehold.co/100/111/fff?text=CR';" class="w-full h-full object-cover group-hover:scale-110 transition-transform"></div>
+                            <div class="w-16 h-16 bg-black rounded-lg border border-zinc-700 overflow-hidden"><img src="assets/W-Engine/W-Engine_Cloudcleave_Radiance.png" onerror="this.onerror=null; this.src='assets/W-Engine/Cloudcleave_Radiance.png';" class="w-full h-full object-cover group-hover:scale-110 transition-transform"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] bg-[#3bbedb]/10 text-[#3bbedb] border border-[#3bbedb]/20 px-2 py-0.5 rounded uppercase font-black w-fit mb-1.5">Baseline 100%</span>
                                 <span class="font-black text-sm uppercase text-white tracking-wide">Cloudcleave Radiance</span>
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/The_Brimstone.png" onerror="this.src='https://placehold.co/100/111/fff?text=TB';" class="w-full h-full object-cover"></div>
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_The_Brimstone.png" onerror="this.onerror=null; this.src='assets/W-Engine/The_Brimstone.png';" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Alt (84.94%)</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">The Brimstone</span>
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/Starlight_Engine.png" onerror="this.src='https://placehold.co/100/111/fff?text=SE';" class="w-full h-full object-cover"></div>
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Starlight_Engine.png" onerror="this.onerror=null; this.src='assets/W-Engine/Starlight_Engine.png';" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Alt 4★ F2P (75.80%)</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">Starlight Engine</span>
@@ -161,13 +161,13 @@ export function generateYeShunguangGuide() {
                         <div class="w-6 h-px bg-zinc-700"></div>
                         <div class="flex flex-col items-center gap-3">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#e8a838] bg-black overflow-hidden relative">
-                                <img src="assets/Agents/Agent_Physique.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/e8a838?text=P'">
+                                <img src="assets/Agents/Dialyn.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/e8a838?text=D'">
                             </div>
                         </div>
                         <div class="w-6 h-px bg-zinc-700"></div>
                         <div class="flex flex-col items-center gap-3">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#e8a838] bg-black overflow-hidden relative">
-                                <img src="assets/Agents/Agent_Physique_2.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/e8a838?text=P2'">
+                                <img src="assets/Agents/Sunna.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/e8a838?text=S'">
                             </div>
                         </div>
                     </div>
@@ -187,13 +187,13 @@ export function generateYeShunguangGuide() {
                         <div class="w-6 h-px bg-zinc-700"></div>
                         <div class="flex flex-col items-center gap-3">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#e8a838] bg-black overflow-hidden relative">
-                                <img src="assets/Agents/Agent_Physique.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/e8a838?text=P'">
+                                <img src="assets/Agents/Dialyn.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/e8a838?text=D'">
                             </div>
                         </div>
                         <div class="w-6 h-px bg-zinc-700"></div>
                         <div class="flex flex-col items-center gap-3">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#f23c8a] bg-black overflow-hidden relative">
-                                <img src="assets/Agents/Astra Yao.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/f23c8a?text=A'">
+                                <img src="assets/Agents/Astra.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/f23c8a?text=A'">
                             </div>
                         </div>
                     </div>
