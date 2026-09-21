@@ -1,147 +1,144 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZZZ Guides</title>
-    
-    <!-- Favicon / Logo de l'onglet -->
-    <link rel="icon" type="image/png" href="assets/Icone/logo.png">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZZZ Guides - Base de données avancée</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 <body class="flex flex-col h-screen">
 
-    <header class="bg-black py-4 border-b border-zinc-800 shadow-[0_10px_30px_rgba(0,0,0,0.9)] z-50 shrink-0 relative transition-all flex items-center justify-center px-4 md:px-10">
-        <div class="flex items-center justify-center gap-4 relative z-10 hover:scale-105 transition-transform duration-500 cursor-default">
-            <div class="bg-yellow-400 px-5 py-1.5 skew-x-[-15deg] shadow-[0_0_15px_rgba(232,168,56,0.3)]">
-                <span class="block text-black font-display font-black italic text-3xl skew-x-[15deg]">ZZZ</span>
-            </div>
-            <h1 class="text-white font-display font-black italic text-3xl uppercase chromatic-text drop-shadow-lg">GUIDES</h1>
-        </div>
-    </header>
+    <header class="bg-black py-4 border-b border-zinc-800 shadow-[0_10px_30px_rgba(0,0,0,0.9)] z-50 shrink-0 relative transition-all flex items-center justify-center px-4 md:px-10">
+        <div class="flex items-center justify-center gap-4 relative z-10 hover:scale-105 transition-transform duration-500 cursor-default">
+            <div class="bg-yellow-400 px-5 py-1.5 skew-x-[-15deg] shadow-[0_0_15px_rgba(232,168,56,0.3)]">
+                <span class="block text-black font-display font-black italic text-3xl skew-x-[15deg]">ZZZ</span>
+            </div>
+            <h1 class="text-white font-display font-black italic text-3xl uppercase chromatic-text drop-shadow-lg">GUIDES</h1>
+        </div>
+    </header>
 
-    <div class="flex flex-1 overflow-hidden relative">
-        <aside class="w-20 md:w-[340px] bg-[#0a0a0a] border-r border-zinc-800 flex flex-col shrink-0 z-40 relative hidden md:flex">
-            <div class="p-5 flex flex-col shrink-0 z-10 bg-[#0a0a0a] shadow-2xl relative">
-                
-                <div class="relative w-full z-50 group mb-6">
-                    <div class="relative flex items-center">
-                        <input type="text" id="searchInput" autocomplete="off" placeholder="Rechercher un agent..." 
-                               class="w-full bg-[#151515] border-2 border-zinc-800 rounded-xl py-3.5 pl-4 pr-10 text-white text-sm focus:outline-none focus:border-yellow-400 focus:bg-[#1a1a1a] transition-all shadow-inner placeholder-zinc-600">
-                        <button id="clearSearchBtn" class="absolute right-3 text-zinc-500 hover:text-yellow-400 transition-colors hidden p-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        </button>
-                    </div>
-                    <div id="searchDropdown" class="absolute left-0 right-0 top-full mt-2 bg-black/95 border border-zinc-700 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.9)] max-h-72 overflow-y-auto hidden flex-col divide-y divide-zinc-800 backdrop-blur-xl transform origin-top transition-all duration-300"></div>
-                </div>
+    <div class="flex flex-1 overflow-hidden relative">
+        <aside class="w-20 md:w-[340px] bg-[#0a0a0a] border-r border-zinc-800 flex flex-col shrink-0 z-40 relative hidden md:flex">
+            <div class="p-5 flex flex-col shrink-0 z-10 bg-[#0a0a0a] shadow-2xl relative">
+                
+                <div class="relative w-full z-50 group mb-6">
+                    <div class="relative flex items-center">
+                        <input type="text" id="searchInput" autocomplete="off" placeholder="Rechercher un agent..." 
+                               class="w-full bg-[#151515] border-2 border-zinc-800 rounded-xl py-3.5 pl-4 pr-10 text-white text-sm focus:outline-none focus:border-yellow-400 focus:bg-[#1a1a1a] transition-all shadow-inner placeholder-zinc-600">
+                        <button id="clearSearchBtn" class="absolute right-3 text-zinc-500 hover:text-yellow-400 transition-colors hidden p-1">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                    <div id="searchDropdown" class="absolute left-0 right-0 top-full mt-2 bg-black/95 border border-zinc-700 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.9)] max-h-72 overflow-y-auto hidden flex-col divide-y divide-zinc-800 backdrop-blur-xl transform origin-top transition-all duration-300"></div>
+                </div>
 
-                <div class="mb-4">
-                    <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Éléments</h3>
-                    <div class="flex flex-wrap gap-2" id="elementFilters">
-                        <button data-filter="All" class="filter-btn active bg-white text-black px-5 py-2 rounded-xl text-xs font-bold border border-zinc-700/30">Tous</button>
-                        <button data-filter="Physical" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/physique.png" class="w-4 h-4 object-contain"> Physique</button>
-                        <button data-filter="Fire" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/feu.png" class="w-4 h-4 object-contain"> Feu</button>
-                        <button data-filter="Ice" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Ice.png" class="w-4 h-4 object-contain"> Glace</button>
-                        <button data-filter="Electric" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/electrique.png" class="w-4 h-4 object-contain"> Élec</button>
-                        <button data-filter="Ether" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Ether.png" class="w-4 h-4 object-contain"> Ether</button>
-                    </div>
-                </div>
+                <div class="mb-4">
+                    <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Éléments</h3>
+                    <div class="flex flex-wrap gap-2" id="elementFilters">
+                        <button data-filter="All" class="filter-btn active bg-white text-black px-5 py-2 rounded-xl text-xs font-bold border border-zinc-700/30">Tous</button>
+                        <button data-filter="Physical" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/physique.png" class="w-4 h-4 object-contain"> Physique</button>
+                        <button data-filter="Fire" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/feu.png" class="w-4 h-4 object-contain"> Feu</button>
+                        <button data-filter="Ice" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Ice.png" class="w-4 h-4 object-contain"> Glace</button>
+                        <button data-filter="Electric" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/electrique.png" class="w-4 h-4 object-contain"> Élec</button>
+                        <button data-filter="Ether" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Ether.png" class="w-4 h-4 object-contain"> Ether</button>
+                    </div>
+                </div>
 
-                <div class="mt-2 pt-4 border-t border-zinc-800 mb-4">
-                    <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Personnalisé</h3>
-                    <button id="favoriteFilterBtn" class="w-full bg-[#151515] border-2 border-zinc-800 hover:border-red-500 hover:bg-red-500/10 text-zinc-400 px-4 py-3 rounded-xl text-xs font-bold flex items-center justify-between transition-all duration-300 shadow-inner group">
-                        <div class="flex items-center gap-2">
-                            <svg class="w-4 h-4 text-zinc-500 group-hover:text-red-500 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                            Mes Favoris
-                        </div>
-                        <div id="favCountBadge" class="bg-zinc-800 text-zinc-400 px-2 py-0.5 rounded-md text-[10px] font-black">0</div>
-                    </button>
-                </div>
+                <div class="mt-2 pt-4 border-t border-zinc-800 mb-4">
+                    <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Personnalisé</h3>
+                    <button id="favoriteFilterBtn" class="w-full bg-[#151515] border-2 border-zinc-800 hover:border-red-500 hover:bg-red-500/10 text-zinc-400 px-4 py-3 rounded-xl text-xs font-bold flex items-center justify-between transition-all duration-300 shadow-inner group">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-zinc-500 group-hover:text-red-500 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                            Mes Favoris
+                        </div>
+                        <div id="favCountBadge" class="bg-zinc-800 text-zinc-400 px-2 py-0.5 rounded-md text-[10px] font-black">0</div>
+                    </button>
+                </div>
 
-                <div id="activeFactionTag" class="hidden items-center justify-between bg-yellow-400/10 border-2 border-yellow-400/50 px-4 py-3 rounded-xl backdrop-blur-md pulse-active-tag transition-all duration-300">
-                    <div class="flex flex-col">
-                        <span class="text-[10px] text-yellow-400 font-black uppercase tracking-widest">Faction active</span>
-                        <span id="activeFactionName" class="text-sm font-bold text-white truncate w-48 mt-0.5"></span>
-                    </div>
-                    <button id="clearFactionBtn" class="text-zinc-300 hover:text-black bg-zinc-800 hover:bg-yellow-400 rounded-full p-2 transition-all transform hover:scale-110 hover:rotate-90 shadow-lg"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-                </div>
-            </div>
+                <div id="activeFactionTag" class="hidden items-center justify-between bg-yellow-400/10 border-2 border-yellow-400/50 px-4 py-3 rounded-xl backdrop-blur-md pulse-active-tag transition-all duration-300">
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-yellow-400 font-black uppercase tracking-widest">Faction active</span>
+                        <span id="activeFactionName" class="text-sm font-bold text-white truncate w-48 mt-0.5"></span>
+                    </div>
+                    <button id="clearFactionBtn" class="text-zinc-300 hover:text-black bg-zinc-800 hover:bg-yellow-400 rounded-full p-2 transition-all transform hover:scale-110 hover:rotate-90 shadow-lg"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+                </div>
+            </div>
 
-            <div class="flex-1 overflow-hidden relative marquee-mask px-5 py-2 z-0" id="sidebarMarqueeWrapper">
-                <div class="marquee-track-vertical" id="sidebarFactionsList"></div>
-            </div>
+            <div class="flex-1 overflow-hidden relative marquee-mask px-5 py-2 z-0" id="sidebarMarqueeWrapper">
+                <div class="marquee-track-vertical" id="sidebarFactionsList"></div>
+            </div>
 
-            <div class="p-5 bg-[#0a0a0a] shrink-0 border-t border-zinc-800 relative z-10 shadow-[0_-15px_30px_rgba(0,0,0,0.6)]">
-                <button id="openModalBtn" class="w-full bg-[#d7f70c] hover:bg-[#c4e30b] text-black font-black uppercase text-sm py-4 rounded-xl shadow-[0_0_20px_rgba(215,247,12,0.2)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(215,247,12,0.5)] hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-3 group overflow-hidden relative">
-                    <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:animate-[shimmer_1s_forwards]"></div>
-                    <svg class="w-5 h-5 transition-transform group-hover:rotate-180 duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                    Toutes les factions
-                </button>
-            </div>
-        </aside>
+            <div class="p-5 bg-[#0a0a0a] shrink-0 border-t border-zinc-800 relative z-10 shadow-[0_-15px_30px_rgba(0,0,0,0.6)]">
+                <button id="openModalBtn" class="w-full bg-[#d7f70c] hover:bg-[#c4e30b] text-black font-black uppercase text-sm py-4 rounded-xl shadow-[0_0_20px_rgba(215,247,12,0.2)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(215,247,12,0.5)] hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-3 group overflow-hidden relative">
+                    <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:animate-[shimmer_1s_forwards]"></div>
+                    <svg class="w-5 h-5 transition-transform group-hover:rotate-180 duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Toutes les factions
+                </button>
+            </div>
+        </aside>
 
-        <main class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-10 relative z-20 scroll-smooth">
-            <div id="agents-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-5 gap-y-14 sm:gap-8 pb-20"></div>
-            
-            <div id="empty-state" class="hidden absolute inset-0 flex flex-col items-center justify-center text-zinc-600 transition-opacity duration-500">
-                <svg class="w-16 h-16 mb-4 text-zinc-700 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                <p class="text-3xl font-display font-black text-zinc-500 uppercase tracking-widest mb-3 drop-shadow-md">Signal Perdu</p>
-                <p class="text-base text-zinc-600">Aucun agent ne correspond à ces critères.</p>
-            </div>
-        </main>
-    </div>
+        <main class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-10 relative z-20 scroll-smooth">
+            <div id="agents-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-5 gap-y-14 sm:gap-8 pb-20"></div>
+            
+            <div id="empty-state" class="hidden absolute inset-0 flex flex-col items-center justify-center text-zinc-600 transition-opacity duration-500">
+                <svg class="w-16 h-16 mb-4 text-zinc-700 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                <p class="text-3xl font-display font-black text-zinc-500 uppercase tracking-widest mb-3 drop-shadow-md">Signal Perdu</p>
+                <p class="text-base text-zinc-600">Aucun agent ne correspond à ces critères.</p>
+            </div>
+        </main>
+    </div>
 
-    <!-- Agent Detail Modal -->
-    <div id="agentDetailModal" class="fixed inset-0 z-[120] hidden bg-[#050505] carbon-bg overflow-hidden opacity-0 transition-opacity duration-300">
-        <div class="crt-overlay"></div>
+    <!-- Agent Detail Modal -->
+    <div id="agentDetailModal" class="fixed inset-0 z-[120] hidden bg-[#050505] carbon-bg overflow-hidden opacity-0 transition-opacity duration-300">
+        <div class="crt-overlay"></div>
 
-        <button id="prevAgentBtn" class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-[150] bg-black/80 border border-zinc-700 hover:border-yellow-400 hover:bg-yellow-400 text-zinc-400 hover:text-black w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(215,247,12,0.4)] hover:scale-110 opacity-0 pointer-events-none transform -translate-x-10">
-            <svg class="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path></svg>
-        </button>
-        <button id="nextAgentBtn" class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-[150] bg-black/80 border border-zinc-700 hover:border-yellow-400 hover:bg-yellow-400 text-zinc-400 hover:text-black w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(215,247,12,0.4)] hover:scale-110 opacity-0 pointer-events-none transform translate-x-10">
-            <svg class="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg>
-        </button>
+        <button id="prevAgentBtn" class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-[150] bg-black/80 border border-zinc-700 hover:border-yellow-400 hover:bg-yellow-400 text-zinc-400 hover:text-black w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(215,247,12,0.4)] hover:scale-110 opacity-0 pointer-events-none transform -translate-x-10">
+            <svg class="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path></svg>
+        </button>
+        <button id="nextAgentBtn" class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-[150] bg-black/80 border border-zinc-700 hover:border-yellow-400 hover:bg-yellow-400 text-zinc-400 hover:text-black w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(215,247,12,0.4)] hover:scale-110 opacity-0 pointer-events-none transform translate-x-10">
+            <svg class="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg>
+        </button>
 
-        <div class="absolute inset-0 flex items-center justify-center z-0 overflow-hidden pointer-events-none opacity-[0.03]">
-            <h1 id="modalGiantNameText" class="text-[18vw] font-display font-black italic text-white whitespace-nowrap leading-none tracking-tighter"></h1>
-        </div>
+        <div class="absolute inset-0 flex items-center justify-center z-0 overflow-hidden pointer-events-none opacity-[0.03]">
+            <h1 id="modalGiantNameText" class="text-[18vw] font-display font-black italic text-white whitespace-nowrap leading-none tracking-tighter"></h1>
+        </div>
 
-        <div class="relative z-10 w-full h-full flex flex-col md:flex-row pointer-events-none">
-            <div class="w-full md:w-[35%] xl:w-[40%] h-1/3 md:h-full flex items-end justify-center relative">
-                <img id="agentSplashImage" src="" class="max-h-[95%] max-w-none object-contain transform translate-y-20 opacity-0 transition-all duration-700 delay-200 ease-out drop-shadow-[20px_20px_40px_rgba(0,0,0,1)] pointer-events-auto">
-            </div>
-            
-            <div class="w-full md:w-[65%] xl:w-[60%] h-2/3 md:h-full relative z-20 pointer-events-auto overflow-hidden flex flex-col bg-gradient-to-l from-black via-black/80 to-transparent backdrop-blur-sm">
-                <div id="agentGuideContainer" class="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-10 lg:p-14 transform translate-x-12 opacity-0 transition-all duration-500 delay-300">
-                </div>
-            </div>
-        </div>
+        <div class="relative z-10 w-full h-full flex flex-col md:flex-row pointer-events-none">
+            <div class="w-full md:w-[35%] xl:w-[40%] h-1/3 md:h-full flex items-end justify-center relative">
+                <img id="agentSplashImage" src="" class="max-h-[95%] max-w-none object-contain transform translate-y-20 opacity-0 transition-all duration-700 delay-200 ease-out drop-shadow-[20px_20px_40px_rgba(0,0,0,1)] pointer-events-auto">
+            </div>
+            
+            <div class="w-full md:w-[65%] xl:w-[60%] h-2/3 md:h-full relative z-20 pointer-events-auto overflow-hidden flex flex-col bg-gradient-to-l from-black via-black/80 to-transparent backdrop-blur-sm">
+                <div id="agentGuideContainer" class="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-10 lg:p-14 transform translate-x-12 opacity-0 transition-all duration-500 delay-300">
+                </div>
+            </div>
+        </div>
 
-        <button onclick="closeModal('agentDetailModal')" class="absolute top-6 right-6 md:top-10 md:right-10 z-[160] bg-black/60 hover:bg-yellow-400 text-zinc-300 hover:text-black w-12 h-12 md:w-14 md:h-14 rounded-full border border-zinc-700 hover:border-transparent flex items-center justify-center transition-all duration-300 backdrop-blur-xl shadow-2xl group">
-            <svg class="w-5 h-5 md:w-6 md:h-6 transform group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-    </div>
+        <button onclick="closeModal('agentDetailModal')" class="absolute top-6 right-6 md:top-10 md:right-10 z-[160] bg-black/60 hover:bg-yellow-400 text-zinc-300 hover:text-black w-12 h-12 md:w-14 md:h-14 rounded-full border border-zinc-700 hover:border-transparent flex items-center justify-center transition-all duration-300 backdrop-blur-xl shadow-2xl group">
+            <svg class="w-5 h-5 md:w-6 md:h-6 transform group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+    </div>
 
-    <!-- Factions Modal -->
-    <div id="factionModal" class="fixed inset-0 z-[100] hidden bg-[#0f0f0f] carbon-bg transition-opacity duration-300 opacity-0">
-        <div class="absolute inset-0 overflow-y-auto overflow-x-hidden p-6 md:p-16 pr-24 z-10 scroll-smooth pb-32">
-            <h2 class="text-4xl md:text-6xl font-display font-black italic text-white uppercase mb-12 border-b-4 border-zinc-800 pb-4 inline-block drop-shadow-2xl">
-                Toutes les <span class="text-[#d7f70c] chromatic-text">Factions</span>
-            </h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-10" id="modalFactionsGrid"></div>
-        </div>
-        <button onclick="closeModal('factionModal')" class="fixed right-0 top-1/2 -translate-y-1/2 bg-black border-l-2 border-y-2 border-zinc-700 rounded-l-3xl py-12 px-3 z-20 hover:bg-[#111] transition-all duration-300 group hover:pl-6 shadow-[0_0_50px_rgba(0,0,0,1)] hover:shadow-[0_0_60px_rgba(215,247,12,0.2)]">
-            <div class="flex flex-col items-center gap-5">
-                <svg class="w-8 h-8 text-zinc-500 group-hover:text-yellow-400 transition-colors duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
-                <span class="text-[#d7f70c] font-display font-black uppercase text-2xl tracking-widest drop-shadow-lg" style="writing-mode: vertical-rl; text-orientation: mixed;">Retour <span class="text-xs text-zinc-500 ml-1 group-hover:text-yellow-400/50 block mt-2" style="writing-mode: vertical-rl;">(ECHAP)</span></span>
-            </div>
-        </button>
-    </div>
+    <!-- Factions Modal -->
+    <div id="factionModal" class="fixed inset-0 z-[100] hidden bg-[#0f0f0f] carbon-bg transition-opacity duration-300 opacity-0">
+        <div class="absolute inset-0 overflow-y-auto overflow-x-hidden p-6 md:p-16 pr-24 z-10 scroll-smooth pb-32">
+            <h2 class="text-4xl md:text-6xl font-display font-black italic text-white uppercase mb-12 border-b-4 border-zinc-800 pb-4 inline-block drop-shadow-2xl">
+                Toutes les <span class="text-[#d7f70c] chromatic-text">Factions</span>
+            </h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-10" id="modalFactionsGrid"></div>
+        </div>
+        <button onclick="closeModal('factionModal')" class="fixed right-0 top-1/2 -translate-y-1/2 bg-black border-l-2 border-y-2 border-zinc-700 rounded-l-3xl py-12 px-3 z-20 hover:bg-[#111] transition-all duration-300 group hover:pl-6 shadow-[0_0_50px_rgba(0,0,0,1)] hover:shadow-[0_0_60px_rgba(215,247,12,0.2)]">
+            <div class="flex flex-col items-center gap-5">
+                <svg class="w-8 h-8 text-zinc-500 group-hover:text-yellow-400 transition-colors duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
+                <span class="text-[#d7f70c] font-display font-black uppercase text-2xl tracking-widest drop-shadow-lg" style="writing-mode: vertical-rl; text-orientation: mixed;">Retour <span class="text-xs text-zinc-500 ml-1 group-hover:text-yellow-400/50 block mt-2" style="writing-mode: vertical-rl;">(ECHAP)</span></span>
+            </div>
+        </button>
+    </div>
 
-    <!-- Main Module Execution -->
-    <script type="module" src="js/app.js"></script>
+    <!-- Main Module Execution -->
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
