@@ -148,7 +148,7 @@ export function generateTriggerGuide() {
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Precious_Fossilized_Core.png" onerror="this.src='https://placehold.co/100/111/fff?text=PF';" class="w-full h-full object-cover"></div>
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/Precious_Fossilized.png" onerror="this.src='https://placehold.co/100/111/fff?text=PF';" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Alt 4★ F2P (68.79%)</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">Precious Fossilized</span>
