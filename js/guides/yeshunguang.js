@@ -45,11 +45,11 @@ export function generateYeShunguangGuide() {
                             <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-3">
                                 <div class="flex -space-x-4">
                                     <div class="relative w-16 h-16 rounded-full border-2 border-zinc-800 bg-black z-10 overflow-hidden shadow-lg group-hover:scale-105 transition-transform"><img src="assets/Disque/White_Water_Ballad.png" onerror="this.src='https://placehold.co/100/111/3bbedb?text=WB';" class="w-full h-full object-cover"></div>
-                                    <div class="relative w-14 h-14 rounded-full border-2 border-zinc-800 bg-black z-0 opacity-80 overflow-hidden"><img src="assets/Disque/Woodpecker_Electro.png" onerror="this.src='https://placehold.co/100/111/fff?text=WE';" class="w-full h-full object-cover"></div>
+                                    <div class="relative w-14 h-14 rounded-full border-2 border-zinc-800 bg-black z-0 opacity-80 overflow-hidden"><img src="assets/Disque/Branch_Blade_Song.png" onerror="this.src='https://placehold.co/100/111/fff?text=WE';" class="w-full h-full object-cover"></div>
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="font-black text-sm uppercase text-white tracking-wide">4pc White Water Ballad</span>
-                                    <span class="font-bold text-xs text-zinc-500">+ 2pc Woodpecker Electro (ou Branch/Puffer)</span>
+                                    <span class="font-bold text-xs text-zinc-500">+ 2pc BranchBlade Song (ou Woodpecker/Puffer)</span>
                                 </div>
                             </div>
                             <p class="text-xs font-semibold bg-black/40 p-3 rounded-lg border border-zinc-800 text-zinc-300">Boost <span class="text-[#3bbedb] font-black">les DMG physiques</span> et le TC si l'allié est dans un voile d'éther.</p>
