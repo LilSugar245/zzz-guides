@@ -56,7 +56,7 @@ export function generateJaneDoeGuide() {
                             <div class="flex items-center gap-4 mb-2">
                                 <div class="flex -space-x-3">
                                     <div class="relative w-12 h-12 rounded-full border border-zinc-800 bg-black z-10 overflow-hidden"><img src="assets/Disque/Fanged_Metal.png" onerror="this.src='https://placehold.co/100/111/e8a838?text=FM';" class="w-full h-full object-cover"></div>
-                                    <div class="relative w-10 h-10 rounded-full border border-zinc-800 bg-black z-0 opacity-80 overflow-hidden"><img src="assets/Disque/Phaethons_Melody.png" onerror="this.src='https://placehold.co/100/111/fff?text=PM';" class="w-full h-full object-cover"></div>
+                                    <div class="relative w-10 h-10 rounded-full border border-zinc-800 bg-black z-0 opacity-80 overflow-hidden"><img src="assets/Disque/Phaethon's_Melody.png" onerror="this.onerror=null; this.src='assets/Disque/Phaethons_Melody.png';" class="w-full h-full object-cover"></div>
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="font-black text-xs uppercase text-zinc-200">4pc Fanged Metal</span>
@@ -129,21 +129,21 @@ export function generateJaneDoeGuide() {
                     <h3 class="text-white font-display font-black text-2xl uppercase border-l-4 border-[#e8a838] pl-4 leading-none tracking-wide mb-6">Moteurs</h3>
                     <div class="flex flex-col gap-3">
                         <div class="flex gap-4 p-3.5 rounded-xl border border-[#e8a838]/30 bg-[#121212] shadow-[0_0_15px_rgba(232,168,56,0.05)] hover:border-[#e8a838]/80 transition-colors group">
-                            <div class="w-16 h-16 bg-black rounded-lg border border-zinc-700 overflow-hidden"><img src="assets/W-Engine/Sharpened_Stinger.png" onerror="this.src='https://placehold.co/100/111/fff?text=SS';" class="w-full h-full object-cover group-hover:scale-110 transition-transform"></div>
+                            <div class="w-16 h-16 bg-black rounded-lg border border-zinc-700 overflow-hidden"><img src="assets/W-Engine/W-Engine_Sharpened_Stinger.png" onerror="this.onerror=null; this.src='assets/W-Engine/Sharpened_Stinger.png';" class="w-full h-full object-cover group-hover:scale-110 transition-transform"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] bg-[#e8a838]/10 text-[#e8a838] border border-[#e8a838]/20 px-2 py-0.5 rounded uppercase font-black w-fit mb-1.5">Baseline 100% (Gain DGT massif)</span>
                                 <span class="font-black text-sm uppercase text-white tracking-wide">Sharpened Stinger</span>
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/Practiced_Perfection.png" onerror="this.src='https://placehold.co/100/111/fff?text=PP';" class="w-full h-full object-cover"></div>
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Practiced_Perfection.png" onerror="this.onerror=null; this.src='assets/W-Engine/Practiced_Perfection.png';" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Alt 5★ (100% - Difficile de cap AP)</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">Practiced Perfection</span>
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/Weeping_Gemini.png" onerror="this.src='https://placehold.co/100/111/fff?text=WG';" class="w-full h-full object-cover"></div>
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Weeping_Gemini.png" onerror="this.onerror=null; this.src='assets/W-Engine/Weeping_Gemini.png';" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Alt F2P (89.12%)</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">Weeping Gemini</span>
@@ -172,7 +172,7 @@ export function generateJaneDoeGuide() {
                         <div class="w-6 h-px bg-zinc-700"></div>
                         <div class="flex flex-col items-center gap-3">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#3bbedb] bg-black overflow-hidden relative">
-                                <img src="assets/Agents/Agent_Vent.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/3bbedb?text=V'">
+                                <img src="assets/Agents/Velina.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/3bbedb?text=V'">
                             </div>
                         </div>
                         <div class="w-6 h-px bg-zinc-700"></div>
