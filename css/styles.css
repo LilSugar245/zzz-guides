@@ -61,8 +61,8 @@ body {
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
 }
+/* La pause au survol a été retirée pour un défilement infini fluide */
 .marquee-track-vertical { display: flex; flex-direction: column; animation: scroll-vertical 70s linear infinite; }
-.marquee-track-vertical:hover { animation-play-state: paused; }
 @keyframes scroll-vertical { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
 
 .agent-card-container { 
