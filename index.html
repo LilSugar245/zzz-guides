@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZZZ Guides - Base de données avancée</title>
     
-    <!-- Ajout du Favicon pour l'onglet du navigateur -->
-    <link rel="icon" type="image/png" href="assets/Icone/logo.png" />
+    <link rel="icon" type="image/png" href="assets/Icone/physique.png" />
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap" rel="stylesheet">
@@ -15,7 +14,6 @@
 <body class="flex flex-col h-screen">
 
     <header class="bg-black py-4 border-b border-zinc-800 shadow-[0_10px_30px_rgba(0,0,0,0.9)] z-50 shrink-0 relative transition-all flex items-center justify-center px-4 md:px-10">
-        <!-- Le Header est désormais un lien cliquable redirigeant vers l'accueil -->
         <a href="index.html" class="flex items-center justify-center gap-4 relative z-10 hover:scale-105 transition-transform duration-500 cursor-pointer">
             <div class="bg-yellow-400 px-5 py-1.5 skew-x-[-15deg] shadow-[0_0_15px_rgba(232,168,56,0.3)]">
                 <span class="block text-black font-display font-black italic text-3xl skew-x-[15deg]">ZZZ</span>
@@ -48,6 +46,8 @@
                         <button data-filter="Ice" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Ice.png" class="w-4 h-4 object-contain"> Glace</button>
                         <button data-filter="Electric" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/electrique.png" class="w-4 h-4 object-contain"> Élec</button>
                         <button data-filter="Ether" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Ether.png" class="w-4 h-4 object-contain"> Ether</button>
+                        <button data-filter="Wind" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Vent.png" class="w-4 h-4 object-contain"> Vent</button>
+                        <button data-filter="Lumiflux" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Lumiflux.png" class="w-4 h-4 object-contain"> Lumiflux</button>
                     </div>
                 </div>
 
@@ -85,7 +85,6 @@
         </aside>
 
         <main class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-10 relative z-20 scroll-smooth">
-            <!-- Mobile Search Bar -->
             <div class="md:hidden w-full mb-6 relative z-[100] group">
                 <div class="relative flex items-center">
                     <input type="text" id="searchInputMobile" autocomplete="off" placeholder="Rechercher un agent..." 
