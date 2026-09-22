@@ -8,6 +8,9 @@ import { generateBurniceGuide } from './burnice.js';
 import { generateYidhariGuide } from './yidhari.js';
 import { generateEllenGuide } from './ellen.js';
 import { generateVivianGuide } from './vivian.js';
+import { generateYuzuhaGuide } from './yuzuha.js';
+import { generateSeedGuide } from './seed.js';
+import { generateRemielleGuide } from './remielle.js';
 import { generateGenericGuide } from './generic.js';
 
 export const guides = {
@@ -20,7 +23,10 @@ export const guides = {
     'burnice': generateBurniceGuide,
     'yidhari': generateYidhariGuide,
     'ellen': generateEllenGuide,
-    'vivian': generateVivianGuide
+    'vivian': generateVivianGuide,
+    'yuzuha': generateYuzuhaGuide,
+    'seed': generateSeedGuide,
+    'remielle': generateRemielleGuide
 };
 
 export { generateGenericGuide };
