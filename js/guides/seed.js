@@ -165,7 +165,7 @@ export function generateSeedGuide() {
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Marcato_Desire.png" onerror="this.onerror=null; this.src='assets/W-Engine/Marcato_Desire.png';" class="w-full h-full object-cover"></div>
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/Marcato Desire.png" onerror="this.onerror=null; this.src='assets/W-Engine/Marcato Desire.png';" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Alt 4★ (90.52%)</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">Marcato Desire</span>
