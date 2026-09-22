@@ -148,7 +148,7 @@ function updateBothDropdowns(query) {
                 </div>
             `;
 
-            const onMouseDownLogic = (e) => {
+            const onSelectLogic = (e) => {
                 e.preventDefault(); 
                 searchInput.value = agent.name; 
                 searchInputMobile.value = agent.name; 
@@ -165,15 +165,16 @@ function updateBothDropdowns(query) {
             divD.className = "dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group";
             divD.style.animationDelay = `${delay}ms`; 
             divD.innerHTML = htmlContent;
-            divD.onmousedown = onMouseDownLogic;
+            divD.addEventListener('mousedown', onSelectLogic);
             searchDropdown.appendChild(divD);
 
-            // Setup Mobile Div
+            // Setup Mobile Div (avec touchstart pour mobile)
             const divM = document.createElement('div');
             divM.className = "dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group";
             divM.style.animationDelay = `${delay}ms`; 
             divM.innerHTML = htmlContent;
-            divM.onmousedown = onMouseDownLogic;
+            divM.addEventListener('mousedown', onSelectLogic);
+            divM.addEventListener('touchstart', onSelectLogic, {passive: false});
             searchDropdownMobile.appendChild(divM);
 
             delay += 15;
@@ -193,7 +194,7 @@ searchInput.addEventListener('focus', () => {
     searchDropdown.classList.remove('hidden'); 
     updateBothDropdowns(searchInput.value); 
 });
-searchInput.addEventListener('blur', () => { setTimeout(() => { searchDropdown.classList.add('hidden'); }, 200); });
+searchInput.addEventListener('blur', () => { setTimeout(() => { searchDropdown.classList.add('hidden'); }, 300); });
 clearSearchBtn.addEventListener('click', clearSearch);
 
 // Events Mobile
@@ -208,7 +209,7 @@ searchInputMobile.addEventListener('focus', () => {
     searchDropdownMobile.classList.remove('hidden'); 
     updateBothDropdowns(searchInputMobile.value); 
 });
-searchInputMobile.addEventListener('blur', () => { setTimeout(() => { searchDropdownMobile.classList.add('hidden'); }, 200); });
+searchInputMobile.addEventListener('blur', () => { setTimeout(() => { searchDropdownMobile.classList.add('hidden'); }, 300); });
 clearSearchBtnMobile.addEventListener('click', clearSearch);
 
 function clearSearch() {
@@ -295,7 +296,7 @@ window.openAgentDetail = function(agentName, rank, element) {
 };
 
 function init3DParallax() {
-    // MODIFICATION : Désactive la parallaxe 3D sur les mobiles pour empêcher les lags lourds
+    // Désactive l'animation 3D lourde sur les téléphones et tablettes
     if (window.matchMedia("(hover: none)").matches) return; 
 
     document.querySelectorAll('.agent-card-container').forEach(card => {
