@@ -1,15 +1,15 @@
 export const colorMap = {
     'Physical': '#e8a838', 'Fire': '#f05432', 'Ice': '#3bbedb', 'Wind': '#3bbedb',
-    'Electric': '#3182eb', 'Ether': '#f23c8a', 'Lumiflux': '#f23c8a', 'Auric Ink': '#f23c8a'
+    'Electric': '#3182eb', 'Ether': '#f23c8a', 'Lumiflux': '#fba2d0', 'Auric Ink': '#5d57a6'
 };
 
 export const iconMap = {
     'Physical': 'physique.png', 'Fire': 'feu.png', 'Ice': 'Ice.png', 'Wind': 'Vent.png',
-    'Electric': 'electrique.png', 'Ether': 'Ether.png', 'Lumiflux': 'Ether.png', 'Auric Ink': 'Ether.png'
+    'Electric': 'electrique.png', 'Ether': 'Ether.png', 'Lumiflux': 'Lumiflux.png', 'Auric Ink': 'Ether.png'
 };
 
 export const filterGroups = {
-    'Ice': ['Ice', 'Wind'], 'Ether': ['Ether', 'Lumiflux', 'Auric Ink'],
+    'Ice': ['Ice'], 'Wind': ['Wind'], 'Ether': ['Ether', 'Auric Ink'], 'Lumiflux': ['Lumiflux'],
     'Physical': ['Physical'], 'Fire': ['Fire'], 'Electric': ['Electric']
 };
 
@@ -59,7 +59,7 @@ export const agentsData = [
     { name: 'Lucia', element: 'Ether', rank: 'S', faction: 'Maison hantée' },
     { name: 'Banyue', element: 'Fire', rank: 'S', faction: 'Autorité de conformité Krampus' },
     { name: 'Dialyn', element: 'Physical', rank: 'S', faction: 'Autorité de conformité Krampus' },
-    { name: 'Ye Shunguang', element: 'Ice', rank: 'S', faction: 'Cimes de Yunkui' },
+    { name: 'Ye Shunguang', element: 'Physical', rank: 'S', faction: 'Cimes de Yunkui' },
     { name: 'Zhao', element: 'Ice', rank: 'S', faction: 'Autorité de conformité Krampus' },
     { name: 'Aria', element: 'Ether', rank: 'S', faction: "Anges de l'illusion" },
     { name: 'Sunna', element: 'Physical', rank: 'S', faction: "Anges de l'illusion" },
