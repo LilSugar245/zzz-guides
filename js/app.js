@@ -13,11 +13,17 @@ let currentModalAgentIndex = -1;
 
 const gridContainer = document.getElementById('agents-grid');
 const emptyState = document.getElementById('empty-state');
+const elementBtns = document.querySelectorAll('#elementFilters button');
+const favFilterBtn = document.getElementById('favoriteFilterBtn');
+
+// Éléments de recherche Bureau & Mobile
 const searchInput = document.getElementById('searchInput');
 const clearSearchBtn = document.getElementById('clearSearchBtn');
 const searchDropdown = document.getElementById('searchDropdown');
-const elementBtns = document.querySelectorAll('#elementFilters button');
-const favFilterBtn = document.getElementById('favoriteFilterBtn');
+
+const searchInputMobile = document.getElementById('searchInputMobile');
+const clearSearchBtnMobile = document.getElementById('clearSearchBtnMobile');
+const searchDropdownMobile = document.getElementById('searchDropdownMobile');
 
 function updateFavBadge() { document.getElementById('favCountBadge').textContent = favorites.length; }
 
@@ -103,29 +109,33 @@ document.getElementById('clearFactionBtn').addEventListener('click', (e) => {
     renderAgents();
 });
 
-function updateDropdown(query) {
+// LOGIQUE DE RECHERCHE COMBINÉE BUREAU & MOBILE
+function updateBothDropdowns(query) {
     searchDropdown.innerHTML = '';
+    searchDropdownMobile.innerHTML = '';
     let filtered = [];
+    
     if (query) {
         filtered = agentsData.filter(a => a.name.toLowerCase().startsWith(query.toLowerCase()));
         clearSearchBtn.classList.remove('hidden');
+        clearSearchBtnMobile.classList.remove('hidden');
     } else {
         filtered = [...agentsData];
         clearSearchBtn.classList.add('hidden');
+        clearSearchBtnMobile.classList.add('hidden');
     }
+    
     filtered.sort((a, b) => a.name.localeCompare(b.name));
     
     if (filtered.length === 0) {
-        searchDropdown.innerHTML = `<div class="p-5 text-zinc-500 text-sm text-center italic font-bold">Aucun signal trouvé</div>`;
+        const emptyStateHTML = `<div class="p-5 text-zinc-500 text-sm text-center italic font-bold">Aucun signal trouvé</div>`;
+        searchDropdown.innerHTML = emptyStateHTML;
+        searchDropdownMobile.innerHTML = emptyStateHTML;
     } else {
         let delay = 0;
         filtered.forEach(agent => {
             const iconFile = iconMap[agent.element] || 'physique.png';
-            const div = document.createElement('div');
-            div.className = "dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group";
-            div.style.animationDelay = `${delay}ms`; delay += 15;
-            
-            div.innerHTML = `
+            const htmlContent = `
                 <div class="w-12 h-12 rounded-xl bg-[#121212] border border-zinc-700 overflow-hidden flex-shrink-0 relative shadow-inner">
                     <img src="assets/Agents/${agent.name}.png" alt="${agent.name}" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://placehold.co/100x100/222222/ffffff?text=${agent.name.charAt(0)}'">
                 </div>
@@ -137,19 +147,80 @@ function updateDropdown(query) {
                     </div>
                 </div>
             `;
-            div.onmousedown = (e) => {
-                e.preventDefault(); searchInput.value = agent.name; searchQuery = agent.name;
-                searchDropdown.classList.add('hidden'); clearSearchBtn.classList.remove('hidden'); renderAgents();
+
+            const onMouseDownLogic = (e) => {
+                e.preventDefault(); 
+                searchInput.value = agent.name; 
+                searchInputMobile.value = agent.name; 
+                searchQuery = agent.name;
+                searchDropdown.classList.add('hidden'); 
+                searchDropdownMobile.classList.add('hidden'); 
+                clearSearchBtn.classList.remove('hidden'); 
+                clearSearchBtnMobile.classList.remove('hidden'); 
+                renderAgents();
             };
-            searchDropdown.appendChild(div);
+
+            // Setup Bureau Div
+            const divD = document.createElement('div');
+            divD.className = "dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group";
+            divD.style.animationDelay = `${delay}ms`; 
+            divD.innerHTML = htmlContent;
+            divD.onmousedown = onMouseDownLogic;
+            searchDropdown.appendChild(divD);
+
+            // Setup Mobile Div
+            const divM = document.createElement('div');
+            divM.className = "dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group";
+            divM.style.animationDelay = `${delay}ms`; 
+            divM.innerHTML = htmlContent;
+            divM.onmousedown = onMouseDownLogic;
+            searchDropdownMobile.appendChild(divM);
+
+            delay += 15;
         });
     }
 }
 
-searchInput.addEventListener('input', (e) => { searchQuery = e.target.value; searchDropdown.classList.remove('hidden'); updateDropdown(searchQuery); renderAgents(); });
-searchInput.addEventListener('focus', () => { searchDropdown.classList.remove('hidden'); updateDropdown(searchInput.value); });
+// Events Desktop
+searchInput.addEventListener('input', (e) => { 
+    searchQuery = e.target.value; 
+    searchInputMobile.value = searchQuery;
+    searchDropdown.classList.remove('hidden'); 
+    updateBothDropdowns(searchQuery); 
+    renderAgents(); 
+});
+searchInput.addEventListener('focus', () => { 
+    searchDropdown.classList.remove('hidden'); 
+    updateBothDropdowns(searchInput.value); 
+});
 searchInput.addEventListener('blur', () => { setTimeout(() => { searchDropdown.classList.add('hidden'); }, 200); });
-clearSearchBtn.addEventListener('click', () => { searchInput.value = ''; searchQuery = ''; clearSearchBtn.classList.add('hidden'); searchDropdown.classList.add('hidden'); renderAgents(); });
+clearSearchBtn.addEventListener('click', clearSearch);
+
+// Events Mobile
+searchInputMobile.addEventListener('input', (e) => { 
+    searchQuery = e.target.value; 
+    searchInput.value = searchQuery;
+    searchDropdownMobile.classList.remove('hidden'); 
+    updateBothDropdowns(searchQuery); 
+    renderAgents(); 
+});
+searchInputMobile.addEventListener('focus', () => { 
+    searchDropdownMobile.classList.remove('hidden'); 
+    updateBothDropdowns(searchInputMobile.value); 
+});
+searchInputMobile.addEventListener('blur', () => { setTimeout(() => { searchDropdownMobile.classList.add('hidden'); }, 200); });
+clearSearchBtnMobile.addEventListener('click', clearSearch);
+
+function clearSearch() {
+    searchInput.value = ''; 
+    searchInputMobile.value = ''; 
+    searchQuery = ''; 
+    clearSearchBtn.classList.add('hidden'); 
+    clearSearchBtnMobile.classList.add('hidden'); 
+    searchDropdown.classList.add('hidden'); 
+    searchDropdownMobile.classList.add('hidden'); 
+    renderAgents();
+}
 
 elementBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -224,6 +295,9 @@ window.openAgentDetail = function(agentName, rank, element) {
 };
 
 function init3DParallax() {
+    // MODIFICATION : Désactive la parallaxe 3D sur les mobiles pour empêcher les lags lourds
+    if (window.matchMedia("(hover: none)").matches) return; 
+
     document.querySelectorAll('.agent-card-container').forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top;
