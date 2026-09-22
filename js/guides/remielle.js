@@ -8,7 +8,7 @@ export function generateRemielleGuide() {
             </div>
             <div class="flex gap-2">
                 <div class="bg-[#1a1a1a] rounded-xl w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center shadow-lg border border-white/5">
-                    <img src="assets/Icone/Ether.png" class="w-7 h-7 sm:w-9 sm:h-9 object-contain filter drop-shadow-[0_0_8px_rgba(242,60,138,1)]">
+                    <img src="assets/Icone/Lumiflux.png" class="w-7 h-7 sm:w-9 sm:h-9 object-contain filter drop-shadow-[0_0_8px_rgba(242,60,138,1)]">
                 </div>
                 <div class="bg-[#f23c8a] rounded-xl text-black w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center font-black text-2xl sm:text-3xl shadow-[0_0_15px_rgba(242,60,138,0.3)]">S</div>
             </div>
