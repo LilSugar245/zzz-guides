@@ -11,6 +11,9 @@ import { generateVivianGuide } from './vivian.js';
 import { generateYuzuhaGuide } from './yuzuha.js';
 import { generateSeedGuide } from './seed.js';
 import { generateRemielleGuide } from './remielle.js';
+import { generateVelinaGuide } from './velina.js';
+import { generateCissiaGuide } from './cissia.js';
+import { generateBanyueGuide } from './banyue.js';
 import { generateGenericGuide } from './generic.js';
 
 export const guides = {
@@ -26,7 +29,10 @@ export const guides = {
     'vivian': generateVivianGuide,
     'yuzuha': generateYuzuhaGuide,
     'seed': generateSeedGuide,
-    'remielle': generateRemielleGuide
+    'remielle': generateRemielleGuide,
+    'velina': generateVelinaGuide,
+    'cissia': generateCissiaGuide,
+    'banyue': generateBanyueGuide
 };
 
 export { generateGenericGuide };
