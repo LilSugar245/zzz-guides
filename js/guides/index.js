@@ -6,6 +6,8 @@ import { generateYanagiGuide } from './yanagi.js';
 import { generateNangongYuGuide } from './nangongyu.js';
 import { generateBurniceGuide } from './burnice.js';
 import { generateYidhariGuide } from './yidhari.js';
+import { generateEllenGuide } from './ellen.js';
+import { generateVivianGuide } from './vivian.js';
 import { generateGenericGuide } from './generic.js';
 
 export const guides = {
@@ -16,7 +18,9 @@ export const guides = {
     'yanagi': generateYanagiGuide,
     'nangong yu': generateNangongYuGuide,
     'burnice': generateBurniceGuide,
-    'yidhari': generateYidhariGuide
+    'yidhari': generateYidhariGuide,
+    'ellen': generateEllenGuide,
+    'vivian': generateVivianGuide
 };
 
 export { generateGenericGuide };
