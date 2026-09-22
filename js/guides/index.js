@@ -14,6 +14,10 @@ import { generateRemielleGuide } from './remielle.js';
 import { generateVelinaGuide } from './velina.js';
 import { generateCissiaGuide } from './cissia.js';
 import { generateBanyueGuide } from './banyue.js';
+import { generateNicoleGuide } from './nicole.js';
+import { generateLycaonGuide } from './lycaon.js';
+import { generateKoledaGuide } from './koleda.js';
+import { generatePiperGuide } from './piper.js';
 import { generateGenericGuide } from './generic.js';
 
 export const guides = {
@@ -32,7 +36,11 @@ export const guides = {
     'remielle': generateRemielleGuide,
     'velina': generateVelinaGuide,
     'cissia': generateCissiaGuide,
-    'banyue': generateBanyueGuide
+    'banyue': generateBanyueGuide,
+    'nicole': generateNicoleGuide,
+    'lycaon': generateLycaonGuide,
+    'koleda': generateKoledaGuide,
+    'piper': generatePiperGuide
 };
 
 export { generateGenericGuide };
