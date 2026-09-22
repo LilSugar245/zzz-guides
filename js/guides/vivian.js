@@ -4,7 +4,7 @@ export function generateVivianGuide() {
         <div class="flex items-end justify-between mb-8 border-b-2 border-zinc-800 pb-6 stagger-anim delay-1">
             <div class="flex flex-col">
                 <span class="text-zinc-500 font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-2">Megadere</span>
-                <h2 class="text-5xl sm:text-7xl md:text-8xl font-display font-black italic text-white leading-none uppercase drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:text-[#f23c8a] transition-colors duration-500 cursor-default">VIVIAN</h2>
+                <h2 class="text-5xl sm:text-7xl md:text-8xl font-display font-black italic text-white leading-none uppercase drop-shadow-[0_0_20px_rgba(242,60,138,0.2)] hover:text-[#f23c8a] transition-colors duration-500 cursor-default">VIVIAN</h2>
             </div>
             <div class="flex gap-2">
                 <div class="bg-[#1a1a1a] rounded-xl w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center shadow-lg border border-white/5">
@@ -214,7 +214,8 @@ export function generateVivianGuide() {
                         <div class="w-6 h-px bg-zinc-700"></div>
                         <div class="flex flex-col items-center gap-3">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#e8a838] bg-black overflow-hidden relative">
-                                <img src="assets/Agents/Jane Doe.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/e8a838?text=J'">
+                                <!-- CORRECTION DU NOM DE JANE -->
+                                <img src="assets/Agents/Jane.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/e8a838?text=J'">
                             </div>
                         </div>
                         <div class="w-6 h-px bg-zinc-700"></div>
