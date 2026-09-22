@@ -147,28 +147,30 @@ export function generateYidhariGuide() {
                     <h3 class="text-white font-display font-black text-2xl uppercase border-l-4 border-[#3bbedb] pl-4 leading-none tracking-wide mb-6">Moteurs</h3>
                     <div class="flex flex-col gap-3">
                         <div class="flex gap-4 p-3.5 rounded-xl border border-[#3bbedb]/30 bg-[#121212] shadow-[0_0_15px_rgba(59,190,219,0.05)] hover:border-[#3bbedb]/80 transition-colors group">
-                            <div class="w-16 h-16 bg-black rounded-lg border border-zinc-700 overflow-hidden"><img src="assets/W-Engine/W-Engine_Kraken%27s_Cradle.png" onerror="this.onerror=null; this.src='assets/W-Engine/W-Engine_Kraken%27s_Cradle.png';" class="w-full h-full object-cover group-hover:scale-110 transition-transform"></div>
+                            <!-- CORRECTION DES %27 -->
+                            <div class="w-16 h-16 bg-black rounded-lg border border-zinc-700 overflow-hidden"><img src="assets/W-Engine/W-Engine_Kraken%27s_Cradle.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] bg-[#3bbedb]/10 text-[#3bbedb] border border-[#3bbedb]/20 px-2 py-0.5 rounded uppercase font-black w-fit mb-1.5">Moteur S</span>
                                 <span class="font-black text-sm uppercase text-white tracking-wide">Kraken's Cradle</span>
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/Qingming_Birdcage.png" onerror="this.onerror=null; this.src='assets/W-Engine/W-Engine_Qingming_Birdcage.png';" class="w-full h-full object-cover"></div>
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Qingming_Birdcage.png" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Moteur S</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">Qingming Birdcage</span>
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/Radiowave_Journey.png" onerror="this.onerror=null; this.src='assets/W-Engine/W-Engine_Radiowave_Journey.png';" class="w-full h-full object-cover"></div>
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Radiowave_Journey.png" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Moteur A</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">Radiowave Journey</span>
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Grill_O%27Wisp.png" onerror="this.onerror=null; this.src='assets/W-Engine/W-Engine_Grill_O%27Wisp.png';" class="w-full h-full object-cover"></div>
+                            <!-- CORRECTION DES %27 -->
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Grill_O%27Wisp.png" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Moteur A</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">Grill O'Wisp</span>
@@ -182,7 +184,6 @@ export function generateYidhariGuide() {
         <div class="mt-14 border-t border-zinc-800/80 pt-10 stagger-anim delay-5">
             <h3 class="text-white font-display font-black text-2xl uppercase border-l-4 border-[#3bbedb] pl-4 leading-none tracking-wide mb-8">Synergies & Équipes</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
                 <div class="bg-gradient-to-br from-[#111] to-[#0a0a0a] border border-zinc-800 rounded-2xl p-6 shadow-xl relative overflow-hidden group hover:border-[#3bbedb]/50 transition-colors">
                     <div class="absolute -right-12 -top-12 text-[100px] font-display font-black text-zinc-800/20 italic transform group-hover:scale-110 group-hover:text-[#3bbedb]/5 transition-all duration-700 pointer-events-none">01</div>
                     <div class="flex items-center justify-between mb-6 border-b border-zinc-800/80 pb-3 relative z-10">
@@ -261,7 +262,6 @@ export function generateYidhariGuide() {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
