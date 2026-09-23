@@ -119,7 +119,7 @@ export const agentDatabase = {
     },
     "Burnice": {
         color: "#f05432", element: "Fire", rank: "S", factionTitle: "Mixologist",
-        stats: [ { label: "Réc. d'énergie", value: "2,8" }, { label: "Attaque", value: "À MAXIMISER" }, { label: "Adr. d'anomalie", value: "À MAXIMISER" } ],
+        stats: [ { label: "Réc. d'énergie", value: "2,8" }, { label: "Attaque", value: "2900" }, { label: "Adr. d'anomalie", value: "400" } ],
         discs: [
             { tag: "Set 1 👑", set1: "Chaos_Jazz", set2: "Swing_Jazz", set1Name: "4pc Chaos Jazz", set2Name: "+ 2pc Swing J. / Moonlight", note: "Le meilleur set pour Burnice. Booste ses EX Spéciaux." },
             { tag: "Set 2 (100%)", set1: "Chaos_Jazz", set2: "Puffer_Electro", set1Name: "4pc Chaos Jazz", set2Name: "+ 2pc Puffer Electro", note: "" },
@@ -128,7 +128,7 @@ export const agentDatabase = {
         skills: [
             { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }
         ],
-        statPriority: { main: [ { slot: "6", label: "Récupération d'énergie" }, { slot: "5", label: "DGT Feu %" }, { slot: "4", label: "Adresse d'anomalie" } ], sub: [ { label: "Adresse d'anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "PEN / ATQ Flat", highlight: false } ] },
+        statPriority: { main: [ { slot: "6", label: "Récupération d'énergie" }, { slot: "5", label: "Pen Ratio" }, { slot: "4", label: "Adresse d'anomalie" } ], sub: [ { label: "Adresse d'anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "PEN / ATQ Flat", highlight: false } ] },
         engines: [
             { tag: "Baseline 100%", name: "Flamemaker Shaker", img: "W-Engine_Flamemaker_Shaker.png" }, { tag: "Alt 5★ (98.21%)", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }, { tag: "Alt Craftable", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }
         ],
