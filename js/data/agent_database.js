@@ -8,7 +8,7 @@ export const agentDatabase = {
             { tag: "Support Build 2", set1: "Freedom_Blues", set2: "Hormone_Punk", set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Hormone Punk", note: "" }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Ult", level: "10", icon: "Ultime.png" }
+            { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Ult", level: "10", icon: "Ultime.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Anomaly" }, { slot: "5", label: "Physical DMG" }, { slot: "4", label: "Anomaly" } ], sub: [ { label: "Anomaly Proficiency", highlight: true }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
@@ -25,10 +25,10 @@ export const agentDatabase = {
         stats: [ { label: "Adresse Anomalie", value: "420" }, { label: "Attaque", value: "2600" } ],
         discs: [
             { tag: "Set 1 👑", set1: "Fanged_Metal", set2: "Puffer_Electro", set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Puffer Electro", note: "Le meilleur choix d'appoint si vous utilisez du Taux de Pénétration (PEN Ratio) sur le disque 5." },
-            { tag: "Set 2 (99.90%)", set1: "Fanged_Metal", set2: "Phaethons_Melody", set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Phaethon's Melody", note: "" }
+            { tag: "Set 2 (99.90%)", set1: "Fanged_Metal", set2: "Phaethon_Melody", set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Phaethon's Melody", note: "" }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Ex", level: "10", icon: "Ex.png" }, { name: "Basic", level: "8", icon: "Attaque_basic.png" }
+            { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Ex", level: "10", icon: "Ex.png" }, { name: "Basic", level: "8", icon: "Attaque_basic.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Anomalie" }, { slot: "5", label: "PEN Ratio" }, { slot: "4", label: "Anomalie" } ], sub: [ { label: "Adre. Anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "Flat PEN / Flat ATK", highlight: false } ] },
         engines: [
@@ -48,7 +48,7 @@ export const agentDatabase = {
             { tag: "Set 2 (100%)", set1: "Thorned_Rose", set2: "Woodpecker_Electro", set1Name: "4pc Thorned Rose", set2Name: "+ 2pc Woodpecker Electro", note: "Très bonne alternative TC." }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Assist", level: "10", icon: "Assist.png" }
+            { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Assist", level: "10", icon: "Assist.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "DÉF %" }, { slot: "5", label: "PEN Ratio" }, { slot: "4", label: "Taux CRIT" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "DÉF %", highlight: false }, { label: "DGT CRIT", highlight: false } ] },
         engines: [
@@ -66,7 +66,7 @@ export const agentDatabase = {
             { tag: "Base Conseillée 👑", set1: "White_Water_Ballad", set2: "Woodpecker_Electro", set1Name: "4pc White Water Ballad", set2Name: "+ 2pc Woodpecker Electro", note: "Boost les DMG physiques et le TC si l'allié est dans un voile d'éther." }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Assist", level: "11", icon: "Assist.png" }
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Assist", level: "11", icon: "Assist.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "DGT Physique %" }, { slot: "4", label: "Attaque %" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "DGT CRIT = ATQ %", highlight: false }, { label: "Flat PEN", highlight: false } ] },
         engines: [
@@ -85,7 +85,7 @@ export const agentDatabase = {
             { tag: "Set 2 (100%)", set1: "Hormone_Punk", set2: "Freedom_Blues", set1Name: "4pc Hormone Punk", set2Name: "+ 2pc Blues Libres", note: "Envisageable avec Rina, mais moins régulier." }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "10", icon: "Assist.png" }, { name: "Basic", level: "5", icon: "Attaque_basic.png" }
+            { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "10", icon: "Assist.png" }, { name: "Basic", level: "5", icon: "Attaque_basic.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Maîtrise d'Anomalie" }, { slot: "5", label: "Attaque %" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Adresse d'Anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "PEN / ATQ Flat", highlight: false } ] },
         engines: [
@@ -100,11 +100,11 @@ export const agentDatabase = {
         color: "#f23c8a", element: "Ether", rank: "S", factionTitle: "Angels of Delusion",
         stats: [ { label: "Adre. d'anomalie", value: "350+" }, { label: "Maî. d'Anomalie", value: "150+" }, { label: "Attaque", value: "2800+" } ],
         discs: [
-            { tag: "Set 1 👑", set1: "Phaethons_Melody", set2: "Freedom_Blues", set1Name: "4pc Phaethon's Melody", set2Name: "+ 2pc Freedom Blues", note: "Set idéal." },
+            { tag: "Set 1 👑", set1: "Phaethon_Melody", set2: "Freedom_Blues", set1Name: "4pc Phaethon's Melody", set2Name: "+ 2pc Freedom Blues", note: "Set idéal." },
             { tag: "Alternatives", set1: "Shining_Aria", set2: "Swing_Jazz", set1Name: "2pc Shining Aria", set2Name: "+ 2pc Swing Jazz", note: "" }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "10", icon: "Assist.png" }
+            { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "10", icon: "Assist.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Anomalie" }, { slot: "5", label: "DGT Éther > ATQ" }, { slot: "4", label: "Anomalie" } ], sub: [ { label: "Anomalie", highlight: true }, { label: "ATQ %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
@@ -124,7 +124,7 @@ export const agentDatabase = {
             { tag: "Set 3 (90%)", set1: "Freedom_Blues", set2: "Swing_Jazz", set1Name: "4pc Blues Libres", set2Name: "+ 2pc Swing J. / Moonlight", note: "Plus intéressant que Chaos Jazz dans la Team Remielle + Velina." }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }
+            { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Récupération d'énergie" }, { slot: "5", label: "DGT Feu %" }, { slot: "4", label: "Adresse d'anomalie" } ], sub: [ { label: "Adresse d'anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "PEN / ATQ Flat", highlight: false } ] },
         engines: [
@@ -166,7 +166,7 @@ export const agentDatabase = {
             { tag: "Set 3 (92.52%)", set1: "Polar_Metal", set2: "Puffer_Electro", set1Name: "4pc Métal Polaire", set2Name: "+ 2pc Puffer Electro", note: "" }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "Pen Ratio (DGT Glace)" }, { slot: "4", label: "Dégât Crit (TC)" } ], sub: [ { label: "Taux Crit", highlight: true }, { label: "Attaque % = Dégât Crit", highlight: false }, { label: "Pen / ATQ Flat", highlight: false } ] },
         engines: [
@@ -182,12 +182,12 @@ export const agentDatabase = {
         color: "#f23c8a", element: "Ether", rank: "S", factionTitle: "Megadere",
         stats: [ { label: "Ad. d'Anomalie", value: "400+" }, { label: "Attaque", value: "2300+" }, { label: "Ma. d'Anomalie", value: "= 198" } ],
         discs: [
-            { tag: "Set 1 👑", set1: "Phaethons_Melody", set2: "Freedom_Blues", set1Name: "4pc Phaethon Melody", set2Name: "+ 2pc Blues Libres", note: "Non négociable. Indispensable pour récupérer +30 d'AP." },
-            { tag: "Set 2 (100%)", set1: "Phaethons_Melody", set2: "Chaotic_Metal", set1Name: "4pc Phaethon Melody", set2Name: "+ 2pc Métal Chaotique", note: "" },
-            { tag: "Set 3 (99.53%)", set1: "Phaethons_Melody", set2: "Puffer_Electro", set1Name: "4pc Phaethon Melody", set2Name: "+ 2pc Puffer Electro", note: "" }
+            { tag: "Set 1 👑", set1: "Phaethon_Melody", set2: "Freedom_Blues", set1Name: "4pc Phaethon Melody", set2Name: "+ 2pc Blues Libres", note: "Non négociable. Indispensable pour récupérer +30 d'AP." },
+            { tag: "Set 2 (100%)", set1: "Phaethon_Melody", set2: "Chaotic_Metal", set1Name: "4pc Phaethon Melody", set2Name: "+ 2pc Métal Chaotique", note: "" },
+            { tag: "Set 3 (99.53%)", set1: "Phaethon_Melody", set2: "Puffer_Electro", set1Name: "4pc Phaethon Melody", set2Name: "+ 2pc Puffer Electro", note: "" }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "12", icon: "Assist.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }, { name: "Ex", level: "11", icon: "Ex.png" }
+            { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "12", icon: "Assist.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }, { name: "Ex", level: "11", icon: "Ex.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Maîtrise d'Anomalie" }, { slot: "5", label: "DGT Éther %" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Adresse d'anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "Pen Flat", highlight: false } ] },
         engines: [
@@ -203,11 +203,11 @@ export const agentDatabase = {
         color: "#e8a838", element: "Physical", rank: "S", factionTitle: "Member of the Spook Shack",
         stats: [ { label: "Attaque", value: "3000" }, { label: "Maitrise d'Anomalie", value: "171" }, { label: "Adresse d'Anomalie", value: "200-250+" } ],
         discs: [
-            { tag: "Set 1 👑", set1: "Moonlight_Lullaby", set2: "Phaethons_Melody", set1Name: "4pc Moonlight Lullaby", set2Name: "+ 2pc Phaethon melody", note: "Le set standard obligatoire pour appliquer les buffs d'équipe." },
-            { tag: "Set 2 (100%)", set1: "Astral_Voice", set2: "Phaethons_Melody", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Phaethon melody", note: "À équiper uniquement si elle est jouée avec Sunna." }
+            { tag: "Set 1 👑", set1: "Moonlight_Lullaby", set2: "Phaethon_Melody", set1Name: "4pc Moonlight Lullaby", set2Name: "+ 2pc Phaethon melody", note: "Le set standard obligatoire pour appliquer les buffs d'équipe." },
+            { tag: "Set 2 (100%)", set1: "Astral_Voice", set2: "Phaethon_Melody", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Phaethon melody", note: "À équiper uniquement si elle est jouée avec Sunna." }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ex", level: "10", icon: "Ex.png" }, { name: "Ult", level: "10", icon: "Ultime.png" }, { name: "Assist", level: "10", icon: "Assist.png" }
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ex", level: "10", icon: "Ex.png" }, { name: "Ult", level: "10", icon: "Ultime.png" }, { name: "Assist", level: "10", icon: "Assist.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Maîtrise d'Anomalie" }, { slot: "5", label: "Attaque %" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Attaque %", highlight: true }, { label: "Adresse d'Anomalie", highlight: false }, { label: "Attaque Flat", highlight: false } ] },
         engines: [
@@ -228,7 +228,7 @@ export const agentDatabase = {
             { tag: "Set 3 (98.03%)", set1: "Dawn_Bloom", set2: "Branch_Blade_Song", set1Name: "4pc Dawn's Bloom", set2Name: "+ 2pc Branch & Blade Song", note: "Son meilleur choix si tu la joues sans Dialyn." }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Assist", level: "11", icon: "Assist.png" }
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Assist", level: "11", icon: "Assist.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Attaque" }, { slot: "5", label: "PEN Ratio" }, { slot: "4", label: "Taux Crit" } ], sub: [ { label: "Taux Crit", highlight: true }, { label: "Dégât Crit", highlight: false }, { label: "Attaque %", highlight: false } ] },
         engines: [
@@ -249,7 +249,7 @@ export const agentDatabase = {
             { tag: "Set 3 (99.20%)", set1: "Feathered_Fate", set2: "Astral_Voice", set1Name: "4pc Feathered Fate", set2Name: "+ 2pc Astral Voice", note: "Okay si cela t'aide à atteindre les 4000 d'attaque." }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Assist", level: "12", icon: "Assist.png" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Assist", level: "12", icon: "Assist.png" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Attaque" }, { slot: "5", label: "Attaque" }, { slot: "4", label: "Anomalie" } ], sub: [ { label: "Attaque", highlight: true }, { label: "Anomalie", highlight: false }, { label: "Flat PEN / Flat ATK", highlight: false } ] },
         engines: [
@@ -270,7 +270,7 @@ export const agentDatabase = {
             { tag: "Set 3 (97.39%)", set1: "Wuthering_Salon", set2: "Chaos_Jazz", set1Name: "4pc Wuthering Salon", set2Name: "+ 2pc Chaos Jazz", note: "" }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }
+            { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Énergie Regen" }, { slot: "5", label: "Wind DMG %" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Adresse d'Anomalie", highlight: true }, { label: "ATK %", highlight: false }, { label: "Flat PEN = Flat ATK", highlight: false } ] },
         engines: [
@@ -291,7 +291,7 @@ export const agentDatabase = {
             { tag: "Set 3", set1: "Dawn_Bloom", set2: "Swing_Jazz", set1Name: "4pc Dawn's Bloom", set2Name: "+ 2pc Swing Jazz", note: "" }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+            { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Energie Regen" }, { slot: "5", label: "Dmg Elec > ATQ" }, { slot: "4", label: "Taux Crit" } ], sub: [ { label: "TC (Jusqu'à 100% IG)", highlight: true }, { label: "DC %", highlight: false }, { label: "ATK %", highlight: false } ] },
         engines: [
@@ -312,7 +312,7 @@ export const agentDatabase = {
             { tag: "Set 3", set1: "Inferno_Metal", set2: "Hormone_Punk", set1Name: "4pc Inferno Metal", set2Name: "+ 2pc Hormone Punk", note: "" }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+            { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "HP" }, { slot: "5", label: "DMG / HP" }, { slot: "4", label: "TC / DC" } ], sub: [ { label: "TC / DC", highlight: true }, { label: "HP %", highlight: false } ] },
         engines: [
@@ -333,7 +333,7 @@ export const agentDatabase = {
             { tag: "Support Build II", set1: "Astral_Voice", set2: "Swing_Jazz", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Swing Jazz", note: "" }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }
+            { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Anomalie" }, { slot: "5", label: "Ether DMG" }, { slot: "4", label: "Energy Regen" } ], sub: [ { label: "Anomaly Mastery", highlight: true }, { label: "PEN", highlight: false }, { label: "ATK %", highlight: false } ] },
         engines: [
@@ -354,11 +354,11 @@ export const agentDatabase = {
             { tag: "Crit Build", set1: "Shockstar_Disco", set2: "Woodpecker_Electro", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Woodpecker Electro", note: "" }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+            { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Impact" }, { slot: "5", label: "Ice DMG" }, { slot: "4", label: "Crit Rate / DMG" } ], sub: [ { label: "Crit Rate", highlight: true }, { label: "Crit DMG", highlight: false }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "The Restrained", img: "The_Restrained.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "Precious_Fossilized_Core.png" }, { tag: "Moteur A", name: "Six Shooter", img: "Six_Shooter.png" }, { tag: "Moteur B", name: "Vortex - Arrow", img: "Vortex_Arrow.png" }
+            { tag: "Baseline 100%", name: "The Restrained", img: "The_Restrained.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "Precious_Fossilized.png" }, { tag: "Moteur A", name: "Six Shooter", img: "Six_Shooter.png" }, { tag: "Moteur B", name: "Vortex - Arrow", img: "Vortex_Arrow.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Hugo", members: [ { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Hugo.png", color: "#3bbedb", initial: "H" } ] },
@@ -375,11 +375,11 @@ export const agentDatabase = {
             { tag: "Stun / DPS Build", set1: "Shockstar_Disco", set2: "Woodpecker_Electro", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Woodpecker Electro", note: "" }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ult", level: "", icon: "Ultime.png" }
+            { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ult", level: "", icon: "Ultime.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Impact" }, { slot: "5", label: "Fire DMG" }, { slot: "4", label: "CRIT Rate" } ], sub: [ { label: "CRIT DMG / Rate", highlight: true }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Hellfire Gears", img: "Hellfire_Gears.png" }, { tag: "Moteur S", name: "The Restrained", img: "The_Restrained.png" }, { tag: "Moteur A", name: "Six Shooter", img: "Six_Shooter.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "Precious_Fossilized_Core.png" }
+            { tag: "Baseline 100%", name: "Hellfire Gears", img: "Hellfire_Gears.png" }, { tag: "Moteur S", name: "The Restrained", img: "The_Restrained.png" }, { tag: "Moteur A", name: "Six Shooter", img: "Six_Shooter.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "Precious_Fossilized.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Fire-Stun", members: [ { img: "Evelyn.png", color: "#f05432", initial: "E" }, { img: "Koleda.png", color: "#f05432", initial: "K" }, { img: "Ben.png", color: "#f05432", initial: "B" } ] },
