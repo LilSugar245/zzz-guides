@@ -61,20 +61,22 @@ export const agentDatabase = {
     },
     "Ye Shunguang": {
         color: "#e8a838", element: "Physical", rank: "S", factionTitle: "Void Hunter",
-        stats: [ { label: "Taux Crit", value: "50.6%" }, { label: "Dégâts Crit", value: "180-200%+" }, { label: "Attaque %", value: "3000+" } ],
+        stats: [ { label: "Attaque", value: "Max" }, { label: "PEN Ratio ou ATQ", value: "Max" }, { label: "Dégât Crit", value: "Max" } ],
         discs: [
-            { tag: "Base Conseillée 👑", set1: "White_Water_Ballad", set2: "Woodpecker_Electro", set1Name: "4pc White Water Ballad", set2Name: "+ 2pc Woodpecker Electro", note: "Boost les DMG physiques et le TC si l'allié est dans un voile d'éther." }
+            { tag: "Meilleur Set 👑", set1: "White_Water_Ballad", set2: "Branch_Blade_Song", set1Name: "4pc White Water Ballad", set2Name: "+ 2pc Branch and Blade Song", note: "White Water Ballad est le set signature de Ye Shunguang, augmentant son Taux CRIT et son ATQ. Le buff devient plus puissant lorsqu'elle active le Voile d'Ether. Vu qu'elle gagne beaucoup de Taux CRIT via ce set et son Core Skill, utilisez le 2-pc Branch and Blade Song pour les DGT CRIT." },
+            { tag: "2ème Choix", set1: "White_Water_Ballad", set2: "Woodpecker_Electro", set1Name: "4pc White Water Ballad", set2Name: "+ 2pc Woodpecker Electro", note: "Vous pouvez utiliser Woodpecker Electro si vous avez de meilleures sous-stats sur ces pièces. Assurez-vous simplement de ne pas dépasser la limite de Taux CRIT et privilégiez les sous-stats DGT CRIT." }
         ],
         skills: [
-            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Assist", level: "11", icon: "Assist.png" }
+            { name: "Core", level: "12", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Assist", level: "8", icon: "Assist.png" }
         ],
-        statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "DGT Physique %" }, { slot: "4", label: "Attaque %" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "DGT CRIT = ATQ %", highlight: false }, { label: "Flat PEN", highlight: false } ] },
+        statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "PEN Ratio / ATQ / DGT Physique" }, { slot: "4", label: "Dégât CRIT" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "DGT CRIT", highlight: false }, { label: "Attaque %", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Cloudcleave Radiance", img: "W-Engine_Cloudcleave_Radiance.png" }, { tag: "Alt (84.94%)", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" }, { tag: "Alt 4★ F2P", name: "Starlight Engine", img: "Starlight_Engine.png" }
+            { tag: "Meilleur Moteur", name: "Cloudcleave Radiance", img: "W-Engine_Cloudcleave_Radiance.png" }, { tag: "Alternative 5★", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" }, { tag: "Alternative 5★", name: "Steel Cushion", img: "W-Engine_Steel_Cushion.png" }, { tag: "Alternative F2P", name: "Gilded Blossom", img: "Gilded_Blossom.png" }, { tag: "Alternative A", name: "Marcato Desire", img: "Marcato_Desire.png" }, { tag: "Alternative A", name: "Street Superstar", img: "Street_Superstar.png" }
         ],
         teams: [
-            { name: "TEAM 01", tag: "Classique", members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
-            { name: "TEAM 02", tag: "Alternative", members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
+            { name: "TEAM 01", tag: "Team Premium", members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 02", tag: "Team F2P", members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] },
+            { name: "TEAM 03", tag: "Double Attaque", members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Seed.png", color: "#3182eb", initial: "S" }, { img: "", color: "#52525b", role: "Agent<br>Support" } ] }
         ]
     },
     "Yanagi": {
