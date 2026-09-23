@@ -1,3 +1,4 @@
+// La liste complète de tous les agents pour la grille
 export const agentsData = [
     { name: "Anby", element: "Electric", rank: "A", faction: "Lièvres rusés", role: "Stun" },
     { name: "Nicole", element: "Ether", rank: "A", faction: "Lièvres rusés", role: "Support" },
@@ -30,7 +31,7 @@ export const agentsData = [
     { name: "Soldier 0 Anby", element: "Electric", rank: "S", faction: "Obol Squad", role: "Attack" },
     { name: "Hugo", element: "Ice", rank: "S", faction: "Obol Squad", role: "Attack" },
     { name: "Ju Fufu", element: "Fire", rank: "A", faction: "Obol Squad", role: "Stun" },
-    { name: "Yixuan", element: "Ether", rank: "A", faction: "Obol Squad", role: "Attack" },
+    { name: "Yixuan", element: "Ether", rank: "S", faction: "Yunkui Summit", role: "Rupture" }, 
     { name: "Pan Yinhu", element: "Physical", rank: "S", faction: "Obol Squad", role: "Anomaly" },
     { name: "Alice", element: "Wind", rank: "S", faction: "Obol Squad", role: "Support" },
     { name: "Orphie and Magus", element: "Fire", rank: "S", faction: "Obol Squad", role: "Attack" },
@@ -46,24 +47,25 @@ export const agentsData = [
     { name: "Sigrid", element: "Physical", rank: "A", faction: "Obol Squad", role: "Attack" },
     { name: "Claret", element: "Electric", rank: "S", faction: "Flint Workshop", role: "Armorer" },
     { name: "Nangong Yu", element: "Ether", rank: "S", faction: "Angels of Delusion", role: "Stun" },
-    { name: "Yidhari", element: "Ice", rank: "S", faction: "Spook Shack", role: "Attack" },
+    { name: "Yidhari", element: "Ice", rank: "S", faction: "Spook Shack", role: "Rupture" }, 
     { name: "Vivian", element: "Ether", rank: "S", faction: "Megadere", role: "Attack" },
     { name: "Yuzuha", element: "Physical", rank: "S", faction: "Spook Shack", role: "Support" },
     { name: "Seed", element: "Electric", rank: "S", faction: "Heavy Weapons", role: "Attack" },
     { name: "Remielle", element: "Lumiflux", rank: "S", faction: "Void Hunter", role: "Anomaly" },
     { name: "Velina", element: "Wind", rank: "S", faction: "E.S.D", role: "Anomaly" },
     { name: "Cissia", element: "Electric", rank: "S", faction: "Metropolitan Order", role: "Support" },
-    { name: "Banyue", element: "Fire", rank: "S", faction: "Krampus Compliance", role: "Stun" },
+    { name: "Banyue", element: "Fire", rank: "S", faction: "Krampus Compliance", role: "Rupture" },
     { name: "Dialyn", element: "Ice", rank: "S", faction: "Inconnu", role: "Stun" },
-    { name: "Ye Shunguang", element: "Physical", rank: "S", faction: "Void Hunter", role: "Attack" }
+    { name: "Ye Shunguang", element: "Physical", rank: "S", faction: "Void Hunter", role: "Attack" },
+    { name: "Komano Manato", element: "Fire", rank: "A", faction: "Spook Shack", role: "Attack" }
 ];
 
 export const colorMap = {
-    "Physical": "#e8a838", "Fire": "#f05432", "Ice": "#3bbedb", "Electric": "#3182eb", "Ether": "#f23c8a", "Wind": "#4caf50", "Lumiflux": "#fba2d0"
+    "Physical": "#e8a838", "Fire": "#f05432", "Ice": "#3bbedb", "Electric": "#3182eb", "Ether": "#f23c8a", "Wind": "#4caf50", "Lumiflux": "#fba2d0", "Auric Ink": "#e8a838" 
 };
 
 export const iconMap = {
-    "Physical": "physique.png", "Fire": "feu.png", "Ice": "Ice.png", "Electric": "electrique.png", "Ether": "Ether.png", "Wind": "Vent.png", "Lumiflux": "Lumiflux.png"
+    "Physical": "physique.png", "Fire": "feu.png", "Ice": "Ice.png", "Electric": "electrique.png", "Ether": "Ether.png", "Wind": "Vent.png", "Lumiflux": "Lumiflux.png", "Auric Ink": "physique.png"
 };
 
 export const roleIconMap = {
@@ -77,6 +79,6 @@ export const roleIconMap = {
 };
 
 export const filterGroups = {
-    "All": ["Physical", "Fire", "Ice", "Electric", "Ether", "Wind", "Lumiflux"],
+    "All": ["Physical", "Fire", "Ice", "Electric", "Ether", "Wind", "Lumiflux", "Auric Ink"],
     "Physical": ["Physical"], "Fire": ["Fire"], "Ice": ["Ice"], "Electric": ["Electric"], "Ether": ["Ether"], "Wind": ["Wind"], "Lumiflux": ["Lumiflux"]
 };
