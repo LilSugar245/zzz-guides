@@ -468,6 +468,68 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: "Flexible", members: [ { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "", color: "#52525b", role: "Agent<br>Stun" }, { img: "", color: "#52525b", role: "Agent<br>Support" } ] }
         ]
     },
+    "Soldier 0 Anby": {
+        color: "#3182eb", element: "Electric", rank: "S", factionTitle: "Forces de défense - Escouade Argent",
+        stats: [ { label: "Taux Crit", value: "≥ 60 %" }, { label: "Dégât Crit", value: "≥ 170 %" }, { label: "Attaque", value: "≥ 2800" } ],
+        discs: [
+            { tag: "DPS Build 👑", set1: "Shadow_Harmony", set2: "Woodpecker_Electro", set1Name: "4pc Shadow Harmony", set2Name: "+ 2pc Woodpecker Electro", note: "Shadow of Harmony est le meilleur set de Soldier 0 Anby puisqu'il augmente les DGT de son Aftershock et son Taux CRIT. Utilisez un 2-pc Woodpecker Electro pour obtenir encore plus de Taux CRIT." },
+            { tag: "Alternative", set1: "Shadow_Harmony", set2: "Thunder_Metal", set1Name: "4pc Shadow Harmony", set2Name: "+ 2pc Thunder Metal", note: "Un 2-pc Thunder Metal peut être envisagé si Soldier 0 Anby possède déjà énormément de Taux CRIT." }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "ATQ %" }, { slot: "5", label: "DGT Électrique %" }, { slot: "4", label: "Taux CRIT / DGT CRIT" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "ATQ %", highlight: false }, { label: "PEN", highlight: false }, { label: "ATQ", highlight: false } ] },
+        engines: [
+            { tag: "Meilleur Moteur", name: "Severed Innocence", img: "W-Engine_Severed_Innocence.png" }, { tag: "Alternative 5★", name: "Zanshin Herb Case", img: "W-Engine_Zanshin_Herb_Case.png" }, { tag: "Alternative 4★", name: "Marcato Desire", img: "Marcato_Desire.png" }, { tag: "Alternative BP", name: "Cannon Rotor", img: "W-Engine_Cannon_Rotor.png" }, { tag: "Alternative A", name: "Drill Rig - Red Axis", img: "W-Engine_Drill_Rig_-_Red_Axis.png" }, { tag: "F2P", name: "Starlight Engine", img: "Starlight_Engine.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Hypercarry", members: [ { img: "Soldier 0 Anby.png", color: "#3182eb", initial: "S0A" }, { img: "Trigger.png", color: "#3182eb", initial: "T" }, { img: "Orphie and Magus.png", color: "#f05432", initial: "OM" } ] },
+            { name: "TEAM 02", tag: "F2P Team", members: [ { img: "Soldier 0 Anby.png", color: "#3182eb", initial: "S0A" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] },
+            { name: "TEAM 03", tag: "Alternative", members: [ { img: "Soldier 0 Anby.png", color: "#3182eb", initial: "S0A" }, { img: "Pulchra.png", color: "#e8a838", initial: "P" }, { img: "", color: "#52525b", role: "Support" } ] }
+        ]
+    },
+    "Zhu Yuan": {
+        color: "#f23c8a", element: "Ether", rank: "S", factionTitle: "Division de l'Ordre urbain",
+        stats: [ { label: "DGT CRIT", value: "≥ 250 %" }, { label: "Taux Crit", value: "≥ 44 %" }, { label: "Attaque", value: "≥ 2700" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Woodpecker_Electro", set2: "Chaotic_Metal", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Chaotic Metal", note: "" },
+            { tag: "Set 2", set1: "Woodpecker_Electro", set2: "Puffer_Electro", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Puffer Electro", note: "" },
+            { tag: "Set 3", set1: "Chaotic_Metal", set2: "Woodpecker_Electro", set1Name: "4pc Chaotic Metal", set2Name: "+ 2pc Woodpecker Electro", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "ATQ" }, { slot: "5", label: "Ether DMG" }, { slot: "4", label: "TC / DC" } ], sub: [ { label: "TC / DC", highlight: true }, { label: "ATQ %", highlight: false } ] },
+        engines: [
+            { tag: "Moteur S", name: "Riot Suppressor", img: "W-Engine_Riot_Suppressor_Mark_VI.png" }, { tag: "Moteur S", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" }, { tag: "Moteur A", name: "Cannon Rotor", img: "W-Engine_Cannon_Rotor.png" }, { tag: "Moteur A", name: "Starlight Engine", img: "Starlight_Engine.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Premium", members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "ZY" }, { img: "Qingyi.png", color: "#3182eb", initial: "Q" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] },
+            { name: "TEAM 02", tag: "Alternative", members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "ZY" }, { img: "Trigger.png", color: "#3182eb", initial: "T" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 03", tag: "Free To Play", members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "ZY" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] }
+        ]
+    },
+    "Lucy": {
+        color: "#f05432", element: "Fire", rank: "A", factionTitle: "Sons of Calydon",
+        stats: [ { label: "Taux Crit", value: "≈ 60.2 %" }, { label: "Dégât Crit", value: "≈ 157.2 %" }, { label: "Attaque", value: "2725" } ],
+        discs: [
+            { tag: "Support 👑", set1: "Swing_Jazz", set2: "Woodpecker_Electro", set1Name: "4pc Swing Jazz", set2Name: "+ 2pc Woodpecker Electro", note: "" },
+            { tag: "DPS", set1: "Swing_Jazz", set2: "Woodpecker_Electro", set1Name: "4pc Swing Jazz", set2Name: "+ 2pc Woodpecker Electro", note: "" },
+            { tag: "Support AP", set1: "Swing_Jazz", set2: "Freedom_Blues", set1Name: "4pc Swing Jazz", set2Name: "+ 2pc Freedom Blues", note: "" }
+        ],
+        skills: [
+            { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Energy Regen / ATK%" }, { slot: "5", label: "ATK% / Fire DMG" }, { slot: "4", label: "ATK% / Crit Rate / DMG" } ], sub: [ { label: "ATK%", highlight: true }, { label: "Crit Rate = Crit DMG", highlight: false }, { label: "PEN", highlight: false }, { label: "ATK", highlight: false } ] },
+        engines: [
+            { tag: "Moteur A", name: "Moteur Inconnu 1", img: "W-Engine_Precious_Fossilized.png" }, { tag: "Moteur A", name: "Moteur Inconnu 2", img: "W-Engine_Precious_Fossilized.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Equipe Rupture", members: [ { img: "Lucia.png", color: "#f23c8a", initial: "L" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" }, { img: "Yixuan.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 02", tag: "Equipe Anomalie", members: [ { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "Burnice.png", color: "#f05432", initial: "B" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" } ] },
+            { name: "TEAM 03", tag: "Team débutant", members: [ { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Koleda.png", color: "#f05432", initial: "K" }, { img: "Ben.png", color: "#f05432", initial: "B" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Oiseaux-moqueurs",
         stats: [ { label: "Attaque", value: "Max" }, { label: "Taux Crit", value: "Max" }, { label: "Dégât Crit", value: "Max" } ],
