@@ -4,7 +4,7 @@ export function generateEllenGuide() {
         <div class="flex items-end justify-between mb-8 border-b-2 border-zinc-800 pb-6 stagger-anim delay-1">
             <div class="flex flex-col">
                 <span class="text-zinc-500 font-bold tracking-[0.3em] text-[10px] sm:text-xs uppercase mb-2">Maid</span>
-                <h2 class="text-5xl sm:text-7xl md:text-8xl font-display font-black italic text-white leading-none uppercase drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:text-[#3bbedb] transition-colors duration-500 cursor-default">ELLEN JOE</h2>
+                <h2 class="text-5xl sm:text-7xl md:text-8xl font-display font-black italic text-white leading-none uppercase drop-shadow-[0_0_20px_rgba(59,190,219,0.2)] hover:text-[#3bbedb] transition-colors duration-500 cursor-default">ELLEN JOE</h2>
             </div>
             <div class="flex gap-2">
                 <div class="bg-[#1a1a1a] rounded-xl w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center shadow-lg border border-white/5">
@@ -151,21 +151,21 @@ export function generateEllenGuide() {
                     <h3 class="text-white font-display font-black text-2xl uppercase border-l-4 border-[#3bbedb] pl-4 leading-none tracking-wide mb-6">Moteurs</h3>
                     <div class="flex flex-col gap-3">
                         <div class="flex gap-4 p-3.5 rounded-xl border border-[#3bbedb]/30 bg-[#121212] shadow-[0_0_15px_rgba(59,190,219,0.05)] hover:border-[#3bbedb]/80 transition-colors group">
-                            <div class="w-16 h-16 bg-black rounded-lg border border-zinc-700 overflow-hidden"><img src="assets/W-Engine/W-Engine_Deep_Sea_Visitor.png" onerror="this.onerror=null; this.src='assets/W-Engine/Deep_Sea_Visitor.png';" class="w-full h-full object-cover group-hover:scale-110 transition-transform"></div>
+                            <div class="w-16 h-16 bg-black rounded-lg border border-zinc-700 overflow-hidden"><img src="assets/W-Engine/Deep_Sea_Visitor.png" onerror="this.onerror=null; this.src='assets/W-Engine/W-Engine_Deep_Sea_Visitor.png';" class="w-full h-full object-cover group-hover:scale-110 transition-transform"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] bg-[#3bbedb]/10 text-[#3bbedb] border border-[#3bbedb]/20 px-2 py-0.5 rounded uppercase font-black w-fit mb-1.5">Baseline 100%</span>
                                 <span class="font-black text-sm uppercase text-white tracking-wide">Deep Sea Visitor</span>
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Cordis_Germina.png" onerror="this.onerror=null; this.src='assets/W-Engine/Cordis_Germina.png';" class="w-full h-full object-cover"></div>
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/Cordis_Germina.png" onerror="this.onerror=null; this.src='assets/W-Engine/W-Engine_Cordis_Germina.png';" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Alt 5★ (99.16%)</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">Cordis Germina</span>
                             </div>
                         </div>
                         <div class="flex gap-4 p-3.5 rounded-xl border border-zinc-800 bg-[#0f0f0f] hover:bg-[#151515] transition-colors">
-                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/W-Engine_Cannon_Rotor.png" onerror="this.onerror=null; this.src='assets/W-Engine/Cannon_Rotor.png';" class="w-full h-full object-cover"></div>
+                            <div class="w-14 h-14 bg-black rounded-lg border border-zinc-800 overflow-hidden"><img src="assets/W-Engine/Cannon_Rotor.png" onerror="this.onerror=null; this.src='assets/W-Engine/W-Engine_Cannon_Rotor.png';" class="w-full h-full object-cover"></div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] text-zinc-500 uppercase font-bold mb-1">Alt Battle Pass (81.42%)</span>
                                 <span class="font-black text-xs uppercase text-zinc-300 tracking-wide">Cannon Rotor</span>
@@ -193,8 +193,9 @@ export function generateEllenGuide() {
                         </div>
                         <div class="w-6 h-px bg-zinc-700"></div>
                         <div class="flex flex-col items-center gap-3">
-                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-zinc-600 bg-black overflow-hidden relative flex items-center justify-center">
-                                <span class="text-xs font-bold text-center text-zinc-400 px-2 leading-tight">Agent<br>Stun</span>
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#f05432] bg-black overflow-hidden relative">
+                                <!-- CORRECTION: Remplacement du cercle vide par Lighter -->
+                                <img src="assets/Agents/Lighter.png" class="w-full h-full object-cover object-top scale-110" onerror="this.src='https://placehold.co/100/181818/f05432?text=L'">
                             </div>
                         </div>
                         <div class="w-6 h-px bg-zinc-700"></div>
@@ -257,7 +258,6 @@ export function generateEllenGuide() {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
