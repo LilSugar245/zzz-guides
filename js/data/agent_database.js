@@ -1,83 +1,390 @@
 export const agentDatabase = {
     "Piper": {
-        color: "#e8a838",
-        element: "Physical",
-        factionTitle: "Sons of Calydon",
-        rank: "A",
-        stats: [
-            { label: "Adresse Ano.", value: "≥ 384" },
-            { label: "Maitrise Ano.", value: "≥ 150" },
-            { label: "Attaque", value: "≥ 2800" }
-        ],
+        color: "#e8a838", element: "Physical", rank: "A", factionTitle: "Sons of Calydon",
+        stats: [ { label: "Adresse Ano.", value: "≥ 384" }, { label: "Maitrise Ano.", value: "≥ 150" }, { label: "Attaque", value: "≥ 2800" } ],
         discs: [
-            {
-                tag: "Support Build 1 👑",
-                set1: "Freedom_Blues", set2: "Swing_Jazz",
-                set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Swing Jazz",
-                note: ""
-            },
-            {
-                tag: "General DPS Build",
-                set1: "Fanged_Metal", set2: "Freedom_Blues",
-                set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Freedom Blues",
-                note: ""
-            },
-            {
-                tag: "Support Build 2",
-                set1: "Freedom_Blues", set2: "Hormone_Punk",
-                set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Hormone Punk",
-                note: ""
-            }
+            { tag: "Support Build 1 👑", set1: "Freedom_Blues", set2: "Swing_Jazz", set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Swing Jazz", note: "" },
+            { tag: "General DPS Build", set1: "Fanged_Metal", set2: "Freedom_Blues", set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Freedom Blues", note: "" },
+            { tag: "Support Build 2", set1: "Freedom_Blues", set2: "Hormone_Punk", set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Hormone Punk", note: "" }
         ],
         skills: [
-            { name: "Ex", level: "12", icon: "Ex.png" },
-            { name: "Basic", level: "11", icon: "Attaque_basic.png" },
-            { name: "Assist", level: "11", icon: "Assist.png" },
-            { name: "Ult", level: "10", icon: "Ultime.png" }
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Ult", level: "10", icon: "Ultime.png" }
         ],
-        statPriority: {
-            main: [
-                { slot: "6", label: "Anomaly" },
-                { slot: "5", label: "Physical DMG" },
-                { slot: "4", label: "Anomaly" }
-            ],
-            sub: [
-                { label: "Anomaly Proficiency", highlight: true },
-                { label: "ATK %", highlight: false },
-                { label: "PEN", highlight: false }
-            ]
-        },
+        statPriority: { main: [ { slot: "6", label: "Anomaly" }, { slot: "5", label: "Physical DMG" }, { slot: "4", label: "Anomaly" } ], sub: [ { label: "Anomaly Proficiency", highlight: true }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Roaring Ride", img: "Roaring_Ride.png" },
-            { tag: "Moteur A", name: "Electro-Lip Gloss", img: "Electro-Lip_Gloss.png" },
-            { tag: "Moteur A", name: "Weeping Gemini", img: "Weeping_Gemini.png" },
-            { tag: "Moteur A", name: "Rainforest Gourmet", img: "Rainforest_Gourmet.png" }
+            { tag: "Baseline 100%", name: "Roaring Ride", img: "Roaring_Ride.png" }, { tag: "Moteur A", name: "Electro-Lip Gloss", img: "Electro-Lip_Gloss.png" }, { tag: "Moteur A", name: "Weeping Gemini", img: "Weeping_Gemini.png" }, { tag: "Moteur A", name: "Rainforest Gourmet", img: "Rainforest_Gourmet.png" }
         ],
         teams: [
-            {
-                name: "TEAM 01", tag: "Premium Team",
-                members: [
-                    { img: "Burnice.png", color: "#f05432", initial: "B" },
-                    { img: "Caesar.png", color: "#e8a838", initial: "C" },
-                    { img: "Piper.png", color: "#e8a838", initial: "P" }
-                ]
-            },
-            {
-                name: "TEAM 02", tag: "Premium Team II",
-                members: [
-                    { img: "Nekomata.png", color: "#e8a838", initial: "N" },
-                    { img: "Pulchra.png", color: "#e8a838", initial: "P" },
-                    { img: "Piper.png", color: "#e8a838", initial: "P" }
-                ]
-            },
-            {
-                name: "TEAM 03", tag: "Débutant",
-                members: [
-                    { img: "Nicole.png", color: "#f23c8a", initial: "N" },
-                    { img: "Corin.png", color: "#e8a838", initial: "C" },
-                    { img: "Piper.png", color: "#e8a838", initial: "P" }
-                ]
-            }
+            { name: "TEAM 01", tag: "Premium Team", members: [ { img: "Burnice.png", color: "#f05432", initial: "B" }, { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "Piper.png", color: "#e8a838", initial: "P" } ] },
+            { name: "TEAM 02", tag: "Premium Team II", members: [ { img: "Nekomata.png", color: "#e8a838", initial: "N" }, { img: "Pulchra.png", color: "#e8a838", initial: "P" }, { img: "Piper.png", color: "#e8a838", initial: "P" } ] },
+            { name: "TEAM 03", tag: "Débutant", members: [ { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Piper.png", color: "#e8a838", initial: "P" } ] }
+        ]
+    },
+    "Jane": {
+        color: "#e8a838", element: "Physical", rank: "S", factionTitle: "Criminal Behavior Specialist",
+        stats: [ { label: "Adresse Anomalie", value: "420" }, { label: "Attaque", value: "2600" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Fanged_Metal", set2: "Puffer_Electro", set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Puffer Electro", note: "Le meilleur choix d'appoint si vous utilisez du Taux de Pénétration (PEN Ratio) sur le disque 5." },
+            { tag: "Set 2 (99.90%)", set1: "Fanged_Metal", set2: "Phaethons_Melody", set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Phaethon's Melody", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Ex", level: "10", icon: "Ex.png" }, { name: "Basic", level: "8", icon: "Attaque_basic.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Anomalie" }, { slot: "5", label: "PEN Ratio" }, { slot: "4", label: "Anomalie" } ], sub: [ { label: "Adre. Anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "Flat PEN / Flat ATK", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Sharpened Stinger", img: "Sharpened_Stinger.png" }, { tag: "Alt 5★ (100%)", name: "Practiced Perfection", img: "Practiced_Perfection.png" }, { tag: "Alt F2P (89.12%)", name: "Weeping Gemini", img: "Weeping_Gemini.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Double Anomalie", members: [ { img: "Jane.png", color: "#e8a838", initial: "JD" }, { img: "Velina.png", color: "#3bbedb", initial: "V" }, { img: "Remielle.png", color: "#fba2d0", initial: "R" } ] },
+            { name: "TEAM 02", tag: "Synergie Éther", members: [ { img: "Jane.png", color: "#e8a838", initial: "JD" }, { img: "Nangong Yu.png", color: "#f23c8a", initial: "N" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 03", tag: "Désordre Brûlure", members: [ { img: "Jane.png", color: "#e8a838", initial: "JD" }, { img: "Burnice.png", color: "#f05432", initial: "B" }, { img: "Remielle.png", color: "#fba2d0", initial: "R" } ] }
+        ]
+    },
+    "Claret": {
+        color: "#3182eb", element: "Electric", rank: "S", factionTitle: "Member of the Flint Workshop",
+        stats: [ { label: "Taux Crit", value: "200% en combat" }, { label: "Objectif Disques", value: "14 rolls TC / 12 rolls DC" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Thorned_Rose", set2: "Puffer_Electro", set1Name: "4pc Thorned Rose", set2Name: "+ 2pc Puffer Electro", note: "Son set signature est strictement incontournable. Meilleure option pour le gain de PEN Ratio." },
+            { tag: "Set 2 (100%)", set1: "Thorned_Rose", set2: "Woodpecker_Electro", set1Name: "4pc Thorned Rose", set2Name: "+ 2pc Woodpecker Electro", note: "Très bonne alternative TC." }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Assist", level: "10", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "DÉF %" }, { slot: "5", label: "PEN Ratio" }, { slot: "4", label: "Taux CRIT" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "DÉF %", highlight: false }, { label: "DGT CRIT", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Crimson Thirst", img: "Crimson_Thirst.png" }, { tag: "Alt F2P (80.55%)", name: "Catty Luck", img: "Catty_Luck.png" }, { tag: "Alt (77.48%)", name: "Bloodmarrow Coffer", img: "Bloodmarrow_Coffer.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Classique", members: [ { img: "Claret.png", color: "#3182eb", initial: "C" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] },
+            { name: "TEAM 02", tag: "Double Élec", members: [ { img: "Claret.png", color: "#3182eb", initial: "C" }, { img: "Velina.png", color: "#3bbedb", initial: "V" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] }
+        ]
+    },
+    "Ye Shunguang": {
+        color: "#e8a838", element: "Physical", rank: "S", factionTitle: "Void Hunter",
+        stats: [ { label: "Taux Crit", value: "50.6%" }, { label: "Dégâts Crit", value: "180-200%+" }, { label: "Attaque %", value: "3000+" } ],
+        discs: [
+            { tag: "Base Conseillée 👑", set1: "White_Water_Ballad", set2: "Woodpecker_Electro", set1Name: "4pc White Water Ballad", set2Name: "+ 2pc Woodpecker Electro", note: "Boost les DMG physiques et le TC si l'allié est dans un voile d'éther." }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Assist", level: "11", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "DGT Physique %" }, { slot: "4", label: "Attaque %" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "DGT CRIT = ATQ %", highlight: false }, { label: "Flat PEN", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Cloudcleave Radiance", img: "Cloudcleave_Radiance.png" }, { tag: "Alt (84.94%)", name: "The Brimstone", img: "The_Brimstone.png" }, { tag: "Alt 4★ F2P", name: "Starlight Engine", img: "Starlight_Engine.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Classique", members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 02", tag: "Alternative", members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
+        ]
+    },
+    "Yanagi": {
+        color: "#3182eb", element: "Electric", rank: "S", factionTitle: "Deputy Chief of H.A.N.D",
+        stats: [ { label: "Adresse d'Anomalie", value: "370+" }, { label: "Attaque", value: "3000+" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Chaos_Jazz", set2: "Freedom_Blues", set1Name: "4pc Chaos Jazz", set2Name: "+ 2pc Blues Libres", note: "Le meilleur set pour Yanagi. Scaling démesuré en AP." },
+            { tag: "Set 2 (100%)", set1: "Hormone_Punk", set2: "Freedom_Blues", set1Name: "4pc Hormone Punk", set2Name: "+ 2pc Blues Libres", note: "Envisageable avec Rina, mais moins régulier." }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "10", icon: "Assist.png" }, { name: "Basic", level: "5", icon: "Attaque_basic.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Maîtrise d'Anomalie" }, { slot: "5", label: "Attaque %" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Adresse d'Anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "PEN / ATQ Flat", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Timeweaver", img: "Timeweaver.png" }, { tag: "Alt Craftable", name: "Weeping Gemini", img: "Weeping_Gemini.png" }, { tag: "Alt Standard", name: "Fusion Compiler", img: "Fusion_Compiler.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Désordre", members: [ { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Nangong Yu.png", color: "#f23c8a", initial: "N" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 02", tag: "Mono-Élec", members: [ { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Trigger.png", color: "#e8a838", initial: "T" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] }
+        ]
+    },
+    "Nangong Yu": {
+        color: "#f23c8a", element: "Ether", rank: "S", factionTitle: "Angels of Delusion",
+        stats: [ { label: "Adre. d'anomalie", value: "350+" }, { label: "Maî. d'Anomalie", value: "150+" }, { label: "Attaque", value: "2800+" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Phaethons_Melody", set2: "Freedom_Blues", set1Name: "4pc Phaethon's Melody", set2Name: "+ 2pc Freedom Blues", note: "Set idéal." },
+            { tag: "Alternatives", set1: "Shining_Aria", set2: "Swing_Jazz", set1Name: "2pc Shining Aria", set2Name: "+ 2pc Swing Jazz", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "10", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Anomalie" }, { slot: "5", label: "DGT Éther > ATQ" }, { slot: "4", label: "Anomalie" } ], sub: [ { label: "Anomalie", highlight: true }, { label: "ATQ %", highlight: false }, { label: "PEN", highlight: false } ] },
+        engines: [
+            { tag: "Signature S", name: "Neon Fantasies", img: "Neon_Fantasies.png" }, { tag: "Alternative S", name: "Roaring Fur-nace", img: "Roaring_Fur-nace.png" }, { tag: "Alternative A", name: "Precious Fossilized", img: "Precious_Fossilized.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Angels of Delusion", members: [ { img: "Nangong Yu.png", color: "#f23c8a", initial: "N" }, { img: "Sunna.png", color: "#e8a838", initial: "S" }, { img: "Aria.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 02", tag: "Synergie Yanagi", members: [ { img: "Nangong Yu.png", color: "#f23c8a", initial: "N" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] }
+        ]
+    },
+    "Burnice": {
+        color: "#f05432", element: "Fire", rank: "S", factionTitle: "Mixologist",
+        stats: [ { label: "Réc. d'énergie", value: "2,8" }, { label: "Attaque", value: "À MAXIMISER" }, { label: "Adr. d'anomalie", value: "À MAXIMISER" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Chaos_Jazz", set2: "Swing_Jazz", set1Name: "4pc Chaos Jazz", set2Name: "+ 2pc Swing J. / Moonlight", note: "Le meilleur set pour Burnice. Booste ses EX Spéciaux." },
+            { tag: "Set 2 (100%)", set1: "Chaos_Jazz", set2: "Puffer_Electro", set1Name: "4pc Chaos Jazz", set2Name: "+ 2pc Puffer Electro", note: "" },
+            { tag: "Set 3 (90%)", set1: "Freedom_Blues", set2: "Swing_Jazz", set1Name: "4pc Blues Libres", set2Name: "+ 2pc Swing J. / Moonlight", note: "Plus intéressant que Chaos Jazz dans la Team Remielle + Velina." }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Récupération d'énergie" }, { slot: "5", label: "DGT Feu %" }, { slot: "4", label: "Adresse d'anomalie" } ], sub: [ { label: "Adresse d'anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "PEN / ATQ Flat", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Flamemaker Shaker", img: "Flamemaker_Shaker.png" }, { tag: "Alt 5★ (98.21%)", name: "Fusion Compiler", img: "Fusion_Compiler.png" }, { tag: "Alt Craftable", name: "Weeping Gemini", img: "Weeping_Gemini.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Burnice Hyper", members: [ { img: "Burnice.png", color: "#f05432", initial: "B" }, { img: "Remielle.png", color: "#fba2d0", initial: "R" }, { img: "Velina.png", color: "#3bbedb", initial: "V" } ] },
+            { name: "TEAM 02", tag: "Flexible", members: [ { img: "Burnice.png", color: "#f05432", initial: "B" }, { img: "", color: "#52525b", role: "Agents<br>Anomalie" }, { img: "", color: "#52525b", role: "Agents<br>Support" } ] },
+            { name: "TEAM 03", tag: "Fils de Calydon", members: [ { img: "Burnice.png", color: "#f05432", initial: "B" }, { img: "Piper.png", color: "#e8a838", initial: "P" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] }
+        ]
+    },
+    "Yidhari": {
+        color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Spook Shack",
+        stats: [ { label: "DGT CRIT", value: "≥ 150 %" }, { label: "Taux Crit", value: "≥ 68 %" }, { label: "Force transperçante", value: "≥ 2500" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Woodpecker_Electro", set2: "Polar_Metal", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Polar Metal", note: "" },
+            { tag: "Set 2", set1: "Branch_Blade_Song", set2: "Polar_Metal", set1Name: "4pc Branch Blade Song", set2Name: "+ 2pc Polar Metal", note: "" },
+            { tag: "Set 3", set1: "Polar_Metal", set2: "Woodpecker_Electro", set1Name: "4pc Polar Metal", set2Name: "+ 2pc Woodpecker Electro", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "HP %" }, { slot: "5", label: "ICE DMG %" }, { slot: "4", label: "TC / DC" } ], sub: [ { label: "TC / DC", highlight: true }, { label: "HP %", highlight: false } ] },
+        engines: [
+            { tag: "Moteur S", name: "Kraken's Cradle", img: "Krakens_Cradle.png" }, { tag: "Moteur S", name: "Qingming Birdcage", img: "Qingming_Birdcage.png" }, { tag: "Moteur A", name: "Radiowave Journey", img: "Radiowave_Journey.png" }, { tag: "Moteur A", name: "Grill O'Wisp", img: "Grill_O_Wisp.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Premium", members: [ { img: "Yidhari.png", color: "#3bbedb", initial: "Y" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
+            { name: "TEAM 02", tag: "Double Feu", members: [ { img: "Yidhari.png", color: "#3bbedb", initial: "Y" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] },
+            { name: "TEAM 03", tag: "Free To Play", members: [ { img: "Yidhari.png", color: "#3bbedb", initial: "Y" }, { img: "Pulchra.png", color: "#e8a838", initial: "P" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" } ] }
+        ]
+    },
+    "Ellen": {
+        color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Maid",
+        stats: [ { label: "Taux Crit", value: "100% IG" }, { label: "Attaque", value: "à maximiser" }, { label: "Dégât Crit", value: "à maximiser" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Woodpecker_Electro", set2: "Puffer_Electro", set1Name: "4pc Electro Pivert", set2Name: "+ 2pc Puffer Electro", note: "Le meilleur choix universel par défaut. Il surpasse nettement les autres options." },
+            { tag: "Set 2 (100%)", set1: "Puffer_Electro", set2: "Woodpecker_Electro", set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Electro Pivert", note: "À égalité ou légèrement supérieur si Ellen est jouée avec Dialyn." },
+            { tag: "Set 3 (92.52%)", set1: "Polar_Metal", set2: "Puffer_Electro", set1Name: "4pc Métal Polaire", set2Name: "+ 2pc Puffer Electro", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "Pen Ratio (DGT Glace)" }, { slot: "4", label: "Dégât Crit (TC)" } ], sub: [ { label: "Taux Crit", highlight: true }, { label: "Attaque % = Dégât Crit", highlight: false }, { label: "Pen / ATQ Flat", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Deep Sea Visitor", img: "Deep_Sea_Visitor.png" }, { tag: "Alt 5★ (99.16%)", name: "Cordis Germina", img: "Cordis_Germina.png" }, { tag: "Alt Battle Pass", name: "Cannon Rotor", img: "Cannon_Rotor.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Premium", members: [ { img: "Ellen.png", color: "#3bbedb", initial: "E" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 02", tag: "Double Stun", members: [ { img: "Ellen.png", color: "#3bbedb", initial: "E" }, { img: "", color: "#52525b", role: "Agent<br>Stun" }, { img: "", color: "#52525b", role: "Agent<br>Stun" } ] },
+            { name: "TEAM 03", tag: "Victoria", members: [ { img: "Ellen.png", color: "#3bbedb", initial: "E" }, { img: "Koleda.png", color: "#f05432", initial: "K" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] }
+        ]
+    },
+    "Vivian": {
+        color: "#f23c8a", element: "Ether", rank: "S", factionTitle: "Megadere",
+        stats: [ { label: "Ad. d'Anomalie", value: "400+" }, { label: "Attaque", value: "2300+" }, { label: "Ma. d'Anomalie", value: "= 198" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Phaethons_Melody", set2: "Freedom_Blues", set1Name: "4pc Phaethon Melody", set2Name: "+ 2pc Blues Libres", note: "Non négociable. Indispensable pour récupérer +30 d'AP." },
+            { tag: "Set 2 (100%)", set1: "Phaethons_Melody", set2: "Chaotic_Metal", set1Name: "4pc Phaethon Melody", set2Name: "+ 2pc Métal Chaotique", note: "" },
+            { tag: "Set 3 (99.53%)", set1: "Phaethons_Melody", set2: "Puffer_Electro", set1Name: "4pc Phaethon Melody", set2Name: "+ 2pc Puffer Electro", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Assist", level: "12", icon: "Assist.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }, { name: "Ex", level: "11", icon: "Ex.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Maîtrise d'Anomalie" }, { slot: "5", label: "DGT Éther %" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Adresse d'anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "Pen Flat", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Flight of Fancy", img: "Flight_of_Fancy.png" }, { tag: "Alt 4★ (93.06%)", name: "Weeping Gemini", img: "Weeping_Gemini.png" }, { tag: "Alt (91.12%)", name: "Electro-Lip Gloss", img: "Electro-Lip_Gloss.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Classique", members: [ { img: "Vivian.png", color: "#f23c8a", initial: "V" }, { img: "Remielle.png", color: "#fba2d0", initial: "R" }, { img: "Promeia.png", color: "#3bbedb", initial: "P" } ] },
+            { name: "TEAM 02", tag: "Jane Combo", members: [ { img: "Vivian.png", color: "#f23c8a", initial: "V" }, { img: "Jane.png", color: "#e8a838", initial: "J" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 03", tag: "Flexible", members: [ { img: "Vivian.png", color: "#f23c8a", initial: "V" }, { img: "", color: "#52525b", role: "Agents<br>Anomalie" }, { img: "", color: "#52525b", role: "3ème<br>Agent" } ] }
+        ]
+    },
+    "Yuzuha": {
+        color: "#e8a838", element: "Physical", rank: "S", factionTitle: "Member of the Spook Shack",
+        stats: [ { label: "Attaque", value: "3000" }, { label: "Maitrise d'Anomalie", value: "171" }, { label: "Adresse d'Anomalie", value: "200-250+" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Moonlight_Lullaby", set2: "Phaethons_Melody", set1Name: "4pc Moonlight Lullaby", set2Name: "+ 2pc Phaethon melody", note: "Le set standard obligatoire pour appliquer les buffs d'équipe." },
+            { tag: "Set 2 (100%)", set1: "Astral_Voice", set2: "Phaethons_Melody", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Phaethon melody", note: "À équiper uniquement si elle est jouée avec Sunna." }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ex", level: "10", icon: "Ex.png" }, { name: "Ult", level: "10", icon: "Ultime.png" }, { name: "Assist", level: "10", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Maîtrise d'Anomalie" }, { slot: "5", label: "Attaque %" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Attaque %", highlight: true }, { label: "Adresse d'Anomalie", highlight: false }, { label: "Attaque Flat", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Metanukimorphosis", img: "Metanukimorphosis.png" }, { tag: "Alt 5★ (102.07%)", name: "Thoughtbop", img: "Thoughtbop.png" }, { tag: "Alt 4★ (93.28%)", name: "Kaboom the Cannon", img: "Kaboom_the_Cannon.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Premium", members: [ { img: "Yuzuha.png", color: "#e8a838", initial: "Y" }, { img: "Aria.png", color: "#f23c8a", initial: "A" }, { img: "Velina.png", color: "#3bbedb", initial: "V" } ] },
+            { name: "TEAM 02", tag: "Synergie", members: [ { img: "Yuzuha.png", color: "#e8a838", initial: "Y" }, { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Nangong Yu.png", color: "#f23c8a", initial: "N" } ] },
+            { name: "TEAM 03", tag: "Flexible", members: [ { img: "Yuzuha.png", color: "#e8a838", initial: "Y" }, { img: "", color: "#52525b", role: "Agents<br>Anomalie" }, { img: "", color: "#52525b", role: "Agents<br>Anomalie" } ] }
+        ]
+    },
+    "Seed": {
+        color: "#3182eb", element: "Electric", rank: "S", factionTitle: "Heavy Weapons Specialist",
+        stats: [ { label: "Taux Crit", value: "= 85%" }, { label: "Attaque", value: "2800" }, { label: "Dégât Crit", value: "120% - 150%+" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Puffer_Electro", set2: "Branch_Blade_Song", set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Branch & Blade Song", note: "Best-in-Slot si tu la joues dans une équipe avec Dialyn." },
+            { tag: "Set 2 (100%)", set1: "Puffer_Electro", set2: "Woodpecker_Electro", set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Woodpecker Electro", note: "" },
+            { tag: "Set 3 (98.03%)", set1: "Dawn_Bloom", set2: "Branch_Blade_Song", set1Name: "4pc Dawn's Bloom", set2Name: "+ 2pc Branch & Blade Song", note: "Son meilleur choix si tu la joues sans Dialyn." }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }, { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Assist", level: "11", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Attaque" }, { slot: "5", label: "PEN Ratio" }, { slot: "4", label: "Taux Crit" } ], sub: [ { label: "Taux Crit", highlight: true }, { label: "Dégât Crit", highlight: false }, { label: "Attaque %", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Cordis Germina", img: "Cordis_Germina.png" }, { tag: "Alt 5★ (91.15%)", name: "Zanshin Herb Case", img: "Zanshin_Herb_Case.png" }, { tag: "Alt 4★ (90.52%)", name: "Marcato Desire", img: "Marcato_Desire.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Synergie", members: [ { img: "Seed.png", color: "#3182eb", initial: "S" }, { img: "Cissia.png", color: "#3182eb", initial: "C" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 02", tag: "Double Élec", members: [ { img: "Seed.png", color: "#3182eb", initial: "S" }, { img: "Banyue.png", color: "#f05432", initial: "B" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" } ] },
+            { name: "TEAM 03", tag: "Flexible", members: [ { img: "Seed.png", color: "#3182eb", initial: "S" }, { img: "", color: "#52525b", role: "Agents<br>Attaques" }, { img: "", color: "#52525b", role: "Agents<br>Support" } ] }
+        ]
+    },
+    "Remielle": {
+        color: "#fba2d0", element: "Lumiflux", rank: "S", factionTitle: "Void Hunter",
+        stats: [ { label: "Attaque", value: "4000" }, { label: "Adre. Anomalie", value: "400" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Feathered_Fate", set2: "Freedom_Blues", set1Name: "4pc Feathered Fate", set2Name: "+ 2pc Freedom Blues", note: "Temps d'activité moyen (Uptime) : 100%" },
+            { tag: "Set 2 (100%)", set1: "Feathered_Fate", set2: "Chaos_Jazz", set1Name: "4pc Feathered Fate", set2Name: "+ 2pc Chaos Jazz", note: "" },
+            { tag: "Set 3 (99.20%)", set1: "Feathered_Fate", set2: "Astral_Voice", set1Name: "4pc Feathered Fate", set2Name: "+ 2pc Astral Voice", note: "Okay si cela t'aide à atteindre les 4000 d'attaque." }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Assist", level: "12", icon: "Assist.png" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "12", icon: "Ultime.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Attaque" }, { slot: "5", label: "Attaque" }, { slot: "4", label: "Anomalie" } ], sub: [ { label: "Attaque", highlight: true }, { label: "Anomalie", highlight: false }, { label: "Flat PEN / Flat ATK", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Poem of the Empty Feather", img: "Ode_of_Resurrected_Wings.png" }, { tag: "Alt F2P", name: "Weeping Gemini", img: "Weeping_Gemini.png" }, { tag: "Alt Anomalie", name: "Timeweaver", img: "Timeweaver.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Double Anomalie", members: [ { img: "Remielle.png", color: "#fba2d0", initial: "R" }, { img: "", color: "#52525b", role: "Agents<br>Anomalies" }, { img: "", color: "#52525b", role: "Agents<br>Anomalies" } ] },
+            { name: "TEAM 02", tag: "Flexible", members: [ { img: "Remielle.png", color: "#fba2d0", initial: "R" }, { img: "Burnice.png", color: "#f05432", initial: "B" }, { img: "Velina.png", color: "#3bbedb", initial: "V" } ] },
+            { name: "TEAM 03", tag: "Alternative", members: [ { img: "Remielle.png", color: "#fba2d0", initial: "R" }, { img: "Promeia.png", color: "#3bbedb", initial: "P" }, { img: "Vivian.png", color: "#f23c8a", initial: "V" } ] }
+        ]
+    },
+    "Velina": {
+        color: "#3bbedb", element: "Wind", rank: "S", factionTitle: "Administrative Director of the E.S.D",
+        stats: [ { label: "Adresse d'Anomalie", value: "356" }, { label: "Attaque", value: "2500" }, { label: "Energie Regen", value: "2.88" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Wuthering_Salon", set2: "Moonlight_Lullaby", set1Name: "4pc Wuthering Salon", set2Name: "+ 2pc Moonlight Lullaby", note: "Efficacité avec Promeia + Yuzuha : 100% (Énergie Regen +6%)." },
+            { tag: "Set 2 (97.4%)", set1: "Wuthering_Salon", set2: "Phaethon_Melody", set1Name: "4pc Wuthering Salon", set2Name: "+ 2pc Phaethon's Melody", note: "" },
+            { tag: "Set 3 (97.39%)", set1: "Wuthering_Salon", set2: "Chaos_Jazz", set1Name: "4pc Wuthering Salon", set2Name: "+ 2pc Chaos Jazz", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Énergie Regen" }, { slot: "5", label: "Wind DMG %" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Adresse d'Anomalie", highlight: true }, { label: "ATK %", highlight: false }, { label: "Flat PEN = Flat ATK", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Joyau Doré", img: "Joyau_Dore.png" }, { tag: "Alt 5★ (90.88%)", name: "Serpentine Seeker", img: "Serpentine_Seeker.png" }, { tag: "Alt 4★ (87.16%)", name: "Kaboom the Cannon", img: "Kaboom_the_Cannon.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Hugo", members: [ { img: "Velina.png", color: "#3bbedb", initial: "V" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" }, { img: "Promeia.png", color: "#3bbedb", initial: "P" } ] },
+            { name: "TEAM 02", tag: "Ellen", members: [ { img: "Velina.png", color: "#3bbedb", initial: "V" }, { img: "Jane.png", color: "#e8a838", initial: "J" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 03", tag: "Débutant", members: [ { img: "Velina.png", color: "#3bbedb", initial: "V" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" }, { img: "", color: "#52525b", role: "Agents<br>Anomalies" } ] }
+        ]
+    },
+    "Cissia": {
+        color: "#3182eb", element: "Electric", rank: "S", factionTitle: "Metropolitan Order Division - N.E.P.S.",
+        stats: [ { label: "Taux Crit", value: "Jusqu'à 100% IG" }, { label: "Dégât Crit", value: "Plus possible" }, { label: "Attaque", value: "Plus possible" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "Astral_Voice", set2: "Swing_Jazz", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Swing Jazz", note: "" },
+            { tag: "Set 2", set1: "Dawn_Bloom", set2: "Branch_Blade_Song", set1Name: "4pc Dawn's Bloom", set2Name: "+ 2pc Branch & Blade Song", note: "" },
+            { tag: "Set 3", set1: "Dawn_Bloom", set2: "Swing_Jazz", set1Name: "4pc Dawn's Bloom", set2Name: "+ 2pc Swing Jazz", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Energie Regen" }, { slot: "5", label: "Dmg Elec > ATQ" }, { slot: "4", label: "Taux Crit" } ], sub: [ { label: "TC (Jusqu'à 100% IG)", highlight: true }, { label: "DC %", highlight: false }, { label: "ATK %", highlight: false } ] },
+        engines: [
+            { tag: "Moteur S", name: "Serpentine Seeker", img: "Serpentine_Seeker.png" }, { tag: "Moteur S", name: "Bellicose Blaze", img: "Bellicose_Blaze.png" }, { tag: "Moteur A", name: "Drill Rig - Red Axis", img: "Drill_Rig_-_Red_Axis.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Premium", members: [ { img: "Cissia.png", color: "#3182eb", initial: "C" }, { img: "Seed.png", color: "#3182eb", initial: "S" }, { img: "Trigger.png", color: "#e8a838", initial: "T" } ] },
+            { name: "TEAM 02", tag: "Alternative", members: [ { img: "Cissia.png", color: "#3182eb", initial: "C" }, { img: "Seed.png", color: "#3182eb", initial: "S" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 03", tag: "Flexible", members: [ { img: "Cissia.png", color: "#3182eb", initial: "C" }, { img: "", color: "#52525b", role: "Agent<br>Support" }, { img: "", color: "#52525b", role: "Agent<br>Stun" } ] }
+        ]
+    },
+    "Banyue": {
+        color: "#f05432", element: "Fire", rank: "S", factionTitle: "Autorité de conformité Krampus",
+        stats: [ { label: "DGT CRIT", value: "≥ 160 %" }, { label: "Taux Crit", value: "≥ 60 %" }, { label: "Force transperçante", value: "≥ 2400" } ],
+        discs: [
+            { tag: "Stun Build 👑", set1: "Woodpecker_Electro", set2: "Hormone_Punk", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Hormone Punk", note: "" },
+            { tag: "Set 2", set1: "Inferno_Metal", set2: "Woodpecker_Electro", set1Name: "4pc Inferno Metal", set2Name: "+ 2pc Woodpecker Electro", note: "" },
+            { tag: "Set 3", set1: "Inferno_Metal", set2: "Hormone_Punk", set1Name: "4pc Inferno Metal", set2Name: "+ 2pc Hormone Punk", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "HP" }, { slot: "5", label: "DMG / HP" }, { slot: "4", label: "TC / DC" } ], sub: [ { label: "TC / DC", highlight: true }, { label: "HP %", highlight: false } ] },
+        engines: [
+            { tag: "Moteur S", name: "Wrathful Vajra", img: "Wrathful_Vajra.png" }, { tag: "Moteur S", name: "Qingming Birdcage", img: "Qingming_Birdcage.png" }, { tag: "Moteur A", name: "Grill O'Wisp", img: "Grill_O_Wisp.png" }, { tag: "Moteur A", name: "Radiowave Journey", img: "Radiowave_Journey.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Premium", members: [ { img: "Banyue.png", color: "#f05432", initial: "B" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
+            { name: "TEAM 02", tag: "Alternative", members: [ { img: "Banyue.png", color: "#f05432", initial: "B" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" } ] },
+            { name: "TEAM 03", tag: "Free To Play", members: [ { img: "Banyue.png", color: "#f05432", initial: "B" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" }, { img: "Pulchra.png", color: "#e8a838", initial: "P" } ] }
+        ]
+    },
+    "Nicole": {
+        color: "#f23c8a", element: "Ether", rank: "A", factionTitle: "Lièvres rusés",
+        stats: [ { label: "Maîtrise d'Anomalie", value: "117+" }, { label: "Adresse d'Anomalie", value: "320 à 350+" }, { label: "Energie", value: "2.6 à 3" } ],
+        discs: [
+            { tag: "Support 👑", set1: "Swing_Jazz", set2: "Freedom_Blues", set1Name: "4pc Swing Jazz", set2Name: "+ 2pc Freedom Blues", note: "" },
+            { tag: "Anomaly Build", set1: "Freedom_Blues", set2: "Swing_Jazz", set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Swing Jazz", note: "" },
+            { tag: "Support Build II", set1: "Astral_Voice", set2: "Swing_Jazz", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Swing Jazz", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Anomalie" }, { slot: "5", label: "Ether DMG" }, { slot: "4", label: "Energy Regen" } ], sub: [ { label: "Anomaly Mastery", highlight: true }, { label: "PEN", highlight: false }, { label: "ATK %", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "The Vault", img: "The_Vault.png" }, { tag: "Option Anomalie", name: "Weeping Gemini", img: "Weeping_Gemini.png" }, { tag: "Option Soutien", name: "Kaboom the Cannon", img: "Kaboom_the_Cannon.png" }, { tag: "Alternative", name: "Slice of Time", img: "Slice_of_Time.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Miyabi", members: [ { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "Astra.png", color: "#f23c8a", initial: "A" }, { img: "Miyabi.png", color: "#3bbedb", initial: "M" } ] },
+            { name: "TEAM 02", tag: "Zhu Yuan", members: [ { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "Qingyi.png", color: "#3182eb", initial: "Q" }, { img: "Zhu Yuan.png", color: "#f23c8a", initial: "Z" } ] },
+            { name: "TEAM 03", tag: "Débutant", members: [ { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Billy.png", color: "#e8a838", initial: "B" } ] }
+        ]
+    },
+    "Lycaon": {
+        color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Victoria Housekeeping",
+        stats: [ { label: "Impact", value: "180 à 194+" }, { label: "Attaque", value: "= 2200" }, { label: "Taux Crit", value: "= 60%" } ],
+        discs: [
+            { tag: "Stun Build 👑", set1: "Shockstar_Disco", set2: "Swing_Jazz", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Swing Jazz", note: "" },
+            { tag: "Stun Build II", set1: "Shockstar_Disco", set2: "Polar_Metal", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Polar Metal", note: "" },
+            { tag: "Crit Build", set1: "Shockstar_Disco", set2: "Woodpecker_Electro", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Woodpecker Electro", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Impact" }, { slot: "5", label: "Ice DMG" }, { slot: "4", label: "Crit Rate / DMG" } ], sub: [ { label: "Crit Rate", highlight: true }, { label: "Crit DMG", highlight: false }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "The Restrained", img: "The_Restrained.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "Precious_Fossilized_Core.png" }, { tag: "Moteur A", name: "Six Shooter", img: "Six_Shooter.png" }, { tag: "Moteur B", name: "Vortex - Arrow", img: "Vortex_Arrow.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Hugo", members: [ { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Hugo.png", color: "#3bbedb", initial: "H" } ] },
+            { name: "TEAM 02", tag: "Ellen", members: [ { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" }, { img: "Ellen.png", color: "#3bbedb", initial: "E" } ] },
+            { name: "TEAM 03", tag: "Débutant", members: [ { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" }, { img: "Corin.png", color: "#e8a838", initial: "C" } ] }
+        ]
+    },
+    "Koleda": {
+        color: "#f05432", element: "Fire", rank: "S", factionTitle: "Belobog Heavy Industries",
+        stats: [ { label: "Impact", value: "≥ 190" }, { label: "Energie", value: "≥ 1.2" }, { label: "Attaque", value: "≥ 2400" } ],
+        discs: [
+            { tag: "Stun Build 👑", set1: "Shockstar_Disco", set2: "Inferno_Metal", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Inferno Metal", note: "" },
+            { tag: "Stun Build II", set1: "Shockstar_Disco", set2: "Swing_Jazz", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Swing Jazz", note: "" },
+            { tag: "Stun / DPS Build", set1: "Shockstar_Disco", set2: "Woodpecker_Electro", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Woodpecker Electro", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ult", level: "", icon: "Ultime.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Impact" }, { slot: "5", label: "Fire DMG" }, { slot: "4", label: "CRIT Rate" } ], sub: [ { label: "CRIT DMG / Rate", highlight: true }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Hellfire Gears", img: "Hellfire_Gears.png" }, { tag: "Moteur S", name: "The Restrained", img: "The_Restrained.png" }, { tag: "Moteur A", name: "Six Shooter", img: "Six_Shooter.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "Precious_Fossilized_Core.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Fire-Stun", members: [ { img: "Evelyn.png", color: "#f05432", initial: "E" }, { img: "Koleda.png", color: "#f05432", initial: "K" }, { img: "Ben.png", color: "#f05432", initial: "B" } ] },
+            { name: "TEAM 02", tag: "Fire-Stun II", members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "Koleda.png", color: "#f05432", initial: "K" } ] },
+            { name: "TEAM 03", tag: "Débutant", members: [ { img: "Ben.png", color: "#f05432", initial: "B" }, { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Koleda.png", color: "#f05432", initial: "K" } ] }
         ]
     }
 };
