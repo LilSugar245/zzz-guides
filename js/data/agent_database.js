@@ -356,18 +356,18 @@ export const agentDatabase = {
     },
     "Lycaon": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Victoria Housekeeping",
-        stats: [ { label: "Impact", value: "180 à 194+" }, { label: "Attaque", value: "= 2200" }, { label: "Taux Crit", value: "= 60%" } ],
+        stats: [ { label: "Impact", value: "180 à 194+" }, { label: "Attaque", value: "≈ 2200" }, { label: "Taux Crit", value: "≈ 60%" } ],
         discs: [
-            { tag: "Stun Build 👑", set1: "Shockstar_Disco", set2: "Swing_Jazz", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Swing Jazz", note: "" },
-            { tag: "Stun Build II", set1: "Shockstar_Disco", set2: "Polar_Metal", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Polar Metal", note: "" },
-            { tag: "Crit Build", set1: "Shockstar_Disco", set2: "Woodpecker_Electro", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Woodpecker Electro", note: "" }
+            { tag: "Stun Build 👑", set1: "King_of_the_Summit", set2: "Swing_Jazz", set1Name: "4pc King of the Summit", set2Name: "+ 2pc Swing Jazz", note: "" },
+            { tag: "Stun Build II", set1: "King_of_the_Summit", set2: "Polar_Metal", set1Name: "4pc King of the Summit", set2Name: "+ 2pc Polar Metal", note: "" },
+            { tag: "Crit Build", set1: "King_of_the_Summit", set2: "Woodpecker_Electro", set1Name: "4pc King of the Summit", set2Name: "+ 2pc Woodpecker Electro", note: "" }
         ],
         skills: [
             { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "Impact" }, { slot: "5", label: "Ice DMG" }, { slot: "4", label: "Crit Rate / DMG" } ], sub: [ { label: "Crit Rate", highlight: true }, { label: "Crit DMG", highlight: false }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "The Restrained", img: "W-Engine_The_Restrained.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "W-Engine_Precious_Fossilized.png" }, { tag: "Moteur A", name: "Six Shooter", img: "W-Engine_Six_Shooter.png" }, { tag: "Moteur B", name: "Vortex - Arrow", img: "Vortex_Arrow.png" }
+            { tag: "Baseline 100%", name: "The Restrained", img: "W-Engine_The_Restrained.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "W-Engine_Precious_Fossilized.png" }, { tag: "Moteur A", name: "Six Shooter", img: "W-Engine_Six_Shooter.png" }, { tag: "Moteur B", name: "Vortex - Arrow", img: "W-Engine_Vortex_-_Arrow.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Hugo", members: [ { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Hugo.png", color: "#3bbedb", initial: "H" } ] },
