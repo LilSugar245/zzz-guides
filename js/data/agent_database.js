@@ -386,9 +386,8 @@ export const agentDatabase = {
             { name: "TEAM 02", tag: "Fire-Stun II", members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "Koleda.png", color: "#f05432", initial: "K" } ] },
             { name: "TEAM 03", tag: "Débutant", members: [ { img: "Ben.png", color: "#f05432", initial: "B" }, { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Koleda.png", color: "#f05432", initial: "K" } ] }
         ]
-    }
-};
-"Trigger": {
+    },
+    "Trigger": {
         color: "#3182eb", element: "Electric", rank: "S", factionTitle: "Sniper",
         stats: [ { label: "Taux Crit", value: "90%" }, { label: "Impact", value: "131" }, { label: "Attaque", value: "750" } ],
         discs: [
@@ -470,3 +469,4 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: "Miyabi Generalist Team", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] }
         ]
     }
+};
