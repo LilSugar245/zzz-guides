@@ -119,7 +119,7 @@ export const agentDatabase = {
     },
     "Burnice": {
         color: "#f05432", element: "Fire", rank: "S", factionTitle: "Mixologist",
-        stats: [ { label: "Réc. d'énergie", value: "2,8" }, { label: "Attaque", value: "2900" }, { label: "Adr. d'anomalie", value: "400" } ],
+        stats: [ { label: "Réc. d'énergie", value: "2,8" }, { label: "Attaque", value: "2900" }, { label: "Adr. d'anomalie", value: "350" } ],
         discs: [
             { tag: "Set 1 👑", set1: "Chaos_Jazz", set2: "Swing_Jazz", set1Name: "4pc Chaos Jazz", set2Name: "+ 2pc Swing J. / Moonlight", note: "Le meilleur set pour Burnice. Booste ses EX Spéciaux." },
             { tag: "Set 2 (100%)", set1: "Chaos_Jazz", set2: "Puffer_Electro", set1Name: "4pc Chaos Jazz", set2Name: "+ 2pc Puffer Electro", note: "" },
