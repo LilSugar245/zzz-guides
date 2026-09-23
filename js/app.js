@@ -1,6 +1,7 @@
 import { factionsData } from './data/factions.js';
 import { agentsData, colorMap, iconMap, filterGroups } from './data/agents.js';
-import { guides, generateGenericGuide } from './guides/index.js';
+// On importe la nouvelle fonction d'aiguillage
+import { getGuideHTML } from './guides/index.js'; 
 
 let currentElement = 'All';
 let searchQuery = '';
@@ -16,7 +17,6 @@ const emptyState = document.getElementById('empty-state');
 const elementBtns = document.querySelectorAll('#elementFilters button');
 const favFilterBtn = document.getElementById('favoriteFilterBtn');
 
-// Éléments de recherche Bureau & Mobile
 const searchInput = document.getElementById('searchInput');
 const clearSearchBtn = document.getElementById('clearSearchBtn');
 const searchDropdown = document.getElementById('searchDropdown');
@@ -67,23 +67,37 @@ function renderFactions() {
         const imgPath = `assets/Faction/${faction}.png`;
         const fallbackImg = `https://placehold.co/300x300/181818/d7f70c?text=${faction.substring(0,3).toUpperCase()}&font=montserrat`;
         
+        // SUGGESTION 2 : Gestion du texte long pour N.E.P.S
+        let displayName = faction;
+        let subName = '';
+        if (faction === "Équipe d'intervention spéciale des Enquêtes criminelles") {
+            displayName = "N.E.P.S.";
+            subName = "Équipe d'intervention spéciale";
+        }
+
         if(isSidebar) {
             return `
             <div class="mb-5 px-1">
                 <div class="faction-box rounded-[1.5rem] p-4 flex flex-col items-center gap-4 cursor-pointer w-full group bg-gradient-to-br from-[#121212] to-[#050505] border-2 border-zinc-800 hover:border-yellow-400/50 transition-colors" onclick="setFactionFilter('${faction.replace(/'/g, "\\'")}')">
                     <div class="w-32 h-32 md:w-36 md:h-36 bg-black rounded-[1.2rem] overflow-hidden flex items-center justify-center p-3 shadow-inner group-hover:bg-[#0a0a0a] transition-colors relative">
-                        <img src="${imgPath}" alt="${faction}" class="w-full h-full object-contain drop-shadow-xl relative z-10" onerror="this.onerror=null; this.src='${fallbackImg}'">
+                        <img src="${imgPath}" loading="lazy" alt="${faction}" class="w-full h-full object-contain drop-shadow-xl relative z-10" onerror="this.onerror=null; this.src='${fallbackImg}'">
                     </div>
-                    <div class="bg-black/95 px-3 py-2.5 rounded-xl text-xs font-black text-center w-full border border-zinc-700/80 text-zinc-400 group-hover:text-white group-hover:border-yellow-400/80 transition-colors shadow-lg line-clamp-2 leading-snug tracking-wide uppercase">${faction}</div>
+                    <div class="bg-black/95 px-3 py-2.5 rounded-xl text-xs font-black text-center w-full border border-zinc-700/80 text-zinc-400 group-hover:text-white group-hover:border-yellow-400/80 transition-colors shadow-lg uppercase leading-tight">
+                        ${displayName}
+                        ${subName ? `<span class="block text-[8px] text-zinc-500 mt-0.5 tracking-wider">${subName}</span>` : ''}
+                    </div>
                 </div>
             </div>`;
         } else {
             return `
             <div class="bg-[#121212] border-2 border-zinc-800 rounded-[2rem] p-6 flex flex-col items-center justify-between gap-6 cursor-pointer hover:border-yellow-400 hover:-translate-y-2 transition-all duration-300 group shadow-2xl relative overflow-hidden" onclick="setFactionFilter('${faction.replace(/'/g, "\\'")}', true)">
                 <div class="w-32 h-32 sm:w-48 sm:h-48 transition-all duration-500 group-hover:scale-110 relative z-10">
-                    <img src="${imgPath}" alt="${faction}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='${fallbackImg}'">
+                    <img src="${imgPath}" loading="lazy" alt="${faction}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='${fallbackImg}'">
                 </div>
-                <div class="bg-black/80 px-5 py-3 rounded-xl text-xs sm:text-sm font-black w-full text-center border border-zinc-800 group-hover:border-yellow-400 text-zinc-300 shadow-inner group-hover:text-yellow-400 transition-colors duration-300 line-clamp-2 uppercase tracking-wider relative z-10">${faction}</div>
+                <div class="bg-black/80 px-5 py-3 rounded-xl text-xs sm:text-sm font-black w-full text-center border border-zinc-800 group-hover:border-yellow-400 text-zinc-300 shadow-inner group-hover:text-yellow-400 transition-colors duration-300 uppercase tracking-wider relative z-10">
+                    ${displayName}
+                    ${subName ? `<span class="block text-[10px] text-zinc-500 mt-1">${subName}</span>` : ''}
+                </div>
             </div>`;
         }
     };
@@ -94,7 +108,11 @@ function renderFactions() {
 
 window.setFactionFilter = function(faction, fromModal = false) {
     activeFactionFilter = faction;
-    document.getElementById('activeFactionName').textContent = faction;
+    
+    let displayName = faction;
+    if (faction === "Équipe d'intervention spéciale des Enquêtes criminelles") displayName = "N.E.P.S.";
+    
+    document.getElementById('activeFactionName').textContent = displayName;
     document.getElementById('activeFactionTag').classList.remove('hidden');
     document.getElementById('activeFactionTag').classList.add('flex');
     if(fromModal) window.closeModal('factionModal');
@@ -109,7 +127,6 @@ document.getElementById('clearFactionBtn').addEventListener('click', (e) => {
     renderAgents();
 });
 
-// LOGIQUE DE RECHERCHE COMBINÉE BUREAU & MOBILE
 function updateBothDropdowns(query) {
     searchDropdown.innerHTML = '';
     searchDropdownMobile.innerHTML = '';
@@ -160,7 +177,6 @@ function updateBothDropdowns(query) {
                 renderAgents();
             };
 
-            // Setup Bureau Div
             const divD = document.createElement('div');
             divD.className = "dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group";
             divD.style.animationDelay = `${delay}ms`; 
@@ -168,7 +184,6 @@ function updateBothDropdowns(query) {
             divD.addEventListener('mousedown', onSelectLogic);
             searchDropdown.appendChild(divD);
 
-            // Setup Mobile Div
             const divM = document.createElement('div');
             divM.className = "dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group";
             divM.style.animationDelay = `${delay}ms`; 
@@ -182,44 +197,26 @@ function updateBothDropdowns(query) {
     }
 }
 
-// Events Desktop
 searchInput.addEventListener('input', (e) => { 
-    searchQuery = e.target.value; 
-    searchInputMobile.value = searchQuery;
-    searchDropdown.classList.remove('hidden'); 
-    updateBothDropdowns(searchQuery); 
-    renderAgents(); 
+    searchQuery = e.target.value; searchInputMobile.value = searchQuery; searchDropdown.classList.remove('hidden'); 
+    updateBothDropdowns(searchQuery); renderAgents(); 
 });
-searchInput.addEventListener('focus', () => { 
-    searchDropdown.classList.remove('hidden'); 
-    updateBothDropdowns(searchInput.value); 
-});
+searchInput.addEventListener('focus', () => { searchDropdown.classList.remove('hidden'); updateBothDropdowns(searchInput.value); });
 searchInput.addEventListener('blur', () => { setTimeout(() => { searchDropdown.classList.add('hidden'); }, 300); });
 clearSearchBtn.addEventListener('click', clearSearch);
 
-// Events Mobile
 searchInputMobile.addEventListener('input', (e) => { 
-    searchQuery = e.target.value; 
-    searchInput.value = searchQuery;
-    searchDropdownMobile.classList.remove('hidden'); 
-    updateBothDropdowns(searchQuery); 
-    renderAgents(); 
+    searchQuery = e.target.value; searchInput.value = searchQuery; searchDropdownMobile.classList.remove('hidden'); 
+    updateBothDropdowns(searchQuery); renderAgents(); 
 });
-searchInputMobile.addEventListener('focus', () => { 
-    searchDropdownMobile.classList.remove('hidden'); 
-    updateBothDropdowns(searchInputMobile.value); 
-});
+searchInputMobile.addEventListener('focus', () => { searchDropdownMobile.classList.remove('hidden'); updateBothDropdowns(searchInputMobile.value); });
 searchInputMobile.addEventListener('blur', () => { setTimeout(() => { searchDropdownMobile.classList.add('hidden'); }, 300); });
 clearSearchBtnMobile.addEventListener('click', clearSearch);
 
 function clearSearch() {
-    searchInput.value = ''; 
-    searchInputMobile.value = ''; 
-    searchQuery = ''; 
-    clearSearchBtn.classList.add('hidden'); 
-    clearSearchBtnMobile.classList.add('hidden'); 
-    searchDropdown.classList.add('hidden'); 
-    searchDropdownMobile.classList.add('hidden'); 
+    searchInput.value = ''; searchInputMobile.value = ''; searchQuery = ''; 
+    clearSearchBtn.classList.add('hidden'); clearSearchBtnMobile.classList.add('hidden'); 
+    searchDropdown.classList.add('hidden'); searchDropdownMobile.classList.add('hidden'); 
     renderAgents();
 }
 
@@ -257,21 +254,15 @@ function updateModalNavigation() {
     }
 }
 
-// LOGIQUE DE PARTAGE (DEEP LINKING)
 window.shareCurrentAgent = function() {
     if (currentModalAgentIndex === -1) return;
     const agent = filteredAgentsList[currentModalAgentIndex];
-    // Création de l'URL avec le paramètre ?agent=NomDeLAgent
     const url = window.location.origin + window.location.pathname + '?agent=' + encodeURIComponent(agent.name);
     
-    // Copie dans le presse-papier
     navigator.clipboard.writeText(url).then(() => {
-        // Animation du Toast
         const toast = document.getElementById('toastNotification');
         toast.classList.remove('-translate-y-32', 'opacity-0');
         toast.classList.add('translate-y-0', 'opacity-100');
-        
-        // Disparition après 3 secondes
         setTimeout(() => {
             toast.classList.remove('translate-y-0', 'opacity-100');
             toast.classList.add('-translate-y-32', 'opacity-0');
@@ -288,13 +279,11 @@ window.openAgentDetail = function(agentName, rank, element) {
     currentModalAgentIndex = filteredAgentsList.findIndex(a => a.name === agentName);
     updateModalNavigation();
     
-    // Met à jour l'URL en temps réel pour pouvoir la copier facilement
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set('agent', agentName);
     window.history.pushState({}, '', '?' + urlParams.toString());
     
     splashImg.style.opacity = '0';
-    
     splashImg.onerror = function() {
         this.onerror = null; 
         this.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; 
@@ -303,12 +292,8 @@ window.openAgentDetail = function(agentName, rank, element) {
     splashImg.src = `assets/splash/${agentName}.png`; 
     giantName.textContent = agentName;
     
-    const guideGenerator = guides[agentName.toLowerCase()];
-    if (guideGenerator) {
-        guideContainer.innerHTML = guideGenerator();
-    } else {
-        guideContainer.innerHTML = generateGenericGuide(agentName);
-    }
+    // APPEL A LA NOUVELLE FONCTION HYBRIDE DE INDEX.JS
+    guideContainer.innerHTML = getGuideHTML(agentName);
 
     modal.classList.remove('hidden');
     void modal.offsetWidth;
@@ -316,14 +301,11 @@ window.openAgentDetail = function(agentName, rank, element) {
     
     setTimeout(() => {
         splashImg.style.opacity = '1'; 
-        
-        // EXCEPTION POUR REMIELLE : on augmente l'échelle à 1.4 pour qu'elle prenne tout l'espace
         if(agentName.toLowerCase() === 'remielle') {
             splashImg.style.transform = 'translateY(0) scale(1.4)';
         } else {
             splashImg.style.transform = 'translateY(0) scale(1)';
         }
-
         guideContainer.style.opacity = '1'; 
         guideContainer.style.transform = 'translateX(0)';
     }, 50);
@@ -368,13 +350,14 @@ function renderAgents() {
             const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-transparent';
             const displayName = agent.name === 'Jane' ? 'Jane Doe' : agent.name;
 
+            // SUGGESTION 3 : LAZY LOADING SUR LES MINIATURES DE LA GRILLE
             const cardHTML = `
                 <div class="agent-card-container flex flex-col cursor-pointer w-full group animate-fade-in-up" 
                      style="--elem-color: ${hexColor}; animation-delay: ${staggerDelay}ms;"
                      onclick="openAgentDetail('${agent.name.replace(/'/g, "\\'")}', '${agent.rank}', '${agent.element}')">
                     <div class="agent-shape-wrapper w-full aspect-square bg-zinc-800">
                         <div class="agent-shape-inner relative overflow-hidden flex items-end justify-center">
-                            <img src="assets/Agents/${agent.name}.png" alt="${displayName}" class="agent-image absolute bottom-0 w-full h-auto min-h-full object-cover object-bottom" onerror="this.onerror=null; this.src='${fallbackImg}'">
+                            <img src="assets/Agents/${agent.name}.png" loading="lazy" alt="${displayName}" class="agent-image absolute bottom-0 w-full h-auto min-h-full object-cover object-bottom" onerror="this.onerror=null; this.src='${fallbackImg}'">
                             <div class="absolute inset-0 shadow-[inset_0_-35px_50px_rgba(0,0,0,0.95)] pointer-events-none transition-shadow duration-300 group-hover:shadow-[inset_0_-10px_20px_rgba(0,0,0,0.4)]"></div>
                             <button onclick="toggleFavorite(this, '${agent.name.replace(/'/g, "\\'")}', event)" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-[#111]/80 backdrop-blur border border-zinc-700 flex items-center justify-center z-30 transition-all hover:scale-110 shadow-lg group/fav">
                                 <svg class="w-5 h-5 transition-colors duration-300 ${heartClass} group-hover/fav:text-red-400" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
@@ -409,10 +392,9 @@ window.closeModal = function(id) {
     const m = document.getElementById(id);
     if(id === 'agentDetailModal') {
         document.getElementById('agentSplashImage').style.opacity = '0';
-        document.getElementById('agentSplashImage').style.transform = 'translateY(20px) scale(0.9)'; // Reset propre
+        document.getElementById('agentSplashImage').style.transform = 'translateY(20px) scale(0.9)'; 
         document.getElementById('agentGuideContainer').style.opacity = '0';
         document.getElementById('agentGuideContainer').style.transform = 'translateX(20px)';
-        // Nettoie l'URL quand on ferme la modale (enlève le ?agent=...)
         window.history.pushState({}, '', window.location.pathname);
     }
     m.classList.remove('opacity-100');
@@ -437,11 +419,9 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// INITIALISATION
 renderFactions();
 renderAgents();
 
-// LECTURE DE L'URL AU CHARGEMENT (DEEP LINKING)
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const agentParam = urlParams.get('agent');
@@ -450,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (agent) {
             setTimeout(() => {
                 window.openAgentDetail(agent.name, agent.rank, agent.element);
-            }, 300); // Petit délai pour laisser l'interface s'afficher
+            }, 300);
         }
     }
 });
