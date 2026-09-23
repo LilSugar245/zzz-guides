@@ -138,20 +138,27 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: "Fils de Calydon", members: [ { img: "Burnice.png", color: "#f05432", initial: "B" }, { img: "Piper.png", color: "#e8a838", initial: "P" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] }
         ]
     },
-    "Yidhari": {
+   "Yidhari": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Spook Shack",
         stats: [ { label: "DGT CRIT", value: "≥ 150 %" }, { label: "Taux Crit", value: "≥ 68 %" }, { label: "Force transperçante", value: "≥ 2500" } ],
         discs: [
-            { tag: "Set 1 👑", set1: "Woodpecker_Electro", set2: "Polar_Metal", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Polar Metal", note: "" },
-            { tag: "Set 2", set1: "Branch_Blade_Song", set2: "Polar_Metal", set1Name: "4pc Branch Blade Song", set2Name: "+ 2pc Polar Metal", note: "" },
-            { tag: "Set 3", set1: "Polar_Metal", set2: "Woodpecker_Electro", set1Name: "4pc Polar Metal", set2Name: "+ 2pc Woodpecker Electro", note: "" }
+            { tag: "Set 1 👑", set1: "Yunkui_Tales", set2: "Woodpecker_Electro", set1Name: "4pc Yunkui Tales", set2Name: "+ 2pc Woodpecker Electro", note: "" },
+            { tag: "Set 2", set1: "Yunkui_Tales", set2: "Dawn_Bloom", set1Name: "4pc Yunkui Tales", set2Name: "+ 2pc Dawn Bloom", note: "" },
+            { tag: "Set 3", set1: "Yunkui_Tales", set2: "Branch_Blade_Song", set1Name: "4pc Yunkui Tales", set2Name: "+ 2pc Branch and Blade Song", note: "" }
         ],
         skills: [
-            { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+            { name: "Core", level: "", icon: "Core.webp" },
+            { name: "Basic", level: "", icon: "Attaque_basic.png" },
+            { name: "Ex", level: "", icon: "Ex.png" },
+            { name: "Ult", level: "", icon: "Ultime.png" },
+            { name: "Assist", level: "", icon: "Assist.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "HP %" }, { slot: "5", label: "ICE DMG %" }, { slot: "4", label: "TC / DC" } ], sub: [ { label: "TC / DC", highlight: true }, { label: "HP %", highlight: false } ] },
         engines: [
-            { tag: "Moteur S", name: "Kraken's Cradle", img: "W-Engine_Krakens_Cradle.png" }, { tag: "Moteur S", name: "Qingming Birdcage", img: "W-Engine_Qingming_Birdcage.png" }, { tag: "Moteur A", name: "Radiowave Journey", img: "W-Engine_Radiowave_Journey.png" }, { tag: "Moteur A", name: "Grill O'Wisp", img: "W-Engine_Grill_O_Wisp.png" }
+            { tag: "Moteur S", name: "Kraken's Cradle", img: "W-Engine_Krakens_Cradle.png" },
+            { tag: "Moteur S", name: "Qingming Birdcage", img: "W-Engine_Qingming_Birdcage.png" },
+            { tag: "Moteur A", name: "Radiowave Journey", img: "W-Engine_Radiowave_Journey.png" },
+            { tag: "Moteur A", name: "Grill O' Wisp", img: "W-Engine_Grill_O_Wisp.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Premium", members: [ { img: "Yidhari.png", color: "#3bbedb", initial: "Y" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
