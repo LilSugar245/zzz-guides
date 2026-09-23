@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZZZ Guides - Base de données avancée</title>
-    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <link rel="icon" type="image/png" href="assets/Logo.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -65,13 +65,13 @@
                     <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Rôles</h3>
                     <div class="flex flex-wrap gap-2" id="roleFilters">
                         <button data-role="All" class="filter-btn-role active bg-[#1a1a1a] text-zinc-300 px-5 py-2 rounded-xl text-xs font-bold border border-zinc-700/50">Tous</button>
-                        <button data-role="Attack" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Attack.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Attaque</button>
-                        <button data-role="Stun" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Stun.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Stun</button>
-                        <button data-role="Anomaly" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Anomaly.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Anomalie</button>
-                        <button data-role="Support" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Support.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Support</button>
-                        <button data-role="Defense" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Defense.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Défense</button>
-                        <button data-role="Armorer" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Armorer.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Armurier</button>
-                        <button data-role="Rupture" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Rupture.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Rupture</button>
+                        <button data-role="Attack" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Attack.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Attaque</button>
+                        <button data-role="Stun" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Stun.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Stun</button>
+                        <button data-role="Anomaly" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Anomaly.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Anomalie</button>
+                        <button data-role="Support" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Support.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Support</button>
+                        <button data-role="Defense" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Defense.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Défense</button>
+                        <button data-role="Armorer" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Armorer.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Armurier</button>
+                        <button data-role="Rupture" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Rupture.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Rupture</button>
                     </div>
                 </div>
 
@@ -87,13 +87,18 @@
                 </div>
 
                 <!-- Faction Active -->
-                <div id="activeFactionTag" class="hidden items-center justify-between bg-yellow-400/10 border-2 border-yellow-400/50 px-4 py-3 rounded-xl backdrop-blur-md pulse-active-tag transition-all duration-300 mt-4 mb-8">
+                <div id="activeFactionTag" class="hidden items-center justify-between bg-yellow-400/10 border-2 border-yellow-400/50 px-4 py-3 rounded-xl backdrop-blur-md pulse-active-tag transition-all duration-300 mt-4 mb-4">
                     <div class="flex flex-col">
                         <span class="text-[10px] text-yellow-400 font-black uppercase tracking-widest">Faction active</span>
                         <span id="activeFactionName" class="text-xs font-bold text-white mt-0.5 leading-tight"></span>
                     </div>
                     <button id="clearFactionBtn" class="text-zinc-300 hover:text-black bg-zinc-800 hover:bg-yellow-400 rounded-full p-2 transition-all transform hover:scale-110 hover:rotate-90 shadow-lg ml-2 shrink-0"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg></button>
                 </div>
+            </div>
+
+            <!-- Factions Marquee (Réintégré ici, sous les filtres et au dessus du bouton) -->
+            <div class="flex-1 overflow-hidden relative marquee-mask px-5 py-2 z-0" id="sidebarMarqueeWrapper">
+                <div class="marquee-track-vertical" id="sidebarFactionsList"></div>
             </div>
 
             <!-- Bouton Factions Modal (Fixé en bas) -->
@@ -165,7 +170,7 @@
         </div>
     </div>
 
-    <!-- Factions Modal (La structure cruciale qui manquait) -->
+    <!-- Factions Modal -->
     <div id="factionModal" class="fixed inset-0 z-[100] hidden bg-[#0f0f0f] carbon-bg transition-opacity duration-300 opacity-0">
         <div class="absolute inset-0 overflow-y-auto overflow-x-hidden p-6 md:p-16 pr-24 z-10 scroll-smooth pb-32">
             <h2 class="text-4xl md:text-6xl font-display font-black italic text-white uppercase mb-12 border-b-4 border-zinc-800 pb-4 inline-block drop-shadow-2xl">
