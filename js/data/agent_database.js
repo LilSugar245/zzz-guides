@@ -408,65 +408,84 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: "Flexible", members: [ { img: "Trigger.png", color: "#3182eb", initial: "T" }, { img: "Hugo.png", color: "#3bbedb", initial: "H" }, { img: "", color: "#52525b", role: "N'importe quel<br>Support" } ] }
         ]
     },
-    "Corin": {
-        color: "#e8a838", element: "Physical", rank: "A", factionTitle: "Victoria Housekeeping",
-        stats: [ { label: "Taux crit", value: "≥ 80 %" }, { label: "Dégât crit", value: "≥ 160 %" }, { label: "Attaque", value: "≥ 3000" } ],
+    "Miyabi": {
+        color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Section 6",
+        stats: [ { label: "DGT Glace", value: "Max" }, { label: "Taux CRIT", value: "Max" }, { label: "Attaque", value: "Max" } ],
         discs: [
-            { tag: "Physical Anomaly Build 👑", set1: "Fanged_Metal", set2: "Fanged_Metal", set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Fanged Metal", note: "" },
-            { tag: "Atk Build", set1: "Woodpecker_Electro", set2: "Woodpecker_Electro", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Woodpecker Electro", note: "" }
+            { tag: "Meilleur Set 👑", set1: "Branch_Blade_Song", set2: "Woodpecker_Electro", set1Name: "4pc Branch and Blade Song", set2Name: "+ 2pc Woodpecker Electro", note: "Branch & Blade Song est le meilleur disque pour Miyabi car il lui donne du DGT CRIT et augmente ses propres DGT quand un membre de l'équipe applique Gel. Woodpecker Electro est son choix de prédilection en 2 pièces puisqu'elle a besoin de Taux CRIT." },
+            { tag: "Alternative", set1: "Branch_Blade_Song", set2: "Polar_Metal", set1Name: "4pc Branch and Blade Song", set2Name: "+ 2pc Polar Metal", note: "Si vous avez déjà beaucoup de Taux CRIT sur Miyabi, vous pouvez envisager Polar Metal comme alternative pour obtenir plus de DGT Glace." }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }
+            { name: "Core", level: "12", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Assist", level: "8", icon: "Assist.png" }
         ],
-        statPriority: { main: [ { slot: "6", label: "ATK %" }, { slot: "5", label: "Physical DMG" }, { slot: "4", label: "TC / DC" } ], sub: [ { label: "Taux Crit", highlight: true }, { label: "Dmg Crit", highlight: false }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false }, { label: "ATK", highlight: false } ] },
+        statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "DGT Glace %" }, { slot: "4", label: "Taux CRIT" } ], sub: [ { label: "DGT CRIT", highlight: true }, { label: "Taux CRIT", highlight: false }, { label: "ATQ %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
-            { tag: "Moteur S", name: "Moteur Inconnu 1", img: "W-Engine_Precious_Fossilized.png" }, { tag: "Moteur A", name: "Moteur Inconnu 2", img: "W-Engine_Precious_Fossilized.png" }
+            { tag: "Meilleur Moteur", name: "Hailstorm Shrine", img: "W-Engine_Hailstorm_Shrine.png" }, { tag: "Alternative 5★", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }, { tag: "Alternative BP", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, { tag: "Alternative", name: "Roaring Ride", img: "W-Engine_Roaring_Ride.png" }, { tag: "F2P", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }
         ],
         teams: [
-            { name: "TEAM 01", tag: "Corin Premium Team", members: [ { img: "Pulchra.png", color: "#e8a838", initial: "P" }, { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "", color: "#52525b", role: "" } ] },
-            { name: "TEAM 02", tag: "Corin Physical Team", members: [ { img: "Nekomata.png", color: "#e8a838", initial: "N" }, { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "", color: "#52525b", role: "" } ] },
-            { name: "TEAM 03", tag: "Team débutant", members: [ { img: "Billy.png", color: "#e8a838", initial: "B" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "", color: "#52525b", role: "" } ] }
+            { name: "TEAM 01", tag: "Team F2P", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" } ] },
+            { name: "TEAM 02", tag: "Team Désordre", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" } ] },
+            { name: "TEAM 03", tag: "Team Généraliste", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] }
         ]
     },
     "Anby": {
-        color: "#3182eb", element: "Electric", rank: "A", factionTitle: "Gentle House",
-        stats: [ { label: "Taux crit", value: "≥ 50 %" }, { label: "Impact", value: "≥ 189" }, { label: "Dégât crit", value: "≥ 100 %" }, { label: "Attaque", value: "≥ 2400" } ],
+        color: "#3182eb", element: "Electric", rank: "A", factionTitle: "Lièvres Rusés",
+        stats: [ { label: "Impact", value: "≥ 189" }, { label: "Taux Crit", value: "≥ 50%" }, { label: "Attaque", value: "≥ 2400" } ],
         discs: [
-            { tag: "Impact Build 👑", set1: "Shockstar_Disco", set2: "Woodpecker_Electro", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Woodpecker Electro", note: "" },
-            { tag: "Impact Build II", set1: "Shockstar_Disco", set2: "Freedom_Blues", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Freedom Blues", note: "" },
-            { tag: "Anomaly Build", set1: "Shockstar_Disco", set2: "Thunder_Metal", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Thunder Metal", note: "" }
+            { tag: "Impact Build 👑", set1: "Shockstar_Disco", set2: "Swing_Jazz", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Swing Jazz", note: "Shockstar Disco augmente l'Impact d'Anby et permet à ses Attaques de Base d'infliger plus de Choc. Le 2-pièces Swing Jazz augmente sa Réc. d'Énergie pour lui permettre d'utiliser plus d'EX Spéciaux." },
+            { tag: "Impact Build II", set1: "King_of_the_Summit", set2: "Swing_Jazz", set1Name: "4pc King of the Summit", set2Name: "+ 2pc Swing Jazz", note: "King of the Summit offre un buff de DGT CRIT à toute l'équipe lorsqu'Anby utilise un EX Spécial ou un Enchaînement." }
         ],
         skills: [
-            { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ult", level: "", icon: "Ultime.png" }
+            { name: "Core", level: "12", icon: "Core.webp" }, { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Ult", level: "10", icon: "Ultime.png" }
         ],
-        statPriority: { main: [ { slot: "6", label: "Impact / Energy Regen" }, { slot: "5", label: "Electric DMG" }, { slot: "4", label: "Crit Rate/Crit DMG / Anomaly Proficiency" } ], sub: [ { label: "Crit Rate = Crit DMG", highlight: true }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false }, { label: "Anomaly Proficiency", highlight: false } ] },
+        statPriority: { main: [ { slot: "6", label: "Impact %" }, { slot: "5", label: "DGT Électrique %" }, { slot: "4", label: "Taux CRIT / DGT CRIT" } ], sub: [ { label: "Taux CRIT / DGT CRIT", highlight: true }, { label: "ATQ %", highlight: false }, { label: "ATQ Flat", highlight: false } ] },
         engines: [
-            { tag: "Moteur S", name: "Moteur Inconnu 1", img: "W-Engine_Precious_Fossilized.png" }, { tag: "Moteur A", name: "Moteur Inconnu 2", img: "W-Engine_Precious_Fossilized.png" }
+            { tag: "Meilleur Moteur", name: "The Restrained", img: "W-Engine_The_Restrained.png" }, { tag: "Alternative S", name: "Hellfire Gears", img: "W-Engine_Hellfire_Gears.png" }, { tag: "Alternative A", name: "Steam Oven", img: "W-Engine_Steam_Oven.png" }, { tag: "Alternative A", name: "Precious Fossilized Core", img: "W-Engine_Precious_Fossilized.png" }
         ],
         teams: [
-            { name: "TEAM 01", tag: "Anby Mono-Electric Team", members: [ { img: "Harumasa.png", color: "#3182eb", initial: "H" }, { img: "Rina.png", color: "#3182eb", initial: "R" }, { img: "", color: "#52525b", role: "" } ] },
-            { name: "TEAM 02", tag: "Zhu Yuan Team", members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "Z" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "", color: "#52525b", role: "" } ] },
-            { name: "TEAM 03", tag: "Team débutant", members: [ { img: "Billy.png", color: "#e8a838", initial: "B" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "", color: "#52525b", role: "" } ] }
+            { name: "TEAM 01", tag: "Mono-Électrique", members: [ { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Astra.png", color: "#f23c8a", initial: "A" }, { img: "Harumasa.png", color: "#3182eb", initial: "H" } ] },
+            { name: "TEAM 02", tag: "Team F2P", members: [ { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "Billy.png", color: "#e8a838", initial: "B" } ] },
+            { name: "TEAM 03", tag: "Flexible", members: [ { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "", color: "#52525b", role: "Support" }, { img: "", color: "#52525b", role: "DPS" } ] }
         ]
     },
-    "Miyabi": {
-        color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Section 6",
-        stats: [ { label: "Ice DMG", value: "Max" }, { label: "CRIT Rate", value: "Max" }, { label: "ATK", value: "Max" } ],
+    "Corin": {
+        color: "#e8a838", element: "Physical", rank: "A", factionTitle: "Victoria Housekeeping",
+        stats: [ { label: "Taux Crit", value: "≥ 80%" }, { label: "Dégât Crit", value: "≥ 160%" }, { label: "Attaque", value: "≥ 3000" } ],
         discs: [
-            { tag: "Best Set! 👑", set1: "Branch_Blade_Song", set2: "Woodpecker_Electro", set1Name: "4pc Branch and Blade Song", set2Name: "+ 2pc Woodpecker Electro", note: "Branch and Blade Song is Miyabi's best-in-slot Drive Disc since it provides her CRIT DMG and increases her own DMG when any party member applies Freeze. Woodpecker Electro is her go-to 2-piece since she will need the CRIT Rate stat as a CRIT DPS." },
-            { tag: "2nd Best", set1: "Branch_Blade_Song", set2: "Polar_Metal", set1Name: "4pc Branch and Blade Song", set2Name: "+ 2pc Polar Metal", note: "If you already have a lot of CRIT Rate on Miyabi, you can consider Polar Metal as an alternative for more Ice DMG." }
+            { tag: "Physical DPS Build 👑", set1: "Fanged_Metal", set2: "Woodpecker_Electro", set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Woodpecker Electro", note: "Fanged Metal augmente les DGT Physiques de Corin et ses dégâts contre les ennemis sous Assaut. Le 2-pc Woodpecker augmente son Taux CRIT de 8%." },
+            { tag: "Alternative", set1: "Puffer_Electro", set2: "Woodpecker_Electro", set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Woodpecker Electro", note: "Excellente alternative puisque Corin inflige énormément de dégâts avec son Ultime. Cela augmente aussi son ATK après l'Ultime." }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+            { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Core", level: "10", icon: "Core.webp" }, { name: "Basic", level: "8", icon: "Attaque_basic.png" }
         ],
-        statPriority: { main: [ { slot: "6", label: "ATK" }, { slot: "5", label: "Ice DMG" }, { slot: "4", label: "CRIT Rate" } ], sub: [ { label: "CRIT DMG", highlight: true }, { label: "CRIT Rate", highlight: false }, { label: "ATK", highlight: false }, { label: "PEN", highlight: false } ] },
+        statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "DGT Physique %" }, { slot: "4", label: "Taux CRIT / DGT CRIT" } ], sub: [ { label: "DGT CRIT", highlight: true }, { label: "Taux CRIT", highlight: false }, { label: "ATQ %", highlight: false } ] },
         engines: [
-            { tag: "Best W-Engine", name: "Hailstorm Shrine", img: "W-Engine_Hailstorm_Shrine.png" }, { tag: "Alt. W-Engines", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }, { tag: "Alt. W-Engines", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, { tag: "Alt. W-Engines", name: "Roaring Ride", img: "W-Engine_Roaring_Ride.png" }, { tag: "Alt. W-Engines", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }
+            { tag: "Meilleur Moteur", name: "Housekeeper", img: "W-Engine_Housekeeper.png" }, { tag: "Alternative 5★", name: "Steel Cushion", img: "W-Engine_Steel_Cushion.png" }, { tag: "Alternative BP", name: "Cannon Rotor", img: "W-Engine_Cannon_Rotor.png" }, { tag: "Alternative F2P", name: "Lunar - Noviluna", img: "[Lunar] Noviluna.png" }
         ],
         teams: [
-            { name: "TEAM 01", tag: "Miyabi F2P Team", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" } ] },
-            { name: "TEAM 02", tag: "Miyabi Disorder Team", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" } ] },
-            { name: "TEAM 03", tag: "Miyabi Generalist Team", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] }
+            { name: "TEAM 01", tag: "Premium Team", members: [ { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Caesar.png", color: "#e8a838", initial: "C" } ] },
+            { name: "TEAM 02", tag: "F2P Team", members: [ { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Billy.png", color: "#e8a838", initial: "B" }, { img: "Anby.png", color: "#3182eb", initial: "A" } ] },
+            { name: "TEAM 03", tag: "Flexible", members: [ { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "", color: "#52525b", role: "Agent<br>Stun" }, { img: "", color: "#52525b", role: "Agent<br>Support" } ] }
+        ]
+    },
+    "Hugo": {
+        color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Oiseaux-moqueurs",
+        stats: [ { label: "Attaque", value: "Max" }, { label: "Taux Crit", value: "Max" }, { label: "Dégât Crit", value: "Max" } ],
+        discs: [
+            { tag: "DPS Build 👑", set1: "Puffer_Electro", set2: "Woodpecker_Electro", set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Woodpecker Electro", note: "Fonctionne le mieux avec Dialyn pour lancer plus d'Ultimes. Augmente le Taux CRIT et les DGT CRIT nécessaires pour optimiser la 'Totalisation'." },
+            { tag: "Alternative Build", set1: "Hormone_Punk", set2: "Woodpecker_Electro", set1Name: "4pc Hormone Punk", set2Name: "+ 2pc Woodpecker Electro", note: "Excellent set si Hugo n'est pas joué avec Dialyn. Fournit une tonne d'ATQ% à chaque fois qu'il entre sur le terrain." }
+        ],
+        skills: [
+            { name: "Core", level: "12", icon: "Core.webp" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Basic", level: "8", icon: "Attaque_basic.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "DGT Glace %" }, { slot: "4", label: "Taux CRIT / DGT CRIT" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "DGT CRIT", highlight: false }, { label: "ATQ %", highlight: false } ] },
+        engines: [
+            { tag: "Meilleur Moteur", name: "Myriad Eclipse", img: "W-Engine_Myriad_Eclipse.png" }, { tag: "Alternative 5★", name: "Deep Sea Visitor", img: "W-Engine_Deep_Sea_Visitor.png" }, { tag: "Alternative 4★", name: "Severed Innocence", img: "W-Engine_Severed_Innocence.png" }, { tag: "Alternative F2P", name: "Marcato Desire", img: "Marcato Desire.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Double Stun", members: [ { img: "Hugo.png", color: "#3bbedb", initial: "H" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" } ] },
+            { name: "TEAM 02", tag: "F2P Team", members: [ { img: "Hugo.png", color: "#3bbedb", initial: "H" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] },
+            { name: "TEAM 03", tag: "Flexible", members: [ { img: "Hugo.png", color: "#3bbedb", initial: "H" }, { img: "", color: "#52525b", role: "Agent<br>Stun" }, { img: "", color: "#52525b", role: "Agent<br>Stun" } ] }
         ]
     }
 };
