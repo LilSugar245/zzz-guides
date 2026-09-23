@@ -425,9 +425,9 @@ export const agentDatabase = {
             { tag: "Meilleur Moteur", name: "Hailstorm Shrine", img: "W-Engine_Hailstorm_Shrine.png" }, { tag: "Alternative 5★", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }, { tag: "Alternative BP", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, { tag: "Alternative", name: "Roaring Ride", img: "W-Engine_Roaring_Ride.png" }, { tag: "F2P", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }
         ],
         teams: [
-            { name: "TEAM 01", tag: "Team F2P", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" } ] },
-            { name: "TEAM 02", tag: "Team Désordre", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" } ] },
-            { name: "TEAM 03", tag: "Team Généraliste", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] }
+            { name: "TEAM 01", tag: "Désordre Ultime", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Burnice.png", color: "#f05432", initial: "B" } ] },
+            { name: "TEAM 02", tag: "Alternative", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" }, { img: "Burnice.png", color: "#f05432", initial: "B" } ] },
+            { name: "TEAM 03", tag: "F2P Friendly", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] }
         ]
     },
     "Anby": {
