@@ -4,22 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZZZ Guides - Base de données avancée</title>
-    <link rel="icon" type="image/png" href="assets/Logo.png" />
+    <link rel="icon" type="image/png" href="assets/Icone/logo.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-    <style>
-        /* Correction CSS pour forcer le texte du bouton 'Tous' à rester clair même actif */
-        .filter-btn-element.active, .filter-btn-role.active {
-            border-color: #facc15 !important;
-            color: #d4d4d8 !important; /* Force le texte gris clair (text-zinc-300) */
-            background-color: rgba(250, 204, 21, 0.1) !important;
-        }
-    </style>
 </head>
 <body class="flex flex-col h-screen">
 
-    <!-- Toast Notification -->
     <div id="toastNotification" class="fixed top-10 left-1/2 transform -translate-x-1/2 -translate-y-32 opacity-0 z-[300] transition-all duration-500 pointer-events-none flex items-center gap-4 bg-[#0a0a0a]/95 backdrop-blur-xl border border-yellow-400/50 px-8 py-4 rounded-full shadow-[0_15px_50px_-5px_rgba(215,247,12,0.4)]">
         <div class="relative flex items-center justify-center">
             <div class="absolute inset-0 bg-yellow-400 rounded-full blur animate-ping opacity-50"></div>
@@ -31,7 +22,6 @@
         </div>
     </div>
 
-    <!-- Header -->
     <header class="bg-black py-4 border-b border-zinc-800 shadow-[0_10px_30px_rgba(0,0,0,0.9)] z-50 shrink-0 relative transition-all flex items-center justify-center px-4 md:px-10">
         <a href="index.html" class="flex items-center justify-center gap-4 relative z-10 hover:scale-105 transition-transform duration-500 cursor-pointer">
             <div class="bg-yellow-400 px-5 py-1.5 skew-x-[-15deg] shadow-[0_0_15px_rgba(232,168,56,0.3)]"><span class="block text-black font-display font-black italic text-3xl skew-x-[15deg]">ZZZ</span></div>
@@ -40,11 +30,8 @@
     </header>
 
     <div class="flex flex-1 overflow-hidden relative">
-        <!-- SIDEBAR -->
         <aside class="w-20 md:w-[340px] bg-[#0a0a0a] border-r border-zinc-800 flex flex-col shrink-0 z-40 relative hidden md:flex">
-            <div class="p-5 flex flex-col shrink-0 z-10 bg-[#0a0a0a] shadow-2xl relative custom-scrollbar overflow-y-auto max-h-full pb-10">
-                
-                <!-- Search Bar -->
+            <div class="p-5 flex flex-col shrink-0 z-10 bg-[#0a0a0a] shadow-2xl relative">
                 <div class="relative w-full z-50 group mb-6">
                     <div class="relative flex items-center">
                         <input type="text" id="searchInput" autocomplete="off" placeholder="Rechercher un agent..." class="w-full bg-[#151515] border-2 border-zinc-800 rounded-xl py-3.5 pl-4 pr-10 text-white text-sm focus:outline-none focus:border-yellow-400 focus:bg-[#1a1a1a] transition-all shadow-inner placeholder-zinc-600">
@@ -53,37 +40,21 @@
                     <div id="searchDropdown" class="absolute left-0 right-0 top-full mt-2 bg-black/95 border border-zinc-700 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.9)] max-h-72 overflow-y-auto flex flex-col hidden divide-y divide-zinc-800 backdrop-blur-xl transform origin-top transition-all duration-300 z-[150]"></div>
                 </div>
 
-                <!-- Filtres Eléments -->
                 <div class="mb-4">
                     <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Éléments</h3>
                     <div class="flex flex-wrap gap-2" id="elementFilters">
-                        <button data-filter="All" class="filter-btn-element active bg-[#1a1a1a] text-zinc-300 px-5 py-2 rounded-xl text-xs font-bold border border-zinc-700/50 transition-colors">Tous</button>
-                        <button data-filter="Physical" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/physique.png" loading="lazy" class="w-4 h-4 object-contain"> Physique</button>
-                        <button data-filter="Fire" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/feu.png" loading="lazy" class="w-4 h-4 object-contain"> Feu</button>
-                        <button data-filter="Ice" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/Ice.png" loading="lazy" class="w-4 h-4 object-contain"> Glace</button>
-                        <button data-filter="Electric" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain"> Élec</button>
-                        <button data-filter="Ether" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/Ether.png" loading="lazy" class="w-4 h-4 object-contain"> Ether</button>
-                        <button data-filter="Wind" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/Vent.png" loading="lazy" class="w-4 h-4 object-contain"> Vent</button>
-                        <button data-filter="Lumiflux" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/Lumiflux.png" loading="lazy" class="w-4 h-4 object-contain"> Lumiflux</button>
+                        <!-- Correction de la couleur par défaut text-zinc-300 pour Tous -->
+                        <button data-filter="All" class="filter-btn active bg-[#1a1a1a] text-zinc-300 px-5 py-2 rounded-xl text-xs font-bold border border-zinc-700/50">Tous</button>
+                        <button data-filter="Physical" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/physique.png" loading="lazy" class="w-4 h-4 object-contain"> Physique</button>
+                        <button data-filter="Fire" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/feu.png" loading="lazy" class="w-4 h-4 object-contain"> Feu</button>
+                        <button data-filter="Ice" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Ice.png" loading="lazy" class="w-4 h-4 object-contain"> Glace</button>
+                        <button data-filter="Electric" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain"> Élec</button>
+                        <button data-filter="Ether" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Ether.png" loading="lazy" class="w-4 h-4 object-contain"> Ether</button>
+                        <button data-filter="Wind" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Vent.png" loading="lazy" class="w-4 h-4 object-contain"> Vent</button>
+                        <button data-filter="Lumiflux" class="filter-btn bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Lumiflux.png" loading="lazy" class="w-4 h-4 object-contain"> Lumiflux</button>
                     </div>
                 </div>
 
-                <!-- Filtres Rôles -->
-                <div class="mb-4 pt-4 border-t border-zinc-800">
-                    <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Rôles</h3>
-                    <div class="flex flex-wrap gap-2" id="roleFilters">
-                        <button data-role="All" class="filter-btn-role active bg-[#1a1a1a] text-zinc-300 px-5 py-2 rounded-xl text-xs font-bold border border-zinc-700/50 transition-colors">Tous</button>
-                        <button data-role="Attack" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Attack.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Attaque</button>
-                        <button data-role="Stun" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Stun.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Stun</button>
-                        <button data-role="Anomaly" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Anomaly.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Anomalie</button>
-                        <button data-role="Support" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Support.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Support</button>
-                        <button data-role="Defense" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Defense.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Défense</button>
-                        <button data-role="Armorer" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Armorer.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Armurier</button>
-                        <button data-role="Rupture" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Rupture.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Rupture</button>
-                    </div>
-                </div>
-
-                <!-- Favoris -->
                 <div class="mt-2 pt-4 border-t border-zinc-800 mb-4">
                     <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Personnalisé</h3>
                     <button id="favoriteFilterBtn" class="w-full bg-[#151515] border-2 border-zinc-800 hover:border-red-500 hover:bg-red-500/10 text-zinc-400 px-4 py-3 rounded-xl text-xs font-bold flex items-center justify-between transition-all duration-300 shadow-inner group">
@@ -94,8 +65,7 @@
                     </button>
                 </div>
 
-                <!-- Faction Active -->
-                <div id="activeFactionTag" class="hidden items-center justify-between bg-yellow-400/10 border-2 border-yellow-400/50 px-4 py-3 rounded-xl backdrop-blur-md pulse-active-tag transition-all duration-300 mt-4 mb-4">
+                <div id="activeFactionTag" class="hidden items-center justify-between bg-yellow-400/10 border-2 border-yellow-400/50 px-4 py-3 rounded-xl backdrop-blur-md pulse-active-tag transition-all duration-300">
                     <div class="flex flex-col">
                         <span class="text-[10px] text-yellow-400 font-black uppercase tracking-widest">Faction active</span>
                         <span id="activeFactionName" class="text-xs font-bold text-white mt-0.5 leading-tight"></span>
@@ -104,12 +74,10 @@
                 </div>
             </div>
 
-            <!-- Factions Marquee -->
             <div class="flex-1 overflow-hidden relative marquee-mask px-5 py-2 z-0" id="sidebarMarqueeWrapper">
                 <div class="marquee-track-vertical" id="sidebarFactionsList"></div>
             </div>
 
-            <!-- Bouton Factions Modal -->
             <div class="p-5 bg-[#0a0a0a] shrink-0 border-t border-zinc-800 relative z-10 shadow-[0_-15px_30px_rgba(0,0,0,0.6)]">
                 <button id="openModalBtn" class="w-full bg-[#d7f70c] hover:bg-[#c4e30b] text-black font-black uppercase text-sm py-4 rounded-xl shadow-[0_0_20px_rgba(215,247,12,0.2)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(215,247,12,0.5)] hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-3 group overflow-hidden relative">
                     <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:animate-[shimmer_1s_forwards]"></div>
@@ -119,7 +87,6 @@
             </div>
         </aside>
 
-        <!-- MAIN GRID -->
         <main class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-10 relative z-20 scroll-smooth">
             <div class="md:hidden w-full mb-6 relative z-[100] group">
                 <div class="relative flex items-center">
@@ -134,7 +101,7 @@
             <div id="empty-state" class="hidden absolute inset-0 flex flex-col items-center justify-center text-zinc-600 transition-opacity duration-500">
                 <svg class="w-16 h-16 mb-4 text-zinc-700 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                 <p class="text-3xl font-display font-black text-zinc-500 uppercase tracking-widest mb-3 drop-shadow-md">Signal Perdu</p>
-                <p class="text-base text-zinc-600">Aucun agent ne correspond à ces critères cumulés.</p>
+                <p class="text-base text-zinc-600">Aucun agent ne correspond à ces critères.</p>
             </div>
         </main>
     </div>
