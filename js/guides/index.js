@@ -6,6 +6,7 @@ export function getGuideHTML(agentName) {
     if (agentDatabase[agentName]) {
         return generateGuideFromData(agentName, agentDatabase[agentName]);
     } else {
+        // Au cas où tu cliques sur un perso pas encore fait
         return generateGenericGuide(agentName);
     }
 }
