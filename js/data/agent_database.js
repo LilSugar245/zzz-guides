@@ -522,7 +522,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Energy Regen / ATK%" }, { slot: "5", label: "ATK% / Fire DMG" }, { slot: "4", label: "ATK% / Crit Rate / DMG" } ], sub: [ { label: "ATK%", highlight: true }, { label: "Crit Rate = Crit DMG", highlight: false }, { label: "PEN", highlight: false }, { label: "ATK", highlight: false } ] },
         engines: [
-            { tag: "Moteur A", name: "Moteur Inconnu 1", img: "W-Engine_Precious_Fossilized.png" }, { tag: "Moteur A", name: "Moteur Inconnu 2", img: "W-Engine_Precious_Fossilized.png" }
+            { tag: "Meilleur Moteur", name: "Kaboom the Cannon", img: "W-Engine_Kaboom_the_Cannon.png" }, { tag: "Alternative A", name: "Elegant Vanity", img: "W-Engine_Elegant_Vanity.png" }, { tag: "Alternative A", name: "Bashful Demon", img: "W-Engine_Bashful_Demon.png" }, { tag: "Alternative A", name: "Unfettered Game Ball", img: "W-Engine_Unfettered_Game_Ball.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Equipe Rupture", members: [ { img: "Lucia.png", color: "#f23c8a", initial: "L" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" }, { img: "Yixuan.png", color: "#e8a838", initial: "Y" } ] },
