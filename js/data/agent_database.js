@@ -12,7 +12,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Anomaly" }, { slot: "5", label: "Physical DMG" }, { slot: "4", label: "Anomaly" } ], sub: [ { label: "Anomaly Proficiency", highlight: true }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Roaring Ride", img: "Roaring_Ride.png" }, { tag: "Moteur A", name: "Electro-Lip Gloss", img: "Electro-Lip_Gloss.png" }, { tag: "Moteur A", name: "Weeping Gemini", img: "Weeping_Gemini.png" }, { tag: "Moteur A", name: "Rainforest Gourmet", img: "Rainforest_Gourmet.png" }
+            { tag: "Baseline 100%", name: "Roaring Ride", img: "W-Engine_Roaring_Ride.png" }, { tag: "Moteur A", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, { tag: "Moteur A", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }, { tag: "Moteur A", name: "Rainforest Gourmet", img: "W-Engine_Rainforest_Gourmet.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Premium Team", members: [ { img: "Burnice.png", color: "#f05432", initial: "B" }, { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "Piper.png", color: "#e8a838", initial: "P" } ] },
@@ -32,7 +32,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Anomalie" }, { slot: "5", label: "PEN Ratio" }, { slot: "4", label: "Anomalie" } ], sub: [ { label: "Adre. Anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "Flat PEN / Flat ATK", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Sharpened Stinger", img: "Sharpened_Stinger.png" }, { tag: "Alt 5★ (100%)", name: "Practiced Perfection", img: "Practiced_Perfection.png" }, { tag: "Alt F2P (89.12%)", name: "Weeping Gemini", img: "Weeping_Gemini.png" }
+            { tag: "Baseline 100%", name: "Sharpened Stinger", img: "W-Engine_Sharpened_Stinger.png" }, { tag: "Alt 5★ (100%)", name: "Practiced Perfection", img: "W-Engine_Practiced_Perfection.png" }, { tag: "Alt F2P (89.12%)", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Double Anomalie", members: [ { img: "Jane.png", color: "#e8a838", initial: "JD" }, { img: "Velina.png", color: "#3bbedb", initial: "V" }, { img: "Remielle.png", color: "#fba2d0", initial: "R" } ] },
@@ -52,7 +52,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "DÉF %" }, { slot: "5", label: "PEN Ratio" }, { slot: "4", label: "Taux CRIT" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "DÉF %", highlight: false }, { label: "DGT CRIT", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Crimson Thirst", img: "Crimson_Thirst.png" }, { tag: "Alt F2P (80.55%)", name: "Catty Luck", img: "Catty_Luck.png" }, { tag: "Alt (77.48%)", name: "Bloodmarrow Coffer", img: "Bloodmarrow_Coffer.png" }
+            { tag: "Baseline 100%", name: "Crimson Thirst", img: "W-Engine_Crimson_Thirst.png" }, { tag: "Alt F2P (80.55%)", name: "Catty Luck", img: "W-Engine_Catty_Luck.png" }, { tag: "Alt (77.48%)", name: "Bloodmarrow Coffer", img: "W-Engine_Bloodmarrow_Coffer.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Classique", members: [ { img: "Claret.png", color: "#3182eb", initial: "C" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] },
@@ -70,7 +70,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "DGT Physique %" }, { slot: "4", label: "Attaque %" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "DGT CRIT = ATQ %", highlight: false }, { label: "Flat PEN", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Cloudcleave Radiance", img: "Cloudcleave_Radiance.png" }, { tag: "Alt (84.94%)", name: "The Brimstone", img: "The_Brimstone.png" }, { tag: "Alt 4★ F2P", name: "Starlight Engine", img: "Starlight_Engine.png" }
+            { tag: "Baseline 100%", name: "Cloudcleave Radiance", img: "W-Engine_Cloudcleave_Radiance.png" }, { tag: "Alt (84.94%)", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" }, { tag: "Alt 4★ F2P", name: "Starlight Engine", img: "Starlight_Engine.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Classique", members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
@@ -89,7 +89,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Maîtrise d'Anomalie" }, { slot: "5", label: "Attaque %" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Adresse d'Anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "PEN / ATQ Flat", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Timeweaver", img: "Timeweaver.png" }, { tag: "Alt Craftable", name: "Weeping Gemini", img: "Weeping_Gemini.png" }, { tag: "Alt Standard", name: "Fusion Compiler", img: "Fusion_Compiler.png" }
+            { tag: "Baseline 100%", name: "Timeweaver", img: "W-Engine_Timeweaver.png" }, { tag: "Alt Craftable", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }, { tag: "Alt Standard", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Désordre", members: [ { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Nangong Yu.png", color: "#f23c8a", initial: "N" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
@@ -108,7 +108,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Anomalie" }, { slot: "5", label: "DGT Éther > ATQ" }, { slot: "4", label: "Anomalie" } ], sub: [ { label: "Anomalie", highlight: true }, { label: "ATQ %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
-            { tag: "Signature S", name: "Neon Fantasies", img: "Neon_Fantasies.png" }, { tag: "Alternative S", name: "Roaring Fur-nace", img: "Roaring_Fur-nace.png" }, { tag: "Alternative A", name: "Precious Fossilized", img: "Precious_Fossilized.png" }
+            { tag: "Signature S", name: "Neon Fantasies", img: "W-Engine_Neon_Fantasies.png" }, { tag: "Alternative S", name: "Roaring Fur-nace", img: "W-Engine_Roaring_Fur-nace.png" }, { tag: "Alternative A", name: "Precious Fossilized", img: "W-Engine_Precious_Fossilized.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Angels of Delusion", members: [ { img: "Nangong Yu.png", color: "#f23c8a", initial: "N" }, { img: "Sunna.png", color: "#e8a838", initial: "S" }, { img: "Aria.png", color: "#f23c8a", initial: "A" } ] },
@@ -128,7 +128,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Récupération d'énergie" }, { slot: "5", label: "DGT Feu %" }, { slot: "4", label: "Adresse d'anomalie" } ], sub: [ { label: "Adresse d'anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "PEN / ATQ Flat", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Flamemaker Shaker", img: "Flamemaker_Shaker.png" }, { tag: "Alt 5★ (98.21%)", name: "Fusion Compiler", img: "Fusion_Compiler.png" }, { tag: "Alt Craftable", name: "Weeping Gemini", img: "Weeping_Gemini.png" }
+            { tag: "Baseline 100%", name: "Flamemaker Shaker", img: "W-Engine_Flamemaker_Shaker.png" }, { tag: "Alt 5★ (98.21%)", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }, { tag: "Alt Craftable", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Burnice Hyper", members: [ { img: "Burnice.png", color: "#f05432", initial: "B" }, { img: "Remielle.png", color: "#fba2d0", initial: "R" }, { img: "Velina.png", color: "#3bbedb", initial: "V" } ] },
@@ -145,11 +145,11 @@ export const agentDatabase = {
             { tag: "Set 3", set1: "Polar_Metal", set2: "Woodpecker_Electro", set1Name: "4pc Polar Metal", set2Name: "+ 2pc Woodpecker Electro", note: "" }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+            { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }
         ],
         statPriority: { main: [ { slot: "6", label: "HP %" }, { slot: "5", label: "ICE DMG %" }, { slot: "4", label: "TC / DC" } ], sub: [ { label: "TC / DC", highlight: true }, { label: "HP %", highlight: false } ] },
         engines: [
-            { tag: "Moteur S", name: "Kraken's Cradle", img: "Krakens_Cradle.png" }, { tag: "Moteur S", name: "Qingming Birdcage", img: "Qingming_Birdcage.png" }, { tag: "Moteur A", name: "Radiowave Journey", img: "Radiowave_Journey.png" }, { tag: "Moteur A", name: "Grill O'Wisp", img: "Grill_O_Wisp.png" }
+            { tag: "Moteur S", name: "Kraken's Cradle", img: "W-Engine_Krakens_Cradle.png" }, { tag: "Moteur S", name: "Qingming Birdcage", img: "W-Engine_Qingming_Birdcage.png" }, { tag: "Moteur A", name: "Radiowave Journey", img: "W-Engine_Radiowave_Journey.png" }, { tag: "Moteur A", name: "Grill O'Wisp", img: "W-Engine_Grill_O_Wisp.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Premium", members: [ { img: "Yidhari.png", color: "#3bbedb", initial: "Y" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
@@ -170,7 +170,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "Pen Ratio (DGT Glace)" }, { slot: "4", label: "Dégât Crit (TC)" } ], sub: [ { label: "Taux Crit", highlight: true }, { label: "Attaque % = Dégât Crit", highlight: false }, { label: "Pen / ATQ Flat", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Deep Sea Visitor", img: "Deep_Sea_Visitor.png" }, { tag: "Alt 5★ (99.16%)", name: "Cordis Germina", img: "Cordis_Germina.png" }, { tag: "Alt Battle Pass", name: "Cannon Rotor", img: "Cannon_Rotor.png" }
+            { tag: "Baseline 100%", name: "Deep Sea Visitor", img: "W-Engine_Deep_Sea_Visitor.png" }, { tag: "Alt 5★ (99.16%)", name: "Cordis Germina", img: "W-Engine_Cordis_Germina.png" }, { tag: "Alt Battle Pass", name: "Cannon Rotor", img: "W-Engine_Cannon_Rotor.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Premium", members: [ { img: "Ellen.png", color: "#3bbedb", initial: "E" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
@@ -191,7 +191,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Maîtrise d'Anomalie" }, { slot: "5", label: "DGT Éther %" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Adresse d'anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "Pen Flat", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Flight of Fancy", img: "Flight_of_Fancy.png" }, { tag: "Alt 4★ (93.06%)", name: "Weeping Gemini", img: "Weeping_Gemini.png" }, { tag: "Alt (91.12%)", name: "Electro-Lip Gloss", img: "Electro-Lip_Gloss.png" }
+            { tag: "Baseline 100%", name: "Flight of Fancy", img: "W-Engine_Flight_of_Fancy.png" }, { tag: "Alt 4★ (93.06%)", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }, { tag: "Alt (91.12%)", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Classique", members: [ { img: "Vivian.png", color: "#f23c8a", initial: "V" }, { img: "Remielle.png", color: "#fba2d0", initial: "R" }, { img: "Promeia.png", color: "#3bbedb", initial: "P" } ] },
@@ -211,7 +211,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Maîtrise d'Anomalie" }, { slot: "5", label: "Attaque %" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Attaque %", highlight: true }, { label: "Adresse d'Anomalie", highlight: false }, { label: "Attaque Flat", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Metanukimorphosis", img: "Metanukimorphosis.png" }, { tag: "Alt 5★ (102.07%)", name: "Thoughtbop", img: "Thoughtbop.png" }, { tag: "Alt 4★ (93.28%)", name: "Kaboom the Cannon", img: "Kaboom_the_Cannon.png" }
+            { tag: "Baseline 100%", name: "Metanukimorphosis", img: "W-Engine_Metanukimorphosis.png" }, { tag: "Alt 5★ (102.07%)", name: "Thoughtbop", img: "W-Engine_Thoughtbop.png" }, { tag: "Alt 4★ (93.28%)", name: "Kaboom the Cannon", img: "W-Engine_Kaboom_the_Cannon.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Premium", members: [ { img: "Yuzuha.png", color: "#e8a838", initial: "Y" }, { img: "Aria.png", color: "#f23c8a", initial: "A" }, { img: "Velina.png", color: "#3bbedb", initial: "V" } ] },
@@ -232,7 +232,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Attaque" }, { slot: "5", label: "PEN Ratio" }, { slot: "4", label: "Taux Crit" } ], sub: [ { label: "Taux Crit", highlight: true }, { label: "Dégât Crit", highlight: false }, { label: "Attaque %", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Cordis Germina", img: "Cordis_Germina.png" }, { tag: "Alt 5★ (91.15%)", name: "Zanshin Herb Case", img: "Zanshin_Herb_Case.png" }, { tag: "Alt 4★ (90.52%)", name: "Marcato Desire", img: "Marcato_Desire.png" }
+            { tag: "Baseline 100%", name: "Cordis Germina", img: "W-Engine_Cordis_Germina.png" }, { tag: "Alt 5★ (91.15%)", name: "Zanshin Herb Case", img: "W-Engine_Zanshin_Herb_Case.png" }, { tag: "Alt 4★ (90.52%)", name: "Marcato Desire", img: "Marcato_Desire.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Synergie", members: [ { img: "Seed.png", color: "#3182eb", initial: "S" }, { img: "Cissia.png", color: "#3182eb", initial: "C" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
@@ -253,7 +253,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Attaque" }, { slot: "5", label: "Attaque" }, { slot: "4", label: "Anomalie" } ], sub: [ { label: "Attaque", highlight: true }, { label: "Anomalie", highlight: false }, { label: "Flat PEN / Flat ATK", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Poem of the Empty Feather", img: "Ode_of_Resurrected_Wings.png" }, { tag: "Alt F2P", name: "Weeping Gemini", img: "Weeping_Gemini.png" }, { tag: "Alt Anomalie", name: "Timeweaver", img: "Timeweaver.png" }
+            { tag: "Baseline 100%", name: "Poem of the Empty Feather", img: "W-Engine_Ode_of_Resurrected_Wings.png" }, { tag: "Alt F2P", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }, { tag: "Alt Anomalie", name: "Timeweaver", img: "W-Engine_Timeweaver.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Double Anomalie", members: [ { img: "Remielle.png", color: "#fba2d0", initial: "R" }, { img: "", color: "#52525b", role: "Agents<br>Anomalies" }, { img: "", color: "#52525b", role: "Agents<br>Anomalies" } ] },
@@ -274,7 +274,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Énergie Regen" }, { slot: "5", label: "Wind DMG %" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Adresse d'Anomalie", highlight: true }, { label: "ATK %", highlight: false }, { label: "Flat PEN = Flat ATK", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Joyau Doré", img: "Joyau_Dore.png" }, { tag: "Alt 5★ (90.88%)", name: "Serpentine Seeker", img: "Serpentine_Seeker.png" }, { tag: "Alt 4★ (87.16%)", name: "Kaboom the Cannon", img: "Kaboom_the_Cannon.png" }
+            { tag: "Baseline 100%", name: "Joyau Doré", img: "W-Engine_Joyau_Dore.png" }, { tag: "Alt 5★ (90.88%)", name: "Serpentine Seeker", img: "W-Engine_Serpentine_Seeker.png" }, { tag: "Alt 4★ (87.16%)", name: "Kaboom the Cannon", img: "W-Engine_Kaboom_the_Cannon.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Hugo", members: [ { img: "Velina.png", color: "#3bbedb", initial: "V" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" }, { img: "Promeia.png", color: "#3bbedb", initial: "P" } ] },
@@ -295,7 +295,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Energie Regen" }, { slot: "5", label: "Dmg Elec > ATQ" }, { slot: "4", label: "Taux Crit" } ], sub: [ { label: "TC (Jusqu'à 100% IG)", highlight: true }, { label: "DC %", highlight: false }, { label: "ATK %", highlight: false } ] },
         engines: [
-            { tag: "Moteur S", name: "Serpentine Seeker", img: "Serpentine_Seeker.png" }, { tag: "Moteur S", name: "Bellicose Blaze", img: "Bellicose_Blaze.png" }, { tag: "Moteur A", name: "Drill Rig - Red Axis", img: "Drill_Rig_-_Red_Axis.png" }
+            { tag: "Moteur S", name: "Serpentine Seeker", img: "W-Engine_Serpentine_Seeker.png" }, { tag: "Moteur S", name: "Bellicose Blaze", img: "W-Engine_Bellicose_Blaze.png" }, { tag: "Moteur A", name: "Drill Rig - Red Axis", img: "W-Engine_Drill_Rig_-_Red_Axis.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Premium", members: [ { img: "Cissia.png", color: "#3182eb", initial: "C" }, { img: "Seed.png", color: "#3182eb", initial: "S" }, { img: "Trigger.png", color: "#e8a838", initial: "T" } ] },
@@ -316,7 +316,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "HP" }, { slot: "5", label: "DMG / HP" }, { slot: "4", label: "TC / DC" } ], sub: [ { label: "TC / DC", highlight: true }, { label: "HP %", highlight: false } ] },
         engines: [
-            { tag: "Moteur S", name: "Wrathful Vajra", img: "Wrathful_Vajra.png" }, { tag: "Moteur S", name: "Qingming Birdcage", img: "Qingming_Birdcage.png" }, { tag: "Moteur A", name: "Grill O'Wisp", img: "Grill_O_Wisp.png" }, { tag: "Moteur A", name: "Radiowave Journey", img: "Radiowave_Journey.png" }
+            { tag: "Moteur S", name: "Wrathful Vajra", img: "W-Engine_Wrathful_Vajra.png" }, { tag: "Moteur S", name: "Qingming Birdcage", img: "W-Engine_Qingming_Birdcage.png" }, { tag: "Moteur A", name: "Grill O'Wisp", img: "W-Engine_Grill_O_Wisp.png" }, { tag: "Moteur A", name: "Radiowave Journey", img: "W-Engine_Radiowave_Journey.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Premium", members: [ { img: "Banyue.png", color: "#f05432", initial: "B" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
@@ -337,7 +337,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Anomalie" }, { slot: "5", label: "Ether DMG" }, { slot: "4", label: "Energy Regen" } ], sub: [ { label: "Anomaly Mastery", highlight: true }, { label: "PEN", highlight: false }, { label: "ATK %", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "The Vault", img: "The_Vault.png" }, { tag: "Option Anomalie", name: "Weeping Gemini", img: "Weeping_Gemini.png" }, { tag: "Option Soutien", name: "Kaboom the Cannon", img: "Kaboom_the_Cannon.png" }, { tag: "Alternative", name: "Slice of Time", img: "Slice_of_Time.png" }
+            { tag: "Baseline 100%", name: "The Vault", img: "W-Engine_The_Vault.png" }, { tag: "Option Anomalie", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }, { tag: "Option Soutien", name: "Kaboom the Cannon", img: "W-Engine_Kaboom_the_Cannon.png" }, { tag: "Alternative", name: "Slice of Time", img: "W-Engine_Slice_of_Time.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Miyabi", members: [ { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "Astra.png", color: "#f23c8a", initial: "A" }, { img: "Miyabi.png", color: "#3bbedb", initial: "M" } ] },
@@ -358,7 +358,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Impact" }, { slot: "5", label: "Ice DMG" }, { slot: "4", label: "Crit Rate / DMG" } ], sub: [ { label: "Crit Rate", highlight: true }, { label: "Crit DMG", highlight: false }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "The Restrained", img: "The_Restrained.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "Precious_Fossilized.png" }, { tag: "Moteur A", name: "Six Shooter", img: "Six_Shooter.png" }, { tag: "Moteur B", name: "Vortex - Arrow", img: "Vortex_Arrow.png" }
+            { tag: "Baseline 100%", name: "The Restrained", img: "W-Engine_The_Restrained.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "W-Engine_Precious_Fossilized.png" }, { tag: "Moteur A", name: "Six Shooter", img: "W-Engine_Six_Shooter.png" }, { tag: "Moteur B", name: "Vortex - Arrow", img: "Vortex_Arrow.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Hugo", members: [ { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Hugo.png", color: "#3bbedb", initial: "H" } ] },
@@ -379,7 +379,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Impact" }, { slot: "5", label: "Fire DMG" }, { slot: "4", label: "CRIT Rate" } ], sub: [ { label: "CRIT DMG / Rate", highlight: true }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Hellfire Gears", img: "Hellfire_Gears.png" }, { tag: "Moteur S", name: "The Restrained", img: "The_Restrained.png" }, { tag: "Moteur A", name: "Six Shooter", img: "Six_Shooter.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "Precious_Fossilized.png" }
+            { tag: "Baseline 100%", name: "Hellfire Gears", img: "W-Engine_Hellfire_Gears.png" }, { tag: "Moteur S", name: "The Restrained", img: "W-Engine_The_Restrained.png" }, { tag: "Moteur A", name: "Six Shooter", img: "W-Engine_Six_Shooter.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "W-Engine_Precious_Fossilized.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Fire-Stun", members: [ { img: "Evelyn.png", color: "#f05432", initial: "E" }, { img: "Koleda.png", color: "#f05432", initial: "K" }, { img: "Ben.png", color: "#f05432", initial: "B" } ] },
