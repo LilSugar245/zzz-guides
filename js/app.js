@@ -1,9 +1,9 @@
 import { factionsData } from './data/factions.js';
-import { agentsData, colorMap, iconMap, filterGroups } from './data/agents.js';
-// On importe la nouvelle fonction d'aiguillage
+import { agentsData, colorMap, iconMap, filterGroups, roleIconMap } from './data/agents.js';
 import { getGuideHTML } from './guides/index.js'; 
 
 let currentElement = 'All';
+let currentRole = 'All'; // NOUVEAU
 let searchQuery = '';
 let activeFactionFilter = null;
 let showFavoritesOnly = false;
@@ -14,7 +14,8 @@ let currentModalAgentIndex = -1;
 
 const gridContainer = document.getElementById('agents-grid');
 const emptyState = document.getElementById('empty-state');
-const elementBtns = document.querySelectorAll('#elementFilters button');
+const elementBtns = document.querySelectorAll('.filter-btn-element'); // Changé
+const roleBtns = document.querySelectorAll('.filter-btn-role'); // NOUVEAU
 const favFilterBtn = document.getElementById('favoriteFilterBtn');
 
 const searchInput = document.getElementById('searchInput');
@@ -67,7 +68,6 @@ function renderFactions() {
         const imgPath = `assets/Faction/${faction}.png`;
         const fallbackImg = `https://placehold.co/300x300/181818/d7f70c?text=${faction.substring(0,3).toUpperCase()}&font=montserrat`;
         
-        // SUGGESTION 2 : Gestion du texte long pour N.E.P.S
         let displayName = faction;
         let subName = '';
         if (faction === "Équipe d'intervention spéciale des Enquêtes criminelles") {
@@ -220,10 +220,20 @@ function clearSearch() {
     renderAgents();
 }
 
+// GESTION DES DEUX FILTRES CUMULATIFS
 elementBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         elementBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active');
-        currentElement = btn.getAttribute('data-filter'); renderAgents();
+        currentElement = btn.getAttribute('data-filter'); 
+        renderAgents();
+    });
+});
+
+roleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        roleBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active');
+        currentRole = btn.getAttribute('data-role'); 
+        renderAgents();
     });
 });
 
@@ -292,7 +302,6 @@ window.openAgentDetail = function(agentName, rank, element) {
     splashImg.src = `assets/splash/${agentName}.png`; 
     giantName.textContent = agentName;
     
-    // APPEL A LA NOUVELLE FONCTION HYBRIDE DE INDEX.JS
     guideContainer.innerHTML = getGuideHTML(agentName);
 
     modal.classList.remove('hidden');
@@ -335,11 +344,12 @@ function renderAgents() {
     agentsData.forEach((agent) => {
         const matchSearch = agent.name.toLowerCase().startsWith(searchQuery.toLowerCase());
         const matchElement = currentElement === 'All' || filterGroups[currentElement]?.includes(agent.element);
+        const matchRole = currentRole === 'All' || agent.role === currentRole; // NOUVEAU
         const matchFaction = !activeFactionFilter || agent.faction === activeFactionFilter;
         const isFav = favorites.includes(agent.name);
         const matchFav = !showFavoritesOnly || isFav;
 
-        if (matchSearch && matchElement && matchFaction && matchFav) {
+        if (matchSearch && matchElement && matchRole && matchFaction && matchFav) {
             filteredAgentsList.push(agent);
             const hexColor = colorMap[agent.element] || '#ffffff';
             const cleanHex = hexColor.replace('#', '');
@@ -350,13 +360,17 @@ function renderAgents() {
             const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-transparent';
             const displayName = agent.name === 'Jane' ? 'Jane Doe' : agent.name;
 
-            // SUGGESTION 3 : LAZY LOADING SUR LES MINIATURES DE LA GRILLE
+            // Ajout de l'icône de rôle en haut à gauche de la carte
+            const roleIcon = roleIconMap[agent.role];
+            const roleBadgeHTML = roleIcon ? `<div class="absolute top-2 left-2 w-8 h-8 rounded-full bg-[#111]/80 backdrop-blur border border-zinc-700 flex items-center justify-center z-30 shadow-lg"><img src="assets/Icone/${roleIcon}" class="w-5 h-5 object-contain filter invert opacity-90"></div>` : '';
+
             const cardHTML = `
                 <div class="agent-card-container flex flex-col cursor-pointer w-full group animate-fade-in-up" 
                      style="--elem-color: ${hexColor}; animation-delay: ${staggerDelay}ms;"
                      onclick="openAgentDetail('${agent.name.replace(/'/g, "\\'")}', '${agent.rank}', '${agent.element}')">
-                    <div class="agent-shape-wrapper w-full aspect-square bg-zinc-800">
-                        <div class="agent-shape-inner relative overflow-hidden flex items-end justify-center">
+                    <div class="agent-shape-wrapper w-full aspect-square bg-zinc-800 relative">
+                        ${roleBadgeHTML}
+                        <div class="agent-shape-inner relative overflow-hidden flex items-end justify-center h-full w-full">
                             <img src="assets/Agents/${agent.name}.png" loading="lazy" alt="${displayName}" class="agent-image absolute bottom-0 w-full h-auto min-h-full object-cover object-bottom" onerror="this.onerror=null; this.src='${fallbackImg}'">
                             <div class="absolute inset-0 shadow-[inset_0_-35px_50px_rgba(0,0,0,0.95)] pointer-events-none transition-shadow duration-300 group-hover:shadow-[inset_0_-10px_20px_rgba(0,0,0,0.4)]"></div>
                             <button onclick="toggleFavorite(this, '${agent.name.replace(/'/g, "\\'")}', event)" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-[#111]/80 backdrop-blur border border-zinc-700 flex items-center justify-center z-30 transition-all hover:scale-110 shadow-lg group/fav">
