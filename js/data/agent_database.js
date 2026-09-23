@@ -552,6 +552,46 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: "Free To Play", members: [ { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Lucy.png", color: "#f05432", initial: "L" }, { img: "Ben.png", color: "#f05432", initial: "B" } ] }
         ]
     },
+    "Rina": {
+        color: "#3182eb", element: "Electric", rank: "S", factionTitle: "Victoria Housekeeping",
+        stats: [ { label: "Pen Ratio", value: "70%" }, { label: "Attaque", value: "2300" }, { label: "TC / DC", value: "un peu" } ],
+        discs: [
+            { tag: "Efficacité » 100 % 👑", set1: "Moonlight_Lullaby", set2: "Puffer_Electro", set1Name: "4pc Moonlight Lullaby", set2Name: "+ 2pc Puffer Electro", note: "Pour optimiser ses bonus. Yep rien de plus." },
+            { tag: "Efficacité » 90 %", set1: "Swing_Jazz", set2: "Puffer_Electro", set1Name: "4pc Swing Jazz", set2Name: "+ 2pc Puffer Electro", note: "Si Rina est utilisée dans une équipe classique en dehors de l'Anomalie, Swing Jazz est votre set de prédilection. Cela augmente la Réc. d'Énergie de Rina et augmente les dégâts de l'équipe." }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Récup. d'énergie" }, { slot: "5", label: "PEN Ratio" }, { slot: "4", label: "Taux Crit / Attaque > Adre. d'anomalie" } ], sub: [ { label: "Taux Crit = Dégat Crit", highlight: true }, { label: "Attaque %", highlight: false }, { label: "Adresse d'anomalie", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Weeping Cradle", img: "W-Engine_Weeping_Cradle.png" }, { tag: "Alternative A", name: "Unfettered Game Ball", img: "W-Engine_Unfettered_Game_Ball.png" }, { tag: "Alternative A", name: "Slice of Time", img: "W-Engine_Slice_of_Time.png" }, { tag: "Alternative B", name: "Reverb - Mark II", img: "W-Engine_%28Reverb%29_Mark_II.png" }, { tag: "Alternative B", name: "Reverb - Mark III", img: "W-Engine_%28Reverb%29_Mark_III.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Flexible", members: [ { img: "Rina.png", color: "#3182eb", initial: "R" }, { img: "", color: "#52525b", role: "Tous les agents<br>Attaque" }, { img: "", color: "#52525b", role: "Tous les agents<br>Stunner" } ] },
+            { name: "TEAM 02", tag: "Premium", members: [ { img: "Rina.png", color: "#3182eb", initial: "R" }, { img: "Harumasa.png", color: "#3182eb", initial: "H" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" } ] },
+            { name: "TEAM 03", tag: "Alternative", members: [ { img: "Rina.png", color: "#3182eb", initial: "R" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
+        ]
+    },
+    "Grace": {
+        color: "#3182eb", element: "Electric", rank: "S", factionTitle: "Usines Belobog",
+        stats: [ { label: "Adre. d'Anomalie", value: "Max" }, { label: "Maî. d'Anomalie", value: "Max" }, { label: "Attaque", value: "Max" } ],
+        discs: [
+            { tag: "Anomaly Build 👑", set1: "Freedom_Blues", set2: "Swing_Jazz", set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Swing Jazz", note: "Ce build augmente l'Adresse et la Maîtrise d'Anomalie de Grace, ce qui profite à son style de jeu Choc. Les DGT Électriques ou le PEN Ratio sont équivalents en termes d'augmentation des dégâts." },
+            { tag: "Alternative", set1: "Thunder_Metal", set2: "Swing_Jazz", set1Name: "4pc Thunder Metal", set2Name: "+ 2pc Swing Jazz", note: "Thunder Metal augmente l'ATQ de Grace tant que l'ennemi est Choqué, ce qui sera toujours le cas puisque Grace fournit l'état Choc." }
+        ],
+        skills: [
+            { name: "Core", level: "12", icon: "Core.webp" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Assist", level: "10", icon: "Assist.png" }, { name: "Basic", level: "8", icon: "Attaque_basic.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Maîtrise d'Anomalie" }, { slot: "5", label: "DGT Électrique / PEN Ratio" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Adresse d'Anomalie", highlight: true }, { label: "ATQ %", highlight: false }, { label: "PEN", highlight: false } ] },
+        engines: [
+            { tag: "Meilleur Moteur", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }, { tag: "Alternative 5★", name: "Timeweaver", img: "W-Engine_Timeweaver.png" }, { tag: "Alternative 4★", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, { tag: "Alternative F2P", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }, { tag: "Alternative B", name: "Magnetic Storm - Alpha", img: "W-Engine_%28Magnetic_Storm%29_Alpha.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "F2P Team", members: [ { img: "Grace.png", color: "#3182eb", initial: "G" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" } ] },
+            { name: "TEAM 02", tag: "Anomaly Team", members: [ { img: "Grace.png", color: "#3182eb", initial: "G" }, { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 03", tag: "Premium Team", members: [ { img: "Grace.png", color: "#3182eb", initial: "G" }, { img: "Harumasa.png", color: "#3182eb", initial: "H" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Oiseaux-moqueurs",
         stats: [ { label: "Attaque", value: "Max" }, { label: "Taux Crit", value: "Max" }, { label: "Dégât Crit", value: "Max" } ],
