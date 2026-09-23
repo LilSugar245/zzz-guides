@@ -1,9 +1,10 @@
 import { factionsData } from './data/factions.js';
 import { agentsData, colorMap, iconMap, filterGroups } from './data/agents.js';
-// On importe la nouvelle fonction d'aiguillage
 import { getGuideHTML } from './guides/index.js'; 
 
+let activeMode = 'elements'; // 'elements' ou 'roles'
 let currentElement = 'All';
+let currentRole = 'All';
 let searchQuery = '';
 let activeFactionFilter = null;
 let showFavoritesOnly = false;
@@ -14,8 +15,56 @@ let currentModalAgentIndex = -1;
 
 const gridContainer = document.getElementById('agents-grid');
 const emptyState = document.getElementById('empty-state');
-const elementBtns = document.querySelectorAll('#elementFilters button');
 const favFilterBtn = document.getElementById('favoriteFilterBtn');
+
+// Éléments de l'interface d'onglets
+const tabElements = document.getElementById('tabElements');
+const tabRoles = document.getElementById('tabRoles');
+const groupElements = document.getElementById('groupElements');
+const groupRoles = document.getElementById('groupRoles');
+
+const elemBtns = document.querySelectorAll('.filter-elem-btn');
+const roleBtns = document.querySelectorAll('.filter-role-btn');
+
+// Bascule vers l'onglet Éléments
+tabElements.addEventListener('click', () => {
+    activeMode = 'elements';
+    tabElements.classList.add('active');
+    tabRoles.classList.remove('active');
+    groupElements.classList.remove('hidden');
+    groupRoles.classList.add('hidden');
+    renderAgents();
+});
+
+// Bascule vers l'onglet Rôles
+tabRoles.addEventListener('click', () => {
+    activeMode = 'roles';
+    tabRoles.classList.add('active');
+    tabElements.classList.remove('active');
+    groupRoles.classList.remove('hidden');
+    groupElements.classList.add('hidden');
+    renderAgents();
+});
+
+// Gestion des clics sur les boutons Éléments
+elemBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        elemBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentElement = btn.getAttribute('data-filter');
+        renderAgents();
+    });
+});
+
+// Gestion des clics sur les boutons Rôles
+roleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        roleBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentRole = btn.getAttribute('data-role');
+        renderAgents();
+    });
+});
 
 const searchInput = document.getElementById('searchInput');
 const clearSearchBtn = document.getElementById('clearSearchBtn');
@@ -67,7 +116,6 @@ function renderFactions() {
         const imgPath = `assets/Faction/${faction}.png`;
         const fallbackImg = `https://placehold.co/300x300/181818/d7f70c?text=${faction.substring(0,3).toUpperCase()}&font=montserrat`;
         
-        // SUGGESTION 2 : Gestion du texte long pour N.E.P.S
         let displayName = faction;
         let subName = '';
         if (faction === "Équipe d'intervention spéciale des Enquêtes criminelles") {
@@ -101,14 +149,21 @@ function renderFactions() {
             </div>`;
         }
     };
-    document.getElementById('modalFactionsGrid').innerHTML = factionsData.map(f => generateFactionHTML(f, false)).join('');
-    const sidebarHTML = factionsData.map(f => generateFactionHTML(f, true)).join('');
-    document.getElementById('sidebarFactionsList').innerHTML = sidebarHTML + sidebarHTML;
+    
+    const modalGrid = document.getElementById('modalFactionsGrid');
+    if (modalGrid) {
+        modalGrid.innerHTML = factionsData.map(f => generateFactionHTML(f, false)).join('');
+    }
+    
+    const sidebarList = document.getElementById('sidebarFactionsList');
+    if (sidebarList) {
+        const sidebarHTML = factionsData.map(f => generateFactionHTML(f, true)).join('');
+        sidebarList.innerHTML = sidebarHTML + sidebarHTML;
+    }
 }
 
 window.setFactionFilter = function(faction, fromModal = false) {
     activeFactionFilter = faction;
-    
     let displayName = faction;
     if (faction === "Équipe d'intervention spéciale des Enquêtes criminelles") displayName = "N.E.P.S.";
     
@@ -220,13 +275,6 @@ function clearSearch() {
     renderAgents();
 }
 
-elementBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        elementBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active');
-        currentElement = btn.getAttribute('data-filter'); renderAgents();
-    });
-});
-
 function updateModalNavigation() {
     const prevBtn = document.getElementById('prevAgentBtn');
     const nextBtn = document.getElementById('nextAgentBtn');
@@ -292,7 +340,6 @@ window.openAgentDetail = function(agentName, rank, element) {
     splashImg.src = `assets/splash/${agentName}.png`; 
     giantName.textContent = agentName;
     
-    // APPEL A LA NOUVELLE FONCTION HYBRIDE DE INDEX.JS
     guideContainer.innerHTML = getGuideHTML(agentName);
 
     modal.classList.remove('hidden');
@@ -334,12 +381,19 @@ function renderAgents() {
 
     agentsData.forEach((agent) => {
         const matchSearch = agent.name.toLowerCase().startsWith(searchQuery.toLowerCase());
-        const matchElement = currentElement === 'All' || filterGroups[currentElement]?.includes(agent.element);
+        
+        let matchFilter = true;
+        if (activeMode === 'elements') {
+            matchFilter = currentElement === 'All' || filterGroups[currentElement]?.includes(agent.element);
+        } else if (activeMode === 'roles') {
+            matchFilter = currentRole === 'All' || agent.role === currentRole;
+        }
+
         const matchFaction = !activeFactionFilter || agent.faction === activeFactionFilter;
         const isFav = favorites.includes(agent.name);
         const matchFav = !showFavoritesOnly || isFav;
 
-        if (matchSearch && matchElement && matchFaction && matchFav) {
+        if (matchSearch && matchFilter && matchFaction && matchFav) {
             filteredAgentsList.push(agent);
             const hexColor = colorMap[agent.element] || '#ffffff';
             const cleanHex = hexColor.replace('#', '');
@@ -350,13 +404,13 @@ function renderAgents() {
             const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-transparent';
             const displayName = agent.name === 'Jane' ? 'Jane Doe' : agent.name;
 
-            // SUGGESTION 3 : LAZY LOADING SUR LES MINIATURES DE LA GRILLE
+            // Aucune icône (ni élément, ni rôle) sur les images de la grille
             const cardHTML = `
                 <div class="agent-card-container flex flex-col cursor-pointer w-full group animate-fade-in-up" 
                      style="--elem-color: ${hexColor}; animation-delay: ${staggerDelay}ms;"
                      onclick="openAgentDetail('${agent.name.replace(/'/g, "\\'")}', '${agent.rank}', '${agent.element}')">
-                    <div class="agent-shape-wrapper w-full aspect-square bg-zinc-800">
-                        <div class="agent-shape-inner relative overflow-hidden flex items-end justify-center">
+                    <div class="agent-shape-wrapper w-full aspect-square bg-zinc-800 relative">
+                        <div class="agent-shape-inner relative overflow-hidden flex items-end justify-center h-full w-full">
                             <img src="assets/Agents/${agent.name}.png" loading="lazy" alt="${displayName}" class="agent-image absolute bottom-0 w-full h-auto min-h-full object-cover object-bottom" onerror="this.onerror=null; this.src='${fallbackImg}'">
                             <div class="absolute inset-0 shadow-[inset_0_-35px_50px_rgba(0,0,0,0.95)] pointer-events-none transition-shadow duration-300 group-hover:shadow-[inset_0_-10px_20px_rgba(0,0,0,0.4)]"></div>
                             <button onclick="toggleFavorite(this, '${agent.name.replace(/'/g, "\\'")}', event)" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-[#111]/80 backdrop-blur border border-zinc-700 flex items-center justify-center z-30 transition-all hover:scale-110 shadow-lg group/fav">
