@@ -1,4 +1,3 @@
-// La liste complète de tous les agents pour la grille
 export const agentsData = [
     { name: "Anby", element: "Electric", rank: "A", faction: "Lièvres rusés", role: "Stun" },
     { name: "Nicole", element: "Ether", rank: "A", faction: "Lièvres rusés", role: "Support" },
@@ -24,7 +23,6 @@ export const agentsData = [
     { name: "Miyabi", element: "Ice", rank: "S", faction: "Section 6", role: "Anomaly" },
     { name: "Yanagi", element: "Electric", rank: "S", faction: "Section 6", role: "Anomaly" },
     { name: "Harumasa", element: "Electric", rank: "S", faction: "Section 6", role: "Attack" },
-    { name: "Asaba", element: "Fire", rank: "S", faction: "Section 6", role: "Attack" },
     { name: "Trigger", element: "Electric", rank: "S", faction: "Obol Squad", role: "Stun" },
     { name: "Astra", element: "Ether", rank: "S", faction: "Stars of Lyra", role: "Support" },
     { name: "Pulchra", element: "Physical", rank: "A", faction: "Section 6", role: "Stun" },
@@ -68,15 +66,14 @@ export const iconMap = {
     "Physical": "physique.png", "Fire": "feu.png", "Ice": "Ice.png", "Electric": "electrique.png", "Ether": "Ether.png", "Wind": "Vent.png", "Lumiflux": "Lumiflux.png"
 };
 
-// Map des icônes de rôles basée sur tes nouveaux fichiers
 export const roleIconMap = {
-    "Attack": "Attack.png",
-    "Stun": "Stun.png",
-    "Anomaly": "Anomaly.png",
-    "Support": "Support.png",
-    "Defense": "Defense.png",
-    "Armorer": "Armorer.png",
-    "Rupture": "Rupture.png" // Je l'ai mis au cas où des persos utilisent ce rôle plus tard
+    "Attack": "../Rôles/Attack.png",
+    "Stun": "../Rôles/Stun.png",
+    "Anomaly": "../Rôles/Anomaly.png",
+    "Support": "../Rôles/Support.png",
+    "Defense": "../Rôles/Defense.png",
+    "Armorer": "../Rôles/Armorer.png",
+    "Rupture": "../Rôles/Rupture.png"
 };
 
 export const filterGroups = {
