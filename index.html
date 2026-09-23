@@ -8,6 +8,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <style>
+        /* Correction CSS pour forcer le texte du bouton 'Tous' à rester clair même actif */
+        .filter-btn-element.active, .filter-btn-role.active {
+            border-color: #facc15 !important;
+            color: #d4d4d8 !important; /* Force le texte gris clair (text-zinc-300) */
+            background-color: rgba(250, 204, 21, 0.1) !important;
+        }
+    </style>
 </head>
 <body class="flex flex-col h-screen">
 
@@ -49,14 +57,14 @@
                 <div class="mb-4">
                     <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Éléments</h3>
                     <div class="flex flex-wrap gap-2" id="elementFilters">
-                        <button data-filter="All" class="filter-btn-element active bg-[#1a1a1a] text-zinc-300 px-5 py-2 rounded-xl text-xs font-bold border border-zinc-700/50">Tous</button>
-                        <button data-filter="Physical" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/physique.png" loading="lazy" class="w-4 h-4 object-contain"> Physique</button>
-                        <button data-filter="Fire" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/feu.png" loading="lazy" class="w-4 h-4 object-contain"> Feu</button>
-                        <button data-filter="Ice" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Ice.png" loading="lazy" class="w-4 h-4 object-contain"> Glace</button>
-                        <button data-filter="Electric" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain"> Élec</button>
-                        <button data-filter="Ether" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Ether.png" loading="lazy" class="w-4 h-4 object-contain"> Ether</button>
-                        <button data-filter="Wind" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Vent.png" loading="lazy" class="w-4 h-4 object-contain"> Vent</button>
-                        <button data-filter="Lumiflux" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Icone/Lumiflux.png" loading="lazy" class="w-4 h-4 object-contain"> Lumiflux</button>
+                        <button data-filter="All" class="filter-btn-element active bg-[#1a1a1a] text-zinc-300 px-5 py-2 rounded-xl text-xs font-bold border border-zinc-700/50 transition-colors">Tous</button>
+                        <button data-filter="Physical" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/physique.png" loading="lazy" class="w-4 h-4 object-contain"> Physique</button>
+                        <button data-filter="Fire" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/feu.png" loading="lazy" class="w-4 h-4 object-contain"> Feu</button>
+                        <button data-filter="Ice" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/Ice.png" loading="lazy" class="w-4 h-4 object-contain"> Glace</button>
+                        <button data-filter="Electric" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain"> Élec</button>
+                        <button data-filter="Ether" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/Ether.png" loading="lazy" class="w-4 h-4 object-contain"> Ether</button>
+                        <button data-filter="Wind" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/Vent.png" loading="lazy" class="w-4 h-4 object-contain"> Vent</button>
+                        <button data-filter="Lumiflux" class="filter-btn-element bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Icone/Lumiflux.png" loading="lazy" class="w-4 h-4 object-contain"> Lumiflux</button>
                     </div>
                 </div>
 
@@ -64,14 +72,14 @@
                 <div class="mb-4 pt-4 border-t border-zinc-800">
                     <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Rôles</h3>
                     <div class="flex flex-wrap gap-2" id="roleFilters">
-                        <button data-role="All" class="filter-btn-role active bg-[#1a1a1a] text-zinc-300 px-5 py-2 rounded-xl text-xs font-bold border border-zinc-700/50">Tous</button>
-                        <button data-role="Attack" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Attack.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Attaque</button>
-                        <button data-role="Stun" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Stun.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Stun</button>
-                        <button data-role="Anomaly" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Anomaly.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Anomalie</button>
-                        <button data-role="Support" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Support.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Support</button>
-                        <button data-role="Defense" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Defense.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Défense</button>
-                        <button data-role="Armorer" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Armorer.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Armurier</button>
-                        <button data-role="Rupture" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50"><img src="assets/Rôles/Rupture.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Rupture</button>
+                        <button data-role="All" class="filter-btn-role active bg-[#1a1a1a] text-zinc-300 px-5 py-2 rounded-xl text-xs font-bold border border-zinc-700/50 transition-colors">Tous</button>
+                        <button data-role="Attack" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Attack.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Attaque</button>
+                        <button data-role="Stun" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Stun.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Stun</button>
+                        <button data-role="Anomaly" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Anomaly.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Anomalie</button>
+                        <button data-role="Support" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Support.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Support</button>
+                        <button data-role="Defense" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Defense.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Défense</button>
+                        <button data-role="Armorer" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Armorer.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Armurier</button>
+                        <button data-role="Rupture" class="filter-btn-role bg-[#1a1a1a] text-zinc-300 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-zinc-700/50 transition-colors"><img src="assets/Rôles/Rupture.png" loading="lazy" class="w-4 h-4 object-contain opacity-80 filter invert"> Rupture</button>
                     </div>
                 </div>
 
@@ -96,12 +104,12 @@
                 </div>
             </div>
 
-            <!-- Factions Marquee (Réintégré ici, sous les filtres et au dessus du bouton) -->
+            <!-- Factions Marquee -->
             <div class="flex-1 overflow-hidden relative marquee-mask px-5 py-2 z-0" id="sidebarMarqueeWrapper">
                 <div class="marquee-track-vertical" id="sidebarFactionsList"></div>
             </div>
 
-            <!-- Bouton Factions Modal (Fixé en bas) -->
+            <!-- Bouton Factions Modal -->
             <div class="p-5 bg-[#0a0a0a] shrink-0 border-t border-zinc-800 relative z-10 shadow-[0_-15px_30px_rgba(0,0,0,0.6)]">
                 <button id="openModalBtn" class="w-full bg-[#d7f70c] hover:bg-[#c4e30b] text-black font-black uppercase text-sm py-4 rounded-xl shadow-[0_0_20px_rgba(215,247,12,0.2)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(215,247,12,0.5)] hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-3 group overflow-hidden relative">
                     <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:animate-[shimmer_1s_forwards]"></div>
