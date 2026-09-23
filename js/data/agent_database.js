@@ -532,6 +532,26 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: "Team débutant", members: [ { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Koleda.png", color: "#f05432", initial: "K" }, { img: "Ben.png", color: "#f05432", initial: "B" } ] }
         ]
     },
+    "Ben": {
+        color: "#f05432", element: "Fire", rank: "A", factionTitle: "Usines Belobog",
+        stats: [ { label: "Energie Regen", value: "≥ 2.8" }, { label: "Defense", value: "≥ 2013" }, { label: "Attaque", value: "≥ 3657" } ],
+        discs: [
+            { tag: "Defense Build 👑", set1: "Swing_Jazz", set2: "Soul_Rock", set1Name: "4pc Swing Jazz", set2Name: "+ 2pc Soul Rock", note: "Swing Jazz augmente la Réc. d'Énergie de Ben et lui permet de buffer les DGT de l'équipe via son Enchaînement. Complétez avec Soul Rock pour augmenter sa DÉF." },
+            { tag: "Alternative (DPS)", set1: "Thorned_Rose", set2: "Swing_Jazz", set1Name: "4pc Thorned Rose", set2Name: "+ 2pc Swing Jazz", note: "Si vous jouez Ben en tant que DPS, équipez 4 pièces Thorned Rose pour augmenter ses DGT. Cependant, le buff de Taux CRIT sera moins utile si vous utilisez son Moteur Signature (car il garantit des coups critiques sur ses parades). Complétez avec Swing Jazz pour garder une bonne Réc. d'Énergie." }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Chain", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Energy Regen ou Impact" }, { slot: "5", label: "DÉF %" }, { slot: "4", label: "DÉF %" } ], sub: [ { label: "DÉF %", highlight: true }, { label: "Taux CRIT", highlight: false }, { label: "DGT CRIT", highlight: false } ] },
+        engines: [
+            { tag: "Meilleur Moteur", name: "Spring Embrace", img: "W-Engine_Spring_Embrace.png" }, { tag: "Alternative 4★", name: "Original Transmorpher", img: "W-Engine_Original_Transmorpher.png" }, { tag: "Alternative 4★", name: "Big Cylinder", img: "W-Engine_Big_Cylinder.png" }, { tag: "Alternative B", name: "Identity - Base", img: "Identity_Base.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Fire-Stun", members: [ { img: "Ben.png", color: "#f05432", initial: "B" }, { img: "Koleda.png", color: "#f05432", initial: "K" }, { img: "Soldier 11.png", color: "#f05432", initial: "S11" } ] },
+            { name: "TEAM 02", tag: "Attaque", members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Lucy.png", color: "#f05432", initial: "L" }, { img: "Ben.png", color: "#f05432", initial: "B" } ] },
+            { name: "TEAM 03", tag: "Free To Play", members: [ { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Lucy.png", color: "#f05432", initial: "L" }, { img: "Ben.png", color: "#f05432", initial: "B" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Oiseaux-moqueurs",
         stats: [ { label: "Attaque", value: "Max" }, { label: "Taux Crit", value: "Max" }, { label: "Dégât Crit", value: "Max" } ],
