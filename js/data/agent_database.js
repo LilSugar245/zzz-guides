@@ -108,7 +108,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Anomalie" }, { slot: "5", label: "DGT Éther > ATQ" }, { slot: "4", label: "Anomalie" } ], sub: [ { label: "Anomalie", highlight: true }, { label: "ATQ %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
-            { tag: "Signature S", name: "Neon Fantasies", img: "W-Engine_Neon_Fantasies.png" }, { tag: "Alternative S", name: "Roaring Fur-nace", img: "W-Engine_Roaring_Fur-nace.png" }, { tag: "Alternative A", name: "Precious Fossilized", img: "W-Engine_Precious_Fossilized.png" }
+            { tag: "Signature S", name: "Neon Fantasies", img: "W-Engine_Neon_Fantasies.png" }, { tag: "Alternative S", name: "Roaring Fur-nace", img: "W-Engine_Roaring_Fur-nace.png" }, { tag: "Alternative A", name: "Precious Fossilized", img: "Precious_Fossilized.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Angels of Delusion", members: [ { img: "Nangong Yu.png", color: "#f23c8a", initial: "N" }, { img: "Sunna.png", color: "#e8a838", initial: "S" }, { img: "Aria.png", color: "#f23c8a", initial: "A" } ] },
