@@ -17,10 +17,13 @@ import { generateBanyueGuide } from './banyue.js';
 import { generateNicoleGuide } from './nicole.js';
 import { generateLycaonGuide } from './lycaon.js';
 import { generateKoledaGuide } from './koleda.js';
-import { generatePiperGuide } from './piper.js';
 import { generateGenericGuide } from './generic.js';
 
-export const guides = {
+// NOUVEAU SYSTEME DE TEMPLATE
+import { agentDatabase } from '../data/agent_database.js';
+import { generateGuideFromData } from './template.js';
+
+const oldGuides = {
     'trigger': generateTriggerGuide,
     'jane': generateJaneDoeGuide,
     'claret': generateClaretGuide,
@@ -39,8 +42,21 @@ export const guides = {
     'banyue': generateBanyueGuide,
     'nicole': generateNicoleGuide,
     'lycaon': generateLycaonGuide,
-    'koleda': generateKoledaGuide,
-    'piper': generatePiperGuide
+    'koleda': generateKoledaGuide
 };
 
-export { generateGenericGuide };
+// Fonction universelle appelée par app.js
+export function getGuideHTML(agentName) {
+    // 1. Cherche dans la nouvelle base de données JSON
+    if (agentDatabase[agentName]) {
+        return generateGuideFromData(agentName, agentDatabase[agentName]);
+    } 
+    // 2. Sinon, cherche dans les vieux fichiers hardcodés
+    else if (oldGuides[agentName.toLowerCase()]) {
+        return oldGuides[agentName.toLowerCase()]();
+    } 
+    // 3. Sinon, génère une fiche vide par défaut
+    else {
+        return generateGenericGuide(agentName);
+    }
+}
