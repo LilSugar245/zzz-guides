@@ -564,7 +564,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Récup. d'énergie" }, { slot: "5", label: "PEN Ratio" }, { slot: "4", label: "Taux Crit / Attaque > Adre. d'anomalie" } ], sub: [ { label: "Taux Crit = Dégat Crit", highlight: true }, { label: "Attaque %", highlight: false }, { label: "Adresse d'anomalie", highlight: false } ] },
         engines: [
-            { tag: "Baseline 100%", name: "Weeping Cradle", img: "W-Engine_Weeping_Cradle.png" }, { tag: "Alternative A", name: "Unfettered Game Ball", img: "W-Engine_Unfettered_Game_Ball.png" }, { tag: "Alternative A", name: "Slice of Time", img: "W-Engine_Slice_of_Time.png" }, { tag: "Alternative B", name: "Reverb - Mark II", img: "W-Engine_%28Reverb%29_Mark_II.png" }, { tag: "Alternative B", name: "Reverb - Mark III", img: "W-Engine_%28Reverb%29_Mark_III.png" }
+            { tag: "Baseline 100%", name: "Weeping Cradle", img: "W-Engine_Weeping_Cradle.png" }, { tag: "Alternative A", name: "Unfettered Game Ball", img: "W-Engine_Unfettered_Game_Ball.png" }, { tag: "Alternative A", name: "Slice of Time", img: "W-Engine_Slice_of_Time.png" }, { tag: "Alternative B", name: "Reverb - Mark II", img: "Reverb_Mark_II.png" }, { tag: "Alternative B", name: "Reverb - Mark III", img: "Reverb_Mark_III.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Flexible", members: [ { img: "Rina.png", color: "#3182eb", initial: "R" }, { img: "", color: "#52525b", role: "Tous les agents<br>Attaque" }, { img: "", color: "#52525b", role: "Tous les agents<br>Stunner" } ] },
@@ -584,7 +584,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Maîtrise d'Anomalie" }, { slot: "5", label: "DGT Électrique / PEN Ratio" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Adresse d'Anomalie", highlight: true }, { label: "ATQ %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
-            { tag: "Meilleur Moteur", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }, { tag: "Alternative 5★", name: "Timeweaver", img: "W-Engine_Timeweaver.png" }, { tag: "Alternative 4★", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, { tag: "Alternative F2P", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }, { tag: "Alternative B", name: "Magnetic Storm - Alpha", img: "W-Engine_%28Magnetic_Storm%29_Alpha.png" }
+            { tag: "Meilleur Moteur", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }, { tag: "Alternative 5★", name: "Timeweaver", img: "W-Engine_Timeweaver.png" }, { tag: "Alternative 4★", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, { tag: "Alternative F2P", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }, { tag: "Alternative B", name: "Magnetic Storm - Alpha", img: "Magnetic_Storm_Alpha.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "F2P Team", members: [ { img: "Grace.png", color: "#3182eb", initial: "G" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" } ] },
