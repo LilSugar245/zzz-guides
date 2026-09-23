@@ -480,7 +480,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "DGT Glace %" }, { slot: "4", label: "Taux CRIT / DGT CRIT" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "DGT CRIT", highlight: false }, { label: "ATQ %", highlight: false } ] },
         engines: [
-            { tag: "Meilleur Moteur", name: "Myriad Eclipse", img: "W-Engine_Myriad_Eclipse.png" }, { tag: "Alternative 5★", name: "Deep Sea Visitor", img: "W-Engine_Deep_Sea_Visitor.png" }, { tag: "Alternative 4★", name: "Severed Innocence", img: "W-Engine_Severed_Innocence.png" }, { tag: "Alternative F2P", name: "Marcato Desire", img: "Marcato Desire.png" }
+            { tag: "Meilleur Moteur", name: "Myriad Eclipse", img: "W-Engine_Myriad_Eclipse.png" }, { tag: "Alternative 5★", name: "Deep Sea Visitor", img: "W-Engine_Deep_Sea_Visitor.png" }, { tag: "Alternative 4★", name: "Severed Innocence", img: "W-Engine_Severed_Innocence.png" }, { tag: "Alternative F2P", name: "Marcato Desire", img: "Marcato_Desire.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Double Stun", members: [ { img: "Hugo.png", color: "#3bbedb", initial: "H" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" } ] },
