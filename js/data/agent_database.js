@@ -388,3 +388,85 @@ export const agentDatabase = {
         ]
     }
 };
+"Trigger": {
+        color: "#3182eb", element: "Electric", rank: "S", factionTitle: "Sniper",
+        stats: [ { label: "Taux Crit", value: "90%" }, { label: "Impact", value: "131" }, { label: "Attaque", value: "750" } ],
+        discs: [
+            { tag: "Set 1 👑", set1: "King_of_the_Summit", set2: "Woodpecker_Electro", set1Name: "4pc King of the Summit", set2Name: "+ 2pc Woodpecker Electro", note: "Le meilleur choix absolu pour maximiser ses dégâts et son impact sur l'équipe. Le choix le plus pratique pour atteindre le palier des 90% de Taux CRIT." },
+            { tag: "Set 2", set1: "Shadow_Harmony", set2: "King_of_the_Summit", set1Name: "4pc Shadow Harmony", set2Name: "+ 2pc King of the Summit", note: "La meilleure alternative sans son Moteur Signature pour compenser le manque de Taux CRIT et se rapprocher du cap des 90%." },
+            { tag: "Set 3", set1: "Astral_Voice", set2: "Woodpecker_Electro", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Woodpecker Electro", note: "Très performant si tu maîtrises la mécanique de double switch assist, ou si elle est jouée aux côtés d'Astra Yao." }
+        ],
+        skills: [
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ex", level: "10", icon: "Ex.png" }, { name: "Ult", level: "10", icon: "Ultime.png" }, { name: "Assist", level: "7", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Impact %" }, { slot: "5", label: "DGT Électrique %" }, { slot: "4", label: "Taux CRIT" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "ATQ %", highlight: false }, { label: "DGT CRIT", highlight: false } ] },
+        engines: [
+            { tag: "Baseline 100%", name: "Spectral Gaze", img: "W-Engine_Spectral_Gaze.png" }, { tag: "Alternatives 5★", name: "Blazing Laurel", img: "W-Engine_Blazing_Laurel.png" }, { tag: "Alternatives 4★ F2P", name: "Precious Fossilized", img: "W-Engine_Precious_Fossilized.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Premium", members: [ { img: "Trigger.png", color: "#3182eb", initial: "T" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 02", tag: "Double Élec", members: [ { img: "Trigger.png", color: "#3182eb", initial: "T" }, { img: "Seed.png", color: "#3182eb", initial: "S" }, { img: "Nekomata.png", color: "#e8a838", initial: "N" } ] },
+            { name: "TEAM 03", tag: "Flexible", members: [ { img: "Trigger.png", color: "#3182eb", initial: "T" }, { img: "Hugo.png", color: "#3bbedb", initial: "H" }, { img: "", color: "#52525b", role: "N'importe quel<br>Support" } ] }
+        ]
+    },
+    "Corin": {
+        color: "#e8a838", element: "Physical", rank: "A", factionTitle: "Victoria Housekeeping",
+        stats: [ { label: "Taux crit", value: "≥ 80 %" }, { label: "Dégât crit", value: "≥ 160 %" }, { label: "Attaque", value: "≥ 3000" } ],
+        discs: [
+            { tag: "Physical Anomaly Build 👑", set1: "Fanged_Metal", set2: "Fanged_Metal", set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Fanged Metal", note: "" },
+            { tag: "Atk Build", set1: "Woodpecker_Electro", set2: "Woodpecker_Electro", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Woodpecker Electro", note: "" }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "ATK %" }, { slot: "5", label: "Physical DMG" }, { slot: "4", label: "TC / DC" } ], sub: [ { label: "Taux Crit", highlight: true }, { label: "Dmg Crit", highlight: false }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false }, { label: "ATK", highlight: false } ] },
+        engines: [
+            { tag: "Moteur S", name: "Moteur Inconnu 1", img: "W-Engine_Precious_Fossilized.png" }, { tag: "Moteur A", name: "Moteur Inconnu 2", img: "W-Engine_Precious_Fossilized.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Corin Premium Team", members: [ { img: "Pulchra.png", color: "#e8a838", initial: "P" }, { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "", color: "#52525b", role: "" } ] },
+            { name: "TEAM 02", tag: "Corin Physical Team", members: [ { img: "Nekomata.png", color: "#e8a838", initial: "N" }, { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "", color: "#52525b", role: "" } ] },
+            { name: "TEAM 03", tag: "Team débutant", members: [ { img: "Billy.png", color: "#e8a838", initial: "B" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "", color: "#52525b", role: "" } ] }
+        ]
+    },
+    "Anby": {
+        color: "#3182eb", element: "Electric", rank: "A", factionTitle: "Gentle House",
+        stats: [ { label: "Taux crit", value: "≥ 50 %" }, { label: "Impact", value: "≥ 189" }, { label: "Dégât crit", value: "≥ 100 %" }, { label: "Attaque", value: "≥ 2400" } ],
+        discs: [
+            { tag: "Impact Build 👑", set1: "Shockstar_Disco", set2: "Woodpecker_Electro", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Woodpecker Electro", note: "" },
+            { tag: "Impact Build II", set1: "Shockstar_Disco", set2: "Freedom_Blues", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Freedom Blues", note: "" },
+            { tag: "Anomaly Build", set1: "Shockstar_Disco", set2: "Thunder_Metal", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Thunder Metal", note: "" }
+        ],
+        skills: [
+            { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ult", level: "", icon: "Ultime.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "Impact / Energy Regen" }, { slot: "5", label: "Electric DMG" }, { slot: "4", label: "Crit Rate/Crit DMG / Anomaly Proficiency" } ], sub: [ { label: "Crit Rate = Crit DMG", highlight: true }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false }, { label: "Anomaly Proficiency", highlight: false } ] },
+        engines: [
+            { tag: "Moteur S", name: "Moteur Inconnu 1", img: "W-Engine_Precious_Fossilized.png" }, { tag: "Moteur A", name: "Moteur Inconnu 2", img: "W-Engine_Precious_Fossilized.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Anby Mono-Electric Team", members: [ { img: "Harumasa.png", color: "#3182eb", initial: "H" }, { img: "Rina.png", color: "#3182eb", initial: "R" }, { img: "", color: "#52525b", role: "" } ] },
+            { name: "TEAM 02", tag: "Zhu Yuan Team", members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "Z" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "", color: "#52525b", role: "" } ] },
+            { name: "TEAM 03", tag: "Team débutant", members: [ { img: "Billy.png", color: "#e8a838", initial: "B" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "", color: "#52525b", role: "" } ] }
+        ]
+    },
+    "Miyabi": {
+        color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Section 6",
+        stats: [ { label: "Ice DMG", value: "Max" }, { label: "CRIT Rate", value: "Max" }, { label: "ATK", value: "Max" } ],
+        discs: [
+            { tag: "Best Set! 👑", set1: "Branch_Blade_Song", set2: "Woodpecker_Electro", set1Name: "4pc Branch and Blade Song", set2Name: "+ 2pc Woodpecker Electro", note: "Branch and Blade Song is Miyabi's best-in-slot Drive Disc since it provides her CRIT DMG and increases her own DMG when any party member applies Freeze. Woodpecker Electro is her go-to 2-piece since she will need the CRIT Rate stat as a CRIT DPS." },
+            { tag: "2nd Best", set1: "Branch_Blade_Song", set2: "Polar_Metal", set1Name: "4pc Branch and Blade Song", set2Name: "+ 2pc Polar Metal", note: "If you already have a lot of CRIT Rate on Miyabi, you can consider Polar Metal as an alternative for more Ice DMG." }
+        ],
+        skills: [
+            { name: "Core", level: "", icon: "Core.webp" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+        ],
+        statPriority: { main: [ { slot: "6", label: "ATK" }, { slot: "5", label: "Ice DMG" }, { slot: "4", label: "CRIT Rate" } ], sub: [ { label: "CRIT DMG", highlight: true }, { label: "CRIT Rate", highlight: false }, { label: "ATK", highlight: false }, { label: "PEN", highlight: false } ] },
+        engines: [
+            { tag: "Best W-Engine", name: "Hailstorm Shrine", img: "W-Engine_Hailstorm_Shrine.png" }, { tag: "Alt. W-Engines", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }, { tag: "Alt. W-Engines", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, { tag: "Alt. W-Engines", name: "Roaring Ride", img: "W-Engine_Roaring_Ride.png" }, { tag: "Alt. W-Engines", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Miyabi F2P Team", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" } ] },
+            { name: "TEAM 02", tag: "Miyabi Disorder Team", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" } ] },
+            { name: "TEAM 03", tag: "Miyabi Generalist Team", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] }
+        ]
+    }
