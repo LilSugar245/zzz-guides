@@ -376,24 +376,44 @@ export const agentDatabase = {
         ]
     },
     "Koleda": {
-        color: "#f05432", element: "Fire", rank: "S", factionTitle: "Belobog Heavy Industries",
-        stats: [ { label: "Impact", value: "≥ 190" }, { label: "Energie", value: "≥ 1.2" }, { label: "Attaque", value: "≥ 2400" } ],
+        color: "#f05432", element: "Fire", rank: "S", factionTitle: "Usines Belobog",
+        stats: [ { label: "Impact", value: "≥ 180" }, { label: "Taux Crit", value: "≥ 50 %" }, { label: "Attaque", value: "≈ 2000" } ],
         discs: [
-            { tag: "Stun Build 👑", set1: "Shockstar_Disco", set2: "Inferno_Metal", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Inferno Metal", note: "" },
-            { tag: "Stun Build II", set1: "Shockstar_Disco", set2: "Swing_Jazz", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Swing Jazz", note: "" },
-            { tag: "Stun / DPS Build", set1: "Shockstar_Disco", set2: "Woodpecker_Electro", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Woodpecker Electro", note: "" }
+            { tag: "Set 1 👑", set1: "Astral_Voice", set2: "Moonlight_Lullaby", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Moonlight Lullaby", note: "Configuration axée sur le soutien d'équipe et la régénération d'énergie." },
+            { tag: "Set 2", set1: "Shockstar_Disco", set2: "Moonlight_Lullaby", set1Name: "4pc Shockstar Disco", set2Name: "+ 2pc Moonlight Lullaby", note: "Optimise l'impact brut et l'étourdissement rapide des cibles." },
+            { tag: "Set 3", set1: "King_of_the_Summit", set2: "Shockstar_Disco", set1Name: "4pc King of the Summit", set2Name: "+ 2pc Shockstar Disco", note: "Renforce les dégâts critiques d'équipe via les attaques EX et l'enchaînement." }
         ],
         skills: [
-            { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Assist", level: "", icon: "Assist.png" }, { name: "Ult", level: "", icon: "Ultime.png" }
+            { name: "Core", level: "F", icon: "Core.webp" },
+            { name: "Ex", level: "12", icon: "Ex.png" },
+            { name: "Ult", level: "12", icon: "Ultime.png" },
+            { name: "Assist", level: "12", icon: "Assist.png" },
+            { name: "Dodge", level: "10", icon: "Esquive.png" },
+            { name: "Basic", level: "9", icon: "Attaque_basic.png" }
         ],
-        statPriority: { main: [ { slot: "6", label: "Impact" }, { slot: "5", label: "Fire DMG" }, { slot: "4", label: "CRIT Rate" } ], sub: [ { label: "CRIT DMG / Rate", highlight: true }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false } ] },
+        statPriority: {
+            main: [
+                { slot: "6", label: "Impact" },
+                { slot: "5", label: "ATK% / PEN Ratio" },
+                { slot: "4", label: "Crit Rate" }
+            ],
+            sub: [
+                { label: "Crit Rate (min 50% avec KOTS)", highlight: true },
+                { label: "Crit DMG = ATK%", highlight: false },
+                { label: "Flat PEN", highlight: false },
+                { label: "Flat ATK", highlight: false }
+            ]
+        },
         engines: [
-            { tag: "Baseline 100%", name: "Hellfire Gears", img: "W-Engine_Hellfire_Gears.png" }, { tag: "Moteur S", name: "The Restrained", img: "W-Engine_The_Restrained.png" }, { tag: "Moteur A", name: "Six Shooter", img: "W-Engine_Six_Shooter.png" }, { tag: "Moteur A", name: "Precious Fossilized", img: "W-Engine_Precious_Fossilized.png" }
+            { tag: "Signature 5★", name: "Hellfire Gears", img: "W-Engine_Hellfire_Gears.png" },
+            { tag: "Alternative 5★", name: "The Restrained", img: "W-Engine_The_Restrained.png" },
+            { tag: "Alternative A", name: "Precious Fossilized", img: "W-Engine_Precious_Fossilized.png" },
+            { tag: "Alternative A", name: "Six Shooter", img: "W-Engine_Six_Shooter.png" }
         ],
         teams: [
-            { name: "TEAM 01", tag: "Fire-Stun", members: [ { img: "Evelyn.png", color: "#f05432", initial: "E" }, { img: "Koleda.png", color: "#f05432", initial: "K" }, { img: "Ben.png", color: "#f05432", initial: "B" } ] },
-            { name: "TEAM 02", tag: "Fire-Stun II", members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "Koleda.png", color: "#f05432", initial: "K" } ] },
-            { name: "TEAM 03", tag: "Débutant", members: [ { img: "Ben.png", color: "#f05432", initial: "B" }, { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Koleda.png", color: "#f05432", initial: "K" } ] }
+            { name: "TEAM 01", tag: "Rupture Yunkui", members: [ { img: "Koleda.png", color: "#f05432", initial: "K" }, { img: "Yixuan.png", color: "#e8a838", initial: "Y" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
+            { name: "TEAM 02", tag: "Armurier Élec", members: [ { img: "Koleda.png", color: "#f05432", initial: "K" }, { img: "Claret.png", color: "#3182eb", initial: "C" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] },
+            { name: "TEAM 03", tag: "Double Stun", members: [ { img: "Koleda.png", color: "#f05432", initial: "K" }, { img: "Hugo.png", color: "#3bbedb", initial: "H" }, { img: "Lighter.png", color: "#f05432", initial: "L" } ] }
         ]
     },
     "Trigger": {
