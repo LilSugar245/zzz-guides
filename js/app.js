@@ -3,7 +3,7 @@ import { agentsData, colorMap, iconMap, filterGroups, roleIconMap } from './data
 import { getGuideHTML } from './guides/index.js'; 
 
 let currentElement = 'All';
-let currentRole = 'All'; // NOUVEAU
+let currentRole = 'All';
 let searchQuery = '';
 let activeFactionFilter = null;
 let showFavoritesOnly = false;
@@ -14,8 +14,8 @@ let currentModalAgentIndex = -1;
 
 const gridContainer = document.getElementById('agents-grid');
 const emptyState = document.getElementById('empty-state');
-const elementBtns = document.querySelectorAll('.filter-btn-element'); // Changé
-const roleBtns = document.querySelectorAll('.filter-btn-role'); // NOUVEAU
+const elementBtns = document.querySelectorAll('.filter-btn-element');
+const roleBtns = document.querySelectorAll('.filter-btn-role');
 const favFilterBtn = document.getElementById('favoriteFilterBtn');
 
 const searchInput = document.getElementById('searchInput');
@@ -101,9 +101,19 @@ function renderFactions() {
             </div>`;
         }
     };
-    document.getElementById('modalFactionsGrid').innerHTML = factionsData.map(f => generateFactionHTML(f, false)).join('');
-    const sidebarHTML = factionsData.map(f => generateFactionHTML(f, true)).join('');
-    document.getElementById('sidebarFactionsList').innerHTML = sidebarHTML + sidebarHTML;
+    
+    const modalGrid = document.getElementById('modalFactionsGrid');
+    if (modalGrid) {
+        modalGrid.innerHTML = factionsData.map(f => generateFactionHTML(f, false)).join('');
+    } else {
+        console.error("L'élément 'modalFactionsGrid' est introuvable. Vérifiez index.html.");
+    }
+    
+    const sidebarList = document.getElementById('sidebarFactionsList');
+    if (sidebarList) {
+        const sidebarHTML = factionsData.map(f => generateFactionHTML(f, true)).join('');
+        sidebarList.innerHTML = sidebarHTML + sidebarHTML;
+    }
 }
 
 window.setFactionFilter = function(faction, fromModal = false) {
@@ -220,7 +230,6 @@ function clearSearch() {
     renderAgents();
 }
 
-// GESTION DES DEUX FILTRES CUMULATIFS
 elementBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         elementBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active');
@@ -344,7 +353,7 @@ function renderAgents() {
     agentsData.forEach((agent) => {
         const matchSearch = agent.name.toLowerCase().startsWith(searchQuery.toLowerCase());
         const matchElement = currentElement === 'All' || filterGroups[currentElement]?.includes(agent.element);
-        const matchRole = currentRole === 'All' || agent.role === currentRole; // NOUVEAU
+        const matchRole = currentRole === 'All' || agent.role === currentRole; 
         const matchFaction = !activeFactionFilter || agent.faction === activeFactionFilter;
         const isFav = favorites.includes(agent.name);
         const matchFav = !showFavoritesOnly || isFav;
@@ -360,7 +369,6 @@ function renderAgents() {
             const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-transparent';
             const displayName = agent.name === 'Jane' ? 'Jane Doe' : agent.name;
 
-            // Ajout de l'icône de rôle en haut à gauche de la carte
             const roleIcon = roleIconMap[agent.role];
             const roleBadgeHTML = roleIcon ? `<div class="absolute top-2 left-2 w-8 h-8 rounded-full bg-[#111]/80 backdrop-blur border border-zinc-700 flex items-center justify-center z-30 shadow-lg"><img src="assets/Icone/${roleIcon}" class="w-5 h-5 object-contain filter invert opacity-90"></div>` : '';
 
