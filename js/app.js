@@ -168,7 +168,7 @@ function updateBothDropdowns(query) {
             divD.addEventListener('mousedown', onSelectLogic);
             searchDropdown.appendChild(divD);
 
-            // Setup Mobile Div (avec touchstart pour mobile)
+            // Setup Mobile Div
             const divM = document.createElement('div');
             divM.className = "dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group";
             divM.style.animationDelay = `${delay}ms`; 
@@ -257,6 +257,28 @@ function updateModalNavigation() {
     }
 }
 
+// LOGIQUE DE PARTAGE (DEEP LINKING)
+window.shareCurrentAgent = function() {
+    if (currentModalAgentIndex === -1) return;
+    const agent = filteredAgentsList[currentModalAgentIndex];
+    // Création de l'URL avec le paramètre ?agent=NomDeLAgent
+    const url = window.location.origin + window.location.pathname + '?agent=' + encodeURIComponent(agent.name);
+    
+    // Copie dans le presse-papier
+    navigator.clipboard.writeText(url).then(() => {
+        // Animation du Toast
+        const toast = document.getElementById('toastNotification');
+        toast.classList.remove('-translate-y-32', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        
+        // Disparition après 3 secondes
+        setTimeout(() => {
+            toast.classList.remove('translate-y-0', 'opacity-100');
+            toast.classList.add('-translate-y-32', 'opacity-0');
+        }, 3000);
+    }).catch(err => console.error('Erreur lors de la copie', err));
+};
+
 window.openAgentDetail = function(agentName, rank, element) {
     const modal = document.getElementById('agentDetailModal');
     const splashImg = document.getElementById('agentSplashImage');
@@ -265,6 +287,11 @@ window.openAgentDetail = function(agentName, rank, element) {
     
     currentModalAgentIndex = filteredAgentsList.findIndex(a => a.name === agentName);
     updateModalNavigation();
+    
+    // Met à jour l'URL en temps réel pour pouvoir la copier facilement
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('agent', agentName);
+    window.history.pushState({}, '', '?' + urlParams.toString());
     
     splashImg.style.opacity = '0';
     
@@ -289,14 +316,20 @@ window.openAgentDetail = function(agentName, rank, element) {
     
     setTimeout(() => {
         splashImg.style.opacity = '1'; 
-        splashImg.style.transform = 'translateY(0) scale(1)';
+        
+        // EXCEPTION POUR REMIELLE : on augmente l'échelle à 1.4 pour qu'elle prenne tout l'espace
+        if(agentName.toLowerCase() === 'remielle') {
+            splashImg.style.transform = 'translateY(0) scale(1.4)';
+        } else {
+            splashImg.style.transform = 'translateY(0) scale(1)';
+        }
+
         guideContainer.style.opacity = '1'; 
         guideContainer.style.transform = 'translateX(0)';
     }, 50);
 };
 
 function init3DParallax() {
-    // Désactive l'animation 3D lourde sur les téléphones et tablettes
     if (window.matchMedia("(hover: none)").matches) return; 
 
     document.querySelectorAll('.agent-card-container').forEach(card => {
@@ -376,9 +409,11 @@ window.closeModal = function(id) {
     const m = document.getElementById(id);
     if(id === 'agentDetailModal') {
         document.getElementById('agentSplashImage').style.opacity = '0';
-        document.getElementById('agentSplashImage').style.transform = 'translateY(20px)';
+        document.getElementById('agentSplashImage').style.transform = 'translateY(20px) scale(0.9)'; // Reset propre
         document.getElementById('agentGuideContainer').style.opacity = '0';
         document.getElementById('agentGuideContainer').style.transform = 'translateX(20px)';
+        // Nettoie l'URL quand on ferme la modale (enlève le ?agent=...)
+        window.history.pushState({}, '', window.location.pathname);
     }
     m.classList.remove('opacity-100');
     setTimeout(() => { m.classList.add('hidden'); }, 300);
@@ -402,5 +437,20 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// INITIALISATION
 renderFactions();
 renderAgents();
+
+// LECTURE DE L'URL AU CHARGEMENT (DEEP LINKING)
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const agentParam = urlParams.get('agent');
+    if (agentParam) {
+        const agent = agentsData.find(a => a.name.toLowerCase() === agentParam.toLowerCase());
+        if (agent) {
+            setTimeout(() => {
+                window.openAgentDetail(agent.name, agent.rank, agent.element);
+            }, 300); // Petit délai pour laisser l'interface s'afficher
+        }
+    }
+});
