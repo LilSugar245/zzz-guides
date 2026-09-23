@@ -574,7 +574,7 @@ export const agentDatabase = {
     },
     "Grace": {
         color: "#3182eb", element: "Electric", rank: "S", factionTitle: "Usines Belobog",
-        stats: [ { label: "Adre. d'Anomalie", value: "Max" }, { label: "Maî. d'Anomalie", value: "Max" }, { label: "Attaque", value: "Max" } ],
+        stats: [ { label: "Adre. d'Anomalie", value: "410" }, { label: "Maî. d'Anomalie", value: "151" }, { label: "Attaque", value: "2600" } ],
         discs: [
             { tag: "Anomaly Build 👑", set1: "Freedom_Blues", set2: "Swing_Jazz", set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Swing Jazz", note: "Ce build augmente l'Adresse et la Maîtrise d'Anomalie de Grace, ce qui profite à son style de jeu Choc. Les DGT Électriques ou le PEN Ratio sont équivalents en termes d'augmentation des dégâts." },
             { tag: "Alternative", set1: "Thunder_Metal", set2: "Swing_Jazz", set1Name: "4pc Thunder Metal", set2Name: "+ 2pc Swing Jazz", note: "Thunder Metal augmente l'ATQ de Grace tant que l'ennemi est Choqué, ce qui sera toujours le cas puisque Grace fournit l'état Choc." }
