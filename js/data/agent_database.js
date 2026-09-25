@@ -718,6 +718,96 @@ export const agentDatabase = {
             "Arme vs Mindscapes : Si The Brimstone R5 est déjà en ta possession, priorise directement le M1/M2 plutôt que son arme signature."
         ]
     },
+    "Soldier 11": {
+        color: "#f05432", element: "Fire", rank: "S", factionTitle: "Escouade Obole",
+        stats: [
+            { label: "Attaque", value: "2800 - 3000+" },
+            { label: "Taux Crit", value: "≥ 80 %" },
+            { label: "Dégât Crit", value: "≥ 140 %" }
+        ],
+        discs: [
+            { tag: "Dialyn Burst (100 %) 👑", set1: "Puffer_Electro", set2: "Woodpecker_Electro", set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Woodpecker Electro", note: "Configuration optimale avec Dialyn pour convertir les attaques en chaîne en ultime dès l'ouverture." },
+            { tag: "Polyvalent (98,82 %)", set1: "Woodpecker_Electro", set2: "Puffer_Electro", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Puffer Electro", note: "Set régulier profitant du spam d'attaques normales et des contre-attaques après esquive." },
+            { tag: "Alternative (98,75 %)", set1: "Dawn_Bloom", set2: "Woodpecker_Electro", set1Name: "4pc Dawn's Bloom", set2Name: "+ 2pc Woodpecker Electro", note: "Augmente constamment les dégâts de son attaque normale 5 renforcée." }
+        ],
+        skills: [
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" },
+            { name: "Ult", level: "11", icon: "Ultime.png" },
+            { name: "Ex", level: "10", icon: "Ex.png" },
+            { name: "Dodge", level: "8", icon: "Esquive.png" },
+            { name: "Assist", level: "8", icon: "Assist.png" }
+        ],
+        statPriority: {
+            main: [
+                { slot: "6", label: "ATK %" },
+                { slot: "5", label: "PEN Ratio% / ATK% / Fire DMG%" },
+                { slot: "4", label: "Crit Rate% / ATK% / Crit DMG%" }
+            ],
+            sub: [
+                { label: "Crit Rate = Crit DMG", highlight: true },
+                { label: "ATK %", highlight: true },
+                { label: "Anomaly Proficiency", highlight: false },
+                { label: "Flat PEN", highlight: false },
+                { label: "Flat ATK", highlight: false }
+            ]
+        },
+        engines: [
+            { tag: "Signature Evelyn (100 %)", name: "Heartstring Nocturne", img: "W-Engine_Heartstring_Nocturne.png" },
+            { tag: "Alternative S (95,11 %)", name: "Cordis Germina", img: "W-Engine_Cordis_Germina.png" },
+            { tag: "Stat Stick S (91,51 %)", name: "Myriad Eclipse", img: "W-Engine_Myriad_Eclipse.png" },
+            { tag: "Signature Personnelle", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" },
+            { tag: "F2P (S5) (78,74 %)", name: "Starlight Engine", img: "Starlight_Engine.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Deadly Assault Top 👑", members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 02", tag: "Score 31k+", members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 03", tag: "Synergie Lighter", members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
+        ]
+    },
+    "Soukaku": {
+        color: "#3bbedb", element: "Ice", rank: "A", factionTitle: "Section 6",
+        stats: [
+            { label: "Attaque (Cap)", value: "2500 - 2777" },
+            { label: "Taux Crit", value: "50 % - 60 %" },
+            { label: "Dégât Crit", value: "100 % - 120 %" }
+        ],
+        discs: [
+            { tag: "Support Anomalie 👑", set1: "Freedom_Blues", set2: "Phaethon_Melody", set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Phaethon's Melody", note: "Applique 20 % de réduction de résistance à l'anomalie Glace via l'EX Spécial, parfait pour Miyabi." },
+            { tag: "Support Généraliste", set1: "Moonlight_Lullaby", set2: "Phaethon_Melody", set1Name: "4pc Moonlight Lullaby", set2Name: "+ 2pc Phaethon's Melody", note: "Fournit 20 % de régénération d'énergie et un buff de 18 % DGT d'équipe durant 25 s." },
+            { tag: "Quick Assist", set1: "Astral_Voice", set2: "Phaethon_Melody", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Phaethon's Melody", note: "Confère jusqu'à 24 % de DGT aux équipiers entrant sur le terrain par assistance rapide." }
+        ],
+        skills: [
+            { name: "Ex", level: "12", icon: "Ex.png" },
+            { name: "Ult", level: "11", icon: "Ultime.png" },
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" },
+            { name: "Assist", level: "8", icon: "Assist.png" },
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: {
+            main: [
+                { slot: "6", label: "Energy Regen / ATK%" },
+                { slot: "5", label: "ATK% / Ice DMG%" },
+                { slot: "4", label: "ATK% / Crit Rate%" }
+            ],
+            sub: [
+                { label: "ATK % (priorité cap passif)", highlight: true },
+                { label: "Crit Rate = Crit DMG", highlight: false },
+                { label: "PEN", highlight: false },
+                { label: "Flat ATK", highlight: false }
+            ]
+        },
+        engines: [
+            { tag: "Signature (S5) 👑", name: "Bashful Demon", img: "W-Engine_Bashful_Demon.png" },
+            { tag: "Alternative S", name: "Weeping Cradle", img: "W-Engine_Weeping_Cradle.png" },
+            { tag: "Alternative Support (S5)", name: "Kaboom the Cannon", img: "W-Engine_Kaboom_the_Cannon.png" },
+            { tag: "Option F2P", name: "Slice of Time", img: "W-Engine_Slice_of_Time.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Miyabi Carry (Rank 45) 👑", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" } ] },
+            { name: "TEAM 02", tag: "Mono Glace Stun (Rank 176)", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" } ] },
+            { name: "TEAM 03", tag: "Classique Ellen", members: [ { img: "Ellen.png", color: "#3bbedb", initial: "E" }, { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Oiseaux-moqueurs",
         stats: [ { label: "Attaque", value: "Max" }, { label: "Taux Crit", value: "Max" }, { label: "Dégât Crit", value: "Max" } ],
