@@ -453,7 +453,7 @@ export const agentDatabase = {
         ],
         teams: [
             { name: "TEAM 01", tag: "Meta Shiyu 👑", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Nangong Yu.png", color: "#f23c8a", initial: "NY" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
-            { name: "TEAM 02", tag: "Désordre Ether", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Vivian.png", color: "#f23c8a", initial: "V" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 02", tag: "dysfonctionnement Ether", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Vivian.png", color: "#f23c8a", initial: "V" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
             { name: "TEAM 03", tag: "Duo Anomalie", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] }
         ]
     },
