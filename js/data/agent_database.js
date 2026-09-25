@@ -864,6 +864,52 @@ export const agentDatabase = {
             "Maintien Woodpecker : Placer une attaque normale entre l'EX Spécial et la contre-esquive pour garantir les 3 cumuls du set."
         ]
     },
+    "Anton": {
+        color: "#3182eb", element: "Electric", rank: "A", factionTitle: "Usines Belobog",
+        stats: [
+            { label: "Attaque", value: "2300 - 2800+" },
+            { label: "Taux Crit", value: "70 % - 100 %" },
+            { label: "Dégât Crit", value: "120 % - 160 %+" }
+        ],
+        discs: [
+            { tag: "Meilleur Set (100 %) 👑", set1: "Thunder_Metal", set2: "Woodpecker_Electro", set1Name: "4pc Thunder Metal", set2Name: "+ 2pc Woodpecker Electro", note: "Apporte +28 % d'ATK en combat tant qu'un ennemi subit l'état Électrocution, avec un maintien quasi permanent aux côtés de Grace." },
+            { tag: "Burst Ultime (88,93 %)", set1: "Puffer_Electro", set2: "Woodpecker_Electro", set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Woodpecker Electro", note: "Maximise la fenêtre de burst après le déclenchement de l'ultime durant l'étourdissement du boss." },
+            { tag: "Polyvalent (85,59 %)", set1: "Woodpecker_Electro", set2: "Puffer_Electro", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Puffer Electro", note: "Option constante renforçant le taux critique et l'attaque via l'alternance d'attaques normales et de compétences." }
+        ],
+        skills: [
+            { name: "Ult", level: "12", icon: "Ultime.png" },
+            { name: "Basic", level: "11", icon: "Attaque_basic.png" },
+            { name: "Ex", level: "10", icon: "Ex.png" },
+            { name: "Assist", level: "8", icon: "Assist.png" },
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: {
+            main: [
+                { slot: "6", label: "ATK %" },
+                { slot: "5", label: "Electric DMG %" },
+                { slot: "4", label: "Crit Rate % / Crit DMG %" }
+            ],
+            sub: [
+                { label: "Crit Rate = Crit DMG", highlight: true },
+                { label: "ATK %", highlight: true },
+                { label: "Flat PEN", highlight: false },
+                { label: "Flat ATK", highlight: false }
+            ]
+        },
+        engines: [
+            { tag: "Top Tier S (105,84 %)", name: "Heartstring Nocturne", img: "W-Engine_Heartstring_Nocturne.png" },
+            { tag: "Alternative S (102,61 %)", name: "Zanshin Herb Case", img: "W-Engine_Zanshin_Herb_Case.png" },
+            { tag: "Alternative S (100 %)", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" },
+            { tag: "F2P Burst S5 (93,26 %)", name: "Street Superstar", img: "W-Engine_Street_Superstar.png" },
+            { tag: "F2P Standard S5 (92,96 %)", name: "Starlight Engine", img: "Starlight_Engine.png" },
+            { tag: "Signature A (86,56 %)", name: "Drill Rig - Red Axis", img: "W-Engine_Drill_Rig_-_Red_Axis.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Shock Team (Premium) 👑", members: [ { img: "Anton.png", color: "#3182eb", initial: "A" }, { img: "Grace.png", color: "#3182eb", initial: "G" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] },
+            { name: "TEAM 02", tag: "Alternative Stun", members: [ { img: "Anton.png", color: "#3182eb", initial: "A" }, { img: "Qingyi.png", color: "#3182eb", initial: "Q" }, { img: "Grace.png", color: "#3182eb", initial: "G" } ] },
+            { name: "TEAM 03", tag: "F2P Friendly", members: [ { img: "Anton.png", color: "#3182eb", initial: "A" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Oiseaux-moqueurs",
         stats: [ { label: "Attaque", value: "Max" }, { label: "Taux Crit", value: "Max" }, { label: "Dégât Crit", value: "Max" } ],
