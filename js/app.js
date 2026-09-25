@@ -2,9 +2,10 @@ import { factionsData } from './data/factions.js';
 import { agentsData, colorMap, iconMap, filterGroups } from './data/agents.js';
 import { getGuideHTML } from './guides/index.js'; 
 
-let activeMode = 'elements';
+let activeMode = 'elements'; // 'elements', 'roles' ou 'versions'
 let currentElement = 'All';
 let currentRole = 'All';
+let currentVersion = 'All';
 let searchQuery = '';
 let activeFactionFilter = null;
 let showFavoritesOnly = false;
@@ -19,27 +20,33 @@ const favFilterBtn = document.getElementById('favoriteFilterBtn');
 
 const tabElements = document.getElementById('tabElements');
 const tabRoles = document.getElementById('tabRoles');
+const tabVersions = document.getElementById('tabVersions');
 const groupElements = document.getElementById('groupElements');
 const groupRoles = document.getElementById('groupRoles');
+const groupVersions = document.getElementById('groupVersions');
 
 const elemBtns = document.querySelectorAll('.filter-elem-btn');
 const roleBtns = document.querySelectorAll('.filter-role-btn');
+const versionBtns = document.querySelectorAll('.filter-version-btn');
 
 tabElements.addEventListener('click', () => {
     activeMode = 'elements';
-    tabElements.classList.add('active');
-    tabRoles.classList.remove('active');
-    groupElements.classList.remove('hidden');
-    groupRoles.classList.add('hidden');
+    tabElements.classList.add('active'); tabRoles.classList.remove('active'); tabVersions.classList.remove('active');
+    groupElements.classList.remove('hidden'); groupRoles.classList.add('hidden'); groupVersions.classList.add('hidden');
     renderAgents();
 });
 
 tabRoles.addEventListener('click', () => {
     activeMode = 'roles';
-    tabRoles.classList.add('active');
-    tabElements.classList.remove('active');
-    groupRoles.classList.remove('hidden');
-    groupElements.classList.add('hidden');
+    tabRoles.classList.add('active'); tabElements.classList.remove('active'); tabVersions.classList.remove('active');
+    groupRoles.classList.remove('hidden'); groupElements.classList.add('hidden'); groupVersions.classList.add('hidden');
+    renderAgents();
+});
+
+tabVersions.addEventListener('click', () => {
+    activeMode = 'versions';
+    tabVersions.classList.add('active'); tabElements.classList.remove('active'); tabRoles.classList.remove('active');
+    groupVersions.classList.remove('hidden'); groupElements.classList.add('hidden'); groupRoles.classList.add('hidden');
     renderAgents();
 });
 
@@ -57,6 +64,15 @@ roleBtns.forEach(btn => {
         roleBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentRole = btn.getAttribute('data-role');
+        renderAgents();
+    });
+});
+
+versionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        versionBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentVersion = btn.getAttribute('data-version');
         renderAgents();
     });
 });
@@ -110,13 +126,9 @@ function renderFactions() {
     const generateFactionHTML = (faction, isSidebar) => {
         const imgPath = `assets/Faction/${faction}.png`;
         const fallbackImg = `https://placehold.co/300x300/181818/d7f70c?text=${faction.substring(0,3).toUpperCase()}&font=montserrat`;
-        
         let displayName = faction;
         let subName = '';
-        if (faction === "Équipe d'intervention spéciale des Enquêtes criminelles") {
-            displayName = "N.E.P.S.";
-            subName = "Équipe d'intervention spéciale";
-        }
+        if (faction === "Équipe d'intervention spéciale des Enquêtes criminelles") { displayName = "N.E.P.S."; subName = "Équipe d'intervention spéciale"; }
 
         if(isSidebar) {
             return `
@@ -126,8 +138,7 @@ function renderFactions() {
                         <img src="${imgPath}" loading="lazy" alt="${faction}" class="w-full h-full object-contain drop-shadow-xl relative z-10" onerror="this.onerror=null; this.src='${fallbackImg}'">
                     </div>
                     <div class="bg-black/95 px-3 py-2.5 rounded-xl text-xs font-black text-center w-full border border-zinc-700/80 text-zinc-400 group-hover:text-white group-hover:border-yellow-400/80 transition-colors shadow-lg uppercase leading-tight">
-                        ${displayName}
-                        ${subName ? `<span class="block text-[8px] text-zinc-500 mt-0.5 tracking-wider">${subName}</span>` : ''}
+                        ${displayName}${subName ? `<span class="block text-[8px] text-zinc-500 mt-0.5 tracking-wider">${subName}</span>` : ''}
                     </div>
                 </div>
             </div>`;
@@ -138,17 +149,14 @@ function renderFactions() {
                     <img src="${imgPath}" loading="lazy" alt="${faction}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='${fallbackImg}'">
                 </div>
                 <div class="bg-black/80 px-5 py-3 rounded-xl text-xs sm:text-sm font-black w-full text-center border border-zinc-800 group-hover:border-yellow-400 text-zinc-300 shadow-inner group-hover:text-yellow-400 transition-colors duration-300 uppercase tracking-wider relative z-10">
-                    ${displayName}
-                    ${subName ? `<span class="block text-[10px] text-zinc-500 mt-1">${subName}</span>` : ''}
+                    ${displayName}${subName ? `<span class="block text-[10px] text-zinc-500 mt-1">${subName}</span>` : ''}
                 </div>
             </div>`;
         }
     };
     
     const modalGrid = document.getElementById('modalFactionsGrid');
-    if (modalGrid) {
-        modalGrid.innerHTML = factionsData.map(f => generateFactionHTML(f, false)).join('');
-    }
+    if (modalGrid) modalGrid.innerHTML = factionsData.map(f => generateFactionHTML(f, false)).join('');
     
     const sidebarList = document.getElementById('sidebarFactionsList');
     if (sidebarList) {
@@ -178,26 +186,20 @@ document.getElementById('clearFactionBtn').addEventListener('click', (e) => {
 });
 
 function updateBothDropdowns(query) {
-    searchDropdown.innerHTML = '';
-    searchDropdownMobile.innerHTML = '';
+    searchDropdown.innerHTML = ''; searchDropdownMobile.innerHTML = '';
     let filtered = [];
-    
     if (query) {
         filtered = agentsData.filter(a => a.name.toLowerCase().startsWith(query.toLowerCase()));
-        clearSearchBtn.classList.remove('hidden');
-        clearSearchBtnMobile.classList.remove('hidden');
+        clearSearchBtn.classList.remove('hidden'); clearSearchBtnMobile.classList.remove('hidden');
     } else {
         filtered = [...agentsData];
-        clearSearchBtn.classList.add('hidden');
-        clearSearchBtnMobile.classList.add('hidden');
+        clearSearchBtn.classList.add('hidden'); clearSearchBtnMobile.classList.add('hidden');
     }
-    
     filtered.sort((a, b) => a.name.localeCompare(b.name));
     
     if (filtered.length === 0) {
         const emptyStateHTML = `<div class="p-5 text-zinc-500 text-sm text-center italic font-bold">Aucun signal trouvé</div>`;
-        searchDropdown.innerHTML = emptyStateHTML;
-        searchDropdownMobile.innerHTML = emptyStateHTML;
+        searchDropdown.innerHTML = emptyStateHTML; searchDropdownMobile.innerHTML = emptyStateHTML;
     } else {
         let delay = 0;
         filtered.forEach(agent => {
@@ -217,29 +219,21 @@ function updateBothDropdowns(query) {
 
             const onSelectLogic = (e) => {
                 e.preventDefault(); 
-                searchInput.value = agent.name; 
-                searchInputMobile.value = agent.name; 
-                searchQuery = agent.name;
-                searchDropdown.classList.add('hidden'); 
-                searchDropdownMobile.classList.add('hidden'); 
-                clearSearchBtn.classList.remove('hidden'); 
-                clearSearchBtnMobile.classList.remove('hidden'); 
+                searchInput.value = agent.name; searchInputMobile.value = agent.name; searchQuery = agent.name;
+                searchDropdown.classList.add('hidden'); searchDropdownMobile.classList.add('hidden'); 
+                clearSearchBtn.classList.remove('hidden'); clearSearchBtnMobile.classList.remove('hidden'); 
                 renderAgents();
             };
 
             const divD = document.createElement('div');
             divD.className = "dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group";
-            divD.style.animationDelay = `${delay}ms`; 
-            divD.innerHTML = htmlContent;
-            divD.addEventListener('mousedown', onSelectLogic);
-            searchDropdown.appendChild(divD);
+            divD.style.animationDelay = `${delay}ms`; divD.innerHTML = htmlContent;
+            divD.addEventListener('mousedown', onSelectLogic); searchDropdown.appendChild(divD);
 
             const divM = document.createElement('div');
             divM.className = "dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group";
-            divM.style.animationDelay = `${delay}ms`; 
-            divM.innerHTML = htmlContent;
-            divM.addEventListener('mousedown', onSelectLogic);
-            divM.addEventListener('touchstart', onSelectLogic, {passive: false});
+            divM.style.animationDelay = `${delay}ms`; divM.innerHTML = htmlContent;
+            divM.addEventListener('mousedown', onSelectLogic); divM.addEventListener('touchstart', onSelectLogic, {passive: false});
             searchDropdownMobile.appendChild(divM);
 
             delay += 15;
@@ -247,28 +241,17 @@ function updateBothDropdowns(query) {
     }
 }
 
-searchInput.addEventListener('input', (e) => { 
-    searchQuery = e.target.value; searchInputMobile.value = searchQuery; searchDropdown.classList.remove('hidden'); 
-    updateBothDropdowns(searchQuery); renderAgents(); 
-});
+searchInput.addEventListener('input', (e) => { searchQuery = e.target.value; searchInputMobile.value = searchQuery; searchDropdown.classList.remove('hidden'); updateBothDropdowns(searchQuery); renderAgents(); });
 searchInput.addEventListener('focus', () => { searchDropdown.classList.remove('hidden'); updateBothDropdowns(searchInput.value); });
 searchInput.addEventListener('blur', () => { setTimeout(() => { searchDropdown.classList.add('hidden'); }, 300); });
 clearSearchBtn.addEventListener('click', clearSearch);
 
-searchInputMobile.addEventListener('input', (e) => { 
-    searchQuery = e.target.value; searchInput.value = searchQuery; searchDropdownMobile.classList.remove('hidden'); 
-    updateBothDropdowns(searchQuery); renderAgents(); 
-});
+searchInputMobile.addEventListener('input', (e) => { searchQuery = e.target.value; searchInput.value = searchQuery; searchDropdownMobile.classList.remove('hidden'); updateBothDropdowns(searchQuery); renderAgents(); });
 searchInputMobile.addEventListener('focus', () => { searchDropdownMobile.classList.remove('hidden'); updateBothDropdowns(searchInputMobile.value); });
 searchInputMobile.addEventListener('blur', () => { setTimeout(() => { searchDropdownMobile.classList.add('hidden'); }, 300); });
 clearSearchBtnMobile.addEventListener('click', clearSearch);
 
-function clearSearch() {
-    searchInput.value = ''; searchInputMobile.value = ''; searchQuery = ''; 
-    clearSearchBtn.classList.add('hidden'); clearSearchBtnMobile.classList.add('hidden'); 
-    searchDropdown.classList.add('hidden'); searchDropdownMobile.classList.add('hidden'); 
-    renderAgents();
-}
+function clearSearch() { searchInput.value = ''; searchInputMobile.value = ''; searchQuery = ''; clearSearchBtn.classList.add('hidden'); clearSearchBtnMobile.classList.add('hidden'); searchDropdown.classList.add('hidden'); searchDropdownMobile.classList.add('hidden'); renderAgents(); }
 
 function updateModalNavigation() {
     const prevBtn = document.getElementById('prevAgentBtn');
@@ -276,22 +259,14 @@ function updateModalNavigation() {
 
     if (currentModalAgentIndex > 0) {
         prevBtn.classList.remove('opacity-0', 'pointer-events-none', '-translate-x-10');
-        prevBtn.onclick = (e) => {
-            e.stopPropagation();
-            const prev = filteredAgentsList[currentModalAgentIndex - 1];
-            window.openAgentDetail(prev.name, prev.rank, prev.element);
-        };
+        prevBtn.onclick = (e) => { e.stopPropagation(); const prev = filteredAgentsList[currentModalAgentIndex - 1]; window.openAgentDetail(prev.name, prev.rank, prev.element); };
     } else {
         prevBtn.classList.add('opacity-0', 'pointer-events-none', '-translate-x-10');
     }
 
     if (currentModalAgentIndex < filteredAgentsList.length - 1 && currentModalAgentIndex !== -1) {
         nextBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-x-10');
-        nextBtn.onclick = (e) => {
-            e.stopPropagation();
-            const next = filteredAgentsList[currentModalAgentIndex + 1];
-            window.openAgentDetail(next.name, next.rank, next.element);
-        };
+        nextBtn.onclick = (e) => { e.stopPropagation(); const next = filteredAgentsList[currentModalAgentIndex + 1]; window.openAgentDetail(next.name, next.rank, next.element); };
     } else {
         nextBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-x-10');
     }
@@ -301,24 +276,21 @@ window.shareCurrentAgent = function() {
     if (currentModalAgentIndex === -1) return;
     const agent = filteredAgentsList[currentModalAgentIndex];
     const url = window.location.origin + window.location.pathname + '?agent=' + encodeURIComponent(agent.name);
-    
     navigator.clipboard.writeText(url).then(() => {
         const toast = document.getElementById('toastNotification');
-        toast.classList.remove('-translate-y-32', 'opacity-0');
-        toast.classList.add('translate-y-0', 'opacity-100');
-        setTimeout(() => {
-            toast.classList.remove('translate-y-0', 'opacity-100');
-            toast.classList.add('-translate-y-32', 'opacity-0');
-        }, 3000);
-    }).catch(err => console.error('Erreur lors de la copie', err));
+        toast.classList.remove('-translate-y-32', 'opacity-0'); toast.classList.add('translate-y-0', 'opacity-100');
+        setTimeout(() => { toast.classList.remove('translate-y-0', 'opacity-100'); toast.classList.add('-translate-y-32', 'opacity-0'); }, 3000);
+    });
 };
 
-// Modification pour accepter un chargement instantané (sans délai)
-window.openAgentDetail = function(agentName, rank, element, instantLoad = false) {
+window.openAgentDetail = function(agentName, rank, element) {
     const modal = document.getElementById('agentDetailModal');
     const splashImg = document.getElementById('agentSplashImage');
     const giantName = document.getElementById('modalGiantNameText');
     const guideContainer = document.getElementById('agentGuideContainer');
+    
+    // RESET DU SCROLL (très important pour que la nouvelle modale s'affiche tout en haut)
+    guideContainer.scrollTop = 0; 
     
     currentModalAgentIndex = filteredAgentsList.findIndex(a => a.name === agentName);
     updateModalNavigation();
@@ -328,79 +300,48 @@ window.openAgentDetail = function(agentName, rank, element, instantLoad = false)
     window.history.pushState({}, '', '?' + urlParams.toString());
     
     splashImg.style.opacity = '0';
-    splashImg.onerror = function() {
-        this.onerror = null; 
-        this.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; 
-    };
-    
+    splashImg.onerror = function() { this.onerror = null; this.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; };
     splashImg.src = `assets/splash/${agentName}.png`; 
     giantName.textContent = agentName;
     
     guideContainer.innerHTML = getGuideHTML(agentName);
-    
-    // NOUVEAUTÉ : Reset du scroll pour chaque nouveau guide
-    guideContainer.scrollTop = 0;
 
     modal.classList.remove('hidden');
     void modal.offsetWidth;
     modal.classList.add('opacity-100');
     
-    // Si c'est un chargement direct via URL, on affiche l'image et le texte immédiatement
-    if (instantLoad) {
-        splashImg.style.transition = 'none';
-        guideContainer.style.transition = 'none';
-        
-        splashImg.style.opacity = '1';
+    setTimeout(() => {
+        splashImg.style.opacity = '1'; 
         splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)';
-        
-        guideContainer.style.opacity = '1';
+        guideContainer.style.opacity = '1'; 
         guideContainer.style.transform = 'translateX(0)';
-        
-        // On remet les transitions après un court délai pour les prochaines navigations
-        setTimeout(() => {
-            splashImg.style.transition = '';
-            guideContainer.style.transition = '';
-        }, 50);
-    } else {
-        setTimeout(() => {
-            splashImg.style.opacity = '1'; 
-            splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)';
-            guideContainer.style.opacity = '1'; 
-            guideContainer.style.transform = 'translateX(0)';
-        }, 50);
-    }
+    }, 50);
 };
 
 function init3DParallax() {
     if (window.matchMedia("(hover: none)").matches) return; 
-
     document.querySelectorAll('.agent-card-container').forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-            const rotateX = (((y - (rect.height / 2)) / (rect.height / 2)) * -12); 
-            const rotateY = (((x - (rect.width / 2)) / (rect.width / 2)) * 12);
+            const rotateX = (((y - (rect.height / 2)) / (rect.height / 2)) * -12); const rotateY = (((x - (rect.width / 2)) / (rect.width / 2)) * 12);
             card.classList.remove('reset-transition'); card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
         });
-        card.addEventListener('mouseleave', () => {
-            card.classList.add('reset-transition'); card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-        });
+        card.addEventListener('mouseleave', () => { card.classList.add('reset-transition'); card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; });
     });
 }
 
 function renderAgents() {
     gridContainer.innerHTML = '';
     filteredAgentsList = [];
-    let delayIndex = 0;
+    const agentsByVersion = {};
 
     agentsData.forEach((agent) => {
         const matchSearch = agent.name.toLowerCase().startsWith(searchQuery.toLowerCase());
-        
         let matchFilter = true;
-        if (activeMode === 'elements') {
-            matchFilter = currentElement === 'All' || filterGroups[currentElement]?.includes(agent.element);
-        } else if (activeMode === 'roles') {
-            matchFilter = currentRole === 'All' || agent.role === currentRole;
-        }
+        
+        if (activeMode === 'elements') matchFilter = currentElement === 'All' || filterGroups[currentElement]?.includes(agent.element);
+        else if (activeMode === 'roles') matchFilter = currentRole === 'All' || agent.role === currentRole;
+        else if (activeMode === 'versions') matchFilter = currentVersion === 'All' || agent.version === currentVersion;
 
         const matchFaction = !activeFactionFilter || agent.faction === activeFactionFilter;
         const isFav = favorites.includes(agent.name);
@@ -408,45 +349,82 @@ function renderAgents() {
 
         if (matchSearch && matchFilter && matchFaction && matchFav) {
             filteredAgentsList.push(agent);
-            const hexColor = colorMap[agent.element] || '#ffffff';
-            const cleanHex = hexColor.replace('#', '');
-            const fallbackImg = `https://placehold.co/400x400/181818/${cleanHex}?text=${agent.name.charAt(0)}&font=montserrat`;
-            const staggerDelay = Math.min(delayIndex * 40, 800);
-            delayIndex++;
-
-            const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-transparent';
-            const displayName = agent.name === 'Jane' ? 'Jane Doe' : agent.name;
-
-            const cardHTML = `
-                <div class="agent-card-container flex flex-col cursor-pointer w-full group animate-fade-in-up" 
-                     style="--elem-color: ${hexColor}; animation-delay: ${staggerDelay}ms;"
-                     onclick="openAgentDetail('${agent.name.replace(/'/g, "\\'")}', '${agent.rank}', '${agent.element}')">
-                    <div class="agent-shape-wrapper w-full aspect-square bg-zinc-800 relative">
-                        <div class="agent-shape-inner relative overflow-hidden flex items-end justify-center h-full w-full">
-                            <img src="assets/Agents/${agent.name}.png" loading="lazy" alt="${displayName}" class="agent-image absolute bottom-0 w-full h-auto min-h-full object-cover object-bottom" onerror="this.onerror=null; this.src='${fallbackImg}'">
-                            <div class="absolute inset-0 shadow-[inset_0_-35px_50px_rgba(0,0,0,0.95)] pointer-events-none transition-shadow duration-300 group-hover:shadow-[inset_0_-10px_20px_rgba(0,0,0,0.4)]"></div>
-                            <button onclick="toggleFavorite(this, '${agent.name.replace(/'/g, "\\'")}', event)" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-[#111]/80 backdrop-blur border border-zinc-700 flex items-center justify-center z-30 transition-all hover:scale-110 shadow-lg group/fav">
-                                <svg class="w-5 h-5 transition-colors duration-300 ${heartClass} group-hover/fav:text-red-400" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="mt-3 mx-1 bg-[#151515] p-2 skew-x-[-15deg] border-b-[4px] shadow-lg transition-all duration-300 group-hover:bg-[#1a1a1a]" style="border-bottom-color: ${hexColor};">
-                        <div class="skew-x-[15deg] text-center w-full px-1 overflow-hidden flex items-center justify-center gap-2">
-                            <span class="text-white font-display font-black uppercase text-xs sm:text-[15px] tracking-[0.2em] truncate block drop-shadow-md transition-colors pointer-events-none">${displayName}</span>
-                        </div>
-                    </div>
-                </div>`;
-            gridContainer.insertAdjacentHTML('beforeend', cardHTML);
+            const v = agent.version || 'Inconnu';
+            if (!agentsByVersion[v]) agentsByVersion[v] = [];
+            agentsByVersion[v].push(agent);
         }
     });
 
     if (filteredAgentsList.length > 0) {
         emptyState.classList.add('hidden'); emptyState.classList.remove('opacity-100');
+        let globalDelay = 0;
+
+        if (activeMode === 'versions' && currentVersion === 'All') {
+            const sortedVersions = Object.keys(agentsByVersion).sort();
+            sortedVersions.forEach(version => {
+                // SÉPARATEUR DE VERSION EXTRÊME
+                const separatorHTML = `
+                <div class="col-span-full relative mt-16 mb-12 flex items-center justify-center group/sep perspective-1000">
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="w-[80%] h-px bg-gradient-to-r from-transparent via-zinc-700/80 to-transparent relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#d7f70c] to-transparent -translate-x-full laser-beam"></div>
+                        </div>
+                    </div>
+                    <div class="relative bg-[#050505] px-8 py-3 border border-zinc-800/80 rounded-full flex items-center gap-4 shadow-[0_0_40px_rgba(0,0,0,0.6)] transform transition-transform duration-700 hover:scale-110 hover:border-[#d7f70c]/50 hover:shadow-[0_0_50px_rgba(215,247,12,0.2)] z-10 cursor-default">
+                        <div class="w-2.5 h-2.5 bg-[#d7f70c] rounded-full animate-pulse shadow-[0_0_10px_#d7f70c]"></div>
+                        <span class="font-display font-black italic text-2xl tracking-[0.3em] text-white uppercase drop-shadow-md">Version <span class="text-[#d7f70c]">${version.replace('V', '')}</span></span>
+                        <div class="w-2.5 h-2.5 bg-[#d7f70c] rounded-full animate-pulse shadow-[0_0_10px_#d7f70c]"></div>
+                        <div class="absolute inset-0 bg-[#d7f70c]/5 blur-xl rounded-full -z-10 group-hover/sep:bg-[#d7f70c]/15 transition-colors duration-500"></div>
+                    </div>
+                </div>`;
+                gridContainer.insertAdjacentHTML('beforeend', separatorHTML);
+
+                agentsByVersion[version].forEach(agent => {
+                    gridContainer.insertAdjacentHTML('beforeend', createCardHTML(agent, globalDelay));
+                    globalDelay++;
+                });
+            });
+        } else {
+            filteredAgentsList.forEach((agent) => {
+                gridContainer.insertAdjacentHTML('beforeend', createCardHTML(agent, globalDelay));
+                globalDelay++;
+            });
+        }
         setTimeout(init3DParallax, 50);
     } else {
         emptyState.classList.remove('hidden'); setTimeout(() => { emptyState.classList.add('opacity-100'); }, 10);
     }
     if (!document.getElementById('agentDetailModal').classList.contains('hidden')) updateModalNavigation();
+}
+
+function createCardHTML(agent, delayIndex) {
+    const hexColor = colorMap[agent.element] || '#ffffff';
+    const cleanHex = hexColor.replace('#', '');
+    const fallbackImg = `https://placehold.co/400x400/181818/${cleanHex}?text=${agent.name.charAt(0)}&font=montserrat`;
+    const staggerDelay = Math.min(delayIndex * 40, 800);
+    const isFav = favorites.includes(agent.name);
+    const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-transparent';
+    const displayName = agent.name === 'Jane' ? 'Jane Doe' : agent.name;
+
+    return `
+    <div class="agent-card-container flex flex-col cursor-pointer w-full group animate-fade-in-up" 
+         style="--elem-color: ${hexColor}; animation-delay: ${staggerDelay}ms;"
+         onclick="openAgentDetail('${agent.name.replace(/'/g, "\\'")}', '${agent.rank}', '${agent.element}')">
+        <div class="agent-shape-wrapper w-full aspect-square bg-zinc-800 relative">
+            <div class="agent-shape-inner relative overflow-hidden flex items-end justify-center h-full w-full">
+                <img src="assets/Agents/${agent.name}.png" loading="lazy" alt="${displayName}" class="agent-image absolute bottom-0 w-full h-auto min-h-full object-cover object-bottom" onerror="this.onerror=null; this.src='${fallbackImg}'">
+                <div class="absolute inset-0 shadow-[inset_0_-35px_50px_rgba(0,0,0,0.95)] pointer-events-none transition-shadow duration-300 group-hover:shadow-[inset_0_-10px_20px_rgba(0,0,0,0.4)]"></div>
+                <button onclick="toggleFavorite(this, '${agent.name.replace(/'/g, "\\'")}', event)" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-[#111]/80 backdrop-blur border border-zinc-700 flex items-center justify-center z-30 transition-all hover:scale-110 shadow-lg group/fav">
+                    <svg class="w-5 h-5 transition-colors duration-300 ${heartClass} group-hover/fav:text-red-400" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div class="mt-3 mx-1 bg-[#151515] p-2 skew-x-[-15deg] border-b-[4px] shadow-lg transition-all duration-300 group-hover:bg-[#1a1a1a]" style="border-bottom-color: ${hexColor};">
+            <div class="skew-x-[15deg] text-center w-full px-1 overflow-hidden flex items-center justify-center gap-2">
+                <span class="text-white font-display font-black uppercase text-xs sm:text-[15px] tracking-[0.2em] truncate block drop-shadow-md transition-colors pointer-events-none">${displayName}</span>
+            </div>
+        </div>
+    </div>`;
 }
 
 document.getElementById('openModalBtn').addEventListener('click', () => {
@@ -486,18 +464,28 @@ document.addEventListener('keydown', (e) => {
 });
 
 renderFactions();
-// On force un premier rendu de la grille globale
 renderAgents();
 
-// NOUVEAUTÉ : Détection d'URL pour affichage direct SANS le délai de 300ms de transition
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const agentParam = urlParams.get('agent');
+    const fastMask = document.getElementById('fast-mask');
+
     if (agentParam) {
-        // Au lieu de setTimeout, on force un chargement immédiat via le paramètre 'instantLoad = true'
         const agent = agentsData.find(a => a.name.toLowerCase() === agentParam.toLowerCase());
         if (agent) {
-            window.openAgentDetail(agent.name, agent.rank, agent.element, true);
+            // Ouvre directement l'agent sans flash menu !
+            window.openAgentDetail(agent.name, agent.rank, agent.element);
+            setTimeout(() => {
+                if(fastMask) {
+                    fastMask.style.opacity = '0';
+                    setTimeout(() => fastMask.remove(), 400);
+                }
+            }, 100);
+        } else if (fastMask) {
+            fastMask.remove();
         }
+    } else if (fastMask) {
+        fastMask.remove(); // Pas d'agent en URL, on retire le masque direct
     }
 });
