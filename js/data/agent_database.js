@@ -439,7 +439,7 @@ export const agentDatabase = {
     },
     "Miyabi": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Section 6",
-        stats: [ { label: "Taux CRIT", value: "Max" }, { label: "Dégat CRIT", value: "Max" }, { label: "Attaque", value: "Max" } ],
+        stats: [ { label: "Taux CRIT", value: "75-95%" }, { label: "Dégat CRIT", value: "150-190%" }, { label: "Attaque", value: "2500 - 3600+" } ],
         discs: [
             { tag: "Meilleur Set 👑", set1: "Branch_Blade_Song", set2: "Woodpecker_Electro", set1Name: "4pc Branch and Blade Song", set2Name: "+ 2pc Woodpecker Electro", note: "Branch & Blade Song est le meilleur disque pour Miyabi car il lui donne du DGT CRIT et augmente ses propres DGT quand un membre de l'équipe applique Gel. Woodpecker Electro est son choix de prédilection en 2 pièces puisqu'elle a besoin de Taux CRIT." },
             { tag: "Alternative", set1: "Branch_Blade_Song", set2: "Polar_Metal", set1Name: "4pc Branch and Blade Song", set2Name: "+ 2pc Polar Metal", note: "Si vous avez déjà beaucoup de Taux CRIT sur Miyabi, vous pouvez envisager Polar Metal comme alternative pour obtenir plus de DGT Glace." }
@@ -452,9 +452,9 @@ export const agentDatabase = {
             { tag: "Meilleur Moteur", name: "Hailstorm Shrine", img: "W-Engine_Hailstorm_Shrine.png" }, { tag: "Alternative 5★", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }, { tag: "Alternative BP", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, { tag: "Alternative", name: "Roaring Ride", img: "W-Engine_Roaring_Ride.png" }, { tag: "F2P", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }
         ],
         teams: [
-            { name: "TEAM 01", tag: "Désordre Ultime", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Burnice.png", color: "#f05432", initial: "B" } ] },
-            { name: "TEAM 02", tag: "Alternative", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" }, { img: "Burnice.png", color: "#f05432", initial: "B" } ] },
-            { name: "TEAM 03", tag: "F2P Friendly", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] }
+            { name: "TEAM 01", tag: "Meta Shiyu 👑", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Nangong Yu.png", color: "#f23c8a", initial: "NY" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 02", tag: "Désordre Ether", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Vivian.png", color: "#f23c8a", initial: "V" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 03", tag: "Duo Anomalie", members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] }
         ]
     },
     "Anby": {
