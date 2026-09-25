@@ -808,6 +808,62 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: "Classique Ellen", members: [ { img: "Ellen.png", color: "#3bbedb", initial: "E" }, { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "Soukaku.png", color: "#3bbedb", initial: "S" } ] }
         ]
     },
+    "Nekomata": {
+        color: "#e8a838", element: "Physical", rank: "S", factionTitle: "Lièvres rusés",
+        stats: [
+            { label: "Taux Crit", value: "100 % (combat)" },
+            { label: "Attaque", value: "Maximiser" },
+            { label: "Dégât Crit", value: "Maximiser" }
+        ],
+        discs: [
+            { tag: "Meilleur Set (100 %) 👑", set1: "Woodpecker_Electro", set2: "Puffer_Electro", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Puffer Electro", note: "Configuration optimale (100 % DPS). Maintien constant des 3 cumuls grâce à l'enchaînement de l'EX et de la contre-esquive renforcée." },
+            { tag: "Alternative DGT CRIT (99,55 %)", set1: "Woodpecker_Electro", set2: "Branch_Blade_Song", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Branch and Blade Song", note: "Très performant si l'apport en pénétration d'équipe (Rina / Sunna M1) est déjà important." },
+            { tag: "Alternative ATK % (99,33 %)", set1: "Woodpecker_Electro", set2: "Astral_Voice", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Astral Voice", note: "Option solide pour augmenter l'attaque brute (Hormone Punk et Fanged Metal restent également viables)." }
+        ],
+        skills: [
+            { name: "Core", level: "F", icon: "Core.webp" },
+            { name: "Dodge", level: "12", icon: "Esquive.png" },
+            { name: "Ult", level: "12", icon: "Ultime.png" },
+            { name: "Ex", level: "11", icon: "Ex.png" },
+            { name: "Basic", level: "7", icon: "Attaque_basic.png" },
+            { name: "Assist", level: "1", icon: "Assist.png" }
+        ],
+        statPriority: {
+            main: [
+                { slot: "6", label: "ATK %" },
+                { slot: "5", label: "PEN Ratio" },
+                { slot: "4", label: "Crit Rate (M0-M3) / Crit DMG (M4-M5) / ATK% (M6)" }
+            ],
+            sub: [
+                { label: "Crit Rate (jusqu'à 100% en combat)", highlight: true },
+                { label: "Crit DMG = ATK %", highlight: true },
+                { label: "Flat PEN", highlight: false },
+                { label: "Flat ATK", highlight: false }
+            ]
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Steel Cushion", img: "W-Engine_Steel_Cushion.png" },
+            { tag: "Stat Stick S (99,67 %)", name: "Heartstring Nocturne", img: "W-Engine_Heartstring_Nocturne.png" },
+            { tag: "Alternative S (96,57 %)", name: "Cordis Germina", img: "W-Engine_Cordis_Germina.png" },
+            { tag: "Alternative S (95,23 %)", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" },
+            { tag: "Option F2P (86,93 %)", name: "Starlight Engine", img: "Starlight_Engine.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Best-in-Slot 👑", members: [ { img: "Nekomata.png", color: "#e8a838", initial: "N" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 02", tag: "Pénétration", members: [ { img: "Nekomata.png", color: "#e8a838", initial: "N" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] },
+            { name: "TEAM 03", tag: "Classique F2P", members: [ { img: "Nekomata.png", color: "#e8a838", initial: "N" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] }
+        ],
+        mindscapes: [
+            { rank: "M1", desc: "La réduction de résistance physique ennemie est active en permanence grâce à la conversion totale en attaques arrière." },
+            { rank: "M4", desc: "Confère jusqu'à +14 % Taux CRIT, permettant d'équiper un Disque 4 en DGT CRIT." },
+            { rank: "M6", desc: "Ajoute +54 % DGT CRIT supplémentaires, saturant le multiplicateur et justifiant le passage du Disque 4 en ATK %." }
+        ],
+        notes: [
+            "Énergie Ronronnante : Conserver 40 à 55 points avant le stun pour lancer directement la contre-esquive renforcée en maintenant l'attaque normale.",
+            "Attaques de dos : Le déclenchement de la contre-esquive confère 40 s où toutes les frappes sont comptabilisées comme des attaques arrière (+60 % DGT).",
+            "Maintien Woodpecker : Placer une attaque normale entre l'EX Spécial et la contre-esquive pour garantir les 3 cumuls du set."
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Oiseaux-moqueurs",
         stats: [ { label: "Attaque", value: "Max" }, { label: "Taux Crit", value: "Max" }, { label: "Dégât Crit", value: "Max" } ],
