@@ -1,17 +1,34 @@
 export const colorMap = {
-    'Physical': '#e8a838', 'Fire': '#f05432', 'Ice': '#3bbedb', 'Wind': '#3bbedb',
-    'Electric': '#3182eb', 'Ether': '#f23c8a', 'Lumiflux': '#fba2d0', 'Auric Ink': '#5d57a6'
+    'Physical': '#e8a838', 'Honed Edge': '#e8a838',
+    'Fire': '#f05432', 
+    'Ice': '#3bbedb', 'Frost': '#3bbedb',
+    'Wind': '#3bbedb',
+    'Electric': '#3182eb', 
+    'Ether': '#f23c8a', 'Lumiflux': '#fba2d0', 'Auric Ink': '#5d57a6'
 };
 
 export const iconMap = {
-    'Physical': 'physique.png', 'Fire': 'feu.png', 'Ice': 'Ice.png', 'Wind': 'Vent.png',
-    'Electric': 'electrique.png', 'Ether': 'Ether.png', 'Lumiflux': 'Lumiflux.png', 'Auric Ink': 'Ether.png'
+    'Physical': 'physique.png',
+    'Honed Edge': 'Honed_Edge.png',
+    'Fire': 'feu.png',
+    'Ice': 'Ice.png',
+    'Frost': 'Frost.png',
+    'Wind': 'Vent.png',
+    'Electric': 'electrique.png',
+    'Ether': 'Ether.png',
+    'Lumiflux': 'Lumiflux.png',
+    'Auric Ink': 'Ether.png'
 };
 
 export const filterGroups = {
-    'Ice': ['Ice'], 'Wind': ['Wind'], 'Ether': ['Ether', 'Auric Ink'], 'Lumiflux': ['Lumiflux'],
-    'Physical': ['Physical'], 'Fire': ['Fire'], 'Electric': ['Electric'],
-    'All': ['Ice', 'Wind', 'Ether', 'Auric Ink', 'Lumiflux', 'Physical', 'Fire', 'Electric']
+    'Ice': ['Ice', 'Frost'],
+    'Wind': ['Wind'],
+    'Ether': ['Ether', 'Auric Ink'],
+    'Lumiflux': ['Lumiflux'],
+    'Physical': ['Physical', 'Honed Edge'],
+    'Fire': ['Fire'],
+    'Electric': ['Electric'],
+    'All': ['Ice', 'Frost', 'Wind', 'Ether', 'Auric Ink', 'Lumiflux', 'Physical', 'Honed Edge', 'Fire', 'Electric']
 };
 
 export const agentsData = [
