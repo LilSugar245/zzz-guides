@@ -910,6 +910,96 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: "F2P Friendly", members: [ { img: "Anton.png", color: "#3182eb", initial: "A" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] }
         ]
     },
+    "Billy": {
+        color: "#e8a838", element: "Physical", rank: "A", factionTitle: "Lièvres rusés",
+        stats: [
+            { label: "Attaque", value: "2400 - 2800+" },
+            { label: "Taux Crit", value: "70 % - 80 %" },
+            { label: "Dégât Crit", value: "140 % - 160 %+" }
+        ],
+        discs: [
+            { tag: "Meilleur Set (101,96 %) 👑", set1: "Woodpecker_Electro", set2: "Branch_Blade_Song", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Branch and Blade Song", note: "Maintien très facile de 2 à 3 cumuls d'ATK via le tir accroupi, les tirs roulés et les contre-esquives." },
+            { tag: "Régularité (101,08 %)", set1: "Shadow_Harmony", set2: "Woodpecker_Electro", set1Name: "4pc Shadow Harmony", set2Name: "+ 2pc Woodpecker Electro", note: "L'option la plus constante grâce à l'enchaînement des attaques de sprint à 360° pour cumuler le Taux CRIT sans gestion complexe." },
+            { tag: "Burst Ultime (98,52 %)", set1: "Puffer_Electro", set2: "Woodpecker_Electro", set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Woodpecker Electro", note: "Excellent avec des soutiens comme Dialyn permettant de déclencher un ultime à chaque fenêtre d'étourdissement." }
+        ],
+        skills: [
+            { name: "Ult", level: "12", icon: "Ultime.png" },
+            { name: "Ex", level: "11", icon: "Ex.png" },
+            { name: "Dodge", level: "10", icon: "Esquive.png" },
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" },
+            { name: "Assist", level: "6", icon: "Assist.png" }
+        ],
+        statPriority: {
+            main: [
+                { slot: "6", label: "ATK %" },
+                { slot: "5", label: "PEN Ratio% / ATK% / Physical DMG%" },
+                { slot: "4", label: "Crit Rate% / Crit DMG%" }
+            ],
+            sub: [
+                { label: "Crit Rate = Crit DMG", highlight: true },
+                { label: "ATK %", highlight: true },
+                { label: "Flat PEN", highlight: false },
+                { label: "Flat ATK", highlight: false }
+            ]
+        },
+        engines: [
+            { tag: "Best-in-Slot S5 (116,43 %)", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" },
+            { tag: "Stat Stick S (108,16 %)", name: "Cloudcleave Radiance", img: "W-Engine_Cloudcleave_Radiance.png" },
+            { tag: "Alternative S (103,20 %)", name: "Heartstring Nocturne", img: "W-Engine_Heartstring_Nocturne.png" },
+            { tag: "Signature A (100 %)", name: "Starlight Engine Replica", img: "W-Engine_Starlight_Engine_Replica.png" },
+            { tag: "F2P Craftable (91,14 %)", name: "Starlight Engine", img: "Starlight_Engine.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Billy Premium 👑", members: [ { img: "Billy.png", color: "#e8a838", initial: "B" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" } ] },
+            { name: "TEAM 02", tag: "F2P Lièvres rusés", members: [ { img: "Billy.png", color: "#e8a838", initial: "B" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "Anby.png", color: "#3182eb", initial: "A" } ] },
+            { name: "TEAM 03", tag: "Duo Faction / Stun", members: [ { img: "Billy.png", color: "#e8a838", initial: "B" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Seth.png", color: "#3182eb", initial: "S" } ] }
+        ]
+    },
+
+    "Seth": {
+        color: "#3182eb", element: "Electric", rank: "A", factionTitle: "Division de l'Ordre urbain",
+        stats: [
+            { label: "Attaque (Bouclier)", value: "2600 - 3200+ (Cap 3750)" },
+            { label: "PV", value: "≥ 11 000" },
+            { label: "Prof. d'anomalie", value: "200 - 300+ (Optionnel)" }
+        ],
+        discs: [
+            { tag: "Soutien Ultime 👑", set1: "Astral_Voice", set2: "Swing_Jazz", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Swing Jazz", note: "Le meilleur set de soutien grâce aux aides rapides qui confèrent un buff d'équipe pouvant atteindre 24 % de DGT." },
+            { tag: "Buff Dégâts d'équipe", set1: "Swing_Jazz", set2: "Proto_Punk", set1Name: "4pc Swing Jazz", set2Name: "+ 2pc Proto Punk", note: "Accorde 15 % de dégâts à l'escouade pendant 12 s après un enchaînement ou un ultime." },
+            { tag: "Renfort de Bouclier", set1: "Proto_Punk", set2: "Swing_Jazz", set1Name: "4pc Proto Punk", set2Name: "+ 2pc Swing Jazz", note: "Augmente la valeur des boucliers de 15 % et confère 15 % de DGT d'équipe sur parade ou esquive défensive." }
+        ],
+        skills: [
+            { name: "Ult", level: "12", icon: "Ultime.png" },
+            { name: "Ex", level: "11", icon: "Ex.png" },
+            { name: "Assist", level: "11", icon: "Assist.png" },
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" },
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: {
+            main: [
+                { slot: "6", label: "Energy Regen / Anomaly Mastery" },
+                { slot: "5", label: "ATK% / Electric DMG%" },
+                { slot: "4", label: "ATK% / Anomaly Proficiency" }
+            ],
+            sub: [
+                { label: "ATK % (priorité absorption bouclier)", highlight: true },
+                { label: "Anomaly Proficiency", highlight: true },
+                { label: "Flat ATK", highlight: false },
+                { label: "Flat PEN", highlight: false }
+            ]
+        },
+        engines: [
+            { tag: "Signature (S5) 👑", name: "Peacekeeper - Specialized", img: "W-Engine_Peacekeeper_-_Specialized.png" },
+            { tag: "Alternative Soutien", name: "Spring Embrace", img: "W-Engine_Spring_Embrace.png" },
+            { tag: "Option Défensive", name: "Bunny Band", img: "W-Engine_Bunny_Band.png" },
+            { tag: "Alternative Impact", name: "Original Transmorpher", img: "W-Engine_Original_Transmorpher.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Anomalie Jane / Vivian 👑", members: [ { img: "Jane.png", color: "#e8a838", initial: "J" }, { img: "Seth.png", color: "#3182eb", initial: "S" }, { img: "Vivian.png", color: "#f23c8a", initial: "V" } ] },
+            { name: "TEAM 02", tag: "Désordre Burnice", members: [ { img: "Jane.png", color: "#e8a838", initial: "J" }, { img: "Seth.png", color: "#3182eb", initial: "S" }, { img: "Burnice.png", color: "#f05432", initial: "B" } ] },
+            { name: "TEAM 03", tag: "F2P Ordre Urbain", members: [ { img: "Billy.png", color: "#e8a838", initial: "B" }, { img: "Seth.png", color: "#3182eb", initial: "S" }, { img: "Anby.png", color: "#3182eb", initial: "A" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Oiseaux-moqueurs",
         stats: [ { label: "Attaque", value: "Max" }, { label: "Taux Crit", value: "Max" }, { label: "Dégât Crit", value: "Max" } ],
