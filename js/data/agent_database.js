@@ -60,7 +60,7 @@ export const agentDatabase = {
         ]
     },
     "Ye Shunguang": {
-        color: "#e8a838", element: "Physical", rank: "S", factionTitle: "Void Hunter",
+        color: "#e8a838", element: "Honed Edge", elementIcon: "Honed_Edge.png", rank: "S", factionTitle: "Void Hunter",
         stats: [ { label: "Attaque", value: "Max" }, { label: "PEN Ratio ou ATQ", value: "Max" }, { label: "Dégât Crit", value: "Max" } ],
         discs: [
             { tag: "Meilleur Set 👑", set1: "White_Water_Ballad", set2: "Branch_Blade_Song", set1Name: "4pc White Water Ballad", set2Name: "+ 2pc Branch and Blade Song", note: "White Water Ballad est le set signature de Ye Shunguang, augmentant son Taux CRIT et son ATQ. Le buff devient plus puissant lorsqu'elle active le Voile d'Ether. Vu qu'elle gagne beaucoup de Taux CRIT via ce set et son Core Skill, utilisez le 2-pc Branch and Blade Song pour les DGT CRIT." },
@@ -438,7 +438,7 @@ export const agentDatabase = {
         ]
     },
     "Miyabi": {
-        color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Section 6",
+        color: "#3bbedb", element: "Frost", elementIcon: "Frost.png", rank: "S", factionTitle: "Section 6",
         stats: [ { label: "Taux CRIT", value: "75-95%" }, { label: "Dégat CRIT", value: "150-190%" }, { label: "Attaque", value: "2500 - 3600+" } ],
         discs: [
             { tag: "Meilleur Set 👑", set1: "Branch_Blade_Song", set2: "Woodpecker_Electro", set1Name: "4pc Branch and Blade Song", set2Name: "+ 2pc Woodpecker Electro", note: "Branch & Blade Song est le meilleur disque pour Miyabi car il lui donne du DGT CRIT et augmente ses propres DGT quand un membre de l'équipe applique Gel. Woodpecker Electro est son choix de prédilection en 2 pièces puisqu'elle a besoin de Taux CRIT." },
