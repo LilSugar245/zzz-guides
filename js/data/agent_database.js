@@ -71,7 +71,7 @@ export const agentDatabase = {
         ],
         statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "PEN Ratio / ATQ / DGT Physique" }, { slot: "4", label: "Dégât CRIT" } ], sub: [ { label: "Taux CRIT", highlight: true }, { label: "DGT CRIT", highlight: false }, { label: "Attaque %", highlight: false } ] },
         engines: [
-            { tag: "Meilleur Moteur", name: "Cloudcleave Radiance", img: "W-Engine_Cloudcleave_Radiance.png" }, { tag: "Alternative 5★", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" }, { tag: "Alternative 5★", name: "Steel Cushion", img: "W-Engine_Steel_Cushion.png" }, { tag: "Alternative F2P", name: "Gilded Blossom", img: "Gilded_Blossom.png" }, { tag: "Alternative A", name: "Marcato Desire", img: "Marcato_Desire.png" }, { tag: "Alternative A", name: "Street Superstar", img: "Street_Superstar.png" }
+            { tag: "Meilleur Moteur", name: "Cloudcleave Radiance", img: "W-Engine_Cloudcleave_Radiance.png" }, { tag: "Alternative 5★", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" }, { tag: "Alternative 5★", name: "Steel Cushion", img: "W-Engine_Steel_Cushion.png" }, { tag: "Alternative F2P", name: "Gilded Blossom", img: "Gilded_Blossom.png" }, { tag: "Alternative A", name: "Marcato Desire", img: "Marcato_Desire.png" }, { tag: "Alternative A", name: "Street Superstar", img: "W-Engine_Street_Superstar.png" }
         ],
         teams: [
             { name: "TEAM 01", tag: "Team Premium", members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
