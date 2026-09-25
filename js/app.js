@@ -2,7 +2,7 @@ import { factionsData } from './data/factions.js';
 import { agentsData, colorMap, iconMap, filterGroups } from './data/agents.js';
 import { getGuideHTML } from './guides/index.js'; 
 
-let activeMode = 'elements'; // 'elements' ou 'roles'
+let activeMode = 'elements';
 let currentElement = 'All';
 let currentRole = 'All';
 let searchQuery = '';
@@ -17,7 +17,6 @@ const gridContainer = document.getElementById('agents-grid');
 const emptyState = document.getElementById('empty-state');
 const favFilterBtn = document.getElementById('favoriteFilterBtn');
 
-// Éléments de l'interface d'onglets
 const tabElements = document.getElementById('tabElements');
 const tabRoles = document.getElementById('tabRoles');
 const groupElements = document.getElementById('groupElements');
@@ -26,7 +25,6 @@ const groupRoles = document.getElementById('groupRoles');
 const elemBtns = document.querySelectorAll('.filter-elem-btn');
 const roleBtns = document.querySelectorAll('.filter-role-btn');
 
-// Bascule vers l'onglet Éléments
 tabElements.addEventListener('click', () => {
     activeMode = 'elements';
     tabElements.classList.add('active');
@@ -36,7 +34,6 @@ tabElements.addEventListener('click', () => {
     renderAgents();
 });
 
-// Bascule vers l'onglet Rôles
 tabRoles.addEventListener('click', () => {
     activeMode = 'roles';
     tabRoles.classList.add('active');
@@ -46,7 +43,6 @@ tabRoles.addEventListener('click', () => {
     renderAgents();
 });
 
-// Gestion des clics sur les boutons Éléments
 elemBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         elemBtns.forEach(b => b.classList.remove('active'));
@@ -56,7 +52,6 @@ elemBtns.forEach(btn => {
     });
 });
 
-// Gestion des clics sur les boutons Rôles
 roleBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         roleBtns.forEach(b => b.classList.remove('active'));
@@ -318,7 +313,8 @@ window.shareCurrentAgent = function() {
     }).catch(err => console.error('Erreur lors de la copie', err));
 };
 
-window.openAgentDetail = function(agentName, rank, element) {
+// Modification pour accepter un chargement instantané (sans délai)
+window.openAgentDetail = function(agentName, rank, element, instantLoad = false) {
     const modal = document.getElementById('agentDetailModal');
     const splashImg = document.getElementById('agentSplashImage');
     const giantName = document.getElementById('modalGiantNameText');
@@ -341,21 +337,38 @@ window.openAgentDetail = function(agentName, rank, element) {
     giantName.textContent = agentName;
     
     guideContainer.innerHTML = getGuideHTML(agentName);
+    
+    // NOUVEAUTÉ : Reset du scroll pour chaque nouveau guide
+    guideContainer.scrollTop = 0;
 
     modal.classList.remove('hidden');
     void modal.offsetWidth;
     modal.classList.add('opacity-100');
     
-    setTimeout(() => {
-        splashImg.style.opacity = '1'; 
-        if(agentName.toLowerCase() === 'remielle') {
-            splashImg.style.transform = 'translateY(0) scale(1.4)';
-        } else {
-            splashImg.style.transform = 'translateY(0) scale(1)';
-        }
-        guideContainer.style.opacity = '1'; 
+    // Si c'est un chargement direct via URL, on affiche l'image et le texte immédiatement
+    if (instantLoad) {
+        splashImg.style.transition = 'none';
+        guideContainer.style.transition = 'none';
+        
+        splashImg.style.opacity = '1';
+        splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)';
+        
+        guideContainer.style.opacity = '1';
         guideContainer.style.transform = 'translateX(0)';
-    }, 50);
+        
+        // On remet les transitions après un court délai pour les prochaines navigations
+        setTimeout(() => {
+            splashImg.style.transition = '';
+            guideContainer.style.transition = '';
+        }, 50);
+    } else {
+        setTimeout(() => {
+            splashImg.style.opacity = '1'; 
+            splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)';
+            guideContainer.style.opacity = '1'; 
+            guideContainer.style.transform = 'translateX(0)';
+        }, 50);
+    }
 };
 
 function init3DParallax() {
@@ -404,7 +417,6 @@ function renderAgents() {
             const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-transparent';
             const displayName = agent.name === 'Jane' ? 'Jane Doe' : agent.name;
 
-            // Aucune icône (ni élément, ni rôle) sur les images de la grille
             const cardHTML = `
                 <div class="agent-card-container flex flex-col cursor-pointer w-full group animate-fade-in-up" 
                      style="--elem-color: ${hexColor}; animation-delay: ${staggerDelay}ms;"
@@ -474,17 +486,18 @@ document.addEventListener('keydown', (e) => {
 });
 
 renderFactions();
+// On force un premier rendu de la grille globale
 renderAgents();
 
+// NOUVEAUTÉ : Détection d'URL pour affichage direct SANS le délai de 300ms de transition
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const agentParam = urlParams.get('agent');
     if (agentParam) {
+        // Au lieu de setTimeout, on force un chargement immédiat via le paramètre 'instantLoad = true'
         const agent = agentsData.find(a => a.name.toLowerCase() === agentParam.toLowerCase());
         if (agent) {
-            setTimeout(() => {
-                window.openAgentDetail(agent.name, agent.rank, agent.element);
-            }, 300);
+            window.openAgentDetail(agent.name, agent.rank, agent.element, true);
         }
     }
 });
