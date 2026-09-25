@@ -4,7 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZZZ Guides - Base de données avancée</title>
-    <link rel="icon" type="image/png" href="assets/Icone/logo.png" />
+    
+    <!-- Balises Open Graph pour l'intégration Discord / Réseaux sociaux -->
+    <meta property="og:title" content="ZZZ Guides - Base de données avancée">
+    <meta property="og:description" content="Découvrez les meilleurs builds, équipes, disques et statistiques pour tous les agents de Zenless Zone Zero.">
+    <!-- Remplace le lien ci-dessous par l'URL absolue de l'image que tu veux afficher sur Discord -->
+    <meta property="og:image" content="https://lilsugar245.github.io/zzz-guides/assets/Logo.png">
+    <meta property="og:url" content="https://lilsugar245.github.io/zzz-guides/">
+    <meta name="theme-color" content="#d7f70c">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/png" href="assets/Logo.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -35,12 +45,14 @@
             transform: skewX(12deg);
         }
 
-        /* Boutons de tri */
+        /* Boutons de tri uniformes */
         .filter-btn {
             background-color: #151515;
             color: #d4d4d8;
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%; /* Force la largeur maximale de la cellule de grille */
+            justify-content: flex-start; /* Aligne l'icône à gauche */
         }
         .filter-btn:hover {
             border-color: rgba(255, 255, 255, 0.25);
@@ -55,6 +67,11 @@
         }
         .filter-btn.active img.role-icon {
             filter: brightness(0) !important;
+        }
+        
+        /* Modificateur pour le bouton TOUS afin de le centrer */
+        .filter-btn[data-filter="All"], .filter-btn[data-role="All"] {
+            justify-content: center;
         }
     </style>
 </head>
@@ -100,35 +117,35 @@
                     <button id="tabRoles" class="tab-pill flex-1 text-center"><span>Rôles</span></button>
                 </div>
 
-                <!-- Zone de filtres interchangeables -->
+                <!-- Zone de filtres dynamiques avec CSS GRID pour une uniformité parfaite -->
                 <div class="mb-4">
                     <!-- Groupe ÉLÉMENTS -->
                     <div id="groupElements">
                         <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3">Éléments</h3>
-                        <div class="flex flex-wrap gap-2" id="elementFilters">
-                            <button data-filter="All" class="filter-btn filter-elem-btn active px-5 py-2 rounded-2xl text-xs font-bold">Tous</button>
-                            <button data-filter="Physical" class="filter-btn filter-elem-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/physique.png" loading="lazy" class="w-4 h-4 object-contain"> Physique</button>
-                            <button data-filter="Fire" class="filter-btn filter-elem-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/feu.png" loading="lazy" class="w-4 h-4 object-contain"> Feu</button>
-                            <button data-filter="Ice" class="filter-btn filter-elem-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/Ice.png" loading="lazy" class="w-4 h-4 object-contain"> Glace</button>
-                            <button data-filter="Electric" class="filter-btn filter-elem-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain"> Élec</button>
-                            <button data-filter="Ether" class="filter-btn filter-elem-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/Ether.png" loading="lazy" class="w-4 h-4 object-contain"> Ether</button>
-                            <button data-filter="Wind" class="filter-btn filter-elem-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/Vent.png" loading="lazy" class="w-4 h-4 object-contain"> Vent</button>
-                            <button data-filter="Lumiflux" class="filter-btn filter-elem-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/Lumiflux.png" loading="lazy" class="w-4 h-4 object-contain"> Lumiflux</button>
+                        <div class="grid grid-cols-2 xl:grid-cols-3 gap-2" id="elementFilters">
+                            <button data-filter="All" class="filter-btn filter-elem-btn active px-3 py-2 rounded-xl text-xs font-bold flex items-center col-span-2 xl:col-span-3">Tous</button>
+                            <button data-filter="Physical" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/physique.png" loading="lazy" class="w-4 h-4 object-contain"> Physique</button>
+                            <button data-filter="Fire" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/feu.png" loading="lazy" class="w-4 h-4 object-contain"> Feu</button>
+                            <button data-filter="Ice" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/Ice.png" loading="lazy" class="w-4 h-4 object-contain"> Glace</button>
+                            <button data-filter="Electric" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain"> Élec</button>
+                            <button data-filter="Ether" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/Ether.png" loading="lazy" class="w-4 h-4 object-contain"> Ether</button>
+                            <button data-filter="Wind" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/Vent.png" loading="lazy" class="w-4 h-4 object-contain"> Vent</button>
+                            <button data-filter="Lumiflux" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/Lumiflux.png" loading="lazy" class="w-4 h-4 object-contain"> Lumiflux</button>
                         </div>
                     </div>
 
                     <!-- Groupe RÔLES -->
                     <div id="groupRoles" class="hidden">
                         <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3">Rôles</h3>
-                        <div class="flex flex-wrap gap-2" id="roleFilters">
-                            <button data-role="All" class="filter-btn filter-role-btn active px-5 py-2 rounded-2xl text-xs font-bold">Tous</button>
-                            <button data-role="Attack" class="filter-btn filter-role-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Attack.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Attaque</button>
-                            <button data-role="Stun" class="filter-btn filter-role-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Stun.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Stun</button>
-                            <button data-role="Anomaly" class="filter-btn filter-role-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Anomaly.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Anomalie</button>
-                            <button data-role="Support" class="filter-btn filter-role-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Support.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Support</button>
-                            <button data-role="Defense" class="filter-btn filter-role-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Defense.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Défense</button>
-                            <button data-role="Armorer" class="filter-btn filter-role-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Armorer.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Armurier</button>
-                            <button data-role="Rupture" class="filter-btn filter-role-btn px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Rupture.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Rupture</button>
+                        <div class="grid grid-cols-2 xl:grid-cols-3 gap-2" id="roleFilters">
+                            <button data-role="All" class="filter-btn filter-role-btn active px-3 py-2 rounded-xl text-xs font-bold flex items-center col-span-2 xl:col-span-3">Tous</button>
+                            <button data-role="Attack" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Attack.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Attaque</button>
+                            <button data-role="Stun" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Stun.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Stun</button>
+                            <button data-role="Anomaly" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Anomaly.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Anomalie</button>
+                            <button data-role="Support" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Support.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Support</button>
+                            <button data-role="Defense" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Defense.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Défense</button>
+                            <button data-role="Armorer" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Armorer.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Armurier</button>
+                            <button data-role="Rupture" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Rupture.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Rupture</button>
                         </div>
                     </div>
                 </div>
@@ -221,6 +238,7 @@
                 <img id="agentSplashImage" src="" loading="lazy" class="w-full h-full md:max-h-[95%] object-contain transform translate-y-10 opacity-0 transition-all duration-700 delay-200 ease-out drop-shadow-[10px_10px_20px_rgba(0,0,0,0.8)] pointer-events-auto">
             </div>
             
+            <!-- Conteneur défilant du guide -->
             <div class="w-full md:w-[65%] xl:w-[60%] h-[60%] md:h-full relative z-20 pointer-events-auto overflow-hidden flex flex-col bg-gradient-to-t md:bg-gradient-to-l from-black via-black/90 to-black/40 md:to-transparent backdrop-blur-md md:backdrop-blur-sm">
                 <div id="agentGuideContainer" class="flex-1 overflow-y-auto custom-scrollbar pt-24 p-6 md:p-10 lg:p-14 transform translate-x-12 opacity-0 transition-all duration-500 delay-300">
                 </div>
