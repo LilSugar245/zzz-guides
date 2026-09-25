@@ -73,5 +73,6 @@ export const agentsData = [
     { name: 'Pyrois', element: 'Ether', rank: 'S', faction: 'Phaéthon', role: 'Attack' },
     { name: 'Sigrid', element: 'Ice', rank: 'S', faction: 'Département de la patrouille aérienne', role: 'Attack' },
     { name: 'Remielle', element: 'Lumiflux', rank: 'S', faction: 'Entente de Dayat', role: 'Anomaly' },
-    { name: 'Claret', element: 'Electric', rank: 'S', faction: 'Atelier Flint', role: 'Armorer' }
+    { name: 'Claret', element: 'Electric', rank: 'S', faction: 'Atelier Flint', role: 'Armorer' },
+    { name: 'Roxy', element: 'Wind', rank: 'S', faction: 'Atelier Flint', role: 'Stun' }
 ];
