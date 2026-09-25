@@ -623,8 +623,8 @@ export const agentDatabase = {
         color: "#3bbedb", element: "Wind", rank: "S", factionTitle: "Atelier Flint",
         stats: [
             { label: "Taux Crit", value: "100 % (combat)" },
-            { label: "Récup. d'énergie", value: "Maximiser" },
-            { label: "Pénétration", value: "PEN Ratio" }
+            { label: "Récup. d'énergie", value: "3.12" },
+            { label: "Attaque", value: "1800" }
         ],
         discs: [
             { tag: "Team Armurier 👑", set1: "Astral_Voice", set2: "Swing_Jazz", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Swing Jazz", note: "Optimisé pour Claret. Le bonus d'équipe se maintient via les assistances ou en encaissant volontairement un coup avant la phase d'étourdissement." },
