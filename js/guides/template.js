@@ -134,7 +134,7 @@ export function generateGuideFromData(agentName, data) {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 ${data.teams.map((team, index) => `
                 <div class="bg-gradient-to-br from-[#111] to-[#0a0a0a] border border-zinc-800 rounded-2xl p-6 shadow-xl relative overflow-hidden group transition-colors" style="hover:border-color: ${c}80;">
-                    <div class="absolute -right-12 -top-12 text-[100px] font-display font-black text-zinc-800/20 italic transform group-hover:scale-110 pointer-events-none transition-all duration-700">0${index+1}</div>
+                    <div class="absolute right-4 -top-5 text-[85px] font-display font-black text-zinc-800/20 italic tracking-tighter leading-none pointer-events-none select-none transform group-hover:scale-110 transition-all duration-700">0${index+1}</div>
                     <div class="flex items-center justify-between mb-6 border-b border-zinc-800/80 pb-3 relative z-10">
                         <span class="text-white font-display font-black italic text-2xl tracking-widest drop-shadow-md">${team.name}</span>
                         <span class="text-[10px] font-bold uppercase border px-3 py-1 rounded tracking-wide shadow-sm" style="background-color: ${index===0 ? c+'20' : '#27272a'}; color: ${index===0 ? c : '#a1a1aa'}; border-color: ${index===0 ? c+'40' : '#3f3f46'};">${team.tag}</span>
