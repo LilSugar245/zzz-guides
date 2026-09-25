@@ -664,6 +664,60 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: "Double Stun", members: [ { img: "Roxy.png", color: "#3bbedb", initial: "R" }, { img: "Orphie and Magus.png", color: "#f05432", initial: "OM" }, { img: "Norma.png", color: "#f05432", initial: "N" } ] }
         ]
     },
+    "Sigrid": {
+        color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Département de la patrouille aérienne",
+        stats: [
+            { label: "Taux Crit", value: "6 rolls max (≤ 34%)" },
+            { label: "Attaque", value: "Maximiser" },
+            { label: "Dégât Crit", value: "Maximiser" }
+        ],
+        discs: [
+            { tag: "Avec Dialyn (100 %) 👑", set1: "Puffer_Electro", set2: "Polar_Metal", set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Polar Metal", note: "Configuration indispensable avec Dialyn pour exploiter le double ultime sous étourdissement et combler le manque de DGT Glace." },
+            { tag: "Sans Dialyn (98,16 %)", set1: "Hormone_Punk", set2: "Puffer_Electro", set1Name: "4pc Hormone Punk", set2Name: "+ 2pc Puffer Electro", note: "Meilleure option en duo avec Norma ou Rina. Plus régulier que Dawn's Bloom qui sature les bonus avec Weeping Cradle." },
+            { tag: "Alternative (96,16 %)", set1: "Dawn_Bloom", set2: "Puffer_Electro", set1Name: "4pc Dawn's Bloom", set2Name: "+ 2pc Puffer Electro", note: "Troisième alternative viable mais moins performante pour renforcer les attaques normales et l'EX Spécial." }
+        ],
+        skills: [
+            { name: "Core", level: "F", icon: "Core.webp" },
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" },
+            { name: "Ult", level: "12", icon: "Ultime.png" },
+            { name: "Ex", level: "11", icon: "Ex.png" },
+            { name: "Assist", level: "10", icon: "Assist.png" }
+        ],
+        statPriority: {
+            main: [
+                { slot: "6", label: "ATK %" },
+                { slot: "5", label: "PEN Ratio" },
+                { slot: "4", label: "DGT CRIT / ATK %" }
+            ],
+            sub: [
+                { label: "Taux CRIT (6 rolls max)", highlight: true },
+                { label: "ATK %", highlight: true },
+                { label: "DGT CRIT", highlight: false },
+                { label: "Flat PEN", highlight: false },
+                { label: "Flat ATK", highlight: false }
+            ]
+        },
+        engines: [
+            { tag: "Signature 100 %", name: "Knight's Extolments", img: "W-Engine_Knights_Extolments.png" },
+            { tag: "Alternative 5★", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" },
+            { tag: "Alternative F2P", name: "Starlight Engine", img: "Starlight_Engine.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: "Plafond Burst 👑", members: [ { img: "Sigrid.png", color: "#3bbedb", initial: "S" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] },
+            { name: "TEAM 02", tag: "Double Ultime", members: [ { img: "Sigrid.png", color: "#3bbedb", initial: "S" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] },
+            { name: "TEAM 03", tag: "Confort Stun", members: [ { img: "Sigrid.png", color: "#3bbedb", initial: "S" }, { img: "Nangong Yu.png", color: "#f23c8a", initial: "NY" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] }
+        ],
+        mindscapes: [
+            { rank: "M1", desc: "+25 % ATK en combat, progression accélérée des niveaux d'EBA et coup bonus de 100 % de DGT." },
+            { rank: "M2", desc: "+10 % de décibels et gain de dégâts massif ; permet de caler un ultime additionnel par combat." },
+            { rank: "M4", desc: "Bonus permanent de +80 % de dégâts." }
+        ],
+        notes: [
+            "Plafond CRIT : Ne pas dépasser 34 % sur la fiche de stats hors combat (85,4 % innés sous forme renforcée).",
+            "Moteurs : Proscrire formellement les armes à sous-stat Taux CRIT (comme Myriad Eclipse).",
+            "Arme vs Mindscapes : Si The Brimstone R5 est déjà en ta possession, priorise directement le M1/M2 plutôt que son arme signature."
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Oiseaux-moqueurs",
         stats: [ { label: "Attaque", value: "Max" }, { label: "Taux Crit", value: "Max" }, { label: "Dégât Crit", value: "Max" } ],
