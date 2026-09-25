@@ -69,7 +69,7 @@ export const agentsData = [
     { name: 'Nangong Yu', element: 'Ether', rank: 'S', faction: "Anges de l'illusion", role: 'Stun', version: 'V2' },
     { name: 'Promeia', element: 'Ice', rank: 'S', faction: 'Autorité de conformité Krampus', role: 'Anomaly', version: 'V2' },
     
-    { name: 'Starlight Billy', element: 'Physical', rank: 'S', faction: 'Lièvres rusés', role: 'Rupture', version: 'V3' },
+    { name: 'Starlight Billy', element: 'Physical', rank: 'S', faction: 'Lièvres rusés', role: 'Rupture', version: 'V2' },
     { name: 'Norma', element: 'Fire', rank: 'S', faction: 'Département de stratégie externe', role: 'Stun', version: 'V3' },
     { name: 'Velina', element: 'Wind', rank: 'S', faction: 'Département de stratégie externe', role: 'Anomaly', version: 'V3' },
     { name: 'Pyrois', element: 'Ether', rank: 'S', faction: 'Phaéthon', role: 'Attack', version: 'V3' },
