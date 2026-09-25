@@ -1,7 +1,7 @@
 import { iconMap } from '../data/agents.js';
 
 export function generateGuideFromData(agentName, data) {
-    const iconName = iconMap[data.element] || 'physique.png';
+    const iconName = data.elementIcon || iconMap[data.element] || 'physique.png';
     const c = data.color;
 
     return `
