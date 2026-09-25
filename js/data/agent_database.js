@@ -439,7 +439,7 @@ export const agentDatabase = {
     },
     "Miyabi": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Section 6",
-        stats: [ { label: "DGT Glace", value: "Max" }, { label: "Taux CRIT", value: "Max" }, { label: "Attaque", value: "Max" } ],
+        stats: [ { label: "Taux CRIT", value: "Max" }, { label: "Dégat CRIT", value: "Max" }, { label: "Attaque", value: "Max" } ],
         discs: [
             { tag: "Meilleur Set 👑", set1: "Branch_Blade_Song", set2: "Woodpecker_Electro", set1Name: "4pc Branch and Blade Song", set2Name: "+ 2pc Woodpecker Electro", note: "Branch & Blade Song est le meilleur disque pour Miyabi car il lui donne du DGT CRIT et augmente ses propres DGT quand un membre de l'équipe applique Gel. Woodpecker Electro est son choix de prédilection en 2 pièces puisqu'elle a besoin de Taux CRIT." },
             { tag: "Alternative", set1: "Branch_Blade_Song", set2: "Polar_Metal", set1Name: "4pc Branch and Blade Song", set2Name: "+ 2pc Polar Metal", note: "Si vous avez déjà beaucoup de Taux CRIT sur Miyabi, vous pouvez envisager Polar Metal comme alternative pour obtenir plus de DGT Glace." }
