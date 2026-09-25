@@ -3,81 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZZZ Guides - Base de données avancée</title>
     
-    <!-- Balises Open Graph pour l'intégration Discord / Réseaux sociaux -->
-    <meta property="og:title" content="ZZZ Guides - Base de données avancée">
-    <meta property="og:description" content="Découvrez les meilleurs builds, équipes, disques et statistiques pour tous les agents de Zenless Zone Zero.">
-    <!-- Remplace le lien ci-dessous par l'URL absolue de l'image que tu veux afficher sur Discord -->
-    <meta property="og:image" content="https://lilsugar245.github.io/zzz-guides/assets/logo.png">
-    <meta property="og:url" content="https://lilsugar245.github.io/zzz-guides/">
+    <!-- Balises OpenGraph (Discord / Twitter) -->
+    <meta property="og:title" content="ZZZ Guides - Base de données avancée" />
+    <meta property="og:description" content="Découvrez les meilleurs builds, équipes et statistiques pour vos agents de Zenless Zone Zero." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lilsugar245.github.io/zzz-guides/" />
+    <meta property="og:image" content="https://lilsugar245.github.io/zzz-guides/assets/Logo.png" />
     <meta name="theme-color" content="#d7f70c">
-    <meta property="og:type" content="website">
 
-    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <title>ZZZ Guides - Base de données avancée</title>
+    <link rel="icon" type="image/png" href="assets/Icone/logo.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <style>
-        /* Barre de sélection d'onglets (style capsule) */
-        .tab-pill {
-            padding: 0.45rem 1.25rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-            color: #a1a1aa;
-            transition: all 0.25s ease;
-            border-radius: 9999px;
-            cursor: pointer;
-        }
-        .tab-pill:hover {
-            color: #ffffff;
-        }
-        .tab-pill.active {
-            background-color: #ffffff;
-            color: #000000;
-            transform: skewX(-12deg);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.35);
-        }
-        .tab-pill.active span {
-            display: inline-block;
-            transform: skewX(12deg);
-        }
-
-        /* Boutons de tri uniformes */
-        .filter-btn {
-            background-color: #151515;
-            color: #d4d4d8;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 100%; /* Force la largeur maximale de la cellule de grille */
-            justify-content: flex-start; /* Aligne l'icône à gauche */
-        }
-        .filter-btn:hover {
-            border-color: rgba(255, 255, 255, 0.25);
-            color: #ffffff;
-        }
-        .filter-btn.active {
-            background-color: #ffffff !important;
-            color: #000000 !important;
-            border-color: #ffffff !important;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.45) !important;
-            font-weight: 900 !important;
-        }
-        .filter-btn.active img.role-icon {
-            filter: brightness(0) !important;
-        }
+        /* INTERCEPTION INLINE : Masque ultra-rapide avant le chargement du DOM */
+        #fast-mask { position: fixed; inset: 0; background: #050505; z-index: 999999; transition: opacity 0.4s ease; }
         
-        /* Modificateur pour le bouton TOUS afin de le centrer */
-        .filter-btn[data-filter="All"], .filter-btn[data-role="All"] {
-            justify-content: center;
-        }
+        /* Barre de sélection d'onglets */
+        .tab-pill { padding: 0.45rem 0.5rem; font-weight: 900; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; color: #a1a1aa; transition: all 0.25s ease; border-radius: 9999px; cursor: pointer; }
+        @media (min-width: 768px) { .tab-pill { font-size: 0.75rem; padding: 0.45rem 1rem; } }
+        .tab-pill:hover { color: #ffffff; }
+        .tab-pill.active { background-color: #ffffff; color: #000000; transform: skewX(-12deg); box-shadow: 0 0 15px rgba(255, 255, 255, 0.35); }
+        .tab-pill.active span { display: inline-block; transform: skewX(12deg); }
+
+        /* Boutons de filtres alignés et stricts */
+        .filter-btn { background-color: #151515; color: #d4d4d8; border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; width: 100%; white-space: nowrap; }
+        .filter-btn:hover { border-color: rgba(255, 255, 255, 0.25); color: #ffffff; }
+        .filter-btn.active { background-color: #ffffff !important; color: #000000 !important; border-color: #ffffff !important; box-shadow: 0 0 20px rgba(255, 255, 255, 0.45) !important; font-weight: 900 !important; }
+        .filter-btn.active img.role-icon { filter: brightness(0) !important; }
+
+        /* Animation Faisceau Laser Séparateur de Version */
+        @keyframes shimmerLaser { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        .laser-beam { animation: shimmerLaser 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
     </style>
+    <script>
+        // Si l'URL contient un agent, on injecte immédiatement un écran noir
+        if (window.location.search.includes('agent=')) {
+            document.write('<div id="fast-mask"></div>');
+        }
+    </script>
 </head>
 <body class="flex flex-col h-screen bg-[#050505] text-white overflow-hidden">
 
-    <!-- Toast Notification -->
     <div id="toastNotification" class="fixed top-10 left-1/2 transform -translate-x-1/2 -translate-y-32 opacity-0 z-[300] transition-all duration-500 pointer-events-none flex items-center gap-4 bg-[#0a0a0a]/95 backdrop-blur-xl border border-yellow-400/50 px-8 py-4 rounded-full shadow-[0_15px_50px_-5px_rgba(215,247,12,0.4)]">
         <div class="relative flex items-center justify-center">
             <div class="absolute inset-0 bg-yellow-400 rounded-full blur animate-ping opacity-50"></div>
@@ -89,7 +58,6 @@
         </div>
     </div>
 
-    <!-- Header -->
     <header class="bg-black py-4 border-b border-zinc-800 shadow-[0_10px_30px_rgba(0,0,0,0.9)] z-50 shrink-0 relative transition-all flex items-center justify-center px-4 md:px-10">
         <a href="index.html" class="flex items-center justify-center gap-4 relative z-10 hover:scale-105 transition-transform duration-500 cursor-pointer">
             <div class="bg-yellow-400 px-5 py-1.5 skew-x-[-15deg] shadow-[0_0_15px_rgba(232,168,56,0.3)]"><span class="block text-black font-display font-black italic text-3xl skew-x-[15deg]">ZZZ</span></div>
@@ -102,7 +70,6 @@
         <aside class="w-20 md:w-[340px] bg-[#0a0a0a] border-r border-zinc-800 flex flex-col shrink-0 z-40 relative hidden md:flex">
             <div class="p-5 flex flex-col shrink-0 z-10 bg-[#0a0a0a] shadow-2xl relative custom-scrollbar overflow-y-auto max-h-full pb-10">
                 
-                <!-- Search Bar -->
                 <div class="relative w-full z-50 group mb-6">
                     <div class="relative flex items-center">
                         <input type="text" id="searchInput" autocomplete="off" placeholder="Rechercher un agent..." class="w-full bg-[#151515] border-2 border-zinc-800 rounded-xl py-3.5 pl-4 pr-10 text-white text-sm focus:outline-none focus:border-yellow-400 focus:bg-[#1a1a1a] transition-all shadow-inner placeholder-zinc-600">
@@ -111,46 +78,59 @@
                     <div id="searchDropdown" class="absolute left-0 right-0 top-full mt-2 bg-black/95 border border-zinc-700 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.9)] max-h-72 overflow-y-auto flex flex-col hidden divide-y divide-zinc-800 backdrop-blur-xl transform origin-top transition-all duration-300 z-[150]"></div>
                 </div>
 
-                <!-- Barre d'onglets (Éléments / Rôles) -->
-                <div class="bg-[#141414] border border-zinc-800/80 p-1.5 rounded-full flex items-center justify-between mb-5">
+                <!-- Onglets Principaux 3 Voies -->
+                <div class="bg-[#141414] border border-zinc-800/80 p-1.5 rounded-full flex items-center justify-between mb-5 gap-1">
                     <button id="tabElements" class="tab-pill active flex-1 text-center"><span>Éléments</span></button>
                     <button id="tabRoles" class="tab-pill flex-1 text-center"><span>Rôles</span></button>
+                    <button id="tabVersions" class="tab-pill flex-1 text-center"><span>Versions</span></button>
                 </div>
 
-                <!-- Zone de filtres dynamiques avec CSS GRID pour une uniformité parfaite -->
                 <div class="mb-4">
+                    
                     <!-- Groupe ÉLÉMENTS -->
                     <div id="groupElements">
                         <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3">Éléments</h3>
-                        <div class="grid grid-cols-2 xl:grid-cols-3 gap-2" id="elementFilters">
-                            <button data-filter="All" class="filter-btn filter-elem-btn active px-3 py-2 rounded-xl text-xs font-bold flex items-center col-span-2 xl:col-span-3">Tous</button>
-                            <button data-filter="Physical" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/physique.png" loading="lazy" class="w-4 h-4 object-contain"> Physique</button>
-                            <button data-filter="Fire" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/feu.png" loading="lazy" class="w-4 h-4 object-contain"> Feu</button>
-                            <button data-filter="Ice" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/Ice.png" loading="lazy" class="w-4 h-4 object-contain"> Glace</button>
-                            <button data-filter="Electric" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain"> Élec</button>
-                            <button data-filter="Ether" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/Ether.png" loading="lazy" class="w-4 h-4 object-contain"> Ether</button>
-                            <button data-filter="Wind" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/Vent.png" loading="lazy" class="w-4 h-4 object-contain"> Vent</button>
-                            <button data-filter="Lumiflux" class="filter-btn filter-elem-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Icone/Lumiflux.png" loading="lazy" class="w-4 h-4 object-contain"> Lumiflux</button>
+                        <div class="grid grid-cols-3 gap-2" id="elementFilters">
+                            <!-- "Tous" prend toute la largeur -->
+                            <button data-filter="All" class="filter-btn filter-elem-btn active col-span-3 px-3 py-2 rounded-xl text-xs font-bold">Tous</button>
+                            <button data-filter="Physical" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/physique.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Physique</button>
+                            <button data-filter="Fire" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/feu.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Feu</button>
+                            <button data-filter="Ice" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Ice.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Glace</button>
+                            <button data-filter="Electric" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Élec</button>
+                            <button data-filter="Ether" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Ether.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Ether</button>
+                            <button data-filter="Wind" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Vent.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Vent</button>
+                            <button data-filter="Lumiflux" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Lumiflux.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Lumiflux</button>
                         </div>
                     </div>
 
                     <!-- Groupe RÔLES -->
                     <div id="groupRoles" class="hidden">
                         <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3">Rôles</h3>
-                        <div class="grid grid-cols-2 xl:grid-cols-3 gap-2" id="roleFilters">
-                            <button data-role="All" class="filter-btn filter-role-btn active px-3 py-2 rounded-xl text-xs font-bold flex items-center col-span-2 xl:col-span-3">Tous</button>
-                            <button data-role="Attack" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Attack.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Attaque</button>
-                            <button data-role="Stun" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Stun.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Stun</button>
-                            <button data-role="Anomaly" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Anomaly.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Anomalie</button>
-                            <button data-role="Support" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Support.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Support</button>
-                            <button data-role="Defense" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Defense.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Défense</button>
-                            <button data-role="Armorer" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Armorer.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Armurier</button>
-                            <button data-role="Rupture" class="filter-btn filter-role-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><img src="assets/Rôles/Rupture.png" loading="lazy" class="w-4 h-4 object-contain role-icon"> Rupture</button>
+                        <div class="grid grid-cols-3 gap-2" id="roleFilters">
+                            <!-- "Tous" prend toute la largeur -->
+                            <button data-role="All" class="filter-btn filter-role-btn active col-span-3 px-3 py-2 rounded-xl text-xs font-bold">Tous</button>
+                            <button data-role="Attack" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Attack.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Attaque</button>
+                            <button data-role="Stun" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Stun.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Stun</button>
+                            <button data-role="Anomaly" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Anomaly.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Anomalie</button>
+                            <button data-role="Support" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Support.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Support</button>
+                            <button data-role="Defense" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Defense.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Défense</button>
+                            <button data-role="Armorer" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Armorer.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Armurier</button>
+                            <button data-role="Rupture" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Rupture.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Rupture</button>
+                        </div>
+                    </div>
+
+                    <!-- Groupe VERSIONS -->
+                    <div id="groupVersions" class="hidden">
+                        <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3">Mises à jour</h3>
+                        <div class="grid grid-cols-2 lg:grid-cols-2 gap-2" id="versionFilters">
+                            <button data-version="All" class="filter-btn filter-version-btn active col-span-2 px-2 py-3 rounded-xl text-sm font-black tracking-widest uppercase">Toutes les versions</button>
+                            <button data-version="V1" class="filter-btn filter-version-btn px-2 py-2 rounded-xl text-xs font-bold">V1.0 - V1.7</button>
+                            <button data-version="V2" class="filter-btn filter-version-btn px-2 py-2 rounded-xl text-xs font-bold">V2.0 - V2.8</button>
+                            <button data-version="V3" class="filter-btn filter-version-btn col-span-2 px-2 py-2 rounded-xl text-xs font-bold">V3.0 - V3.X</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Favoris -->
                 <div class="mt-4 pt-4 border-t border-zinc-800 mb-4">
                     <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Personnalisé</h3>
                     <button id="favoriteFilterBtn" class="w-full bg-[#151515] border-2 border-zinc-800 hover:border-red-500 hover:bg-red-500/10 text-zinc-400 px-4 py-3 rounded-xl text-xs font-bold flex items-center justify-between transition-all duration-300 shadow-inner group">
@@ -161,7 +141,6 @@
                     </button>
                 </div>
 
-                <!-- Faction Active -->
                 <div id="activeFactionTag" class="hidden items-center justify-between bg-yellow-400/10 border-2 border-yellow-400/50 px-4 py-3 rounded-xl backdrop-blur-md pulse-active-tag transition-all duration-300 mt-2 mb-4">
                     <div class="flex flex-col">
                         <span class="text-[10px] text-yellow-400 font-black uppercase tracking-widest">Faction active</span>
@@ -171,12 +150,10 @@
                 </div>
             </div>
 
-            <!-- Factions Marquee -->
             <div class="flex-1 overflow-hidden relative marquee-mask px-5 py-2 z-0" id="sidebarMarqueeWrapper">
                 <div class="marquee-track-vertical" id="sidebarFactionsList"></div>
             </div>
 
-            <!-- Bouton Factions Modal -->
             <div class="p-5 bg-[#0a0a0a] shrink-0 border-t border-zinc-800 relative z-10 shadow-[0_-15px_30px_rgba(0,0,0,0.6)]">
                 <button id="openModalBtn" class="w-full bg-[#d7f70c] hover:bg-[#c4e30b] text-black font-black uppercase text-sm py-4 rounded-xl shadow-[0_0_20px_rgba(215,247,12,0.2)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(215,247,12,0.5)] hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-3 group overflow-hidden relative">
                     <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:animate-[shimmer_1s_forwards]"></div>
@@ -196,7 +173,7 @@
                 <div id="searchDropdownMobile" class="absolute left-0 right-0 top-full mt-2 bg-black/95 border border-zinc-700 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.9)] max-h-72 overflow-y-auto flex flex-col hidden divide-y divide-zinc-800 backdrop-blur-xl transform origin-top transition-all duration-300 z-[150]"></div>
             </div>
 
-            <div id="agents-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-5 gap-y-14 sm:gap-8 pb-20"></div>
+            <div id="agents-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-5 gap-y-14 sm:gap-8 pb-20 relative"></div>
             
             <div id="empty-state" class="hidden absolute inset-0 flex flex-col items-center justify-center text-zinc-600 transition-opacity duration-500">
                 <svg class="w-16 h-16 mb-4 text-zinc-700 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
@@ -238,8 +215,8 @@
                 <img id="agentSplashImage" src="" loading="lazy" class="w-full h-full md:max-h-[95%] object-contain transform translate-y-10 opacity-0 transition-all duration-700 delay-200 ease-out drop-shadow-[10px_10px_20px_rgba(0,0,0,0.8)] pointer-events-auto">
             </div>
             
-            <!-- Conteneur défilant du guide -->
             <div class="w-full md:w-[65%] xl:w-[60%] h-[60%] md:h-full relative z-20 pointer-events-auto overflow-hidden flex flex-col bg-gradient-to-t md:bg-gradient-to-l from-black via-black/90 to-black/40 md:to-transparent backdrop-blur-md md:backdrop-blur-sm">
+                <!-- LE CONTENEUR SCROLLABLE EST ICI -->
                 <div id="agentGuideContainer" class="flex-1 overflow-y-auto custom-scrollbar pt-24 p-6 md:p-10 lg:p-14 transform translate-x-12 opacity-0 transition-all duration-500 delay-300">
                 </div>
             </div>
@@ -262,7 +239,6 @@
         </button>
     </div>
 
-    <!-- Main Module Execution -->
     <script type="module" src="js/app.js"></script>
 </body>
 </html>
