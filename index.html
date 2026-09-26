@@ -51,15 +51,20 @@
 
         /* Animation Factions (Correction disparition GPU) */
         @keyframes marqueeVertical {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(0, -50%, 0); }
         }
-        .marquee-mask { mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); }
+        .marquee-mask { 
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); 
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); 
+        }
         .marquee-track-vertical { 
             animation: marqueeVertical 30s linear infinite; 
             display: flex; 
             flex-direction: column; 
-            will-change: transform; /* Force le rendu GPU pour éviter que les images disparaissent */
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
     </style>
     <script>
