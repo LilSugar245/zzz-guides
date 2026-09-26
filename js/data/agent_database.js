@@ -65,7 +65,7 @@ export const agentDatabase = {
         teams: [
             { 
                 name: "TEAM 01", 
-                tag: { fr: "Calydon 👑", en: "Calydon 👑" }, 
+                tag: { fr: "Physique Calydon 👑", en: "Physical Calydon 👑" }, 
                 members: [ 
                     { img: "Burnice.png", color: "#f05432", initial: "B" }, 
                     { img: "Caesar.png", color: "#e8a838", initial: "C" }, 
