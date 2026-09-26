@@ -4,127 +4,235 @@ import { getGuideHTML } from './guides/index.js';
 import { updateStaticUI, setLanguage, currentLang, tTerm, tData } from './i18n.js';
 import { mindscapesData } from './data/mindscapes.js';
 
-let activeMode = 'elements';
-let currentElement = 'All';
-let currentRole = 'All';
-let currentVersion = 'All';
-let searchQuery = '';
-let activeFactionFilter = null;
-let showFavoritesOnly = false;
-let favorites = JSON.parse(localStorage.getItem('zzz_favorites')) || [];
-
-let filteredAgentsList = []; 
-let currentModalAgentIndex = -1;
-
-const gridContainer = document.getElementById('agents-grid');
-const emptyState = document.getElementById('empty-state');
-const favFilterBtn = document.getElementById('favoriteFilterBtn');
-const mainScrollArea = document.querySelector('main');
-
-const mainTabContainer = document.getElementById('mainTabContainer');
-const tabElements = document.getElementById('tabElements');
-const tabRoles = document.getElementById('tabRoles');
-const tabVersions = document.getElementById('tabVersions');
-const groupElements = document.getElementById('groupElements');
-const groupRoles = document.getElementById('groupRoles');
-const groupVersions = document.getElementById('groupVersions');
-
-function scrollToTop() { mainScrollArea.scrollTo({ top: 0, behavior: 'smooth' }); }
-
-function updateSliderPosition(activeTabElement) {
-    const containerRect = mainTabContainer.getBoundingClientRect();
-    const tabRect = activeTabElement.getBoundingClientRect();
-    const relativeLeft = tabRect.left - containerRect.left;
-    mainTabContainer.style.setProperty('--slide-left', `${relativeLeft}px`);
-    mainTabContainer.style.setProperty('--slide-width', `${tabRect.width}px`);
-}
-
-window.addEventListener('resize', () => {
-    const activeTab = document.querySelector('.tab-pill.active');
-    if (activeTab) updateSliderPosition(activeTab);
-});
-setTimeout(() => updateSliderPosition(tabElements), 100);
-
-tabElements.addEventListener('click', () => {
-    activeMode = 'elements'; tabElements.classList.add('active'); tabRoles.classList.remove('active'); tabVersions.classList.remove('active');
-    updateSliderPosition(tabElements); groupElements.classList.remove('hidden'); groupRoles.classList.add('hidden'); groupVersions.classList.add('hidden');
-    renderAgents(); scrollToTop();
-});
-tabRoles.addEventListener('click', () => {
-    activeMode = 'roles'; tabRoles.classList.add('active'); tabElements.classList.remove('active'); tabVersions.classList.remove('active');
-    updateSliderPosition(tabRoles); groupRoles.classList.remove('hidden'); groupElements.classList.add('hidden'); groupVersions.classList.add('hidden');
-    renderAgents(); scrollToTop();
-});
-tabVersions.addEventListener('click', () => {
-    activeMode = 'versions'; tabVersions.classList.add('active'); tabElements.classList.remove('active'); tabRoles.classList.remove('active');
-    updateSliderPosition(tabVersions); groupVersions.classList.remove('hidden'); groupElements.classList.add('hidden'); groupRoles.classList.add('hidden');
-    renderAgents(); scrollToTop();
-});
-
-const elemBtns = document.querySelectorAll('.filter-elem-btn');
-const roleBtns = document.querySelectorAll('.filter-role-btn');
-const versionBtns = document.querySelectorAll('.filter-version-btn');
-
-elemBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        elemBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active');
-        currentElement = btn.getAttribute('data-filter'); renderAgents(); scrollToTop();
-    });
-});
-roleBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        roleBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active');
-        currentRole = btn.getAttribute('data-role'); renderAgents(); scrollToTop();
-    });
-});
-versionBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        versionBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active');
-        currentVersion = btn.getAttribute('data-version'); renderAgents(); scrollToTop();
-    });
-});
-
-const searchInput = document.getElementById('searchInput'); const clearSearchBtn = document.getElementById('clearSearchBtn'); const searchDropdown = document.getElementById('searchDropdown');
-const searchInputMobile = document.getElementById('searchInputMobile'); const clearSearchBtnMobile = document.getElementById('clearSearchBtnMobile'); const searchDropdownMobile = document.getElementById('searchDropdownMobile');
-
-function updateFavBadge() { document.getElementById('favCountBadge').textContent = favorites.length; }
-
-window.toggleFavorite = function(btn, agentName, event) {
-    event.stopPropagation(); const svg = btn.querySelector('svg');
-    if(favorites.includes(agentName)) {
-        favorites = favorites.filter(f => f !== agentName);
-        svg.classList.remove('text-red-500', 'fill-red-500'); svg.classList.add('text-zinc-400', 'fill-transparent');
-    } else {
-        favorites.push(agentName);
-        svg.classList.add('text-red-500', 'fill-red-500'); svg.classList.remove('text-zinc-400', 'fill-transparent');
-    }
-    localStorage.setItem('zzz_favorites', JSON.stringify(favorites)); updateFavBadge();
-    if(showFavoritesOnly) renderAgents();
+// ==========================================
+// 1. ÉTAT DE L'APPLICATION (STATE)
+// ==========================================
+const State = {
+    mode: 'elements', // 'elements', 'roles', 'versions'
+    filters: { element: 'All', role: 'All', version: 'All' },
+    search: '',
+    faction: null,
+    showFavorites: false,
+    favorites: JSON.parse(localStorage.getItem('zzz_favorites')) || [],
+    filteredAgents: [],
+    modalIndex: -1
 };
 
-favFilterBtn.addEventListener('click', function() {
-    showFavoritesOnly = !showFavoritesOnly;
-    if(showFavoritesOnly) {
-        this.classList.replace('border-zinc-800', 'border-red-500'); this.classList.replace('text-zinc-400', 'text-white');
-        this.classList.add('bg-red-500/10'); this.querySelector('svg').classList.add('text-red-500');
-    } else {
-        this.classList.replace('border-red-500', 'border-zinc-800'); this.classList.replace('text-white', 'text-zinc-400');
-        this.classList.remove('bg-red-500/10'); this.querySelector('svg').classList.remove('text-red-500');
-    }
-    renderAgents(); scrollToTop();
-});
-updateFavBadge();
+// ==========================================
+// 2. CACHE DU DOM (Performances)
+// ==========================================
+const DOM = {
+    grid: document.getElementById('agents-grid'),
+    empty: document.getElementById('empty-state'),
+    scrollArea: document.querySelector('main'),
+    
+    tabContainer: document.getElementById('mainTabContainer'),
+    tabs: {
+        elements: { btn: document.getElementById('tabElements'), group: document.getElementById('groupElements') },
+        roles: { btn: document.getElementById('tabRoles'), group: document.getElementById('groupRoles') },
+        versions: { btn: document.getElementById('tabVersions'), group: document.getElementById('groupVersions') }
+    },
+    
+    // PC & Mobile fusionnés dans des tableaux pour éviter le code en double
+    searchInputs: [document.getElementById('searchInput'), document.getElementById('searchInputMobile')],
+    clearBtns: [document.getElementById('clearSearchBtn'), document.getElementById('clearSearchBtnMobile')],
+    dropdowns: [document.getElementById('searchDropdown'), document.getElementById('searchDropdownMobile')],
+    
+    favBtn: document.getElementById('favoriteFilterBtn'),
+    favBadge: document.getElementById('favCountBadge')
+};
 
+// ==========================================
+// 3. INITIALISATION (Lancement du site)
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    updateStaticUI();
+    initTabs();
+    initFilters('.filter-elem-btn', 'element');
+    initFilters('.filter-role-btn', 'role');
+    initFilters('.filter-version-btn', 'version');
+    initSearch();
+    initFavorites();
+    initLanguageSwitcher();
+    initKeyboardNavigation();
+    
+    renderFactions();
+    renderAgents();
+    
+    setTimeout(() => updateSliderPosition(DOM.tabs.elements.btn), 100);
+    window.addEventListener('resize', () => {
+        const activeTab = document.querySelector('.tab-pill.active');
+        if (activeTab) updateSliderPosition(activeTab);
+    });
+
+    checkUrlForAgent();
+});
+
+// ==========================================
+// 4. LOGIQUE DES ONGLETS ET FILTRES
+// ==========================================
+function scrollToTop() { DOM.scrollArea.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+function updateSliderPosition(activeTabElement) {
+    if (!DOM.tabContainer || !activeTabElement) return;
+    const containerRect = DOM.tabContainer.getBoundingClientRect();
+    const tabRect = activeTabElement.getBoundingClientRect();
+    DOM.tabContainer.style.setProperty('--slide-left', `${tabRect.left - containerRect.left}px`);
+    DOM.tabContainer.style.setProperty('--slide-width', `${tabRect.width}px`);
+}
+
+function initTabs() {
+    Object.keys(DOM.tabs).forEach(mode => {
+        DOM.tabs[mode].btn.addEventListener('click', () => {
+            State.mode = mode;
+            
+            // Met à jour l'UI des onglets
+            Object.keys(DOM.tabs).forEach(m => {
+                DOM.tabs[m].btn.classList.toggle('active', m === mode);
+                DOM.tabs[m].group.classList.toggle('hidden', m !== mode);
+            });
+            
+            updateSliderPosition(DOM.tabs[mode].btn);
+            renderAgents();
+            scrollToTop();
+        });
+    });
+}
+
+function initFilters(selector, filterType) {
+    const btns = document.querySelectorAll(selector);
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            State.filters[filterType] = btn.getAttribute(`data-${filterType === 'element' ? 'filter' : filterType}`);
+            renderAgents();
+            scrollToTop();
+        });
+    });
+}
+
+// ==========================================
+// 5. LOGIQUE DE RECHERCHE (Unifiée)
+// ==========================================
+function initSearch() {
+    DOM.searchInputs.forEach((input, index) => {
+        if(!input) return;
+        input.addEventListener('input', (e) => handleSearch(e.target.value));
+        input.addEventListener('focus', (e) => handleSearch(e.target.value));
+        input.addEventListener('blur', () => setTimeout(() => DOM.dropdowns.forEach(d => d && d.classList.add('hidden')), 300));
+    });
+
+    DOM.clearBtns.forEach(btn => {
+        if(btn) btn.addEventListener('click', clearSearch);
+    });
+}
+
+function handleSearch(query) {
+    State.search = query;
+    // Synchronise tous les inputs
+    DOM.searchInputs.forEach(input => { if(input) input.value = query; });
+    
+    const isHidden = query.length === 0;
+    DOM.clearBtns.forEach(btn => { if(btn) btn.classList.toggle('hidden', isHidden); });
+    DOM.dropdowns.forEach(drop => { if(drop) drop.classList.remove('hidden'); });
+
+    updateDropdownUI(query);
+    renderAgents();
+}
+
+function clearSearch() {
+    State.search = '';
+    DOM.searchInputs.forEach(input => { if(input) input.value = ''; });
+    DOM.clearBtns.forEach(btn => { if(btn) btn.classList.add('hidden'); });
+    DOM.dropdowns.forEach(drop => { if(drop) drop.classList.add('hidden'); });
+    renderAgents();
+}
+
+function updateDropdownUI(query) {
+    let filtered = query 
+        ? agentsData.filter(a => a.name.toLowerCase().startsWith(query.toLowerCase()))
+        : [...agentsData];
+    
+    filtered.sort((a, b) => a.name.localeCompare(b.name));
+
+    const html = filtered.length === 0 
+        ? `<div class="p-5 text-zinc-500 text-sm text-center italic font-bold">Aucun signal trouvé</div>`
+        : filtered.map((agent, delay) => {
+            const iconFile = iconMap[agent.element] || 'physique.png';
+            return `
+            <div class="dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group" style="animation-delay: ${delay * 15}ms" onmousedown="window.triggerSearchSelect('${agent.name}')">
+                <div class="w-12 h-12 rounded-xl bg-[#121212] border border-zinc-700 overflow-hidden flex-shrink-0 relative shadow-inner">
+                    <img src="assets/Agents/${agent.name}.png" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://placehold.co/100x100/222222/ffffff?text=${agent.name.charAt(0)}'">
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-white text-sm font-black tracking-widest group-hover:text-yellow-400 transition-colors uppercase">${agent.name}</span>
+                    <div class="flex items-center gap-1.5 mt-1"><img src="assets/Icone/${iconFile}" class="w-3.5 h-3.5 object-contain opacity-80"><span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest">${tTerm(agent.element)}</span></div>
+                </div>
+            </div>`;
+        }).join('');
+
+    DOM.dropdowns.forEach(drop => { if(drop) drop.innerHTML = html; });
+}
+
+window.triggerSearchSelect = function(agentName) {
+    handleSearch(agentName);
+    DOM.dropdowns.forEach(drop => { if(drop) drop.classList.add('hidden'); });
+};
+
+// ==========================================
+// 6. LOGIQUE DES FAVORIS
+// ==========================================
+function updateFavBadge() { 
+    if(DOM.favBadge) DOM.favBadge.textContent = State.favorites.length; 
+}
+
+function initFavorites() {
+    updateFavBadge();
+    if(DOM.favBtn) {
+        DOM.favBtn.addEventListener('click', () => {
+            State.showFavorites = !State.showFavorites;
+            const svg = DOM.favBtn.querySelector('svg');
+            
+            if(State.showFavorites) {
+                DOM.favBtn.classList.replace('border-zinc-800', 'border-red-500'); DOM.favBtn.classList.replace('text-zinc-400', 'text-white'); DOM.favBtn.classList.add('bg-red-500/10'); svg.classList.add('text-red-500');
+            } else {
+                DOM.favBtn.classList.replace('border-red-500', 'border-zinc-800'); DOM.favBtn.classList.replace('text-white', 'text-zinc-400'); DOM.favBtn.classList.remove('bg-red-500/10'); svg.classList.remove('text-red-500');
+            }
+            renderAgents(); scrollToTop();
+        });
+    }
+}
+
+window.toggleFavorite = function(btn, agentName, event) {
+    event.stopPropagation(); 
+    const svg = btn.querySelector('svg');
+    if(State.favorites.includes(agentName)) {
+        State.favorites = State.favorites.filter(f => f !== agentName);
+        svg.classList.remove('text-red-500', 'fill-red-500'); svg.classList.add('text-zinc-500', 'fill-transparent');
+    } else {
+        State.favorites.push(agentName);
+        svg.classList.add('text-red-500', 'fill-red-500'); svg.classList.remove('text-zinc-500', 'fill-transparent');
+    }
+    localStorage.setItem('zzz_favorites', JSON.stringify(State.favorites)); 
+    updateFavBadge();
+    if(State.showFavorites) renderAgents();
+};
+
+// ==========================================
+// 7. FACTIONS
+// ==========================================
 function renderFactions() {
     const generateFactionHTML = (faction, isSidebar) => {
-        const imgPath = `assets/Faction/${faction}.png`; const fallbackImg = `https://placehold.co/300x300/181818/d7f70c?text=${faction.substring(0,3).toUpperCase()}&font=montserrat`;
-        let displayName = faction; let subName = '';
-        if (faction === "Équipe d'intervention spéciale des Enquêtes criminelles") { displayName = "N.E.P.S."; subName = "Équipe d'intervention spéciale"; }
+        const imgPath = `assets/Faction/${faction}.png`; 
+        const fallbackImg = `https://placehold.co/300x300/181818/d7f70c?text=${faction.substring(0,3).toUpperCase()}&font=montserrat`;
+        let displayName = faction === "Équipe d'intervention spéciale des Enquêtes criminelles" ? "N.E.P.S." : faction;
+        let subName = faction === "Équipe d'intervention spéciale des Enquêtes criminelles" ? "Équipe d'intervention spéciale" : '';
 
         if(isSidebar) {
             return `
             <div class="mb-5 px-1 transform-gpu">
-                <div class="faction-box rounded-[1.5rem] p-4 flex flex-col items-center gap-4 cursor-pointer w-full group bg-gradient-to-br from-[#121212] to-[#050505] border-2 border-zinc-800 hover:border-yellow-400/50 transition-colors transform-gpu" onclick="setFactionFilter('${faction.replace(/'/g, "\\'")}')">
+                <div class="faction-box rounded-[1.5rem] p-4 flex flex-col items-center gap-4 cursor-pointer w-full group bg-gradient-to-br from-[#121212] to-[#050505] border-2 border-zinc-800 hover:border-yellow-400/50 transition-colors transform-gpu" onclick="window.setFactionFilter('${faction.replace(/'/g, "\\'")}')">
                     <div class="w-40 h-40 md:w-44 md:h-44 bg-black rounded-[1.2rem] overflow-hidden flex items-center justify-center p-2 shadow-inner group-hover:bg-[#0a0a0a] transition-colors relative transform-gpu">
                         <img src="${imgPath}" loading="eager" decoding="sync" alt="${faction}" class="w-full h-full object-contain scale-110 drop-shadow-xl relative z-10 transform-gpu" style="backface-visibility: hidden;" onerror="this.onerror=null; this.src='${fallbackImg}'">
                     </div>
@@ -135,94 +243,195 @@ function renderFactions() {
             </div>`;
         } else {
             return `
-            <div class="bg-[#121212] border-2 border-zinc-800 rounded-[2rem] p-6 flex flex-col items-center justify-between gap-6 cursor-pointer hover:border-yellow-400 hover:-translate-y-2 transition-all duration-300 group shadow-2xl relative overflow-hidden" onclick="setFactionFilter('${faction.replace(/'/g, "\\'")}', true)">
-                <div class="w-32 h-32 sm:w-48 sm:h-48 transition-all duration-500 group-hover:scale-110 relative z-10">
-                    <img src="${imgPath}" loading="lazy" alt="${faction}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='${fallbackImg}'">
-                </div>
+            <div class="bg-[#121212] border-2 border-zinc-800 rounded-[2rem] p-6 flex flex-col items-center justify-between gap-6 cursor-pointer hover:border-yellow-400 hover:-translate-y-2 transition-all duration-300 group shadow-2xl relative overflow-hidden" onclick="window.setFactionFilter('${faction.replace(/'/g, "\\'")}', true)">
+                <div class="w-32 h-32 sm:w-48 sm:h-48 transition-all duration-500 group-hover:scale-110 relative z-10"><img src="${imgPath}" loading="lazy" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='${fallbackImg}'"></div>
                 <div class="bg-black/80 px-5 py-3 rounded-xl text-xs sm:text-sm font-black w-full text-center border border-zinc-800 group-hover:border-yellow-400 text-zinc-300 shadow-inner group-hover:text-yellow-400 transition-colors duration-300 uppercase tracking-wider relative z-10">
                     ${displayName}${subName ? `<span class="block text-[10px] text-zinc-500 mt-1">${subName}</span>` : ''}
                 </div>
             </div>`;
         }
     };
-    const modalGrid = document.getElementById('modalFactionsGrid'); if (modalGrid) modalGrid.innerHTML = factionsData.map(f => generateFactionHTML(f, false)).join('');
-    const sidebarList = document.getElementById('sidebarFactionsList'); if (sidebarList) { const sidebarHTML = factionsData.map(f => generateFactionHTML(f, true)).join(''); sidebarList.innerHTML = sidebarHTML + sidebarHTML; }
+    
+    const modalGrid = document.getElementById('modalFactionsGrid'); 
+    if (modalGrid) modalGrid.innerHTML = factionsData.map(f => generateFactionHTML(f, false)).join('');
+    
+    const sidebarList = document.getElementById('sidebarFactionsList'); 
+    if (sidebarList) { 
+        const sidebarHTML = factionsData.map(f => generateFactionHTML(f, true)).join(''); 
+        sidebarList.innerHTML = sidebarHTML + sidebarHTML; 
+    }
 }
 
 window.setFactionFilter = function(faction, fromModal = false) {
-    activeFactionFilter = faction; let displayName = faction;
-    if (faction === "Équipe d'intervention spéciale des Enquêtes criminelles") displayName = "N.E.P.S.";
-    document.getElementById('activeFactionName').textContent = displayName;
-    document.getElementById('activeFactionTag').classList.remove('hidden'); document.getElementById('activeFactionTag').classList.add('flex');
+    State.faction = faction; 
+    const tag = document.getElementById('activeFactionTag');
+    const nameLabel = document.getElementById('activeFactionName');
+    
+    if (tag && nameLabel) {
+        nameLabel.textContent = faction === "Équipe d'intervention spéciale des Enquêtes criminelles" ? "N.E.P.S." : faction;
+        tag.classList.remove('hidden'); tag.classList.add('flex');
+    }
     if(fromModal) window.closeModal('factionModal');
     renderAgents(); scrollToTop();
 };
 
-document.getElementById('clearFactionBtn').addEventListener('click', (e) => {
-    e.stopPropagation(); activeFactionFilter = null;
-    document.getElementById('activeFactionTag').classList.add('hidden'); document.getElementById('activeFactionTag').classList.remove('flex');
-    renderAgents(); scrollToTop();
-});
-
-function updateBothDropdowns(query) {
-    searchDropdown.innerHTML = ''; searchDropdownMobile.innerHTML = '';
-    let filtered = [];
-    if (query) { filtered = agentsData.filter(a => a.name.toLowerCase().startsWith(query.toLowerCase())); clearSearchBtn.classList.remove('hidden'); clearSearchBtnMobile.classList.remove('hidden'); } 
-    else { filtered = [...agentsData]; clearSearchBtn.classList.add('hidden'); clearSearchBtnMobile.classList.add('hidden'); }
-    filtered.sort((a, b) => a.name.localeCompare(b.name));
-    
-    if (filtered.length === 0) {
-        const emptyStateHTML = `<div class="p-5 text-zinc-500 text-sm text-center italic font-bold">Aucun signal trouvé</div>`;
-        searchDropdown.innerHTML = emptyStateHTML; searchDropdownMobile.innerHTML = emptyStateHTML;
-    } else {
-        let delay = 0;
-        filtered.forEach(agent => {
-            const iconFile = iconMap[agent.element] || 'physique.png';
-            const htmlContent = `
-                <div class="w-12 h-12 rounded-xl bg-[#121212] border border-zinc-700 overflow-hidden flex-shrink-0 relative shadow-inner">
-                    <img src="assets/Agents/${agent.name}.png" alt="${agent.name}" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://placehold.co/100x100/222222/ffffff?text=${agent.name.charAt(0)}'">
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-white text-sm font-black tracking-widest group-hover:text-yellow-400 transition-colors uppercase">${agent.name}</span>
-                    <div class="flex items-center gap-1.5 mt-1"><img src="assets/Icone/${iconFile}" class="w-3.5 h-3.5 object-contain opacity-80"><span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest">${tTerm(agent.element)}</span></div>
-                </div>`;
-            const onSelectLogic = (e) => {
-                e.preventDefault(); searchInput.value = agent.name; searchInputMobile.value = agent.name; searchQuery = agent.name;
-                searchDropdown.classList.add('hidden'); searchDropdownMobile.classList.add('hidden'); clearSearchBtn.classList.remove('hidden'); clearSearchBtnMobile.classList.remove('hidden'); 
-                renderAgents();
-            };
-            const divD = document.createElement('div'); divD.className = "dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group"; divD.style.animationDelay = `${delay}ms`; divD.innerHTML = htmlContent; divD.addEventListener('mousedown', onSelectLogic); searchDropdown.appendChild(divD);
-            const divM = document.createElement('div'); divM.className = "dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group"; divM.style.animationDelay = `${delay}ms`; divM.innerHTML = htmlContent; divM.addEventListener('mousedown', onSelectLogic); divM.addEventListener('touchstart', onSelectLogic, {passive: false}); searchDropdownMobile.appendChild(divM);
-            delay += 15;
-        });
-    }
+const clearFactionBtn = document.getElementById('clearFactionBtn');
+if(clearFactionBtn) {
+    clearFactionBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); State.faction = null;
+        document.getElementById('activeFactionTag').classList.add('hidden'); document.getElementById('activeFactionTag').classList.remove('flex');
+        renderAgents(); scrollToTop();
+    });
 }
 
-searchInput.addEventListener('input', (e) => { searchQuery = e.target.value; searchInputMobile.value = searchQuery; searchDropdown.classList.remove('hidden'); updateBothDropdowns(searchQuery); renderAgents(); });
-searchInput.addEventListener('focus', () => { searchDropdown.classList.remove('hidden'); updateBothDropdowns(searchInput.value); });
-searchInput.addEventListener('blur', () => { setTimeout(() => { searchDropdown.classList.add('hidden'); }, 300); });
-clearSearchBtn.addEventListener('click', clearSearch);
-searchInputMobile.addEventListener('input', (e) => { searchQuery = e.target.value; searchInput.value = searchQuery; searchDropdownMobile.classList.remove('hidden'); updateBothDropdowns(searchQuery); renderAgents(); });
-searchInputMobile.addEventListener('focus', () => { searchDropdownMobile.classList.remove('hidden'); updateBothDropdowns(searchInputMobile.value); });
-searchInputMobile.addEventListener('blur', () => { setTimeout(() => { searchDropdownMobile.classList.add('hidden'); }, 300); });
-clearSearchBtnMobile.addEventListener('click', clearSearch);
-function clearSearch() { searchInput.value = ''; searchInputMobile.value = ''; searchQuery = ''; clearSearchBtn.classList.add('hidden'); clearSearchBtnMobile.classList.add('hidden'); searchDropdown.classList.add('hidden'); searchDropdownMobile.classList.add('hidden'); renderAgents(); }
+// ==========================================
+// 8. MOTEUR DE RENDU DES AGENTS (La Grille)
+// ==========================================
+function renderAgents() {
+    DOM.grid.innerHTML = ''; 
+    State.filteredAgents = []; 
+    const agentsByVersion = {};
+
+    agentsData.forEach((agent) => {
+        const matchSearch = agent.name.toLowerCase().startsWith(State.search.toLowerCase());
+        
+        let matchFilter = true;
+        if (State.mode === 'elements') matchFilter = State.filters.element === 'All' || filterGroups[State.filters.element]?.includes(agent.element);
+        else if (State.mode === 'roles') matchFilter = State.filters.role === 'All' || agent.role === State.filters.role;
+        else if (State.mode === 'versions') matchFilter = State.filters.version === 'All' || agent.version === State.filters.version;
+        
+        const matchFaction = !State.faction || agent.faction === State.faction; 
+        const matchFav = !State.showFavorites || State.favorites.includes(agent.name);
+        
+        if (matchSearch && matchFilter && matchFaction && matchFav) {
+            State.filteredAgents.push(agent); 
+            const v = agent.version || 'Inconnu'; 
+            if (!agentsByVersion[v]) agentsByVersion[v] = []; 
+            agentsByVersion[v].push(agent);
+        }
+    });
+
+    if (State.filteredAgents.length > 0) {
+        DOM.empty.classList.add('hidden'); DOM.empty.classList.remove('opacity-100'); 
+        let globalDelay = 0;
+        
+        if (State.mode === 'versions' && State.filters.version === 'All') {
+            Object.keys(agentsByVersion).sort().forEach(version => {
+                DOM.grid.insertAdjacentHTML('beforeend', `<div class="col-span-full relative mt-16 mb-12 flex items-center justify-center group/sep perspective-1000"><div class="absolute inset-0 flex items-center justify-center pointer-events-none"><div class="w-[80%] h-px bg-gradient-to-r from-transparent via-zinc-700/80 to-transparent relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#d7f70c] to-transparent -translate-x-full laser-beam"></div></div></div><div class="relative bg-[#050505] px-8 py-3 border border-zinc-800/80 rounded-full flex items-center gap-4 shadow-[0_0_40px_rgba(0,0,0,0.6)] transform transition-transform duration-700 hover:scale-110 hover:border-[#d7f70c]/50 hover:shadow-[0_0_50px_rgba(215,247,12,0.2)] z-10 cursor-default"><div class="w-2.5 h-2.5 bg-[#d7f70c] rounded-full animate-pulse shadow-[0_0_10px_#d7f70c]"></div><span class="font-display font-black italic text-2xl tracking-[0.3em] text-white uppercase drop-shadow-md">Version <span class="text-[#d7f70c]">${version.replace('V', '')}</span></span><div class="w-2.5 h-2.5 bg-[#d7f70c] rounded-full animate-pulse shadow-[0_0_10px_#d7f70c]"></div><div class="absolute inset-0 bg-[#d7f70c]/5 blur-xl rounded-full -z-10 group-hover/sep:bg-[#d7f70c]/15 transition-colors duration-500"></div></div></div>`);
+                agentsByVersion[version].forEach(agent => DOM.grid.insertAdjacentHTML('beforeend', createCardHTML(agent, globalDelay++)));
+            });
+        } else { 
+            State.filteredAgents.forEach(agent => DOM.grid.insertAdjacentHTML('beforeend', createCardHTML(agent, globalDelay++))); 
+        }
+        setTimeout(init3DParallax, 50);
+    } else { 
+        DOM.empty.classList.remove('hidden'); setTimeout(() => DOM.empty.classList.add('opacity-100'), 10); 
+    }
+    
+    updateModalNavigation();
+}
+
+function createCardHTML(agent, delayIndex) {
+    const hexColor = colorMap[agent.element] || '#ffffff'; 
+    const cleanHex = hexColor.replace('#', ''); 
+    const isFav = State.favorites.includes(agent.name); 
+    const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-transparent'; 
+    const displayName = agent.name === 'Jane' ? 'Jane Doe' : agent.name;
+
+    return `
+    <div class="agent-card-container flex flex-col cursor-pointer w-full group animate-fade-in-up" style="--elem-color: ${hexColor}; animation-delay: ${Math.min(delayIndex * 40, 800)}ms;" onclick="window.openAgentDetail('${agent.name.replace(/'/g, "\\'")}', '${agent.rank}', '${agent.element}')">
+        <div class="agent-shape-wrapper w-full aspect-square bg-zinc-800 relative">
+            <div class="agent-shape-inner relative overflow-hidden flex items-end justify-center h-full w-full">
+                <img src="assets/Agents/${agent.name}.png" loading="lazy" class="agent-image absolute bottom-0 w-full h-auto min-h-full object-cover object-bottom" onerror="this.onerror=null; this.src='https://placehold.co/400x400/181818/${cleanHex}?text=${agent.name.charAt(0)}&font=montserrat'">
+                <div class="absolute inset-0 shadow-[inset_0_-35px_50px_rgba(0,0,0,0.95)] pointer-events-none transition-shadow duration-300 group-hover:shadow-[inset_0_-10px_20px_rgba(0,0,0,0.4)]"></div>
+                <button onclick="window.toggleFavorite(this, '${agent.name.replace(/'/g, "\\'")}', event)" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-[#111]/80 backdrop-blur border border-zinc-700 flex items-center justify-center z-30 transition-all hover:scale-110 shadow-lg group/fav"><svg class="w-5 h-5 transition-colors duration-300 ${heartClass} group-hover/fav:text-red-400" fill="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg></button>
+            </div>
+        </div>
+        <div class="mt-3 mx-1 bg-[#151515] p-2 skew-x-[-15deg] border-b-[4px] shadow-lg transition-all duration-300 group-hover:bg-[#1a1a1a]" style="border-bottom-color: ${hexColor};">
+            <div class="skew-x-[15deg] text-center w-full px-1 overflow-hidden flex items-center justify-center gap-2"><span class="text-white font-display font-black uppercase text-xs sm:text-[15px] tracking-[0.2em] truncate block drop-shadow-md transition-colors pointer-events-none">${displayName}</span></div>
+        </div>
+    </div>`;
+}
+
+// ==========================================
+// 9. MODALES ET NAVIGATION
+// ==========================================
+window.openAgentDetail = function(agentName) {
+    const modal = document.getElementById('agentDetailModal');
+    const splashImg = document.getElementById('agentSplashImage');
+    const giantName = document.getElementById('modalGiantNameText');
+    const guideContainer = document.getElementById('agentGuideContainer');
+    
+    guideContainer.scrollTo(0, 0); 
+    State.modalIndex = State.filteredAgents.findIndex(a => a.name === agentName); 
+    updateModalNavigation();
+    
+    window.history.pushState({}, '', '?' + new URLSearchParams({ agent: agentName }).toString());
+    
+    splashImg.style.opacity = '0';
+    splashImg.onerror = function() { this.onerror = null; this.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; };
+    splashImg.src = `assets/splash/${agentName}.png`; 
+    giantName.textContent = agentName;
+    guideContainer.innerHTML = getGuideHTML(agentName, agentsData.find(a => a.name === agentName));
+
+    modal.classList.remove('hidden'); void modal.offsetWidth; modal.classList.add('opacity-100');
+    
+    setTimeout(() => {
+        splashImg.style.opacity = '1'; splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)';
+        guideContainer.style.opacity = '1'; guideContainer.style.transform = 'translateX(0)';
+    }, 50);
+};
+
+window.closeModal = function(id) {
+    const m = document.getElementById(id);
+    if(id === 'agentDetailModal') {
+        document.getElementById('agentSplashImage').style.opacity = '0'; document.getElementById('agentSplashImage').style.transform = 'translateY(20px) scale(0.9)'; 
+        document.getElementById('agentGuideContainer').style.opacity = '0'; document.getElementById('agentGuideContainer').style.transform = 'translateX(20px)';
+        window.history.pushState({}, '', window.location.pathname);
+        State.modalIndex = -1;
+    }
+    m.classList.remove('opacity-100'); setTimeout(() => m.classList.add('hidden'), 300);
+};
 
 function updateModalNavigation() {
     const prevBtn = document.getElementById('prevAgentBtn'); const nextBtn = document.getElementById('nextAgentBtn');
-    if (currentModalAgentIndex > 0) {
-        prevBtn.classList.remove('opacity-0', 'pointer-events-none', '-translate-x-10');
-        prevBtn.onclick = (e) => { e.stopPropagation(); const prev = filteredAgentsList[currentModalAgentIndex - 1]; window.openAgentDetail(prev.name, prev.rank, prev.element); };
-    } else { prevBtn.classList.add('opacity-0', 'pointer-events-none', '-translate-x-10'); }
-    if (currentModalAgentIndex < filteredAgentsList.length - 1 && currentModalAgentIndex !== -1) {
-        nextBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-x-10');
-        nextBtn.onclick = (e) => { e.stopPropagation(); const next = filteredAgentsList[currentModalAgentIndex + 1]; window.openAgentDetail(next.name, next.rank, next.element); };
-    } else { nextBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-x-10'); }
+    if(!prevBtn || !nextBtn) return;
+    
+    const hasPrev = State.modalIndex > 0;
+    const hasNext = State.modalIndex < State.filteredAgents.length - 1 && State.modalIndex !== -1;
+
+    prevBtn.classList.toggle('opacity-0', !hasPrev); prevBtn.classList.toggle('pointer-events-none', !hasPrev); prevBtn.classList.toggle('-translate-x-10', !hasPrev);
+    nextBtn.classList.toggle('opacity-0', !hasNext); nextBtn.classList.toggle('pointer-events-none', !hasNext); nextBtn.classList.toggle('translate-x-10', !hasNext);
+
+    if (hasPrev) prevBtn.onclick = (e) => { e.stopPropagation(); window.openAgentDetail(State.filteredAgents[State.modalIndex - 1].name); };
+    if (hasNext) nextBtn.onclick = (e) => { e.stopPropagation(); window.openAgentDetail(State.filteredAgents[State.modalIndex + 1].name); };
+}
+
+function initModals() {
+    const openModalBtn = document.getElementById('openModalBtn');
+    if(openModalBtn) openModalBtn.addEventListener('click', () => { 
+        const m = document.getElementById('factionModal'); 
+        m.classList.remove('hidden'); void m.offsetWidth; m.classList.add('opacity-100'); 
+    });
+}
+
+function initKeyboardNavigation() {
+    document.addEventListener('keydown', (e) => {
+        const modalAgent = document.getElementById('agentDetailModal');
+        if (e.key === 'Escape') { 
+            if(!modalAgent.classList.contains('hidden')) window.closeModal('agentDetailModal'); 
+            else if(!document.getElementById('factionModal').classList.contains('hidden')) window.closeModal('factionModal'); 
+        }
+        if (!modalAgent.classList.contains('hidden')) {
+            if (e.key === 'ArrowLeft' && State.modalIndex > 0) window.openAgentDetail(State.filteredAgents[State.modalIndex - 1].name);
+            if (e.key === 'ArrowRight' && State.modalIndex < State.filteredAgents.length - 1 && State.modalIndex !== -1) window.openAgentDetail(State.filteredAgents[State.modalIndex + 1].name);
+        }
+    });
 }
 
 window.shareCurrentAgent = function() {
-    if (currentModalAgentIndex === -1) return;
-    const agent = filteredAgentsList[currentModalAgentIndex]; const url = window.location.origin + window.location.pathname + '?agent=' + encodeURIComponent(agent.name);
+    if (State.modalIndex === -1) return;
+    const url = window.location.origin + window.location.pathname + '?agent=' + encodeURIComponent(State.filteredAgents[State.modalIndex].name);
     navigator.clipboard.writeText(url).then(() => {
         const toast = document.getElementById('toastNotification');
         toast.classList.remove('-translate-y-32', 'opacity-0'); toast.classList.add('translate-y-0', 'opacity-100');
@@ -230,117 +439,42 @@ window.shareCurrentAgent = function() {
     });
 };
 
-window.openAgentDetail = function(agentName, rank, element) {
-    const modal = document.getElementById('agentDetailModal');
-    const splashImg = document.getElementById('agentSplashImage');
-    const giantName = document.getElementById('modalGiantNameText');
-    const guideContainer = document.getElementById('agentGuideContainer');
-    
-    guideContainer.scrollTo(0, 0); 
-    currentModalAgentIndex = filteredAgentsList.findIndex(a => a.name === agentName); updateModalNavigation();
-    const urlParams = new URLSearchParams(window.location.search); urlParams.set('agent', agentName); window.history.pushState({}, '', '?' + urlParams.toString());
-    
-    splashImg.style.opacity = '0';
-    splashImg.onerror = function() { this.onerror = null; this.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; };
-    splashImg.src = `assets/splash/${agentName}.png`; 
-    giantName.textContent = agentName;
-    
-    guideContainer.innerHTML = getGuideHTML(agentName);
+function checkUrlForAgent() {
+    const agentParam = new URLSearchParams(window.location.search).get('agent'); 
+    const fastMask = document.getElementById('fast-mask');
+    if (agentParam) {
+        const agent = agentsData.find(a => a.name.toLowerCase() === agentParam.toLowerCase());
+        if (agent) { window.openAgentDetail(agent.name); setTimeout(() => { if(fastMask) { fastMask.style.opacity = '0'; setTimeout(() => fastMask.remove(), 400); } }, 100); } 
+        else if (fastMask) fastMask.remove();
+    } else if (fastMask) fastMask.remove();
+}
 
-    modal.classList.remove('hidden'); void modal.offsetWidth; modal.classList.add('opacity-100');
-    
-    setTimeout(() => {
-        splashImg.style.opacity = '1'; 
-        splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)';
-        guideContainer.style.opacity = '1'; guideContainer.style.transform = 'translateX(0)';
-        guideContainer.scrollTop = 0;
-    }, 50);
-};
+// ==========================================
+// 10. UTILITAIRES
+// ==========================================
+function initLanguageSwitcher() {
+    const langSwitcher = document.getElementById('langSwitcher');
+    if (langSwitcher) {
+        langSwitcher.setAttribute('data-active', currentLang);
+        langSwitcher.addEventListener('click', () => {
+            const newLang = langSwitcher.getAttribute('data-active') === 'fr' ? 'en' : 'fr'; 
+            langSwitcher.setAttribute('data-active', newLang); setLanguage(newLang);
+            document.querySelectorAll('.dyn-term').forEach(el => { const term = el.getAttribute('data-term'); if (term) el.textContent = tTerm(term); });
+            renderAgents(); scrollToTop();
+            if (State.modalIndex !== -1 && !document.getElementById('agentDetailModal').classList.contains('hidden')) { 
+                document.getElementById('agentGuideContainer').innerHTML = getGuideHTML(State.filteredAgents[State.modalIndex].name, State.filteredAgents[State.modalIndex]); 
+            }
+        });
+    }
+}
 
 function init3DParallax() {
     if (window.matchMedia("(hover: none)").matches) return; 
     document.querySelectorAll('.agent-card-container').forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-            const rotateX = (((y - (rect.height / 2)) / (rect.height / 2)) * -12); const rotateY = (((x - (rect.width / 2)) / (rect.width / 2)) * 12);
-            card.classList.remove('reset-transition'); card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+            card.classList.remove('reset-transition'); card.style.transform = `rotateX(${(((y - (rect.height / 2)) / (rect.height / 2)) * -12)}deg) rotateY(${(((x - (rect.width / 2)) / (rect.width / 2)) * 12)}deg) scale3d(1.05, 1.05, 1.05)`;
         });
         card.addEventListener('mouseleave', () => { card.classList.add('reset-transition'); card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; });
     });
 }
-
-function renderAgents() {
-    gridContainer.innerHTML = ''; filteredAgentsList = []; const agentsByVersion = {};
-    agentsData.forEach((agent) => {
-        const matchSearch = agent.name.toLowerCase().startsWith(searchQuery.toLowerCase()); let matchFilter = true;
-        if (activeMode === 'elements') matchFilter = currentElement === 'All' || filterGroups[currentElement]?.includes(agent.element);
-        else if (activeMode === 'roles') matchFilter = currentRole === 'All' || agent.role === currentRole;
-        else if (activeMode === 'versions') matchFilter = currentVersion === 'All' || agent.version === currentVersion;
-        const matchFaction = !activeFactionFilter || agent.faction === activeFactionFilter; const isFav = favorites.includes(agent.name); const matchFav = !showFavoritesOnly || isFav;
-        if (matchSearch && matchFilter && matchFaction && matchFav) {
-            filteredAgentsList.push(agent); const v = agent.version || 'Inconnu'; if (!agentsByVersion[v]) agentsByVersion[v] = []; agentsByVersion[v].push(agent);
-        }
-    });
-
-    if (filteredAgentsList.length > 0) {
-        emptyState.classList.add('hidden'); emptyState.classList.remove('opacity-100'); let globalDelay = 0;
-        if (activeMode === 'versions' && currentVersion === 'All') {
-            const sortedVersions = Object.keys(agentsByVersion).sort();
-            sortedVersions.forEach(version => {
-                const separatorHTML = `<div class="col-span-full relative mt-16 mb-12 flex items-center justify-center group/sep perspective-1000"><div class="absolute inset-0 flex items-center justify-center pointer-events-none"><div class="w-[80%] h-px bg-gradient-to-r from-transparent via-zinc-700/80 to-transparent relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#d7f70c] to-transparent -translate-x-full laser-beam"></div></div></div><div class="relative bg-[#050505] px-8 py-3 border border-zinc-800/80 rounded-full flex items-center gap-4 shadow-[0_0_40px_rgba(0,0,0,0.6)] transform transition-transform duration-700 hover:scale-110 hover:border-[#d7f70c]/50 hover:shadow-[0_0_50px_rgba(215,247,12,0.2)] z-10 cursor-default"><div class="w-2.5 h-2.5 bg-[#d7f70c] rounded-full animate-pulse shadow-[0_0_10px_#d7f70c]"></div><span class="font-display font-black italic text-2xl tracking-[0.3em] text-white uppercase drop-shadow-md">Version <span class="text-[#d7f70c]">${version.replace('V', '')}</span></span><div class="w-2.5 h-2.5 bg-[#d7f70c] rounded-full animate-pulse shadow-[0_0_10px_#d7f70c]"></div><div class="absolute inset-0 bg-[#d7f70c]/5 blur-xl rounded-full -z-10 group-hover/sep:bg-[#d7f70c]/15 transition-colors duration-500"></div></div></div>`;
-                gridContainer.insertAdjacentHTML('beforeend', separatorHTML);
-                agentsByVersion[version].forEach(agent => { gridContainer.insertAdjacentHTML('beforeend', createCardHTML(agent, globalDelay)); globalDelay++; });
-            });
-        } else { filteredAgentsList.forEach((agent) => { gridContainer.insertAdjacentHTML('beforeend', createCardHTML(agent, globalDelay)); globalDelay++; }); }
-        setTimeout(init3DParallax, 50);
-    } else { emptyState.classList.remove('hidden'); setTimeout(() => { emptyState.classList.add('opacity-100'); }, 10); }
-    if (!document.getElementById('agentDetailModal').classList.contains('hidden')) updateModalNavigation();
-}
-
-function createCardHTML(agent, delayIndex) {
-    const hexColor = colorMap[agent.element] || '#ffffff'; const cleanHex = hexColor.replace('#', ''); const fallbackImg = `https://placehold.co/400x400/181818/${cleanHex}?text=${agent.name.charAt(0)}&font=montserrat`;
-    const staggerDelay = Math.min(delayIndex * 40, 800); const isFav = favorites.includes(agent.name); const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-transparent'; const displayName = agent.name === 'Jane' ? 'Jane Doe' : agent.name;
-    return `<div class="agent-card-container flex flex-col cursor-pointer w-full group animate-fade-in-up" style="--elem-color: ${hexColor}; animation-delay: ${staggerDelay}ms;" onclick="openAgentDetail('${agent.name.replace(/'/g, "\\'")}', '${agent.rank}', '${agent.element}')"><div class="agent-shape-wrapper w-full aspect-square bg-zinc-800 relative"><div class="agent-shape-inner relative overflow-hidden flex items-end justify-center h-full w-full"><img src="assets/Agents/${agent.name}.png" loading="lazy" alt="${displayName}" class="agent-image absolute bottom-0 w-full h-auto min-h-full object-cover object-bottom" onerror="this.onerror=null; this.src='${fallbackImg}'"><div class="absolute inset-0 shadow-[inset_0_-35px_50px_rgba(0,0,0,0.95)] pointer-events-none transition-shadow duration-300 group-hover:shadow-[inset_0_-10px_20px_rgba(0,0,0,0.4)]"></div><button onclick="toggleFavorite(this, '${agent.name.replace(/'/g, "\\'")}', event)" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-[#111]/80 backdrop-blur border border-zinc-700 flex items-center justify-center z-30 transition-all hover:scale-110 shadow-lg group/fav"><svg class="w-5 h-5 transition-colors duration-300 ${heartClass} group-hover/fav:text-red-400" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg></button></div></div><div class="mt-3 mx-1 bg-[#151515] p-2 skew-x-[-15deg] border-b-[4px] shadow-lg transition-all duration-300 group-hover:bg-[#1a1a1a]" style="border-bottom-color: ${hexColor};"><div class="skew-x-[15deg] text-center w-full px-1 overflow-hidden flex items-center justify-center gap-2"><span class="text-white font-display font-black uppercase text-xs sm:text-[15px] tracking-[0.2em] truncate block drop-shadow-md transition-colors pointer-events-none">${displayName}</span></div></div></div>`;
-}
-
-document.getElementById('openModalBtn').addEventListener('click', () => { const m = document.getElementById('factionModal'); m.classList.remove('hidden'); void m.offsetWidth; m.classList.add('opacity-100'); });
-window.closeModal = function(id) {
-    const m = document.getElementById(id);
-    if(id === 'agentDetailModal') {
-        document.getElementById('agentSplashImage').style.opacity = '0'; document.getElementById('agentSplashImage').style.transform = 'translateY(20px) scale(0.9)'; 
-        document.getElementById('agentGuideContainer').style.opacity = '0'; document.getElementById('agentGuideContainer').style.transform = 'translateX(20px)';
-        window.history.pushState({}, '', window.location.pathname);
-    }
-    m.classList.remove('opacity-100'); setTimeout(() => { m.classList.add('hidden'); }, 300);
-};
-
-document.addEventListener('keydown', (e) => {
-    const modalAgent = document.getElementById('agentDetailModal');
-    if (e.key === 'Escape') { if(!modalAgent.classList.contains('hidden')) window.closeModal('agentDetailModal'); else if(!document.getElementById('factionModal').classList.contains('hidden')) window.closeModal('factionModal'); }
-    if (!modalAgent.classList.contains('hidden')) {
-        if (e.key === 'ArrowLeft' && currentModalAgentIndex > 0) { const prev = filteredAgentsList[currentModalAgentIndex - 1]; window.openAgentDetail(prev.name, prev.rank, prev.element); }
-        if (e.key === 'ArrowRight' && currentModalAgentIndex < filteredAgentsList.length - 1 && currentModalAgentIndex !== -1) { const next = filteredAgentsList[currentModalAgentIndex + 1]; window.openAgentDetail(next.name, next.rank, next.element); }
-    }
-});
-
-renderFactions(); renderAgents();
-
-document.addEventListener('DOMContentLoaded', () => {
-    updateStaticUI();
-    const langSwitcher = document.getElementById('langSwitcher');
-    if (langSwitcher) {
-        langSwitcher.setAttribute('data-active', currentLang);
-        langSwitcher.addEventListener('click', () => {
-            const newLang = langSwitcher.getAttribute('data-active') === 'fr' ? 'en' : 'fr'; langSwitcher.setAttribute('data-active', newLang); setLanguage(newLang);
-            document.querySelectorAll('.dyn-term').forEach(el => { const term = el.getAttribute('data-term'); if (term) el.textContent = tTerm(term); });
-            renderAgents(); scrollToTop();
-            if (currentModalAgentIndex !== -1 && !document.getElementById('agentDetailModal').classList.contains('hidden')) { const agent = filteredAgentsList[currentModalAgentIndex]; document.getElementById('agentGuideContainer').innerHTML = getGuideHTML(agent.name); }
-        });
-    }
-
-    const urlParams = new URLSearchParams(window.location.search); const agentParam = urlParams.get('agent'); const fastMask = document.getElementById('fast-mask');
-    if (agentParam) {
-        const agent = agentsData.find(a => a.name.toLowerCase() === agentParam.toLowerCase());
-        if (agent) { window.openAgentDetail(agent.name, agent.rank, agent.element); setTimeout(() => { if(fastMask) { fastMask.style.opacity = '0'; setTimeout(() => fastMask.remove(), 400); } }, 100); } else if (fastMask) { fastMask.remove(); }
-    } else if (fastMask) { fastMask.remove(); }
-});
