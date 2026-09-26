@@ -1,23 +1,104 @@
 export const agentDatabase = {
     "Piper": {
         color: "#e8a838", element: "Physical", rank: "A", factionTitle: { fr: "Fils de Calydon", en: "Sons of Calydon" },
-        stats: [ { label: "Adresse Ano.", value: "≥ 384" }, { label: "Maitrise Ano.", value: "≥ 150" }, { label: "Attaque", value: "≥ 2800" } ],
+        stats: [
+            { label: { fr: "Adresse d'Anomalie", en: "Anomaly Proficiency" }, value: "≥ 385 - 420+" },
+            { label: { fr: "Attaque", en: "Attack" }, value: "≥ 2600 - 2800+" },
+            { label: { fr: "Maîtrise d'Anomalie", en: "Anomaly Mastery" }, value: "≥ 120 - 150+" }
+        ],
         discs: [
-            { tag: { fr: "Support Build 1 👑", en: "Support Build 1 👑" }, set1: "Freedom_Blues", set2: "Swing_Jazz", set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Swing Jazz", note: "" },
-            { tag: { fr: "Build DPS Général", en: "General DPS Build" }, set1: "Fanged_Metal", set2: "Freedom_Blues", set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Freedom Blues", note: "" },
-            { tag: { fr: "Support Build 2", en: "Support Build 2" }, set1: "Freedom_Blues", set2: "Hormone_Punk", set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Hormone Punk", note: "" }
+            { 
+                tag: { fr: "Assaut / Carry (100 %) 👑", en: "Assault / Carry (100%) 👑" }, 
+                set1: "Fanged_Metal", set2: "Freedom_Blues", 
+                set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Freedom Blues", 
+                note: { 
+                    fr: "Le meilleur choix pour maximiser les dégâts personnels d'Assaut (+35 % DGT Physiques) et alimenter de lourds dégâts de Désordre.", 
+                    en: "Optimal set to maximize personal Assault damage (+35% Physical DMG) and trigger massive Disorder bursts." 
+                } 
+            },
+            { 
+                tag: { fr: "Support Anomalie", en: "Anomaly Support" }, 
+                set1: "Freedom_Blues", set2: "Swing_Jazz", 
+                set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Swing Jazz", 
+                note: { 
+                    fr: "Réduit la résistance à l'anomalie ennemie de 20 % via l'EX Spécial ; idéal dans les compositions double anomalie (Burnice / Jane).", 
+                    en: "Reduces enemy Anomaly Buildup RES by 20% on EX Special; ideal for dual anomaly setups (Burnice / Jane)." 
+                } 
+            },
+            { 
+                tag: { fr: "Hybride Énergie", en: "Energy Hybrid" }, 
+                set1: "Freedom_Blues", set2: "Hormone_Punk", 
+                set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Hormone Punk", 
+                note: { 
+                    fr: "Alternative équilibrée combinant la réduction de résistance et un surcroît d'ATK brute.", 
+                    en: "Balanced alternative combining anomaly shred with raw ATK boosts." 
+                } 
+            }
         ],
         skills: [
-            { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Ult", level: "10", icon: "Ultime.png" }
+            { name: "Core", level: "F", icon: "Core.webp" },
+            { name: "Ex", level: "12", icon: "Ex.png" },
+            { name: "Ult", level: "11", icon: "Ultime.png" },
+            { name: "Basic", level: "9", icon: "Attaque_basic.png" },
+            { name: "Assist", level: "8", icon: "Assist.png" },
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
         ],
-        statPriority: { main: [ { slot: "6", label: "Maitrise d'Anomalie" }, { slot: "5", label: "DGT Physique" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Anomaly Proficiency", highlight: true }, { label: "ATQ %", highlight: false }, { label: "PEN", highlight: false } ] },
+        statPriority: {
+            main: [
+                { slot: "6", label: { fr: "Maîtrise d'Anomalie / ATK %", en: "Anomaly Mastery / ATK%" } },
+                { slot: "5", label: { fr: "DGT Physique % / PEN Ratio", en: "Physical DMG% / PEN Ratio" } },
+                { slot: "4", label: { fr: "Adresse d'Anomalie", en: "Anomaly Proficiency" } }
+            ],
+            sub: [
+                { label: { fr: "Adresse d'Anomalie", en: "Anomaly Proficiency" }, highlight: true },
+                { label: { fr: "Attaque %", en: "ATK %" }, highlight: true },
+                { label: { fr: "PEN Flat", en: "Flat PEN" }, highlight: false },
+                { label: { fr: "Attaque Flat", en: "Flat ATK" }, highlight: false }
+            ]
+        },
         engines: [
-            { tag: "Baseline 100%", name: "Roaring Ride", img: "W-Engine_Roaring_Ride.png" }, { tag: "Moteur A", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, { tag: "Moteur A", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }, { tag: "Moteur A", name: "Rainforest Gourmet", img: "W-Engine_Rainforest_Gourmet.png" }
+            { tag: { fr: "Signature (100 %) 👑", en: "Signature (100%) 👑" }, name: "Roaring Ride", img: "W-Engine_Roaring_Ride.png" },
+            { tag: { fr: "Alternative BP (95 %)", en: "BP Alternative (95%)" }, name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" },
+            { tag: { fr: "F2P Craftable (S5)", en: "F2P Craftable (S5)" }, name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" },
+            { tag: { fr: "Option Boutique", en: "Gadget Store Option" }, name: "Rainforest Gourmet", img: "W-Engine_Rainforest_Gourmet.png" }
         ],
         teams: [
-            { name: "TEAM 01", tag: { fr: "Team Premium", en: "Premium Team" }, members: [ { img: "Burnice.png", color: "#f05432", initial: "B" }, { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "Piper.png", color: "#e8a838", initial: "P" } ] },
-            { name: "TEAM 02", tag: { fr: "Team Premium II", en: "Premium Team II" }, members: [ { img: "Nekomata.png", color: "#e8a838", initial: "N" }, { img: "Pulchra.png", color: "#e8a838", initial: "P" }, { img: "Piper.png", color: "#e8a838", initial: "P" } ] },
-            { name: "TEAM 03", tag: { fr: "Débutant", en: "Starter" }, members: [ { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Piper.png", color: "#e8a838", initial: "P" } ] }
+            { 
+                name: "TEAM 01", 
+                tag: { fr: "Désordre Calydon 👑", en: "Calydon Disorder 👑" }, 
+                members: [ 
+                    { img: "Burnice.png", color: "#f05432", initial: "B" }, 
+                    { img: "Caesar.png", color: "#e8a838", initial: "C" }, 
+                    { img: "Piper.png", color: "#e8a838", initial: "P" } 
+                ] 
+            },
+            { 
+                name: "TEAM 02", 
+                tag: { fr: "Mono Calydon F2P", en: "Mono Calydon F2P" }, 
+                members: [ 
+                    { img: "Lucy.png", color: "#f05432", initial: "L" }, 
+                    { img: "Burnice.png", color: "#f05432", initial: "B" }, 
+                    { img: "Piper.png", color: "#e8a838", initial: "P" } 
+                ] 
+            },
+            { 
+                name: "TEAM 03", 
+                tag: { fr: "Lièvres rusés / F2P", en: "Cunning Hares / F2P" }, 
+                members: [ 
+                    { img: "Nicole.png", color: "#f23c8a", initial: "N" }, 
+                    { img: "Corin.png", color: "#e8a838", initial: "C" }, 
+                    { img: "Piper.png", color: "#e8a838", initial: "P" } 
+                ] 
+            }
+        ],
+        mindscapes: [
+            { rank: "M1", desc: { fr: "Le nombre de cumuls de Puissance requis passe à 20 max et la vitesse de rotation de l'EX Spécial augmente nettement.", en: "Reduces max Power stacks needed to 20 and noticeably speeds up EX Special spin accumulation." } },
+            { rank: "M2", desc: { fr: "Accélère la vitesse de démarrage du tourbillon et augmente l'Impact des coups continus.", en: "Accelerates tire spin startup speed and increases Daze inflicted during continuous hits." } },
+            { rank: "M6", desc: { fr: "Prolonge la durée maximale de l'EX Spécial et augmente ses dégâts d'Assaut finaux.", en: "Extends max EX Special spin duration and significantly increases terminal Assault strike DMG." } }
+        ],
+        notes: [
+            { fr: "Gestion de la Puissance : Atteindre rapidement 20 cumuls avec l'EX Spécial pour activer le buff d'équipe de +18 % de DGT.", en: "Power Management: Quickly build 20 Power stacks with EX Special to trigger the squad-wide +18% DMG bonus." },
+            { fr: "Annulation d'animation : Après le coup lourd final de la rotation, changer d'agent immédiatement pour éviter l'animation d'essoufflement.", en: "Animation Cancel: Swap out immediately following the heavy slam finisher to cancel her exhaustion recovery animation." }
         ]
     },
     "Jane": {
