@@ -367,7 +367,7 @@ export const agentDatabase = {
     },
     "Cissia": {
         color: "#3182eb", element: "Electric", rank: "S", factionTitle: { fr: "Division de l'Ordre urbain", en: "Metropolitan Order Division - N.E.P.S." },
-        stats: [ { label: "Taux Crit", value: "Jusqu'à 100% IG" }, { label: "Dégât Crit", value: "Plus possible" }, { label: "Attaque", value: "Plus possible" } ],
+        stats: [ { label: "Taux Crit", value: "50% - 57% (with Signature W-Engine)" }, { label: "Dégât Crit", value: "110%+" }, { label: "Attaque", value: "2500 - 2700+" } ],
         discs: [
             { tag: { fr: "Set 1 👑", en: "Set 1 👑" }, set1: "Astral_Voice", set2: "Swing_Jazz", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Swing Jazz", note: "" },
             { tag: "Set 2", set1: "Dawn_Bloom", set2: "Branch_Blade_Song", set1Name: "4pc Dawn's Bloom", set2Name: "+ 2pc Branch and Blade Song", note: "" },
