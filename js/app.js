@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSearch();
     initFavorites();
     initFactions();
-    initModals(); // Le fameux bug corrigé !
+    initModals();
     initLanguageSwitcher();
     initKeyboardNavigation();
     
@@ -117,7 +117,7 @@ function initFilters() {
 }
 
 // ==========================================
-// 5. RECHERCHE UNIFIÉE (PC + Mobile fusionnés)
+// 5. RECHERCHE UNIFIÉE
 // ==========================================
 function initSearch() {
     DOM.searchInputs.forEach(input => {
@@ -331,7 +331,7 @@ function renderAgents() {
 function createCardHTML(agent, delayIndex) {
     const hexColor = colorMap[agent.element] || '#ffffff'; const cleanHex = hexColor.replace('#', ''); const fallbackImg = `https://placehold.co/400x400/181818/${cleanHex}?text=${agent.name.charAt(0)}&font=montserrat`;
     const staggerDelay = Math.min(delayIndex * 40, 800); const isFav = State.favorites.includes(agent.name); const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-transparent'; const displayName = agent.name === 'Jane' ? 'Jane Doe' : agent.name;
-    return `<div class="agent-card-container flex flex-col cursor-pointer w-full group animate-fade-in-up" style="--elem-color: ${hexColor}; animation-delay: ${staggerDelay}ms;" onclick="window.openAgentDetail('${agent.name.replace(/'/g, "\\'")}')"><div class="agent-shape-wrapper w-full aspect-square bg-zinc-800 relative"><div class="agent-shape-inner relative overflow-hidden flex items-end justify-center h-full w-full"><img src="assets/Agents/${agent.name}.png" loading="lazy" alt="${displayName}" class="agent-image absolute bottom-0 w-full h-auto min-h-full object-cover object-bottom" onerror="this.onerror=null; this.src='${fallbackImg}'"><div class="absolute inset-0 shadow-[inset_0_-35px_50px_rgba(0,0,0,0.95)] pointer-events-none transition-shadow duration-300 group-hover:shadow-[inset_0_-10px_20px_rgba(0,0,0,0.4)]"></div><button onclick="window.toggleFavorite(this, '${agent.name.replace(/'/g, "\\'")}', event)" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-[#111]/80 backdrop-blur border border-zinc-700 flex items-center justify-center z-30 transition-all hover:scale-110 shadow-lg group/fav"><svg class="w-5 h-5 transition-colors duration-300 ${heartClass} group-hover/fav:text-red-400" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg></button></div></div><div class="mt-3 mx-1 bg-[#151515] p-2 skew-x-[-15deg] border-b-[4px] shadow-lg transition-all duration-300 group-hover:bg-[#1a1a1a]" style="border-bottom-color: ${hexColor};"><div class="skew-x-[15deg] text-center w-full px-1 overflow-hidden flex items-center justify-center gap-2"><span class="text-white font-display font-black uppercase text-xs sm:text-[15px] tracking-[0.2em] truncate block drop-shadow-md transition-colors pointer-events-none">${displayName}</span></div></div></div>`;
+    return `<div class="agent-card-container flex flex-col cursor-pointer w-full group animate-fade-in-up" style="--elem-color: ${hexColor}; animation-delay: ${staggerDelay}ms;" onclick="window.openAgentDetail('${agent.name.replace(/'/g, "\\'")}')"><div class="agent-shape-wrapper w-full aspect-square bg-zinc-800 relative"><div class="agent-shape-inner relative overflow-hidden flex items-end justify-center h-full w-full"><img src="assets/Agents/${agent.name}.png" loading="lazy" alt="${displayName}" class="agent-image absolute bottom-0 w-full h-auto min-h-full object-cover object-bottom" onerror="this.onerror=null; this.src='${fallbackImg}'"><div class="absolute inset-0 shadow-[inset_0_-35px_50px_rgba(0,0,0,0.95)] pointer-events-none transition-shadow duration-300 group-hover:shadow-[inset_0_-10px_20px_rgba(0,0,0,0.4)]"></div><button onclick="window.toggleFavorite(this, '${agent.name.replace(/'/g, "\\'")}', event)" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-[#111]/80 backdrop-blur border border-zinc-700 flex items-center justify-center z-30 transition-all hover:scale-110 shadow-lg group/fav"><svg class="w-5 h-5 transition-colors duration-300 ${heartClass} group-hover/fav:text-red-400" fill="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg></button></div></div><div class="mt-3 mx-1 bg-[#151515] p-2 skew-x-[-15deg] border-b-[4px] shadow-lg transition-all duration-300 group-hover:bg-[#1a1a1a]" style="border-bottom-color: ${hexColor};"><div class="skew-x-[15deg] text-center w-full px-1 overflow-hidden flex items-center justify-center gap-2"><span class="text-white font-display font-black uppercase text-xs sm:text-[15px] tracking-[0.2em] truncate block drop-shadow-md transition-colors pointer-events-none">${displayName}</span></div></div></div>`;
 }
 
 // ==========================================
@@ -343,7 +343,14 @@ window.openAgentDetail = function(agentName) {
     const giantName = document.getElementById('modalGiantNameText');
     const guideContainer = document.getElementById('agentGuideContainer');
     
-    if(guideContainer) guideContainer.scrollTo(0, 0); 
+    // ----------------------------------------------------
+    // CORRECTION DU SCROLL : LA SÉCURITÉ 1
+    // ----------------------------------------------------
+    if(guideContainer) {
+        guideContainer.scrollTo(0, 0); 
+        guideContainer.scrollTop = 0; 
+    }
+    
     State.modalIndex = State.filteredAgents.findIndex(a => a.name === agentName); updateModalNavigation();
     
     const urlParams = new URLSearchParams(window.location.search); urlParams.set('agent', agentName); window.history.pushState({}, '', '?' + urlParams.toString());
@@ -361,7 +368,15 @@ window.openAgentDetail = function(agentName) {
     
     setTimeout(() => {
         if(splashImg) { splashImg.style.opacity = '1'; splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)'; }
-        if(guideContainer) { guideContainer.style.opacity = '1'; guideContainer.style.transform = 'translateX(0)'; }
+        if(guideContainer) { 
+            guideContainer.style.opacity = '1'; 
+            guideContainer.style.transform = 'translateX(0)'; 
+            
+            // ----------------------------------------------------
+            // CORRECTION DU SCROLL : LA DOUBLE SÉCURITÉ
+            // ----------------------------------------------------
+            guideContainer.scrollTop = 0;
+        }
     }, 50);
 };
 
@@ -416,7 +431,6 @@ function initLanguageSwitcher() {
             document.querySelectorAll('.dyn-term').forEach(el => { const term = el.getAttribute('data-term'); if (term) el.textContent = tTerm(term); });
             renderAgents(); scrollToTop();
             
-            // Correction du rechargement Bilingue dans la modale :
             if (State.modalIndex !== -1 && !document.getElementById('agentDetailModal').classList.contains('hidden')) { 
                 const guideContainer = document.getElementById('agentGuideContainer');
                 if(guideContainer) guideContainer.innerHTML = getGuideHTML(State.filteredAgents[State.modalIndex].name); 
