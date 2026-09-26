@@ -16,11 +16,22 @@
     <link href="css/styles.css" rel="stylesheet">
     <style>
         #fast-mask { position: fixed; inset: 0; background: #050505; z-index: 999999; transition: opacity 0.4s ease; }
-        .tab-pill { padding: 0.45rem 0.5rem; font-weight: 900; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; color: #a1a1aa; transition: all 0.25s ease; border-radius: 9999px; cursor: pointer; }
-        @media (min-width: 768px) { .tab-pill { font-size: 0.75rem; padding: 0.45rem 1rem; } }
+        
+        /* Nouveau Design du Sélecteur d'onglets (Slider) */
+        .tab-container { position: relative; display: flex; align-items: center; background-color: #141414; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 9999px; padding: 4px; gap: 4px; overflow: hidden; }
+        .tab-pill { flex: 1; position: relative; z-index: 10; padding: 0.6rem 0.5rem; font-weight: 900; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; color: #a1a1aa; transition: color 0.3s ease; border-radius: 9999px; cursor: pointer; text-align: center; }
+        @media (min-width: 768px) { .tab-pill { font-size: 0.75rem; padding: 0.6rem 1rem; } }
         .tab-pill:hover { color: #ffffff; }
-        .tab-pill.active { background-color: #ffffff; color: #000000; transform: skewX(-12deg); box-shadow: 0 0 15px rgba(255, 255, 255, 0.35); }
-        .tab-pill.active span { display: inline-block; transform: skewX(12deg); }
+        .tab-pill.active { color: #000000; }
+        
+        /* Le curseur glissant blanc */
+        .tab-slider { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(33.333% - 5px); background-color: #ffffff; border-radius: 9999px; transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.26, 1.55); box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); z-index: 0; }
+        
+        /* Positions du curseur */
+        .tab-container[data-active="elements"] .tab-slider { transform: translateX(0); }
+        .tab-container[data-active="roles"] .tab-slider { transform: translateX(calc(100% + 4px)); }
+        .tab-container[data-active="versions"] .tab-slider { transform: translateX(calc(200% + 8px)); }
+
         .filter-btn { background-color: #151515; color: #d4d4d8; border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; width: 100%; white-space: nowrap; }
         .filter-btn:hover { border-color: rgba(255, 255, 255, 0.25); color: #ffffff; }
         .filter-btn.active { background-color: #ffffff !important; color: #000000 !important; border-color: #ffffff !important; box-shadow: 0 0 20px rgba(255, 255, 255, 0.45) !important; font-weight: 900 !important; }
@@ -37,6 +48,16 @@
         .lang-switch-wrap[data-active="fr"] .lang-option.en { color: #888; }
         .lang-switch-wrap[data-active="en"] .lang-option.en { color: #000; }
         .lang-switch-wrap[data-active="en"] .lang-option.fr { color: #888; }
+
+        /* Animation Factions (Correction) */
+        @keyframes marqueeVertical {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+        .marquee-mask { mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); }
+        .marquee-track-vertical { animation: marqueeVertical 30s linear infinite; display: flex; flex-direction: column; }
+        /* Empêche l'animation de s'arrêter au survol */
+        .marquee-track-vertical:hover { animation-play-state: running; }
     </style>
     <script>
         if (window.location.search.includes('agent=')) document.write('<div id="fast-mask"></div>');
