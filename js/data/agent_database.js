@@ -1055,7 +1055,7 @@ export const agentDatabase = {
     },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
-        stats: [ { label: "Attaque", value: "Max" }, { label: "Taux Crit", value: "Max" }, { label: "Dégât Crit", value: "Max" } ],
+        stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
         discs: [
             { tag: { fr: "DPS Build 👑", en: "DPS Build 👑" }, set1: "Puffer_Electro", set2: "Woodpecker_Electro", set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Woodpecker Electro", note: { fr: "Fonctionne le mieux avec Dialyn pour lancer plus d'Ultimes. Augmente le Taux CRIT et les DGT CRIT nécessaires pour optimiser la 'Totalisation'.", en: "Synergizes best with Dialyn for frequent Ultimates. Builds CRIT Rate & CRIT DMG needed for 'Tally' optimization." } },
             { tag: { fr: "Alternative Build", en: "Alternative Build" }, set1: "Hormone_Punk", set2: "Woodpecker_Electro", set1Name: "4pc Hormone Punk", set2Name: "+ 2pc Woodpecker Electro", note: { fr: "Excellent set si Hugo n'est pas joué avec Dialyn. Fournit une tonne d'ATQ% à chaque fois qu'il entre sur le terrain.", en: "Terrific option when played without Dialyn. Supplies huge ATK% buffs upon taking the field." } }
