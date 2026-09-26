@@ -10,7 +10,7 @@ export const agentDatabase = {
         skills: [
             { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Ult", level: "10", icon: "Ultime.png" }
         ],
-        statPriority: { main: [ { slot: "6", label: "Anomaly" }, { slot: "5", label: "Physical DMG" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Anomaly Proficiency", highlight: true }, { label: "ATQ %", highlight: false }, { label: "PEN", highlight: false } ] },
+        statPriority: { main: [ { slot: "6", label: "Maitrise d'Anomalie" }, { slot: "5", label: "DGT Physique" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Anomaly Proficiency", highlight: true }, { label: "ATQ %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
             { tag: "Baseline 100%", name: "Roaring Ride", img: "W-Engine_Roaring_Ride.png" }, { tag: "Moteur A", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, { tag: "Moteur A", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }, { tag: "Moteur A", name: "Rainforest Gourmet", img: "W-Engine_Rainforest_Gourmet.png" }
         ],
