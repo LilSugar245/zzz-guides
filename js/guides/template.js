@@ -1,10 +1,14 @@
 import { iconMap } from '../data/agents.js';
+import { mindscapesData } from '../data/mindscapes.js'; // <-- IMPORT DU NOUVEAU FICHIER
 import { currentLang, ui, tData, tEngine, tDisc, tTerm, tStats } from '../i18n.js';
 
 export function generateGuideFromData(agentName, data) {
     const iconName = data.elementIcon || iconMap[data.element] || 'physique.png';
     const c = data.color;
-    const txt = ui[currentLang]; // Textes de l'interface
+    const txt = ui[currentLang];
+    
+    // Récupère les Mindscapes pour l'agent en cours s'ils existent
+    const mindscapes = mindscapesData[agentName];
 
     return `
     <div class="max-w-[1400px] w-full mx-auto pb-20 pt-4 text-zinc-100">
@@ -155,6 +159,25 @@ export function generateGuideFromData(agentName, data) {
                 `).join('')}
             </div>
         </div>
+
+        <!-- MINDSCAPES (S'affiche uniquement si les données existent dans mindscapes.js) -->
+        ${mindscapes ? `
+        <div class="mt-14 border-t border-zinc-800/80 pt-10 stagger-anim delay-6">
+            <h3 class="text-white font-display font-black text-2xl uppercase border-l-4 pl-4 leading-none tracking-wide mb-8" style="border-color: ${c};">Mindscapes</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                ${mindscapes.map(ms => `
+                <div class="bg-[#121212] border border-zinc-800 rounded-xl p-5 shadow-lg relative overflow-hidden group transition-colors hover:border-zinc-600">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-[#1a1a1a] font-black text-sm px-2.5 py-1 rounded-lg border shadow-sm" style="color: ${c}; border-color: ${c}40; box-shadow: 0 0 10px ${c}20;">${ms.rank}</span>
+                        <h4 class="text-white font-black uppercase tracking-wide text-sm">${tData(ms.title)}</h4>
+                    </div>
+                    <p class="text-zinc-400 text-xs leading-relaxed">${tData(ms.desc)}</p>
+                </div>
+                `).join('')}
+            </div>
+        </div>
+        ` : ''}
+
     </div>
     `;
 }
