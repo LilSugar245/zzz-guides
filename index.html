@@ -48,11 +48,11 @@
         .marquee-mask { mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); }
         .marquee-track-vertical { animation: marqueeVertical 30s linear infinite; display: flex; flex-direction: column; transform: translateZ(0); backface-visibility: hidden; perspective: 1000px; }
 
-        /* Animation Onglets */
-        .agent-modal-tab { position: relative; }
-        .agent-modal-tab::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0%; height: 3px; background-color: currentColor; transition: width 0.3s ease; box-shadow: 0 0 10px currentColor; }
-        .agent-modal-tab.active::after { width: 100%; }
-        .agent-modal-tab:hover::after { width: 100%; opacity: 0.5; }
+        /* Mindscapes CSS */
+        .mindscape-node { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+        .mindscape-node:hover { transform: scale(1.2); }
+        .mindscape-node.active { transform: scale(1.25); box-shadow: 0 0 15px currentColor; }
+        .mindscape-line { transition: width 0.5s ease-out; }
     </style>
     <script>
         if (window.location.search.includes('agent=')) document.write('<div id="fast-mask"></div>');
@@ -72,13 +72,11 @@
     </div>
 
     <header class="bg-black py-4 border-b border-zinc-800 shadow-[0_10px_30px_rgba(0,0,0,0.9)] z-50 shrink-0 relative transition-all flex items-center justify-between px-4 md:px-10">
-        <div class="w-20 md:w-32"></div> <!-- Spacer -->
-        
+        <div class="w-20 md:w-32"></div>
         <a href="index.html" class="flex items-center justify-center gap-4 relative z-10 hover:scale-105 transition-transform duration-500 cursor-pointer">
             <div class="bg-yellow-400 px-5 py-1.5 skew-x-[-15deg] shadow-[0_0_15px_rgba(232,168,56,0.3)]"><span class="block text-black font-display font-black italic text-3xl skew-x-[15deg]">ZZZ</span></div>
             <h1 class="text-white font-display font-black italic text-3xl uppercase chromatic-text drop-shadow-lg">GUIDES</h1>
         </a>
-        
         <div class="w-20 md:w-32 flex justify-end">
             <div id="langSwitcher" class="lang-switch-wrap" data-active="fr">
                 <div class="lang-indicator"></div>
@@ -172,7 +170,7 @@
             <div class="p-5 bg-[#0a0a0a] shrink-0 border-t border-zinc-800 relative z-10 shadow-[0_-15px_30px_rgba(0,0,0,0.6)]">
                 <button id="openModalBtn" class="w-full bg-[#d7f70c] hover:bg-[#c4e30b] text-black font-black uppercase text-sm py-4 rounded-xl shadow-[0_0_20px_rgba(215,247,12,0.2)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(215,247,12,0.5)] hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-3 group overflow-hidden relative">
                     <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:animate-[shimmer_1s_forwards]"></div>
-                    <svg class="w-5 h-5 transition-transform group-hover:rotate-180 duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    <svg class="w-5 h-5 transition-transform group-hover:rotate-180 duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                     <span data-i18n="allFactions">Toutes les factions</span>
                 </button>
             </div>
@@ -222,25 +220,11 @@
             <h1 id="modalGiantNameText" class="text-[18vw] font-display font-black italic text-white whitespace-nowrap leading-none tracking-tighter"></h1>
         </div>
         <div class="relative z-10 w-full h-full flex flex-col md:flex-row pointer-events-none">
-            <div class="w-full md:w-[35%] xl:w-[40%] h-[40%] md:h-full flex flex-col items-center justify-center relative p-4 md:p-8 pointer-events-auto group/splash">
-                <!-- Zone de l'image (Maintenant Interactive si des skins existent) -->
-                <img id="agentSplashImage" src="" loading="lazy" class="w-full h-full md:max-h-[95%] object-contain transform translate-y-10 opacity-0 transition-all duration-700 delay-200 ease-out drop-shadow-[10px_10px_20px_rgba(0,0,0,0.8)]">
-                
-                <!-- Zone UI des Skins (Tiroir caché qui remonte au hover) -->
-                <div id="skin-ui-container" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-11/12 max-w-[400px] opacity-0 translate-y-10 group-hover/splash:opacity-100 group-hover/splash:translate-y-0 transition-all duration-500 hidden z-50">
-                    <!-- Généré par JS via setupSkinUI() -->
-                </div>
-                
-                <!-- Petit indice visuel pour l'utilisateur ("Fashion available") -->
-                <div id="skin-hint" class="absolute top-10 left-10 hidden items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-zinc-700 backdrop-blur-md opacity-50 group-hover/splash:opacity-0 transition-opacity duration-300">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-                    <span class="text-[10px] font-bold tracking-widest text-zinc-300 uppercase">Skins</span>
-                </div>
+            <div class="w-full md:w-[35%] xl:w-[40%] h-[40%] md:h-full flex items-center md:items-end justify-center relative p-4 md:p-8">
+                <img id="agentSplashImage" src="" loading="lazy" class="w-full h-full md:max-h-[95%] object-contain transform translate-y-10 opacity-0 transition-all duration-700 delay-200 ease-out drop-shadow-[10px_10px_20px_rgba(0,0,0,0.8)] pointer-events-auto">
             </div>
-
-            <!-- Colonne du Guide Droit -->
             <div class="w-full md:w-[65%] xl:w-[60%] h-[60%] md:h-full relative z-20 pointer-events-auto overflow-hidden flex flex-col bg-gradient-to-t md:bg-gradient-to-l from-black via-black/90 to-black/40 md:to-transparent backdrop-blur-md md:backdrop-blur-sm">
-                <div id="agentGuideContainer" class="flex-1 overflow-y-auto custom-scrollbar pt-24 p-6 md:p-10 lg:p-14 transform translate-x-12 opacity-0 transition-all duration-500 delay-300 relative overflow-x-hidden"></div>
+                <div id="agentGuideContainer" class="flex-1 overflow-y-auto custom-scrollbar pt-24 p-6 md:p-10 lg:p-14 transform translate-x-12 opacity-0 transition-all duration-500 delay-300"></div>
             </div>
         </div>
     </div>
