@@ -281,12 +281,12 @@ function renderFactions() {
             </div>`;
         } else {
             return `
-            <div class="bg-[#121212] border-2 border-zinc-800 rounded-[2rem] p-6 flex flex-col items-center justify-between gap-6 cursor-pointer hover:border-yellow-400 hover:-translate-y-2 transition-all duration-300 group shadow-2xl relative overflow-hidden" onclick="window.setFactionFilter('${faction.replace(/'/g, "\\'")}', true)">
-                <div class="w-32 h-32 sm:w-48 sm:h-48 transition-all duration-500 group-hover:scale-110 relative z-10">
+            <div class="bg-[#121212] border-2 border-zinc-800 rounded-2xl md:rounded-[2rem] p-3 md:p-6 flex flex-col items-center justify-between gap-3 md:gap-6 cursor-pointer hover:border-yellow-400 hover:-translate-y-2 transition-all duration-300 group shadow-2xl relative overflow-hidden" onclick="window.setFactionFilter('${faction.replace(/'/g, "\\'")}', true)">
+                <div class="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 transition-all duration-500 group-hover:scale-110 relative z-10">
                     <img src="${imgPath}" loading="lazy" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='${fallbackImg}'">
                 </div>
-                <div class="bg-black/80 px-5 py-3 rounded-xl text-xs sm:text-sm font-black w-full text-center border border-zinc-800 group-hover:border-yellow-400 text-zinc-300 shadow-inner group-hover:text-yellow-400 transition-colors duration-300 uppercase tracking-wider relative z-10">
-                    ${displayName}${subName ? `<span class="block text-[10px] text-zinc-500 mt-1">${subName}</span>` : ''}
+                <div class="bg-black/80 px-2 py-2 md:px-5 md:py-3 rounded-xl text-[9px] sm:text-xs md:text-sm font-black w-full text-center border border-zinc-800 group-hover:border-yellow-400 text-zinc-300 shadow-inner group-hover:text-yellow-400 transition-colors duration-300 uppercase tracking-wider relative z-10 leading-tight">
+                    ${displayName}${subName ? `<span class="block text-[7px] sm:text-[10px] text-zinc-500 mt-1">${subName}</span>` : ''}
                 </div>
             </div>`;
         }
