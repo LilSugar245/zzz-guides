@@ -19,6 +19,7 @@ const gridContainer = document.getElementById('agents-grid');
 const emptyState = document.getElementById('empty-state');
 const favFilterBtn = document.getElementById('favoriteFilterBtn');
 
+const mainTabContainer = document.getElementById('mainTabContainer');
 const tabElements = document.getElementById('tabElements');
 const tabRoles = document.getElementById('tabRoles');
 const tabVersions = document.getElementById('tabVersions');
@@ -32,6 +33,7 @@ const versionBtns = document.querySelectorAll('.filter-version-btn');
 
 tabElements.addEventListener('click', () => {
     activeMode = 'elements';
+    mainTabContainer.setAttribute('data-active', 'elements');
     tabElements.classList.add('active'); tabRoles.classList.remove('active'); tabVersions.classList.remove('active');
     groupElements.classList.remove('hidden'); groupRoles.classList.add('hidden'); groupVersions.classList.add('hidden');
     renderAgents();
@@ -39,6 +41,7 @@ tabElements.addEventListener('click', () => {
 
 tabRoles.addEventListener('click', () => {
     activeMode = 'roles';
+    mainTabContainer.setAttribute('data-active', 'roles');
     tabRoles.classList.add('active'); tabElements.classList.remove('active'); tabVersions.classList.remove('active');
     groupRoles.classList.remove('hidden'); groupElements.classList.add('hidden'); groupVersions.classList.add('hidden');
     renderAgents();
@@ -46,6 +49,7 @@ tabRoles.addEventListener('click', () => {
 
 tabVersions.addEventListener('click', () => {
     activeMode = 'versions';
+    mainTabContainer.setAttribute('data-active', 'versions');
     tabVersions.classList.add('active'); tabElements.classList.remove('active'); tabRoles.classList.remove('active');
     groupVersions.classList.remove('hidden'); groupElements.classList.add('hidden'); groupRoles.classList.add('hidden');
     renderAgents();
