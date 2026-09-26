@@ -1,5 +1,6 @@
 import { iconMap } from '../data/agents.js';
-import { mindscapesData } from '../data/mindscapes.js'; // <-- IMPORT DU NOUVEAU FICHIER
+import { skinsData } from '../data/skins.js';
+import { mindscapesData } from '../data/mindscapes.js';
 import { currentLang, ui, tData, tEngine, tDisc, tTerm, tStats } from '../i18n.js';
 
 export function generateGuideFromData(agentName, data) {
@@ -7,8 +8,9 @@ export function generateGuideFromData(agentName, data) {
     const c = data.color;
     const txt = ui[currentLang];
     
-    // Récupère les Mindscapes pour l'agent en cours s'ils existent
-    const mindscapes = mindscapesData[agentName];
+    // Récupère les données additionnelles pour l'agent
+    const mindscapes = mindscapesData ? mindscapesData[agentName] : null;
+    const skins = skinsData ? skinsData[agentName] : null;
 
     return `
     <div class="max-w-[1400px] w-full mx-auto pb-20 pt-4 text-zinc-100">
@@ -70,25 +72,67 @@ export function generateGuideFromData(agentName, data) {
                     </div>
                 </div>
 
-                <!-- SKILLS -->
-                <div>
-                    <h3 class="text-white font-display font-black text-2xl uppercase border-l-4 pl-4 leading-none tracking-wide mb-6" style="border-color: ${c};">${txt.skillPrio}</h3>
-                    <div class="flex flex-wrap items-center justify-between sm:justify-start gap-3 md:gap-5 bg-[#0f0f0f] p-5 rounded-2xl border border-zinc-800 shadow-inner">
-                        ${data.skills.map((skill, index) => `
-                        <div class="flex flex-col items-center gap-2 ${index === 0 ? 'group cursor-default' : 'opacity-80'}">
-                            <div class="${index === 0 ? 'relative' : 'w-12 h-12 rounded-full border-2 border-zinc-700 bg-black overflow-hidden'}">
-                                ${index === 0 ? `
-                                <div class="absolute inset-0 rounded-full blur-md opacity-40" style="background-color: ${c};"></div>
-                                <div class="w-12 h-12 rounded-full border-2 bg-black relative z-10 overflow-hidden" style="border-color: ${c};">
-                                ` : ''}
-                                <img src="assets/Skills/${skill.icon}" loading="lazy" class="w-full h-full object-cover">
-                                ${index === 0 ? `</div>` : ''}
+                <!-- WRAPPER SKILLS & SKINS (Pour remplir l'espace) -->
+                <div class="flex flex-col h-full gap-8">
+                    <!-- SKILLS -->
+                    <div>
+                        <h3 class="text-white font-display font-black text-2xl uppercase border-l-4 pl-4 leading-none tracking-wide mb-6" style="border-color: ${c};">${txt.skillPrio}</h3>
+                        <div class="flex flex-wrap items-center justify-between sm:justify-start gap-3 md:gap-5 bg-[#0f0f0f] p-5 rounded-2xl border border-zinc-800 shadow-inner">
+                            ${data.skills.map((skill, index) => `
+                            <div class="flex flex-col items-center gap-2 ${index === 0 ? 'group cursor-default' : 'opacity-80'}">
+                                <div class="${index === 0 ? 'relative' : 'w-12 h-12 rounded-full border-2 border-zinc-700 bg-black overflow-hidden'}">
+                                    ${index === 0 ? `
+                                    <div class="absolute inset-0 rounded-full blur-md opacity-40" style="background-color: ${c};"></div>
+                                    <div class="w-12 h-12 rounded-full border-2 bg-black relative z-10 overflow-hidden" style="border-color: ${c};">
+                                    ` : ''}
+                                    <img src="assets/Skills/${skill.icon}" loading="lazy" class="w-full h-full object-cover">
+                                    ${index === 0 ? `</div>` : ''}
+                                </div>
+                                <span class="text-[10px] font-black uppercase tracking-wider" style="color: ${index === 0 ? c : '#a1a1aa'};">${skill.name}${skill.level ? `(${skill.level})` : ''}</span>
                             </div>
-                            <span class="text-[10px] font-black uppercase tracking-wider" style="color: ${index === 0 ? c : '#a1a1aa'};">${skill.name}${skill.level ? `(${skill.level})` : ''}</span>
+                            ${index < data.skills.length - 1 ? `<svg class="w-5 h-5 text-zinc-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>` : ''}
+                            `).join('')}
                         </div>
-                        ${index < data.skills.length - 1 ? `<svg class="w-5 h-5 text-zinc-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>` : ''}
-                        `).join('')}
                     </div>
+
+                    <!-- SHOWCASE SKINS & FASHION -->
+                    ${skins ? `
+                    <div class="mt-auto bg-[#0a0a0a] border border-zinc-800 rounded-2xl p-4 sm:p-5 flex flex-col gap-4 relative overflow-hidden group shadow-xl">
+                        <!-- Décoration de fond -->
+                        <div class="absolute -top-10 -right-10 w-40 h-40 blur-[50px] opacity-20 pointer-events-none transition-opacity duration-700 group-hover:opacity-40" style="background-color: ${c};"></div>
+                        
+                        <div class="flex items-center justify-between relative z-10 border-b border-zinc-800/80 pb-3">
+                            <h4 class="text-white font-display font-black text-lg uppercase tracking-widest flex items-center gap-2">
+                                <svg class="w-5 h-5" style="color: ${c};" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                                Fashion
+                            </h4>
+                            <span id="skin-id-badge" class="text-[10px] font-black uppercase tracking-wider px-2 py-1 rounded-md bg-zinc-900 border border-zinc-700 text-zinc-400 shadow-inner">ID: ${skins[0].id}</span>
+                        </div>
+
+                        <!-- Image Display -->
+                        <div class="relative w-full h-48 sm:h-64 rounded-xl overflow-hidden bg-gradient-to-b from-black to-[#111] border border-zinc-800 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] z-10 flex items-center justify-center">
+                            <img id="skin-main-img" src="assets/Skins/${skins[0].img}" class="w-full h-full object-contain transform transition-all duration-700 hover:scale-105" onerror="this.src='https://placehold.co/400x400/111/444?text=IMAGE+MANQUANTE'">
+                        </div>
+
+                        <!-- Miniatures (Thumbnails) -->
+                        <div class="flex items-center gap-2 overflow-x-auto custom-scrollbar pb-1 z-10">
+                            ${skins.map((skin, idx) => `
+                            <button onclick="window.changeSkin('${agentName}', ${idx})" id="skin-thumb-${idx}" class="skin-thumb shrink-0 w-14 h-14 rounded-lg overflow-hidden border-2 transition-all duration-300 ${idx === 0 ? 'opacity-100 scale-100 shadow-[0_0_15px_rgba(255,255,255,0.2)]' : 'opacity-50 scale-90 border-transparent hover:opacity-80'}" style="border-color: ${idx === 0 ? c : 'transparent'};">
+                                <img src="assets/Skins/${skin.img}" class="w-full h-full object-cover object-top">
+                            </button>
+                            `).join('')}
+                        </div>
+
+                        <!-- Description Lore -->
+                        <div class="bg-[#121212] p-4 rounded-xl border border-zinc-800 z-10 relative mt-2 shadow-inner">
+                            <h5 id="skin-title" class="text-xs font-black uppercase tracking-wider text-white mb-2" style="color: ${c};">${tData(skins[0].name)}</h5>
+                            <p id="skin-desc" class="text-[11px] text-zinc-400 leading-relaxed italic border-l-2 pl-3 border-zinc-700 transition-opacity duration-300">${tData(skins[0].desc)}</p>
+                        </div>
+                    </div>
+                    ` : `
+                    <!-- Espace de secours si l'agent n'a pas de skins -->
+                    <div class="mt-auto h-2"></div>
+                    `}
                 </div>
             </div>
 
@@ -160,7 +204,7 @@ export function generateGuideFromData(agentName, data) {
             </div>
         </div>
 
-        <!-- MINDSCAPES (S'affiche uniquement si les données existent dans mindscapes.js) -->
+        <!-- MINDSCAPES (Statique & Bilingue) -->
         ${mindscapes ? `
         <div class="mt-14 border-t border-zinc-800/80 pt-10 stagger-anim delay-6">
             <h3 class="text-white font-display font-black text-2xl uppercase border-l-4 pl-4 leading-none tracking-wide mb-8" style="border-color: ${c};">Mindscapes</h3>
