@@ -472,7 +472,7 @@ export const agentDatabase = {
     },
     "Trigger": {
         color: "#3182eb", element: "Electric", rank: "S", factionTitle: { fr: "Escouade Obole", en: "Sniper" },
-        stats: [ { label: "Taux Crit", value: "90%" }, { label: "Impact", value: "131" }, { label: "Attaque", value: "750" } ],
+        stats: [ { label: "Taux Crit", value: "90%" }, { label: "Impact", value: "162 - 186 +" }, { label: "Attaque", value: "1700 - 2200+" } ],
         discs: [
             { tag: { fr: "Set 1 👑", en: "Set 1 👑" }, set1: "King_of_the_Summit", set2: "Woodpecker_Electro", set1Name: "4pc King of the Summit", set2Name: "+ 2pc Woodpecker Electro", note: { fr: "Le meilleur choix absolu pour maximiser ses dégâts et son impact sur l'équipe. Le choix le plus pratique pour atteindre le palier des 90% de Taux CRIT.", en: "The absolute best choice to maximize personal damage and team impact. Most practical pick to hit the 90% CRIT Rate threshold." } },
             { tag: "Set 2", set1: "Shadow_Harmony", set2: "King_of_the_Summit", set1Name: "4pc Shadow Harmony", set2Name: "+ 2pc King of the Summit", note: { fr: "La meilleure alternative sans son Moteur Signature pour compenser le manque de Taux CRIT et se rapprocher du cap des 90%.", en: "Best alternative without her Signature W-Engine to compensate for missing CRIT Rate and reach the 90% cap." } },
@@ -676,7 +676,7 @@ export const agentDatabase = {
     "Roxy": {
         color: "#3bbedb", element: "Wind", rank: "S", factionTitle: { fr: "Atelier Flint", en: "Flint Workshop" },
         stats: [
-            { label: "Taux Crit", value: "100 % (combat)" },
+            { label: "Taux Crit", value: "60 - 90%" },
             { label: "Récup. d'énergie", value: "3.12" },
             { label: "Attaque", value: "1800" }
         ],
