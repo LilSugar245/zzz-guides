@@ -4,7 +4,7 @@ import { getGuideHTML } from './guides/index.js';
 import { updateStaticUI, setLanguage, currentLang, tTerm } from './i18n.js';
 
 // ==========================================
-// 1. ÉTAT DE L'APPLICATION (STATE)
+// 1. ÉTAT GLOBAL (STATE)
 // ==========================================
 const State = {
     mode: 'elements',
@@ -25,19 +25,25 @@ const DOM = {
     empty: document.getElementById('empty-state'),
     scrollArea: document.querySelector('main'),
     
-    tabContainer: document.getElementById('mainTabContainer'),
-    tabs: {
-        elements: { btn: document.getElementById('tabElements'), group: document.getElementById('groupElements') },
-        roles: { btn: document.getElementById('tabRoles'), group: document.getElementById('groupRoles') },
-        versions: { btn: document.getElementById('tabVersions'), group: document.getElementById('groupVersions') }
-    },
+    // Conteneurs d'onglets
+    tabContainers: [document.getElementById('mainTabContainer'), document.getElementById('mobileTabContainer')],
     
+    // Groupes de filtres par mode
+    groups: {
+        elements: [document.getElementById('groupElements'), document.getElementById('groupElementsMobile')],
+        roles: [document.getElementById('groupRoles'), document.getElementById('groupRolesMobile')],
+        versions: [document.getElementById('groupVersions'), document.getElementById('groupVersionsMobile')]
+    },
+
+    // Recherche
     searchInputs: [document.getElementById('searchInput'), document.getElementById('searchInputMobile')],
     clearBtns: [document.getElementById('clearSearchBtn'), document.getElementById('clearSearchBtnMobile')],
     dropdowns: [document.getElementById('searchDropdown'), document.getElementById('searchDropdownMobile')],
     
-    favBtn: document.getElementById('favoriteFilterBtn'),
-    favBadge: document.getElementById('favCountBadge')
+    // Modale Mobile
+    mobileFilterModal: document.getElementById('mobileFilterModal'),
+    mobileFilterBtn: document.getElementById('mobileFilterBtn'),
+    closeMobileFilterBtn: document.getElementById('closeMobileFilterBtn')
 };
 
 // ==========================================
@@ -54,54 +60,93 @@ document.addEventListener('DOMContentLoaded', () => {
     initLanguageSwitcher();
     initKeyboardNavigation();
     initModals();
+    initMobileDrawer();
     
     renderFactions();
     renderAgents();
     
-    setTimeout(() => updateSliderPosition(DOM.tabs.elements.btn), 100);
+    setTimeout(() => {
+        updateAllSliders('elements');
+    }, 100);
+
     window.addEventListener('resize', () => {
-        const activeTab = document.querySelector('.tab-pill.active');
-        if (activeTab) updateSliderPosition(activeTab);
+        updateAllSliders(State.mode);
     });
 
     checkUrlForAgent();
 });
 
 // ==========================================
-// 4. ONGLETS ET FILTRES
+// 4. ONGLETS ET FILTRES (SYNC BUREAU & MOBILE)
 // ==========================================
-function scrollToTop() { DOM.scrollArea.scrollTo({ top: 0, behavior: 'smooth' }); }
+function scrollToTop() {
+    if (DOM.scrollArea) DOM.scrollArea.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-function updateSliderPosition(activeTabElement) {
-    if (!DOM.tabContainer || !activeTabElement) return;
-    const containerRect = DOM.tabContainer.getBoundingClientRect();
-    const tabRect = activeTabElement.getBoundingClientRect();
-    DOM.tabContainer.style.setProperty('--slide-left', `${tabRect.left - containerRect.left}px`);
-    DOM.tabContainer.style.setProperty('--slide-width', `${tabRect.width}px`);
+function updateSliderPosition(container, activePill) {
+    if (!container || !activePill) return;
+    const containerRect = container.getBoundingClientRect();
+    const pillRect = activePill.getBoundingClientRect();
+    container.style.setProperty('--slide-left', `${pillRect.left - containerRect.left}px`);
+    container.style.setProperty('--slide-width', `${pillRect.width}px`);
+}
+
+function updateAllSliders(mode) {
+    const desktopPill = document.querySelector(`#mainTabContainer .tab-pill[id*="${mode.charAt(0).toUpperCase() + mode.slice(1)}"]`);
+    const mobilePill = document.querySelector(`#mobileTabContainer .tab-pill[id*="${mode.charAt(0).toUpperCase() + mode.slice(1)}"]`);
+
+    if (DOM.tabContainers[0] && desktopPill) updateSliderPosition(DOM.tabContainers[0], desktopPill);
+    if (DOM.tabContainers[1] && mobilePill) updateSliderPosition(DOM.tabContainers[1], mobilePill);
 }
 
 function initTabs() {
-    Object.keys(DOM.tabs).forEach(mode => {
-        DOM.tabs[mode].btn.addEventListener('click', () => {
+    const attachTabEvent = (btnId, mode) => {
+        const btn = document.getElementById(btnId);
+        if (!btn) return;
+        btn.addEventListener('click', () => {
             State.mode = mode;
-            Object.keys(DOM.tabs).forEach(m => {
-                DOM.tabs[m].btn.classList.toggle('active', m === mode);
-                DOM.tabs[m].group.classList.toggle('hidden', m !== mode);
+            
+            // Activer les bons boutons sur Desktop et Mobile
+            document.querySelectorAll('.tab-pill').forEach(p => {
+                const isCurrent = p.id.toLowerCase().includes(mode.toLowerCase());
+                p.classList.toggle('active', isCurrent);
             });
-            updateSliderPosition(DOM.tabs[mode].btn);
+
+            // Afficher / Masquer les groupes
+            Object.keys(DOM.groups).forEach(gKey => {
+                const isGroupActive = gKey === mode;
+                DOM.groups[gKey].forEach(el => {
+                    if (el) el.classList.toggle('hidden', !isGroupActive);
+                });
+            });
+
+            updateAllSliders(mode);
             renderAgents();
             scrollToTop();
         });
-    });
+    };
+
+    attachTabEvent('tabElements', 'elements');
+    attachTabEvent('tabElementsMobile', 'elements');
+    attachTabEvent('tabRoles', 'roles');
+    attachTabEvent('tabRolesMobile', 'roles');
+    attachTabEvent('tabVersions', 'versions');
+    attachTabEvent('tabVersionsMobile', 'versions');
 }
 
 function initFilters(selector, filterType) {
     const btns = document.querySelectorAll(selector);
     btns.forEach(btn => {
         btn.addEventListener('click', () => {
-            btns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            State.filters[filterType] = btn.getAttribute(`data-${filterType === 'element' ? 'filter' : filterType}`);
+            const val = btn.getAttribute(`data-${filterType === 'element' ? 'filter' : filterType}`);
+            State.filters[filterType] = val;
+
+            // Synchroniser la classe active sur tous les boutons ayant la même valeur (Bureau + Mobile)
+            btns.forEach(b => {
+                const bVal = b.getAttribute(`data-${filterType === 'element' ? 'filter' : filterType}`);
+                b.classList.toggle('active', bVal === val);
+            });
+
             renderAgents();
             scrollToTop();
         });
@@ -113,32 +158,32 @@ function initFilters(selector, filterType) {
 // ==========================================
 function initSearch() {
     DOM.searchInputs.forEach(input => {
-        if(!input) return;
+        if (!input) return;
         input.addEventListener('input', (e) => handleSearch(e.target.value));
         input.addEventListener('focus', (e) => handleSearch(e.target.value));
         input.addEventListener('blur', () => setTimeout(() => DOM.dropdowns.forEach(d => d && d.classList.add('hidden')), 300));
     });
 
     DOM.clearBtns.forEach(btn => {
-        if(btn) btn.addEventListener('click', clearSearch);
+        if (btn) btn.addEventListener('click', clearSearch);
     });
 }
 
 function handleSearch(query) {
     State.search = query;
-    DOM.searchInputs.forEach(input => { if(input) input.value = query; });
+    DOM.searchInputs.forEach(input => { if (input) input.value = query; });
     const isHidden = query.length === 0;
-    DOM.clearBtns.forEach(btn => { if(btn) btn.classList.toggle('hidden', isHidden); });
-    DOM.dropdowns.forEach(drop => { if(drop) drop.classList.remove('hidden'); });
+    DOM.clearBtns.forEach(btn => { if (btn) btn.classList.toggle('hidden', isHidden); });
+    DOM.dropdowns.forEach(drop => { if (drop) drop.classList.remove('hidden'); });
     updateDropdownUI(query);
     renderAgents();
 }
 
 function clearSearch() {
     State.search = '';
-    DOM.searchInputs.forEach(input => { if(input) input.value = ''; });
-    DOM.clearBtns.forEach(btn => { if(btn) btn.classList.add('hidden'); });
-    DOM.dropdowns.forEach(drop => { if(drop) drop.classList.add('hidden'); });
+    DOM.searchInputs.forEach(input => { if (input) input.value = ''; });
+    DOM.clearBtns.forEach(btn => { if (btn) btn.classList.add('hidden'); });
+    DOM.dropdowns.forEach(drop => { if (drop) drop.classList.add('hidden'); });
     renderAgents();
 }
 
@@ -165,50 +210,67 @@ function updateDropdownUI(query) {
             </div>`;
         }).join('');
 
-    DOM.dropdowns.forEach(drop => { if(drop) drop.innerHTML = html; });
+    DOM.dropdowns.forEach(drop => { if (drop) drop.innerHTML = html; });
 }
 
 window.triggerSearchSelect = function(agentName) {
     handleSearch(agentName);
-    DOM.dropdowns.forEach(drop => { if(drop) drop.classList.add('hidden'); });
+    DOM.dropdowns.forEach(drop => { if (drop) drop.classList.add('hidden'); });
 };
 
 // ==========================================
 // 6. FAVORIS
 // ==========================================
-function updateFavBadge() { 
-    if(DOM.favBadge) DOM.favBadge.textContent = State.favorites.length; 
+function updateFavBadges() { 
+    document.querySelectorAll('.fav-count-badge').forEach(badge => {
+        badge.textContent = State.favorites.length;
+    });
 }
 
 function initFavorites() {
-    updateFavBadge();
-    if(DOM.favBtn) {
-        DOM.favBtn.addEventListener('click', () => {
+    updateFavBadges();
+    const favButtons = document.querySelectorAll('.favorite-filter-btn');
+
+    favButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
             State.showFavorites = !State.showFavorites;
-            const svg = DOM.favBtn.querySelector('svg');
-            if(State.showFavorites) {
-                DOM.favBtn.classList.replace('border-zinc-800', 'border-red-500'); DOM.favBtn.classList.replace('text-zinc-400', 'text-white'); DOM.favBtn.classList.add('bg-red-500/10'); svg.classList.add('text-red-500');
-            } else {
-                DOM.favBtn.classList.replace('border-red-500', 'border-zinc-800'); DOM.favBtn.classList.replace('text-white', 'text-zinc-400'); DOM.favBtn.classList.remove('bg-red-500/10'); svg.classList.remove('text-red-500');
-            }
-            renderAgents(); scrollToTop();
+            
+            favButtons.forEach(b => {
+                const svg = b.querySelector('svg');
+                if (State.showFavorites) {
+                    b.classList.replace('border-zinc-800', 'border-red-500'); 
+                    b.classList.replace('text-zinc-400', 'text-white'); 
+                    b.classList.add('bg-red-500/10'); 
+                    if (svg) svg.classList.add('text-red-500');
+                } else {
+                    b.classList.replace('border-red-500', 'border-zinc-800'); 
+                    b.classList.replace('text-white', 'text-zinc-400'); 
+                    b.classList.remove('bg-red-500/10'); 
+                    if (svg) svg.classList.remove('text-red-500');
+                }
+            });
+
+            renderAgents(); 
+            scrollToTop();
         });
-    }
+    });
 }
 
 window.toggleFavorite = function(btn, agentName, event) {
     event.stopPropagation(); 
     const svg = btn.querySelector('svg');
-    if(State.favorites.includes(agentName)) {
+    if (State.favorites.includes(agentName)) {
         State.favorites = State.favorites.filter(f => f !== agentName);
-        svg.classList.remove('text-red-500', 'fill-red-500'); svg.classList.add('text-zinc-500', 'fill-transparent');
+        svg.classList.remove('text-red-500', 'fill-red-500'); 
+        svg.classList.add('text-zinc-500', 'fill-transparent');
     } else {
         State.favorites.push(agentName);
-        svg.classList.add('text-red-500', 'fill-red-500'); svg.classList.remove('text-zinc-500', 'fill-transparent');
+        svg.classList.add('text-red-500', 'fill-red-500'); 
+        svg.classList.remove('text-zinc-500', 'fill-transparent');
     }
     localStorage.setItem('zzz_favorites', JSON.stringify(State.favorites)); 
-    updateFavBadge();
-    if(State.showFavorites) renderAgents();
+    updateFavBadges();
+    if (State.showFavorites) renderAgents();
 };
 
 // ==========================================
@@ -221,7 +283,7 @@ function renderFactions() {
         let displayName = faction === "Équipe d'intervention spéciale des Enquêtes criminelles" ? "N.E.P.S." : faction;
         let subName = faction === "Équipe d'intervention spéciale des Enquêtes criminelles" ? "Équipe d'intervention spéciale" : '';
 
-        if(isSidebar) {
+        if (isSidebar) {
             return `
             <div class="mb-5 px-1 transform-gpu hidden md:block">
                 <div class="faction-box rounded-[1.5rem] p-4 flex flex-col items-center gap-4 cursor-pointer w-full group bg-gradient-to-br from-[#121212] to-[#050505] border-2 border-zinc-800 hover:border-yellow-400/50 transition-colors transform-gpu" onclick="window.setFactionFilter('${faction.replace(/'/g, "\\'")}')">
@@ -258,25 +320,33 @@ function renderFactions() {
 
 window.setFactionFilter = function(faction, fromModal = false) {
     State.faction = faction; 
-    const tag = document.getElementById('activeFactionTag');
-    const nameLabel = document.getElementById('activeFactionName');
+    const tags = document.querySelectorAll('.active-faction-tag');
+    const nameLabels = document.querySelectorAll('.active-faction-name');
     
-    if (tag && nameLabel) {
-        nameLabel.textContent = faction === "Équipe d'intervention spéciale des Enquêtes criminelles" ? "N.E.P.S." : faction;
-        tag.classList.remove('hidden'); tag.classList.add('flex');
-    }
-    if(fromModal) window.closeModal('factionModal');
-    renderAgents(); scrollToTop();
+    const labelText = faction === "Équipe d'intervention spéciale des Enquêtes criminelles" ? "N.E.P.S." : faction;
+    nameLabels.forEach(nl => nl.textContent = labelText);
+    tags.forEach(t => {
+        t.classList.remove('hidden');
+        t.classList.add('flex');
+    });
+
+    if (fromModal) window.closeModal('factionModal');
+    renderAgents(); 
+    scrollToTop();
 };
 
-const clearFactionBtn = document.getElementById('clearFactionBtn');
-if(clearFactionBtn) {
-    clearFactionBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); State.faction = null;
-        document.getElementById('activeFactionTag').classList.add('hidden'); document.getElementById('activeFactionTag').classList.remove('flex');
-        renderAgents(); scrollToTop();
+document.querySelectorAll('.clear-faction-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        State.faction = null;
+        document.querySelectorAll('.active-faction-tag').forEach(t => {
+            t.classList.add('hidden');
+            t.classList.remove('flex');
+        });
+        renderAgents(); 
+        scrollToTop();
     });
-}
+});
 
 // ==========================================
 // 8. GRILLE DES AGENTS
@@ -306,7 +376,8 @@ function renderAgents() {
     });
 
     if (State.filteredAgents.length > 0) {
-        DOM.empty.classList.add('hidden'); DOM.empty.classList.remove('opacity-100'); 
+        DOM.empty.classList.add('hidden'); 
+        DOM.empty.classList.remove('opacity-100'); 
         let globalDelay = 0;
         
         if (State.mode === 'versions' && State.filters.version === 'All') {
@@ -319,7 +390,8 @@ function renderAgents() {
         }
         setTimeout(init3DParallax, 50);
     } else { 
-        DOM.empty.classList.remove('hidden'); setTimeout(() => DOM.empty.classList.add('opacity-100'), 10); 
+        DOM.empty.classList.remove('hidden'); 
+        setTimeout(() => DOM.empty.classList.add('opacity-100'), 10); 
     }
     
     updateModalNavigation();
@@ -350,10 +422,33 @@ function createCardHTML(agent, delayIndex) {
 // ==========================================
 // 9. MODALES ET NAVIGATION
 // ==========================================
+window.openModal = function(id) {
+    const m = document.getElementById(id);
+    if (!m) return;
+    m.classList.remove('hidden'); 
+    void m.offsetWidth; 
+    m.classList.add('opacity-100');
+};
+
+window.closeModal = function(id) {
+    const m = document.getElementById(id);
+    if (!m) return;
+    if (id === 'agentDetailModal') {
+        const splash = document.getElementById('agentSplashImage');
+        const guide = document.getElementById('agentGuideContainer');
+        if (splash) { splash.style.opacity = '0'; splash.style.transform = 'translateY(20px) scale(0.9)'; }
+        if (guide) { guide.style.opacity = '0'; guide.style.transform = 'translateX(20px)'; }
+        window.history.pushState({}, '', window.location.pathname);
+        State.modalIndex = -1;
+    }
+    m.classList.remove('opacity-100'); 
+    setTimeout(() => m.classList.add('hidden'), 300);
+};
+
 window.openAgentDetail = function(agentName) {
     const modal = document.getElementById('agentDetailModal');
+    if (!modal) return;
     
-    // SECURITE: S'assure que la modale est a la racine pour passer au-dessus de tout
     if (modal.parentElement !== document.body) {
         document.body.appendChild(modal);
     }
@@ -362,46 +457,49 @@ window.openAgentDetail = function(agentName) {
     const giantName = document.getElementById('modalGiantNameText');
     const guideContainer = document.getElementById('agentGuideContainer');
     
-    guideContainer.scrollTo(0, 0); 
+    if (guideContainer) guideContainer.scrollTo(0, 0); 
     State.modalIndex = State.filteredAgents.findIndex(a => a.name === agentName); 
     updateModalNavigation();
     
     window.history.pushState({}, '', '?' + new URLSearchParams({ agent: agentName }).toString());
     
-    splashImg.style.opacity = '0';
-    splashImg.onerror = function() { this.onerror = null; this.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; };
-    splashImg.src = `assets/splash/${agentName}.png`; 
-    giantName.textContent = agentName;
-    guideContainer.innerHTML = getGuideHTML(agentName, agentsData.find(a => a.name === agentName));
+    if (splashImg) {
+        splashImg.style.opacity = '0';
+        splashImg.onerror = function() { this.onerror = null; this.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; };
+        splashImg.src = `assets/splash/${agentName}.png`; 
+    }
+    if (giantName) giantName.textContent = agentName;
+    if (guideContainer) guideContainer.innerHTML = getGuideHTML(agentName, agentsData.find(a => a.name === agentName));
 
-    modal.classList.remove('hidden'); void modal.offsetWidth; modal.classList.add('opacity-100');
+    window.openModal('agentDetailModal');
     
     setTimeout(() => {
-        splashImg.style.opacity = '1'; splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)';
-        guideContainer.style.opacity = '1'; guideContainer.style.transform = 'translateX(0)';
+        if (splashImg) {
+            splashImg.style.opacity = '1'; 
+            splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)';
+        }
+        if (guideContainer) {
+            guideContainer.style.opacity = '1'; 
+            guideContainer.style.transform = 'translateX(0)';
+        }
     }, 50);
 };
 
-window.closeModal = function(id) {
-    const m = document.getElementById(id);
-    if(id === 'agentDetailModal') {
-        document.getElementById('agentSplashImage').style.opacity = '0'; document.getElementById('agentSplashImage').style.transform = 'translateY(20px) scale(0.9)'; 
-        document.getElementById('agentGuideContainer').style.opacity = '0'; document.getElementById('agentGuideContainer').style.transform = 'translateX(20px)';
-        window.history.pushState({}, '', window.location.pathname);
-        State.modalIndex = -1;
-    }
-    m.classList.remove('opacity-100'); setTimeout(() => m.classList.add('hidden'), 300);
-};
-
 function updateModalNavigation() {
-    const prevBtn = document.getElementById('prevAgentBtn'); const nextBtn = document.getElementById('nextAgentBtn');
-    if(!prevBtn || !nextBtn) return;
+    const prevBtn = document.getElementById('prevAgentBtn'); 
+    const nextBtn = document.getElementById('nextAgentBtn');
+    if (!prevBtn || !nextBtn) return;
     
     const hasPrev = State.modalIndex > 0;
     const hasNext = State.modalIndex < State.filteredAgents.length - 1 && State.modalIndex !== -1;
 
-    prevBtn.classList.toggle('opacity-0', !hasPrev); prevBtn.classList.toggle('pointer-events-none', !hasPrev); prevBtn.classList.toggle('-translate-x-10', !hasPrev);
-    nextBtn.classList.toggle('opacity-0', !hasNext); nextBtn.classList.toggle('pointer-events-none', !hasNext); nextBtn.classList.toggle('translate-x-10', !hasNext);
+    prevBtn.classList.toggle('opacity-0', !hasPrev); 
+    prevBtn.classList.toggle('pointer-events-none', !hasPrev); 
+    prevBtn.classList.toggle('-translate-x-10', !hasPrev);
+
+    nextBtn.classList.toggle('opacity-0', !hasNext); 
+    nextBtn.classList.toggle('pointer-events-none', !hasNext); 
+    nextBtn.classList.toggle('translate-x-10', !hasNext);
 
     if (hasPrev) prevBtn.onclick = (e) => { e.stopPropagation(); window.openAgentDetail(State.filteredAgents[State.modalIndex - 1].name); };
     if (hasNext) nextBtn.onclick = (e) => { e.stopPropagation(); window.openAgentDetail(State.filteredAgents[State.modalIndex + 1].name); };
@@ -409,22 +507,23 @@ function updateModalNavigation() {
 
 function initModals() {
     const openModalBtn = document.getElementById('openModalBtn');
-    if(openModalBtn) {
-        openModalBtn.addEventListener('click', () => { 
-            const m = document.getElementById('factionModal'); 
-            m.classList.remove('hidden'); void m.offsetWidth; m.classList.add('opacity-100'); 
-        });
+    if (openModalBtn) {
+        openModalBtn.addEventListener('click', () => window.openModal('factionModal'));
     }
 }
 
 function initKeyboardNavigation() {
     document.addEventListener('keydown', (e) => {
         const modalAgent = document.getElementById('agentDetailModal');
+        const modalFaction = document.getElementById('factionModal');
+        const modalMobileFilter = document.getElementById('mobileFilterModal');
+
         if (e.key === 'Escape') { 
-            if(!modalAgent.classList.contains('hidden')) window.closeModal('agentDetailModal'); 
-            else if(!document.getElementById('factionModal').classList.contains('hidden')) window.closeModal('factionModal'); 
+            if (modalAgent && !modalAgent.classList.contains('hidden')) window.closeModal('agentDetailModal'); 
+            else if (modalFaction && !modalFaction.classList.contains('hidden')) window.closeModal('factionModal'); 
+            else if (modalMobileFilter && !modalMobileFilter.classList.contains('hidden')) window.closeModal('mobileFilterModal');
         }
-        if (!modalAgent.classList.contains('hidden')) {
+        if (modalAgent && !modalAgent.classList.contains('hidden')) {
             if (e.key === 'ArrowLeft' && State.modalIndex > 0) window.openAgentDetail(State.filteredAgents[State.modalIndex - 1].name);
             if (e.key === 'ArrowRight' && State.modalIndex < State.filteredAgents.length - 1 && State.modalIndex !== -1) window.openAgentDetail(State.filteredAgents[State.modalIndex + 1].name);
         }
@@ -436,8 +535,13 @@ window.shareCurrentAgent = function() {
     const url = window.location.origin + window.location.pathname + '?agent=' + encodeURIComponent(State.filteredAgents[State.modalIndex].name);
     navigator.clipboard.writeText(url).then(() => {
         const toast = document.getElementById('toastNotification');
-        toast.classList.remove('-translate-y-32', 'opacity-0'); toast.classList.add('translate-y-0', 'opacity-100');
-        setTimeout(() => { toast.classList.remove('translate-y-0', 'opacity-100'); toast.classList.add('-translate-y-32', 'opacity-0'); }, 3000);
+        if (!toast) return;
+        toast.classList.remove('-translate-y-32', 'opacity-0'); 
+        toast.classList.add('translate-y-0', 'opacity-100');
+        setTimeout(() => { 
+            toast.classList.remove('translate-y-0', 'opacity-100'); 
+            toast.classList.add('-translate-y-32', 'opacity-0'); 
+        }, 3000);
     });
 };
 
@@ -446,8 +550,15 @@ function checkUrlForAgent() {
     const fastMask = document.getElementById('fast-mask');
     if (agentParam) {
         const agent = agentsData.find(a => a.name.toLowerCase() === agentParam.toLowerCase());
-        if (agent) { window.openAgentDetail(agent.name); setTimeout(() => { if(fastMask) { fastMask.style.opacity = '0'; setTimeout(() => fastMask.remove(), 400); } }, 100); } 
-        else if (fastMask) fastMask.remove();
+        if (agent) { 
+            window.openAgentDetail(agent.name); 
+            setTimeout(() => { 
+                if (fastMask) { 
+                    fastMask.style.opacity = '0'; 
+                    setTimeout(() => fastMask.remove(), 400); 
+                } 
+            }, 100); 
+        } else if (fastMask) fastMask.remove();
     } else if (fastMask) fastMask.remove();
 }
 
@@ -460,9 +571,14 @@ function initLanguageSwitcher() {
         langSwitcher.setAttribute('data-active', currentLang);
         langSwitcher.addEventListener('click', () => {
             const newLang = langSwitcher.getAttribute('data-active') === 'fr' ? 'en' : 'fr'; 
-            langSwitcher.setAttribute('data-active', newLang); setLanguage(newLang);
-            document.querySelectorAll('.dyn-term').forEach(el => { const term = el.getAttribute('data-term'); if (term) el.textContent = tTerm(term); });
-            renderAgents(); scrollToTop();
+            langSwitcher.setAttribute('data-active', newLang); 
+            setLanguage(newLang);
+            document.querySelectorAll('.dyn-term').forEach(el => { 
+                const term = el.getAttribute('data-term'); 
+                if (term) el.textContent = tTerm(term); 
+            });
+            renderAgents(); 
+            scrollToTop();
             if (State.modalIndex !== -1 && !document.getElementById('agentDetailModal').classList.contains('hidden')) { 
                 document.getElementById('agentGuideContainer').innerHTML = getGuideHTML(State.filteredAgents[State.modalIndex].name, State.filteredAgents[State.modalIndex]); 
             }
@@ -474,9 +590,33 @@ function init3DParallax() {
     if (window.matchMedia("(hover: none)").matches) return; 
     document.querySelectorAll('.agent-card-container').forEach(card => {
         card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-            card.classList.remove('reset-transition'); card.style.transform = `rotateX(${(((y - (rect.height / 2)) / (rect.height / 2)) * -12)}deg) rotateY(${(((x - (rect.width / 2)) / (rect.width / 2)) * 12)}deg) scale3d(1.05, 1.05, 1.05)`;
+            const rect = card.getBoundingClientRect(); 
+            const x = e.clientX - rect.left; 
+            const y = e.clientY - rect.top;
+            card.classList.remove('reset-transition'); 
+            card.style.transform = `rotateX(${(((y - (rect.height / 2)) / (rect.height / 2)) * -12)}deg) rotateY(${(((x - (rect.width / 2)) / (rect.width / 2)) * 12)}deg) scale3d(1.05, 1.05, 1.05)`;
         });
-        card.addEventListener('mouseleave', () => { card.classList.add('reset-transition'); card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; });
+        card.addEventListener('mouseleave', () => { 
+            card.classList.add('reset-transition'); 
+            card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; 
+        });
     });
+}
+
+// ==========================================
+// 11. GESTION DU TIROIR/MODALE FILTRE MOBILE
+// ==========================================
+function initMobileDrawer() {
+    if (!DOM.mobileFilterBtn || !DOM.mobileFilterModal) return;
+
+    DOM.mobileFilterBtn.addEventListener('click', () => {
+        window.openModal('mobileFilterModal');
+        updateAllSliders(State.mode);
+    });
+
+    if (DOM.closeMobileFilterBtn) {
+        DOM.closeMobileFilterBtn.addEventListener('click', () => {
+            window.closeModal('mobileFilterModal');
+        });
+    }
 }
