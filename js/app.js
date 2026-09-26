@@ -468,3 +468,45 @@ function init3DParallax() {
         card.addEventListener('mouseleave', () => { card.classList.add('reset-transition'); card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; });
     });
 }
+
+// ==========================================
+// 12. OPTIMISATION MOBILE (SWIPE GESTURES)
+// ==========================================
+let touchStartX = 0;
+let touchEndX = 0;
+
+function initMobileSwipe() {
+    const modal = document.getElementById('agentDetailModal');
+    if(!modal) return;
+
+    modal.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    modal.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipeGesture();
+    }, { passive: true });
+}
+
+function handleSwipeGesture() {
+    const swipeThreshold = 75; // Distance minimum en pixels pour valider le swipe
+    
+    // Swipe vers la gauche (Personnage Suivant)
+    if (touchEndX < touchStartX - swipeThreshold) {
+        if (State.modalIndex < State.filteredAgents.length - 1 && State.modalIndex !== -1) {
+            window.openAgentDetail(State.filteredAgents[State.modalIndex + 1].name);
+        }
+    }
+    // Swipe vers la droite (Personnage Précédent)
+    if (touchEndX > touchStartX + swipeThreshold) {
+        if (State.modalIndex > 0) {
+            window.openAgentDetail(State.filteredAgents[State.modalIndex - 1].name);
+        }
+    }
+}
+
+// Lancement de la détection mobile au chargement
+document.addEventListener('DOMContentLoaded', () => {
+    initMobileSwipe();
+});
