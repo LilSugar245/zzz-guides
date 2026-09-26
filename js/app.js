@@ -246,6 +246,12 @@ function initFactions() {
 function initModals() {
     if (DOM.openModalBtn) {
         DOM.openModalBtn.addEventListener('click', () => { 
+            // 1. Fermer le tiroir mobile s'il est ouvert
+            if(DOM.sidebar && !DOM.sidebar.classList.contains('-translate-x-full')) {
+                if(DOM.closeSidebarBtn) DOM.closeSidebarBtn.click();
+            }
+            
+            // 2. Ouvrir la modale
             if(DOM.factionModal) {
                 DOM.factionModal.classList.remove('hidden'); 
                 void DOM.factionModal.offsetWidth; 
