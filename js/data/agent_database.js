@@ -123,7 +123,7 @@ export const agentDatabase = {
     },
     "Claret": {
         color: "#3182eb", element: "Electric", rank: "S", factionTitle: { fr: "Atelier Flint", en: "Member of the Flint Workshop" },
-        stats: [ { label: "Taux Crit", value: "200% en combat" }, { label: "Objectif Disques", value: "14 rolls TC / 12 rolls DC" } ],
+        stats: [ { label: "Taux Crit", value: "128,9%" }, { label: "DEF", value: "2300- 2600+" } ],
         discs: [
             { tag: { fr: "Set 1 👑", en: "Set 1 👑" }, set1: "Thorned_Rose", set2: "Puffer_Electro", set1Name: "4pc Thorned Rose", set2Name: "+ 2pc Puffer Electro", note: { fr: "Son set signature est strictement incontournable. Meilleure option pour le gain de PEN Ratio.", en: "Her signature set is strictly mandatory. Best option for PEN Ratio gain." } },
             { tag: { fr: "Set 2 (100%)", en: "Set 2 (100%)" }, set1: "Thorned_Rose", set2: "Woodpecker_Electro", set1Name: "4pc Thorned Rose", set2Name: "+ 2pc Woodpecker Electro", note: { fr: "Très bonne alternative TC.", en: "Very solid CRIT Rate alternative." } }
