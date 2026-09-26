@@ -457,7 +457,6 @@ window.openAgentDetail = function(agentName) {
     const giantName = document.getElementById('modalGiantNameText');
     const guideContainer = document.getElementById('agentGuideContainer');
     
-    if (guideContainer) guideContainer.scrollTo(0, 0); 
     State.modalIndex = State.filteredAgents.findIndex(a => a.name === agentName); 
     updateModalNavigation();
     
@@ -469,7 +468,9 @@ window.openAgentDetail = function(agentName) {
         splashImg.src = `assets/splash/${agentName}.png`; 
     }
     if (giantName) giantName.textContent = agentName;
-    if (guideContainer) guideContainer.innerHTML = getGuideHTML(agentName, agentsData.find(a => a.name === agentName));
+    if (guideContainer) {
+        guideContainer.innerHTML = getGuideHTML(agentName, agentsData.find(a => a.name === agentName));
+    }
 
     window.openModal('agentDetailModal');
     
@@ -479,6 +480,7 @@ window.openAgentDetail = function(agentName) {
             splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)';
         }
         if (guideContainer) {
+            guideContainer.scrollTo(0, 0); // La réinitialisation du défilement est maintenant ici
             guideContainer.style.opacity = '1'; 
             guideContainer.style.transform = 'translateX(0)';
         }
