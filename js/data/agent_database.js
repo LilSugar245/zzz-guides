@@ -814,7 +814,7 @@ export const agentDatabase = {
         ],
         teams: [
             { name: "TEAM 01", tag: { fr: "Deadly Assault Top 👑", en: "Deadly Assault Top 👑" }, members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
-            { name: "TEAM 02", tag: "Score 31k+", members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 02", tag: "fire missile", members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
             { name: "TEAM 03", tag: { fr: "Synergie Lighter", en: "Lighter Synergy" }, members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
         ]
     },
