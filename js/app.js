@@ -262,11 +262,11 @@ window.toggleFavorite = function(btn, agentName, event) {
     if (State.favorites.includes(agentName)) {
         State.favorites = State.favorites.filter(f => f !== agentName);
         svg.classList.remove('text-red-500', 'fill-red-500'); 
-        svg.classList.add('text-zinc-500', 'fill-transparent');
+        svg.classList.add('text-zinc-500', 'fill-none'); // Correction : utiliser fill-none
     } else {
         State.favorites.push(agentName);
         svg.classList.add('text-red-500', 'fill-red-500'); 
-        svg.classList.remove('text-zinc-500', 'fill-transparent');
+        svg.classList.remove('text-zinc-500', 'fill-none'); // Correction : utiliser fill-none
     }
     localStorage.setItem('zzz_favorites', JSON.stringify(State.favorites)); 
     updateFavBadges();
