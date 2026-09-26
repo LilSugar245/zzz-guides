@@ -168,7 +168,7 @@ export const agentDatabase = {
     },
     "Ellen": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: "Maid",
-        stats: [ { label: "Taux Crit", value: "100% IG" }, { label: "Attaque", value: "à maximiser" }, { label: "Dégât Crit", value: "à maximiser" } ],
+        stats: [ { label: "Taux Crit", value: "90 - 100%" }, { label: "Attaque", value: "2600 - 3000+" }, { label: "Dégât Crit", value: "120% - 180%+" } ],
         discs: [
             { tag: "Set 1 👑", set1: "Woodpecker_Electro", set2: "Puffer_Electro", set1Name: "4pc Electro Pivert", set2Name: "+ 2pc Puffer Electro", note: "Le meilleur choix universel par défaut. Il surpasse nettement les autres options." },
             { tag: "Set 2 (100%)", set1: "Puffer_Electro", set2: "Woodpecker_Electro", set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Electro Pivert", note: "À égalité ou légèrement supérieur si Ellen est jouée avec Dialyn." },
