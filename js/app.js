@@ -1,8 +1,8 @@
 import { factionsData } from './data/factions.js';
-import { factionsData } from './data/factions.js';
 import { agentsData, colorMap, iconMap, filterGroups } from './data/agents.js';
 import { getGuideHTML } from './guides/index.js'; 
-import { updateStaticUI, setLanguage, currentLang, tTerm } from './i18n.js';
+import { updateStaticUI, setLanguage, currentLang, tTerm, tData } from './i18n.js';
+import { skinsData } from './data/skins.js';
 
 let activeMode = 'elements';
 let currentElement = 'All';
@@ -33,12 +33,10 @@ const elemBtns = document.querySelectorAll('.filter-elem-btn');
 const roleBtns = document.querySelectorAll('.filter-role-btn');
 const versionBtns = document.querySelectorAll('.filter-version-btn');
 
-// Fonction globale pour forcer le retour en haut de grille
 function scrollToTop() {
     mainScrollArea.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Fonction pour ajuster parfaitement le curseur blanc
 function updateSliderPosition(activeTabElement) {
     const containerRect = mainTabContainer.getBoundingClientRect();
     const tabRect = activeTabElement.getBoundingClientRect();
@@ -47,7 +45,6 @@ function updateSliderPosition(activeTabElement) {
     mainTabContainer.style.setProperty('--slide-width', `${tabRect.width}px`);
 }
 
-// INITIALISATION DU SLIDER
 window.addEventListener('resize', () => {
     const activeTab = document.querySelector('.tab-pill.active');
     if (activeTab) updateSliderPosition(activeTab);
@@ -325,7 +322,6 @@ window.openAgentDetail = function(agentName, rank, element) {
     const giantName = document.getElementById('modalGiantNameText');
     const guideContainer = document.getElementById('agentGuideContainer');
     
-    // Remise à zéro absolue du scroll de la modal pour forcer à démarrer en haut
     guideContainer.scrollTo(0, 0); 
     
     currentModalAgentIndex = filteredAgentsList.findIndex(a => a.name === agentName);
@@ -351,9 +347,50 @@ window.openAgentDetail = function(agentName, rank, element) {
         splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)';
         guideContainer.style.opacity = '1'; 
         guideContainer.style.transform = 'translateX(0)';
-        // Double sécurité : force le scrollTop une fois la modale visible
         guideContainer.scrollTop = 0;
     }, 50);
+};
+
+// FONCTION DE CHANGEMENT DE SKINS
+window.changeSkin = function(agentName, skinIndex) {
+    const skinList = skinsData[agentName];
+    if (!skinList || !skinList[skinIndex]) return;
+
+    const skin = skinList[skinIndex];
+    const agentData = agentsData.find(a => a.name === agentName);
+    const color = colorMap[agentData.element] || '#fff';
+
+    document.querySelectorAll('.skin-thumb').forEach((btn, idx) => {
+        if (idx === skinIndex) {
+            btn.classList.remove('opacity-50', 'scale-90', 'border-transparent');
+            btn.classList.add('opacity-100', 'scale-100');
+            btn.style.borderColor = color;
+            btn.style.boxShadow = `0 0 15px ${color}40`;
+        } else {
+            btn.classList.add('opacity-50', 'scale-90', 'border-transparent');
+            btn.classList.remove('opacity-100', 'scale-100');
+            btn.style.borderColor = 'transparent';
+            btn.style.boxShadow = 'none';
+        }
+    });
+
+    const mainImg = document.getElementById('skin-main-img');
+    const titleEl = document.getElementById('skin-title');
+    const descEl = document.getElementById('skin-desc');
+    const idBadge = document.getElementById('skin-id-badge');
+
+    mainImg.style.opacity = '0';
+    descEl.style.opacity = '0';
+    
+    setTimeout(() => {
+        mainImg.src = `assets/Skins/${skin.img}`;
+        idBadge.textContent = `ID: ${skin.id}`;
+        titleEl.textContent = tData(skin.name);
+        descEl.textContent = tData(skin.desc);
+
+        mainImg.style.opacity = '1';
+        descEl.style.opacity = '1';
+    }, 300);
 };
 
 function init3DParallax() {
