@@ -3,7 +3,7 @@ import { agentsData, colorMap, iconMap, filterGroups } from './data/agents.js';
 import { getGuideHTML } from './guides/index.js'; 
 import { updateStaticUI, setLanguage, currentLang, tTerm } from './i18n.js';
 
-let activeMode = 'elements'; // 'elements', 'roles' ou 'versions'
+let activeMode = 'elements';
 let currentElement = 'All';
 let currentRole = 'All';
 let currentVersion = 'All';
@@ -18,6 +18,7 @@ let currentModalAgentIndex = -1;
 const gridContainer = document.getElementById('agents-grid');
 const emptyState = document.getElementById('empty-state');
 const favFilterBtn = document.getElementById('favoriteFilterBtn');
+const mainScrollArea = document.querySelector('main');
 
 const mainTabContainer = document.getElementById('mainTabContainer');
 const tabElements = document.getElementById('tabElements');
@@ -31,28 +32,52 @@ const elemBtns = document.querySelectorAll('.filter-elem-btn');
 const roleBtns = document.querySelectorAll('.filter-role-btn');
 const versionBtns = document.querySelectorAll('.filter-version-btn');
 
+// Fonction globale pour forcer le retour en haut de grille
+function scrollToTop() {
+    mainScrollArea.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Fonction pour ajuster parfaitement le curseur blanc
+function updateSliderPosition(activeTabElement) {
+    const containerRect = mainTabContainer.getBoundingClientRect();
+    const tabRect = activeTabElement.getBoundingClientRect();
+    const relativeLeft = tabRect.left - containerRect.left;
+    mainTabContainer.style.setProperty('--slide-left', `${relativeLeft}px`);
+    mainTabContainer.style.setProperty('--slide-width', `${tabRect.width}px`);
+}
+
+// INITIALISATION DU SLIDER
+window.addEventListener('resize', () => {
+    const activeTab = document.querySelector('.tab-pill.active');
+    if (activeTab) updateSliderPosition(activeTab);
+});
+setTimeout(() => updateSliderPosition(tabElements), 100);
+
 tabElements.addEventListener('click', () => {
     activeMode = 'elements';
-    mainTabContainer.setAttribute('data-active', 'elements');
     tabElements.classList.add('active'); tabRoles.classList.remove('active'); tabVersions.classList.remove('active');
+    updateSliderPosition(tabElements);
     groupElements.classList.remove('hidden'); groupRoles.classList.add('hidden'); groupVersions.classList.add('hidden');
     renderAgents();
+    scrollToTop();
 });
 
 tabRoles.addEventListener('click', () => {
     activeMode = 'roles';
-    mainTabContainer.setAttribute('data-active', 'roles');
     tabRoles.classList.add('active'); tabElements.classList.remove('active'); tabVersions.classList.remove('active');
+    updateSliderPosition(tabRoles);
     groupRoles.classList.remove('hidden'); groupElements.classList.add('hidden'); groupVersions.classList.add('hidden');
     renderAgents();
+    scrollToTop();
 });
 
 tabVersions.addEventListener('click', () => {
     activeMode = 'versions';
-    mainTabContainer.setAttribute('data-active', 'versions');
     tabVersions.classList.add('active'); tabElements.classList.remove('active'); tabRoles.classList.remove('active');
+    updateSliderPosition(tabVersions);
     groupVersions.classList.remove('hidden'); groupElements.classList.add('hidden'); groupRoles.classList.add('hidden');
     renderAgents();
+    scrollToTop();
 });
 
 elemBtns.forEach(btn => {
@@ -61,6 +86,7 @@ elemBtns.forEach(btn => {
         btn.classList.add('active');
         currentElement = btn.getAttribute('data-filter');
         renderAgents();
+        scrollToTop();
     });
 });
 
@@ -70,6 +96,7 @@ roleBtns.forEach(btn => {
         btn.classList.add('active');
         currentRole = btn.getAttribute('data-role');
         renderAgents();
+        scrollToTop();
     });
 });
 
@@ -79,6 +106,7 @@ versionBtns.forEach(btn => {
         btn.classList.add('active');
         currentVersion = btn.getAttribute('data-version');
         renderAgents();
+        scrollToTop();
     });
 });
 
@@ -123,6 +151,7 @@ favFilterBtn.addEventListener('click', function() {
         this.querySelector('svg').classList.remove('text-red-500');
     }
     renderAgents();
+    scrollToTop();
 });
 
 updateFavBadge();
@@ -140,7 +169,6 @@ function renderFactions() {
             <div class="mb-5 px-1 transform-gpu">
                 <div class="faction-box rounded-[1.5rem] p-4 flex flex-col items-center gap-4 cursor-pointer w-full group bg-gradient-to-br from-[#121212] to-[#050505] border-2 border-zinc-800 hover:border-yellow-400/50 transition-colors transform-gpu" onclick="setFactionFilter('${faction.replace(/'/g, "\\'")}')">
                     <div class="w-32 h-32 md:w-36 md:h-36 bg-black rounded-[1.2rem] overflow-hidden flex items-center justify-center p-3 shadow-inner group-hover:bg-[#0a0a0a] transition-colors relative transform-gpu">
-                        <!-- Remplacement de lazy par eager pour éviter le déchargement de l'image -->
                         <img src="${imgPath}" loading="eager" decoding="sync" alt="${faction}" class="w-full h-full object-contain drop-shadow-xl relative z-10 transform-gpu" style="backface-visibility: hidden;" onerror="this.onerror=null; this.src='${fallbackImg}'">
                     </div>
                     <div class="bg-black/95 px-3 py-2.5 rounded-xl text-xs font-black text-center w-full border border-zinc-700/80 text-zinc-400 group-hover:text-white group-hover:border-yellow-400/80 transition-colors shadow-lg uppercase leading-tight transform-gpu">
@@ -181,7 +209,7 @@ window.setFactionFilter = function(faction, fromModal = false) {
     document.getElementById('activeFactionTag').classList.add('flex');
     if(fromModal) window.closeModal('factionModal');
     renderAgents();
-    document.querySelector('main').scrollTo({top: 0, behavior: 'smooth'});
+    scrollToTop();
 };
 
 document.getElementById('clearFactionBtn').addEventListener('click', (e) => {
@@ -189,6 +217,7 @@ document.getElementById('clearFactionBtn').addEventListener('click', (e) => {
     document.getElementById('activeFactionTag').classList.add('hidden');
     document.getElementById('activeFactionTag').classList.remove('flex');
     renderAgents();
+    scrollToTop();
 });
 
 function updateBothDropdowns(query) {
@@ -295,8 +324,8 @@ window.openAgentDetail = function(agentName, rank, element) {
     const giantName = document.getElementById('modalGiantNameText');
     const guideContainer = document.getElementById('agentGuideContainer');
     
-    // Remise à zéro immédiate du scroll à l'ouverture d'un guide
-    guideContainer.scrollTop = 0; 
+    // Remise à zéro absolue du scroll de la modal pour forcer à démarrer en haut
+    guideContainer.scrollTo(0, 0); 
     
     currentModalAgentIndex = filteredAgentsList.findIndex(a => a.name === agentName);
     updateModalNavigation();
@@ -321,6 +350,8 @@ window.openAgentDetail = function(agentName, rank, element) {
         splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)';
         guideContainer.style.opacity = '1'; 
         guideContainer.style.transform = 'translateX(0)';
+        // Double sécurité : force le scrollTop une fois la modale visible
+        guideContainer.scrollTop = 0;
     }, 50);
 };
 
@@ -474,7 +505,6 @@ renderAgents();
 document.addEventListener('DOMContentLoaded', () => {
     updateStaticUI();
 
-    // Configuration et écouteur du sélecteur de langue bilingue
     const langSwitcher = document.getElementById('langSwitcher');
     if (langSwitcher) {
         langSwitcher.setAttribute('data-active', currentLang);
@@ -483,14 +513,14 @@ document.addEventListener('DOMContentLoaded', () => {
             langSwitcher.setAttribute('data-active', newLang);
             setLanguage(newLang);
             
-            // Met à jour les termes d'éléments et de rôles dans la sidebar
             document.querySelectorAll('.dyn-term').forEach(el => {
                 const term = el.getAttribute('data-term');
                 if (term) el.textContent = tTerm(term);
             });
             
-            // Re-rendu dynamique de la grille et de la fiche active
             renderAgents();
+            scrollToTop();
+            
             if (currentModalAgentIndex !== -1 && !document.getElementById('agentDetailModal').classList.contains('hidden')) {
                 const agent = filteredAgentsList[currentModalAgentIndex];
                 document.getElementById('agentGuideContainer').innerHTML = getGuideHTML(agent.name);
@@ -498,7 +528,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Gestion de l'interception directe de lien (?agent=...)
     const urlParams = new URLSearchParams(window.location.search);
     const agentParam = urlParams.get('agent');
     const fastMask = document.getElementById('fast-mask');
