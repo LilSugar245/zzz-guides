@@ -2,7 +2,6 @@ import { factionsData } from './data/factions.js';
 import { agentsData, colorMap, iconMap, filterGroups } from './data/agents.js';
 import { getGuideHTML } from './guides/index.js'; 
 import { updateStaticUI, setLanguage, currentLang, tTerm, tData } from './i18n.js';
-import { skinsData } from './data/skins.js';
 import { mindscapesData } from './data/mindscapes.js';
 
 let activeMode = 'elements';
@@ -231,61 +230,6 @@ window.shareCurrentAgent = function() {
     });
 };
 
-/* --- FONCTION DE CHANGEMENT DE SKINS --- */
-window.changeSkin = function(agentName, skinIndex) {
-    const skinList = skinsData[agentName];
-    if (!skinList || !skinList[skinIndex]) return;
-
-    const skin = skinList[skinIndex];
-    const agentData = agentsData.find(a => a.name === agentName);
-    const color = colorMap[agentData.element] || '#fff';
-
-    document.querySelectorAll('.skin-thumb').forEach((btn, idx) => {
-        if (idx === skinIndex) {
-            btn.classList.remove('opacity-50', 'scale-90', 'border-transparent'); btn.classList.add('opacity-100', 'scale-100');
-            btn.style.borderColor = color; btn.style.boxShadow = `0 0 15px ${color}40`;
-        } else {
-            btn.classList.add('opacity-50', 'scale-90', 'border-transparent'); btn.classList.remove('opacity-100', 'scale-100');
-            btn.style.borderColor = 'transparent'; btn.style.boxShadow = 'none';
-        }
-    });
-
-    const mainImg = document.getElementById('skin-main-img');
-    const titleEl = document.getElementById('skin-title');
-    const descEl = document.getElementById('skin-desc');
-    const idBadge = document.getElementById('skin-id-badge');
-
-    mainImg.style.opacity = '0'; descEl.style.opacity = '0';
-    setTimeout(() => {
-        mainImg.src = `assets/Skins/${skin.img}`; idBadge.textContent = `ID: ${skin.id}`;
-        titleEl.textContent = tData(skin.name); descEl.textContent = tData(skin.desc);
-        mainImg.style.opacity = '1'; descEl.style.opacity = '1';
-    }, 300);
-};
-
-/* --- SYSTÈME D'ONGLETS INTRA-MODALE --- */
-window.switchTab = function(tabName) {
-    const guideContent = document.getElementById('tab-content-guide');
-    const mindscapesContent = document.getElementById('tab-content-mindscapes');
-    const btnGuide = document.getElementById('tab-btn-guide');
-    const btnMindscapes = document.getElementById('tab-btn-mindscapes');
-    const guideWrapper = document.querySelector('.max-w-\\[1400px\\]');
-    const c = guideWrapper ? guideWrapper.style.getPropertyValue('--agent-color') : '#d7f70c';
-
-    if (tabName === 'guide') {
-        if(mindscapesContent) { mindscapesContent.style.opacity = '0'; mindscapesContent.style.transform = 'translateY(20px)'; setTimeout(() => mindscapesContent.classList.add('hidden'), 300); }
-        btnGuide.classList.add('active'); btnGuide.style.color = c;
-        if(btnMindscapes) { btnMindscapes.classList.remove('active'); btnMindscapes.style.color = ''; }
-        setTimeout(() => { guideContent.classList.remove('hidden'); setTimeout(() => { guideContent.style.opacity = '1'; guideContent.style.transform = 'translateY(0)'; }, 50); }, 300);
-    } else if (tabName === 'mindscapes') {
-        guideContent.style.opacity = '0'; guideContent.style.transform = 'translateY(20px)'; setTimeout(() => guideContent.classList.add('hidden'), 300);
-        btnMindscapes.classList.add('active'); btnMindscapes.style.color = c;
-        btnGuide.classList.remove('active'); btnGuide.style.color = '';
-        setTimeout(() => { mindscapesContent.classList.remove('hidden'); setTimeout(() => { mindscapesContent.style.opacity = '1'; mindscapesContent.style.transform = 'translateY(0)'; }, 50); }, 300);
-    }
-};
-
-/* --- SYSTÈME VISUALISEUR MINDSCAPES --- */
 window.selectMindscape = function(agentName, level) {
     const dataList = mindscapesData[agentName];
     if (!dataList) return;
