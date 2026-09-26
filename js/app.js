@@ -137,12 +137,13 @@ function renderFactions() {
 
         if(isSidebar) {
             return `
-            <div class="mb-5 px-1">
-                <div class="faction-box rounded-[1.5rem] p-4 flex flex-col items-center gap-4 cursor-pointer w-full group bg-gradient-to-br from-[#121212] to-[#050505] border-2 border-zinc-800 hover:border-yellow-400/50 transition-colors" onclick="setFactionFilter('${faction.replace(/'/g, "\\'")}')">
-                    <div class="w-32 h-32 md:w-36 md:h-36 bg-black rounded-[1.2rem] overflow-hidden flex items-center justify-center p-3 shadow-inner group-hover:bg-[#0a0a0a] transition-colors relative">
-                        <img src="${imgPath}" loading="lazy" alt="${faction}" class="w-full h-full object-contain drop-shadow-xl relative z-10" onerror="this.onerror=null; this.src='${fallbackImg}'">
+            <div class="mb-5 px-1 transform-gpu">
+                <div class="faction-box rounded-[1.5rem] p-4 flex flex-col items-center gap-4 cursor-pointer w-full group bg-gradient-to-br from-[#121212] to-[#050505] border-2 border-zinc-800 hover:border-yellow-400/50 transition-colors transform-gpu" onclick="setFactionFilter('${faction.replace(/'/g, "\\'")}')">
+                    <div class="w-32 h-32 md:w-36 md:h-36 bg-black rounded-[1.2rem] overflow-hidden flex items-center justify-center p-3 shadow-inner group-hover:bg-[#0a0a0a] transition-colors relative transform-gpu">
+                        <!-- Remplacement de lazy par eager pour éviter le déchargement de l'image -->
+                        <img src="${imgPath}" loading="eager" decoding="sync" alt="${faction}" class="w-full h-full object-contain drop-shadow-xl relative z-10 transform-gpu" style="backface-visibility: hidden;" onerror="this.onerror=null; this.src='${fallbackImg}'">
                     </div>
-                    <div class="bg-black/95 px-3 py-2.5 rounded-xl text-xs font-black text-center w-full border border-zinc-700/80 text-zinc-400 group-hover:text-white group-hover:border-yellow-400/80 transition-colors shadow-lg uppercase leading-tight">
+                    <div class="bg-black/95 px-3 py-2.5 rounded-xl text-xs font-black text-center w-full border border-zinc-700/80 text-zinc-400 group-hover:text-white group-hover:border-yellow-400/80 transition-colors shadow-lg uppercase leading-tight transform-gpu">
                         ${displayName}${subName ? `<span class="block text-[8px] text-zinc-500 mt-0.5 tracking-wider">${subName}</span>` : ''}
                     </div>
                 </div>
