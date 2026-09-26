@@ -49,15 +49,18 @@
         .lang-switch-wrap[data-active="en"] .lang-option.en { color: #000; }
         .lang-switch-wrap[data-active="en"] .lang-option.fr { color: #888; }
 
-        /* Animation Factions (Correction) */
+        /* Animation Factions (Correction disparition GPU) */
         @keyframes marqueeVertical {
             0% { transform: translateY(0); }
             100% { transform: translateY(-50%); }
         }
         .marquee-mask { mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); }
-        .marquee-track-vertical { animation: marqueeVertical 30s linear infinite; display: flex; flex-direction: column; }
-        /* Empêche l'animation de s'arrêter au survol */
-        .marquee-track-vertical:hover { animation-play-state: running; }
+        .marquee-track-vertical { 
+            animation: marqueeVertical 30s linear infinite; 
+            display: flex; 
+            flex-direction: column; 
+            will-change: transform; /* Force le rendu GPU pour éviter que les images disparaissent */
+        }
     </style>
     <script>
         if (window.location.search.includes('agent=')) document.write('<div id="fast-mask"></div>');
@@ -105,10 +108,12 @@
                     <div id="searchDropdown" class="absolute left-0 right-0 top-full mt-2 bg-black/95 border border-zinc-700 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.9)] max-h-72 overflow-y-auto flex flex-col hidden divide-y divide-zinc-800 backdrop-blur-xl transform origin-top transition-all duration-300 z-[150]"></div>
                 </div>
 
-                <div class="bg-[#141414] border border-zinc-800/80 p-1.5 rounded-full flex items-center justify-between mb-5 gap-1">
-                    <button id="tabElements" class="tab-pill active flex-1 text-center"><span data-i18n="elements">Éléments</span></button>
-                    <button id="tabRoles" class="tab-pill flex-1 text-center"><span data-i18n="roles">Rôles</span></button>
-                    <button id="tabVersions" class="tab-pill flex-1 text-center"><span data-i18n="versions">Versions</span></button>
+                <!-- Onglets Principaux avec Slider -->
+                <div id="mainTabContainer" class="tab-container mb-5" data-active="elements">
+                    <div class="tab-slider"></div>
+                    <button id="tabElements" class="tab-pill active"><span data-i18n="elements">Éléments</span></button>
+                    <button id="tabRoles" class="tab-pill"><span data-i18n="roles">Rôles</span></button>
+                    <button id="tabVersions" class="tab-pill"><span data-i18n="versions">Versions</span></button>
                 </div>
 
                 <div class="mb-4">
