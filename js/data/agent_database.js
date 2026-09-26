@@ -811,9 +811,9 @@ export const agentDatabase = {
     "Nekomata": {
         color: "#e8a838", element: "Physical", rank: "S", factionTitle: "Lièvres rusés",
         stats: [
-            { label: "Taux Crit", value: "100 % (combat)" },
-            { label: "Attaque", value: "Maximiser" },
-            { label: "Dégât Crit", value: "Maximiser" }
+            { label: "Taux Crit", value: "70% - 80%+" },
+            { label: "Attaque", value: "2500 - 3100+" },
+            { label: "Dégât Crit", value: "140% - 160%+" }
         ],
         discs: [
             { tag: "Meilleur Set (100 %) 👑", set1: "Woodpecker_Electro", set2: "Puffer_Electro", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Puffer Electro", note: "Configuration optimale (100 % DPS). Maintien constant des 3 cumuls grâce à l'enchaînement de l'EX et de la contre-esquive renforcée." },
