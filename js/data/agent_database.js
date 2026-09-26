@@ -367,7 +367,7 @@ export const agentDatabase = {
     },
     "Cissia": {
         color: "#3182eb", element: "Electric", rank: "S", factionTitle: { fr: "Division de l'Ordre urbain", en: "Metropolitan Order Division - N.E.P.S." },
-        stats: [ { label: "Taux Crit", value: "50% - 57% (with Signature)" }, { label: "Dégât Crit", value: "110%+" }, { label: "Attaque", value: "2500 - 2700+" } ],
+        stats: [ { label: "Taux Crit", value: "50% - 57%" }, { label: "Dégât Crit", value: "110%+" }, { label: "Attaque", value: "2500 - 2700+" } ],
         discs: [
             { tag: { fr: "Set 1 👑", en: "Set 1 👑" }, set1: "Astral_Voice", set2: "Swing_Jazz", set1Name: "4pc Astral Voice", set2Name: "+ 2pc Swing Jazz", note: "" },
             { tag: "Set 2", set1: "Dawn_Bloom", set2: "Branch_Blade_Song", set1Name: "4pc Dawn's Bloom", set2Name: "+ 2pc Branch and Blade Song", note: "" },
@@ -721,9 +721,9 @@ export const agentDatabase = {
     "Sigrid": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Département de la patrouille aérienne", en: "Air Patrol Department" },
         stats: [
-            { label: "Taux Crit", value: "6 rolls max (≤ 34%)" },
-            { label: "Attaque", value: "Maximiser" },
-            { label: "Dégât Crit", value: "Maximiser" }
+            { label: "Taux Crit", value: "33.8%" },
+            { label: "Attaque", value: "3000 - 3400+" },
+            { label: "Dégât Crit", value: "150% - 210%+" }
         ],
         discs: [
             { tag: { fr: "Avec Dialyn (100 %) 👑", en: "With Dialyn (100%) 👑" }, set1: "Puffer_Electro", set2: "Polar_Metal", set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Polar Metal", note: { fr: "Configuration indispensable avec Dialyn pour exploiter le double ultime sous étourdissement et combler le manque de DGT Glace.", en: "Mandatory setup with Dialyn to abuse the double Ultimate in stun and cover missing Ice DMG." } },
