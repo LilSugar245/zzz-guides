@@ -230,48 +230,6 @@ window.shareCurrentAgent = function() {
     });
 };
 
-window.selectMindscape = function(agentName, level) {
-    const dataList = mindscapesData[agentName];
-    if (!dataList) return;
-    
-    const agent = agentsData.find(a => a.name === agentName);
-    const color = colorMap[agent.element] || '#d7f70c';
-
-    for(let i = 0; i < dataList.length; i++) {
-        const node = document.getElementById(`ms-node-${i}`);
-        if(node) {
-            if(i <= level) { node.style.backgroundColor = color; node.style.color = '#000'; node.style.boxShadow = `0 0 15px ${color}`; } 
-            else { node.style.backgroundColor = '#27272a'; node.style.color = '#888'; node.style.boxShadow = 'none'; }
-            if(i === level) node.classList.add('scale-125'); else node.classList.remove('scale-125');
-        }
-    }
-    const progressLine = document.getElementById('mindscapeProgressLine');
-    if(progressLine) progressLine.style.width = `${(level / (dataList.length - 1)) * 100}%`;
-
-    const imgElement = document.getElementById('ms-visual-img');
-    if(imgElement) {
-        imgElement.style.opacity = '0';
-        setTimeout(() => {
-            let imgSuffix = 'M0';
-            if (level >= 0 && level <= 1) imgSuffix = 'M3';
-            if (level >= 2) imgSuffix = 'M6';
-            imgElement.src = `assets/Mindscapes/${agentName}_${imgSuffix}.png`;
-            imgElement.style.opacity = '1';
-        }, 300);
-    }
-
-    const ms = dataList[level];
-    const rankEl = document.getElementById('ms-rank-badge');
-    const titleEl = document.getElementById('ms-title-text');
-    const descEl = document.getElementById('ms-desc-text');
-    
-    descEl.style.opacity = '0';
-    setTimeout(() => {
-        rankEl.textContent = ms.rank; titleEl.textContent = tData(ms.title); descEl.textContent = tData(ms.desc);
-        descEl.style.opacity = '1';
-    }, 300);
-};
-
 window.openAgentDetail = function(agentName, rank, element) {
     const modal = document.getElementById('agentDetailModal');
     const splashImg = document.getElementById('agentSplashImage');
