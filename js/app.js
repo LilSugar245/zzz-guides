@@ -1,6 +1,7 @@
 import { factionsData } from './data/factions.js';
 import { agentsData, colorMap, iconMap, filterGroups } from './data/agents.js';
 import { getGuideHTML } from './guides/index.js'; 
+import { updateStaticUI, setLanguage, currentLang, tTerm } from './i18n.js';
 
 let activeMode = 'elements'; // 'elements', 'roles' ou 'versions'
 let currentElement = 'All';
@@ -212,7 +213,7 @@ function updateBothDropdowns(query) {
                     <span class="text-white text-sm font-black tracking-widest group-hover:text-yellow-400 transition-colors uppercase">${agent.name}</span>
                     <div class="flex items-center gap-1.5 mt-1">
                         <img src="assets/Icone/${iconFile}" class="w-3.5 h-3.5 object-contain opacity-80">
-                        <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest">${agent.element}</span>
+                        <span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest">${tTerm(agent.element)}</span>
                     </div>
                 </div>
             `;
@@ -289,7 +290,7 @@ window.openAgentDetail = function(agentName, rank, element) {
     const giantName = document.getElementById('modalGiantNameText');
     const guideContainer = document.getElementById('agentGuideContainer');
     
-    // RESET DU SCROLL (très important pour que la nouvelle modale s'affiche tout en haut)
+    // Remise à zéro immédiate du scroll à l'ouverture d'un guide
     guideContainer.scrollTop = 0; 
     
     currentModalAgentIndex = filteredAgentsList.findIndex(a => a.name === agentName);
@@ -362,7 +363,6 @@ function renderAgents() {
         if (activeMode === 'versions' && currentVersion === 'All') {
             const sortedVersions = Object.keys(agentsByVersion).sort();
             sortedVersions.forEach(version => {
-                // SÉPARATEUR DE VERSION EXTRÊME
                 const separatorHTML = `
                 <div class="col-span-full relative mt-16 mb-12 flex items-center justify-center group/sep perspective-1000">
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -467,6 +467,33 @@ renderFactions();
 renderAgents();
 
 document.addEventListener('DOMContentLoaded', () => {
+    updateStaticUI();
+
+    // Configuration et écouteur du sélecteur de langue bilingue
+    const langSwitcher = document.getElementById('langSwitcher');
+    if (langSwitcher) {
+        langSwitcher.setAttribute('data-active', currentLang);
+        langSwitcher.addEventListener('click', () => {
+            const newLang = langSwitcher.getAttribute('data-active') === 'fr' ? 'en' : 'fr';
+            langSwitcher.setAttribute('data-active', newLang);
+            setLanguage(newLang);
+            
+            // Met à jour les termes d'éléments et de rôles dans la sidebar
+            document.querySelectorAll('.dyn-term').forEach(el => {
+                const term = el.getAttribute('data-term');
+                if (term) el.textContent = tTerm(term);
+            });
+            
+            // Re-rendu dynamique de la grille et de la fiche active
+            renderAgents();
+            if (currentModalAgentIndex !== -1 && !document.getElementById('agentDetailModal').classList.contains('hidden')) {
+                const agent = filteredAgentsList[currentModalAgentIndex];
+                document.getElementById('agentGuideContainer').innerHTML = getGuideHTML(agent.name);
+            }
+        });
+    }
+
+    // Gestion de l'interception directe de lien (?agent=...)
     const urlParams = new URLSearchParams(window.location.search);
     const agentParam = urlParams.get('agent');
     const fastMask = document.getElementById('fast-mask');
@@ -474,7 +501,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (agentParam) {
         const agent = agentsData.find(a => a.name.toLowerCase() === agentParam.toLowerCase());
         if (agent) {
-            // Ouvre directement l'agent sans flash menu !
             window.openAgentDetail(agent.name, agent.rank, agent.element);
             setTimeout(() => {
                 if(fastMask) {
@@ -486,6 +512,6 @@ document.addEventListener('DOMContentLoaded', () => {
             fastMask.remove();
         }
     } else if (fastMask) {
-        fastMask.remove(); // Pas d'agent en URL, on retire le masque direct
+        fastMask.remove();
     }
 });
