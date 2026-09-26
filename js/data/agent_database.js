@@ -2,9 +2,9 @@ export const agentDatabase = {
     "Piper": {
         color: "#e8a838", element: "Physical", rank: "A", factionTitle: { fr: "Fils de Calydon", en: "Sons of Calydon" },
         stats: [
-            { label: { fr: "Adresse d'Anomalie", en: "Anomaly Proficiency" }, value: "≥385 - 420+" },
+            { label: { fr: "Adresse d'Anomalie", en: "Anomaly Proficiency" }, value: "≥ 385 - 420+" },
             { label: { fr: "Attaque", en: "Attack" }, value: "≥ 2600 - 2800+" },
-            { label: { fr: "Maîtrise d'Anomalie", en: "Anomaly Mastery" }, value: "≥120 - 150+" }
+            { label: { fr: "Maîtrise d'Anomalie", en: "Anomaly Mastery" }, value: "≥ 120 - 150+" }
         ],
         discs: [
             { 
