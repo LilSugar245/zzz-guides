@@ -269,24 +269,24 @@ function renderFactions() {
 
         if(isSidebar) {
             return `
-            <div class="mb-5 px-1 transform-gpu">
+            <div class="mb-5 px-1 transform-gpu hidden md:block">
                 <div class="faction-box rounded-[1.5rem] p-4 flex flex-col items-center gap-4 cursor-pointer w-full group bg-gradient-to-br from-[#121212] to-[#050505] border-2 border-zinc-800 hover:border-yellow-400/50 transition-colors transform-gpu" onclick="window.setFactionFilter('${faction.replace(/'/g, "\\'")}')">
                     <div class="w-40 h-40 md:w-44 md:h-44 bg-black rounded-[1.2rem] overflow-hidden flex items-center justify-center p-2 shadow-inner group-hover:bg-[#0a0a0a] transition-colors relative transform-gpu">
                         <img src="${imgPath}" loading="eager" decoding="sync" alt="${faction}" class="w-full h-full object-contain scale-110 drop-shadow-xl relative z-10 transform-gpu" style="backface-visibility: hidden;" onerror="this.onerror=null; this.src='${fallbackImg}'">
                     </div>
-                    <div class="bg-black/95 px-3 py-2.5 rounded-xl text-xs font-black text-center w-full border border-zinc-700/80 text-zinc-400 group-hover:text-white group-hover:border-yellow-400/80 transition-colors shadow-lg uppercase leading-tight transform-gpu">
+                    <div class="bg-black/95 px-3 py-2.5 rounded-xl text-xs font-black text-center w-full border border-zinc-700/80 text-zinc-400 group-hover:text-white group-hover:border-yellow-400/80 transition-colors shadow-lg uppercase leading-tight transform-gpu flex-1 flex flex-col justify-center">
                         ${displayName}${subName ? `<span class="block text-[8px] text-zinc-500 mt-0.5 tracking-wider">${subName}</span>` : ''}
                     </div>
                 </div>
             </div>`;
         } else {
             return `
-            <div class="bg-[#121212] border-2 border-zinc-800 rounded-2xl md:rounded-[2rem] p-3 md:p-6 flex flex-col items-center justify-between gap-3 md:gap-6 cursor-pointer hover:border-yellow-400 hover:-translate-y-2 transition-all duration-300 group shadow-2xl relative overflow-hidden" onclick="window.setFactionFilter('${faction.replace(/'/g, "\\'")}', true)">
-                <div class="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 transition-all duration-500 group-hover:scale-110 relative z-10">
-                    <img src="${imgPath}" loading="lazy" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='${fallbackImg}'">
+            <div class="bg-[#121212] border-2 border-zinc-800 rounded-[2rem] p-4 sm:p-6 flex flex-col items-center justify-between gap-4 sm:gap-6 cursor-pointer hover:border-yellow-400 hover:-translate-y-2 transition-all duration-300 group shadow-2xl relative overflow-hidden" onclick="window.setFactionFilter('${faction.replace(/'/g, "\\'")}', true)">
+                <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 transition-all duration-500 group-hover:scale-110 relative z-10 flex-shrink-0">
+                    <img src="${imgPath}" loading="lazy" alt="${faction}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='${fallbackImg}'">
                 </div>
-                <div class="bg-black/80 px-2 py-2 md:px-5 md:py-3 rounded-xl text-[9px] sm:text-xs md:text-sm font-black w-full text-center border border-zinc-800 group-hover:border-yellow-400 text-zinc-300 shadow-inner group-hover:text-yellow-400 transition-colors duration-300 uppercase tracking-wider relative z-10 leading-tight">
-                    ${displayName}${subName ? `<span class="block text-[7px] sm:text-[10px] text-zinc-500 mt-1">${subName}</span>` : ''}
+                <div class="bg-black/80 px-3 py-2 sm:px-5 sm:py-3 rounded-xl text-[10px] sm:text-xs md:text-sm font-black w-full text-center border border-zinc-800 group-hover:border-yellow-400 text-zinc-300 shadow-inner group-hover:text-yellow-400 transition-colors duration-300 uppercase tracking-wider relative z-10 flex-1 flex flex-col justify-center items-center">
+                    ${displayName}${subName ? `<span class="block text-[8px] sm:text-[10px] text-zinc-500 mt-1">${subName}</span>` : ''}
                 </div>
             </div>`;
         }
