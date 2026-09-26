@@ -17,21 +17,14 @@
     <style>
         #fast-mask { position: fixed; inset: 0; background: #050505; z-index: 999999; transition: opacity 0.4s ease; }
         
-        /* Nouveau Design du Sélecteur d'onglets (Slider corrigé) */
-        .tab-container { position: relative; display: flex; align-items: center; background-color: #141414; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 9999px; padding: 4px; overflow: hidden; }
+        .tab-container { position: relative; display: flex; align-items: center; background-color: #141414; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 9999px; padding: 4px; gap: 4px; overflow: hidden; }
         .tab-pill { flex: 1; position: relative; z-index: 10; padding: 0.6rem 0.5rem; font-weight: 900; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; color: #a1a1aa; transition: color 0.3s ease; border-radius: 9999px; cursor: pointer; text-align: center; }
         @media (min-width: 768px) { .tab-pill { font-size: 0.75rem; padding: 0.6rem 1rem; } }
         .tab-pill:hover { color: #ffffff; }
         .tab-pill.active { color: #000000; }
         
-        /* Le curseur glissant blanc (alignement dynamique via js) */
         .tab-slider { position: absolute; top: 4px; bottom: 4px; left: var(--slide-left, 4px); width: var(--slide-width, calc(33.333% - 2.6px)); background-color: #ffffff; border-radius: 9999px; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.26, 1.55); box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); z-index: 0; }
         
-        /* Positions du curseur */
-        .tab-container[data-active="elements"] .tab-slider { transform: translateX(0); }
-        .tab-container[data-active="roles"] .tab-slider { transform: translateX(calc(100% + 4px)); }
-        .tab-container[data-active="versions"] .tab-slider { transform: translateX(calc(200% + 8px)); }
-
         .filter-btn { background-color: #151515; color: #d4d4d8; border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; width: 100%; white-space: nowrap; }
         .filter-btn:hover { border-color: rgba(255, 255, 255, 0.25); color: #ffffff; }
         .filter-btn.active { background-color: #ffffff !important; color: #000000 !important; border-color: #ffffff !important; box-shadow: 0 0 20px rgba(255, 255, 255, 0.45) !important; font-weight: 900 !important; }
@@ -39,7 +32,6 @@
         @keyframes shimmerLaser { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
         .laser-beam { animation: shimmerLaser 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
         
-        /* Lang Switcher Design */
         .lang-switch-wrap { position: relative; width: 80px; height: 32px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 99px; display: flex; align-items: center; cursor: pointer; backdrop-filter: blur(10px); }
         .lang-indicator { position: absolute; height: calc(100% - 6px); width: calc(50% - 3px); top: 3px; left: 3px; background: #d7f70c; border-radius: 99px; transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.26, 1.55); box-shadow: 0 0 10px rgba(215,247,12,0.4); }
         .lang-switch-wrap[data-active="en"] .lang-indicator { transform: translateX(100%); }
@@ -49,23 +41,22 @@
         .lang-switch-wrap[data-active="en"] .lang-option.en { color: #000; }
         .lang-switch-wrap[data-active="en"] .lang-option.fr { color: #888; }
 
-        /* Animation Factions (Correction disparition GPU) */
         @keyframes marqueeVertical {
             0% { transform: translate3d(0, 0, 0); }
             100% { transform: translate3d(0, -50%, 0); }
         }
-        .marquee-mask { 
-            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); 
-            -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); 
-        }
-        .marquee-track-vertical { 
-            animation: marqueeVertical 30s linear infinite; 
-            display: flex; 
-            flex-direction: column; 
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            perspective: 1000px;
-        }
+        .marquee-mask { mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); }
+        .marquee-track-vertical { animation: marqueeVertical 30s linear infinite; display: flex; flex-direction: column; transform: translateZ(0); backface-visibility: hidden; perspective: 1000px; }
+
+        /* Nouveaux effets Modale Interne */
+        .agent-modal-tab { transition: all 0.3s ease; position: relative; }
+        .agent-modal-tab::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0%; height: 3px; background-color: currentColor; transition: width 0.3s ease; box-shadow: 0 0 10px currentColor; }
+        .agent-modal-tab.active::after { width: 100%; }
+        
+        .mindscape-node { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+        .mindscape-node:hover { transform: scale(1.2); }
+        .mindscape-node.active { transform: scale(1.3); box-shadow: 0 0 15px currentColor; }
+        .mindscape-line { transition: width 0.5s ease-out; }
     </style>
     <script>
         if (window.location.search.includes('agent=')) document.write('<div id="fast-mask"></div>');
@@ -85,14 +76,13 @@
     </div>
 
     <header class="bg-black py-4 border-b border-zinc-800 shadow-[0_10px_30px_rgba(0,0,0,0.9)] z-50 shrink-0 relative transition-all flex items-center justify-between px-4 md:px-10">
-        <div class="w-20 md:w-32"></div> <!-- Spacer -->
+        <div class="w-20 md:w-32"></div> 
         
         <a href="index.html" class="flex items-center justify-center gap-4 relative z-10 hover:scale-105 transition-transform duration-500 cursor-pointer">
             <div class="bg-yellow-400 px-5 py-1.5 skew-x-[-15deg] shadow-[0_0_15px_rgba(232,168,56,0.3)]"><span class="block text-black font-display font-black italic text-3xl skew-x-[15deg]">ZZZ</span></div>
             <h1 class="text-white font-display font-black italic text-3xl uppercase chromatic-text drop-shadow-lg">GUIDES</h1>
         </a>
         
-        <!-- Language Switcher -->
         <div class="w-20 md:w-32 flex justify-end">
             <div id="langSwitcher" class="lang-switch-wrap" data-active="fr">
                 <div class="lang-indicator"></div>
@@ -113,7 +103,6 @@
                     <div id="searchDropdown" class="absolute left-0 right-0 top-full mt-2 bg-black/95 border border-zinc-700 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.9)] max-h-72 overflow-y-auto flex flex-col hidden divide-y divide-zinc-800 backdrop-blur-xl transform origin-top transition-all duration-300 z-[150]"></div>
                 </div>
 
-                <!-- Onglets Principaux avec Slider -->
                 <div id="mainTabContainer" class="tab-container mb-5" data-active="elements">
                     <div class="tab-slider"></div>
                     <button id="tabElements" class="tab-pill active"><span data-i18n="elements">Éléments</span></button>
@@ -216,6 +205,8 @@
     <!-- Agent Detail Modal -->
     <div id="agentDetailModal" class="fixed inset-0 z-[120] hidden bg-[#050505] carbon-bg overflow-hidden opacity-0 transition-opacity duration-300">
         <div class="crt-overlay"></div>
+        
+        <!-- Navigation Buttons -->
         <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black/90 to-transparent z-[160] flex justify-end items-start p-6 md:p-10 pointer-events-none">
             <div class="flex gap-4 pointer-events-auto">
                 <button id="shareAgentBtn" onclick="shareCurrentAgent()" class="bg-black/60 hover:bg-[#d7f70c] text-zinc-300 hover:text-black w-12 h-12 md:w-14 md:h-14 rounded-full border border-zinc-700 hover:border-transparent flex items-center justify-center transition-all duration-500 backdrop-blur-xl shadow-2xl group overflow-hidden relative">
@@ -227,27 +218,48 @@
                 </button>
             </div>
         </div>
+        
         <button id="prevAgentBtn" class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-[150] bg-black/80 border border-zinc-700 hover:border-yellow-400 hover:bg-yellow-400 text-zinc-400 hover:text-black w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(215,247,12,0.4)] hover:scale-110 opacity-0 pointer-events-none transform -translate-x-10">
             <svg class="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path></svg>
         </button>
         <button id="nextAgentBtn" class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-[150] bg-black/80 border border-zinc-700 hover:border-yellow-400 hover:bg-yellow-400 text-zinc-400 hover:text-black w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(215,247,12,0.4)] hover:scale-110 opacity-0 pointer-events-none transform translate-x-10">
             <svg class="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg>
         </button>
+
         <div class="absolute inset-0 flex items-center justify-center z-0 overflow-hidden pointer-events-none opacity-[0.03]">
             <h1 id="modalGiantNameText" class="text-[18vw] font-display font-black italic text-white whitespace-nowrap leading-none tracking-tighter"></h1>
         </div>
+
         <div class="relative z-10 w-full h-full flex flex-col md:flex-row pointer-events-none">
-            <div class="w-full md:w-[35%] xl:w-[40%] h-[40%] md:h-full flex items-center md:items-end justify-center relative p-4 md:p-8">
-                <img id="agentSplashImage" src="" loading="lazy" class="w-full h-full md:max-h-[95%] object-contain transform translate-y-10 opacity-0 transition-all duration-700 delay-200 ease-out drop-shadow-[10px_10px_20px_rgba(0,0,0,0.8)] pointer-events-auto">
+            
+            <!-- LEFT SIDE : Splash Art & Interactive Skin Menu -->
+            <div class="w-full md:w-[35%] xl:w-[40%] h-[40%] md:h-full flex items-center md:items-end justify-center relative p-4 md:p-8 pointer-events-auto group/splash">
+                <img id="agentSplashImage" src="" loading="lazy" class="w-full h-full md:max-h-[95%] object-contain transform translate-y-10 opacity-0 transition-all duration-700 delay-200 ease-out drop-shadow-[10px_10px_20px_rgba(0,0,0,0.8)] relative z-10">
+                
+                <!-- Indice de Skin : Survol -->
+                <div id="skin-hint" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/60 backdrop-blur-md px-5 py-3 rounded-full border border-white/10 text-white font-black text-xs uppercase tracking-widest shadow-2xl opacity-0 group-hover/splash:opacity-0 transition-opacity duration-300 z-20 hidden flex-col items-center gap-1 pointer-events-none">
+                    <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    Garde-Robe
+                </div>
+
+                <!-- Interface de Skins (Injectée par JS) -->
+                <div id="skin-ui-container" class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[340px] opacity-0 translate-y-8 group-hover/splash:opacity-100 group-hover/splash:translate-y-0 transition-all duration-500 z-50 pointer-events-none">
+                    <!-- Généré dynamiquement -->
+                </div>
             </div>
+
+            <!-- RIGHT SIDE : Dynamic Tabs (Guide / Mindscapes) -->
             <div class="w-full md:w-[65%] xl:w-[60%] h-[60%] md:h-full relative z-20 pointer-events-auto overflow-hidden flex flex-col bg-gradient-to-t md:bg-gradient-to-l from-black via-black/90 to-black/40 md:to-transparent backdrop-blur-md md:backdrop-blur-sm">
-                <div id="agentGuideContainer" class="flex-1 overflow-y-auto custom-scrollbar pt-24 p-6 md:p-10 lg:p-14 transform translate-x-12 opacity-0 transition-all duration-500 delay-300"></div>
+                <div id="agentGuideContainer" class="flex-1 overflow-y-auto custom-scrollbar pt-24 p-6 md:p-10 lg:p-14 transform translate-x-12 opacity-0 transition-all duration-500 delay-300">
+                    <!-- Contenu du Template (Guide + Mindscapes) injecté ici -->
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Factions Modal -->
     <div id="factionModal" class="fixed inset-0 z-[100] hidden bg-[#0f0f0f] carbon-bg transition-opacity duration-300 opacity-0">
+        <!-- ... (Reste identique) ... -->
         <div class="absolute inset-0 overflow-y-auto overflow-x-hidden p-6 md:p-16 pr-24 z-10 scroll-smooth pb-32">
             <h2 class="text-4xl md:text-6xl font-display font-black italic text-white uppercase mb-12 border-b-4 border-zinc-800 pb-4 inline-block drop-shadow-2xl">
                 <span data-i18n="allFactions">Toutes les factions</span>
