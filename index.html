@@ -58,9 +58,8 @@
         .mindscape-node.active { transform: scale(1.25); box-shadow: 0 0 15px currentColor; }
         .mindscape-line { transition: width 0.5s ease-out; }
 
-        /* ==========================================
-           NOUVELLES CLASSES VISUELLES FACTORISÉES
-           ========================================== */
+        /* Classes Composées UI */
+        .sidebar-heading { color: #71717a; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
         
         .ui-search-input {
             background-color: #151515; border: 2px solid #27272a; border-radius: 0.75rem;
@@ -94,6 +93,9 @@
         }
         .ui-nav-arrow:hover { border-color: #facc15; background-color: #facc15; color: #000; box-shadow: 0 0 40px rgba(215, 247, 12, 0.4); transform: translateY(-50%) scale(1.1); }
     </style>
+    <script>
+        if (window.location.search.includes('agent=')) document.write('<div id="fast-mask"></div>');
+    </script>
 </head>
 <body class="flex flex-col h-screen bg-[#050505] text-white overflow-hidden">
 
@@ -109,14 +111,16 @@
         </div>
     </div>
 
-    <!-- Header Principal -->
-    <header class="bg-black py-4 border-b border-zinc-800 shadow-[0_10px_30px_rgba(0,0,0,0.9)] z-50 shrink-0 relative transition-all flex items-center justify-between px-4 md:px-10">
-        <div class="w-20 md:w-32"></div>
-        <a href="index.html" class="flex items-center justify-center gap-4 relative z-10 hover:scale-105 transition-transform duration-500 cursor-pointer">
-            <div class="bg-yellow-400 px-5 py-1.5 skew-x-[-15deg] shadow-[0_0_15px_rgba(232,168,56,0.3)]"><span class="block text-black font-display font-black italic text-3xl skew-x-[15deg]">ZZZ</span></div>
-            <h1 class="text-white font-display font-black italic text-3xl uppercase chromatic-text drop-shadow-lg">GUIDES</h1>
+    <!-- Header Principal (Responsive) -->
+    <header class="bg-black py-3 md:py-4 border-b border-zinc-800 shadow-[0_10px_30px_rgba(0,0,0,0.9)] z-50 shrink-0 relative transition-all flex items-center justify-between px-4 md:px-10">
+        <a href="index.html" class="flex items-center gap-2 md:gap-4 relative z-10 hover:scale-105 transition-transform duration-500 cursor-pointer shrink-0">
+            <div class="bg-yellow-400 px-3 md:px-5 py-1 md:py-1.5 skew-x-[-15deg] shadow-[0_0_15px_rgba(232,168,56,0.3)]">
+                <span class="block text-black font-display font-black italic text-lg md:text-3xl skew-x-[15deg]">ZZZ</span>
+            </div>
+            <h1 class="text-white font-display font-black italic text-xl md:text-3xl uppercase chromatic-text drop-shadow-lg">GUIDES</h1>
         </a>
-        <div class="w-20 md:w-32 flex justify-end">
+        
+        <div class="flex justify-end shrink-0">
             <div id="langSwitcher" class="lang-switch-wrap" data-active="fr">
                 <div class="lang-indicator"></div>
                 <div class="lang-option fr">FR</div>
@@ -126,12 +130,25 @@
     </header>
 
     <div class="flex flex-1 overflow-hidden relative">
-        <!-- Sidebar Navigation -->
-        <aside class="w-20 md:w-[340px] bg-[#0a0a0a] border-r border-zinc-800 flex flex-col shrink-0 z-40 relative hidden md:flex">
+        
+        <!-- Masque sombre pour le menu mobile -->
+        <div id="mobileSidebarMask" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[190] hidden opacity-0 transition-opacity duration-300 md:hidden"></div>
+
+        <!-- Sidebar Navigation (Tiroir Mobile / Fixe PC) -->
+        <aside id="mainSidebar" class="w-[85vw] max-w-[340px] md:w-[340px] bg-[#0a0a0a] border-r border-zinc-800 flex-col shrink-0 z-[200] fixed md:relative h-full top-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 flex">
+            
+            <!-- En-tête Sidebar Mobile -->
+            <div class="md:hidden flex items-center justify-between p-5 border-b border-zinc-800 bg-[#111]">
+                <span class="font-display font-black text-white tracking-widest uppercase">Filtres</span>
+                <button id="closeMobileSidebarBtn" class="text-zinc-500 hover:text-white p-2 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
             <div class="p-5 flex flex-col shrink-0 z-10 bg-[#0a0a0a] shadow-2xl relative custom-scrollbar overflow-y-auto max-h-full pb-10">
                 
                 <!-- Recherche Desktop -->
-                <div class="relative w-full z-50 group mb-6">
+                <div class="relative w-full z-50 group mb-6 hidden md:block">
                     <div class="relative flex items-center">
                         <input type="text" id="searchInput" data-i18n="searchPlaceholder" autocomplete="off" placeholder="Rechercher un agent..." class="ui-search-input w-full">
                         <button id="clearSearchBtn" class="absolute right-3 text-zinc-500 hover:text-yellow-400 transition-colors hidden p-1"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg></button>
@@ -150,13 +167,13 @@
                 <!-- Groupes de filtres -->
                 <div class="mb-4">
                     <div id="groupElements">
-                        <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3" data-i18n="elements">Éléments</h3>
+                        <h3 class="sidebar-heading" data-i18n="elements">Éléments</h3>
                         <div class="grid grid-cols-3 gap-2" id="elementFilters">
                             <button data-filter="All" class="filter-btn filter-elem-btn active col-span-3 px-3 py-2 rounded-xl text-xs font-bold" data-i18n="all">Tous</button>
                             <button data-filter="Physical" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/physique.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Physical">Physique</span></button>
                             <button data-filter="Fire" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/feu.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Fire">Feu</span></button>
                             <button data-filter="Ice" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Ice.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Ice">Glace</span></button>
-                            <button data-filter="Electric" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Electric">Électrique</span></button>
+                            <button data-filter="Electric" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Electric">Élec</span></button>
                             <button data-filter="Ether" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Ether.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Ether">Ether</span></button>
                             <button data-filter="Wind" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Vent.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Wind">Vent</span></button>
                             <button data-filter="Lumiflux" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Lumiflux.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Lumiflux">Lumiflux</span></button>
@@ -164,7 +181,7 @@
                     </div>
 
                     <div id="groupRoles" class="hidden">
-                        <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3" data-i18n="roles">Rôles</h3>
+                        <h3 class="sidebar-heading" data-i18n="roles">Rôles</h3>
                         <div class="grid grid-cols-3 gap-2" id="roleFilters">
                             <button data-role="All" class="filter-btn filter-role-btn active col-span-3 px-3 py-2 rounded-xl text-xs font-bold" data-i18n="all">Tous</button>
                             <button data-role="Attack" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Attack.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"><span class="dyn-term" data-term="Attack">Attaque</span></button>
@@ -178,7 +195,7 @@
                     </div>
 
                     <div id="groupVersions" class="hidden">
-                        <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3" data-i18n="versions">Versions</h3>
+                        <h3 class="sidebar-heading" data-i18n="versions">Versions</h3>
                         <div class="grid grid-cols-2 gap-2" id="versionFilters">
                             <button data-version="All" class="filter-btn filter-version-btn active col-span-2 px-2 py-3 rounded-xl text-sm font-black tracking-widest uppercase" data-i18n="allVersions">Toutes les versions</button>
                             <button data-version="V1" class="filter-btn filter-version-btn px-2 py-2 rounded-xl text-xs font-bold">V1.0 - V1.7</button>
@@ -190,7 +207,7 @@
 
                 <!-- Favoris -->
                 <div class="mt-4 pt-4 border-t border-zinc-800 mb-4">
-                    <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Personnalisé</h3>
+                    <h3 class="sidebar-heading">Personnalisé</h3>
                     <button id="favoriteFilterBtn" class="w-full bg-[#151515] border-2 border-zinc-800 hover:border-red-500 hover:bg-red-500/10 text-zinc-400 px-4 py-3 rounded-xl text-xs font-bold flex items-center justify-between transition-all duration-300 shadow-inner group">
                         <div class="flex items-center gap-2">
                             <svg class="w-4 h-4 text-zinc-500 group-hover:text-red-500 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> <span data-i18n="favorites">Mes Favoris</span>
@@ -226,13 +243,18 @@
 
         <!-- Main Content -->
         <main class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-10 relative z-20 scroll-smooth">
-            <!-- Recherche Mobile -->
-            <div class="md:hidden w-full mb-6 relative z-[100] group">
-                <div class="relative flex items-center">
+            
+            <!-- Recherche Mobile & Bouton Filtres -->
+            <div class="md:hidden w-full mb-6 relative z-[100] flex gap-3">
+                <div class="relative flex-1 flex items-center">
                     <input type="text" id="searchInputMobile" data-i18n="searchPlaceholder" autocomplete="off" placeholder="Rechercher un agent..." class="ui-search-input w-full">
                     <button id="clearSearchBtnMobile" class="absolute right-3 text-zinc-500 hover:text-yellow-400 transition-colors hidden p-1"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+                    <div id="searchDropdownMobile" class="ui-search-dropdown absolute left-0 right-0 top-full mt-2 max-h-72 overflow-y-auto flex flex-col hidden transform origin-top z-[150]"></div>
                 </div>
-                <div id="searchDropdownMobile" class="ui-search-dropdown absolute left-0 right-0 top-full mt-2 max-h-72 overflow-y-auto flex flex-col hidden transform origin-top z-[150]"></div>
+                <!-- Bouton Ouvrir Sidebar Mobile -->
+                <button id="openMobileSidebarBtn" class="bg-[#151515] border-2 border-zinc-800 rounded-xl px-4 flex items-center justify-center text-zinc-400 hover:text-yellow-400 hover:border-yellow-400 transition-colors shadow-inner shrink-0">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
+                </button>
             </div>
 
             <!-- Grille d'Agents -->
@@ -264,7 +286,7 @@
             </div>
         </div>
 
-        <!-- Flèches de navigation circulaire (Cachées sur mobile) -->
+        <!-- Flèches de navigation circulaire (Cachées sur mobile, Z-150 restauré) -->
         <button id="prevAgentBtn" class="ui-nav-arrow hidden md:flex w-12 h-12 md:w-16 md:h-16 rounded-full items-center justify-center absolute top-1/2 -translate-y-1/2 left-2 md:left-6 z-[150] opacity-0 pointer-events-none -translate-x-10">
             <svg class="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path></svg>
         </button>
@@ -281,7 +303,6 @@
             <div class="w-full md:w-[35%] xl:w-[40%] h-[25vh] md:h-full flex items-center md:items-end justify-center relative p-4 md:p-8">
                 <img id="agentSplashImage" src="" loading="lazy" class="w-full h-full md:max-h-[95%] object-contain transform translate-y-10 opacity-0 transition-all duration-700 delay-200 ease-out drop-shadow-[10px_10px_20px_rgba(0,0,0,0.8)] pointer-events-auto">
             </div>
-            
             <!-- CONTENEUR DU GUIDE : Remonte plus haut sur mobile -->
             <div class="w-full md:w-[65%] xl:w-[60%] h-[75vh] md:h-full relative z-20 pointer-events-auto overflow-hidden flex flex-col bg-gradient-to-t md:bg-gradient-to-l from-black via-black/95 to-black/80 md:to-transparent backdrop-blur-xl md:backdrop-blur-sm">
                 <div id="agentGuideContainer" class="flex-1 overflow-y-auto custom-scrollbar pt-6 md:pt-24 p-6 md:p-10 lg:p-14 transform translate-x-12 opacity-0 transition-all duration-500 delay-300"></div>
