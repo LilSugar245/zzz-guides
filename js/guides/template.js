@@ -57,21 +57,31 @@ function buildDiscs(data, c, txt) {
 }
 
 function buildSkills(data, c, txt) {
+    // Le conteneur utilise 'flex-1' pour s'étirer dynamiquement en hauteur
     return `
-    <div>
+    <div class="flex-1 flex flex-col">
         <h3 class="text-white font-display font-black text-2xl uppercase border-l-4 pl-4 leading-none tracking-wide mb-6" style="border-color: ${c};">${txt.skillPrio}</h3>
-        <div class="flex flex-wrap items-center justify-between sm:justify-start gap-3 md:gap-5 bg-[#0f0f0f] p-5 rounded-2xl border border-zinc-800 shadow-inner">
-            ${data.skills.map((skill, index) => `
-            <div class="flex flex-col items-center gap-2 ${index === 0 ? 'group cursor-default' : 'opacity-80'}">
-                <div class="${index === 0 ? 'relative' : 'w-12 h-12 rounded-full border-2 border-zinc-700 bg-black overflow-hidden'}">
-                    ${index === 0 ? `<div class="absolute inset-0 rounded-full blur-md opacity-40" style="background-color: ${c};"></div><div class="w-12 h-12 rounded-full border-2 bg-black relative z-10 overflow-hidden" style="border-color: ${c};">` : ''}
-                    <img src="assets/Skills/${skill.icon}" loading="lazy" class="w-full h-full object-cover">
-                    ${index === 0 ? `</div>` : ''}
+        <div class="flex-1 flex flex-col bg-[#0f0f0f] p-5 rounded-2xl border border-zinc-800 shadow-inner relative overflow-hidden group">
+            
+            <!-- Les compétences (alignées en haut) -->
+            <div class="flex flex-wrap items-center justify-between sm:justify-start gap-3 md:gap-5 relative z-10">
+                ${data.skills.map((skill, index) => `
+                <div class="flex flex-col items-center gap-2 ${index === 0 ? 'cursor-default' : 'opacity-80'}">
+                    <div class="${index === 0 ? 'relative' : 'w-12 h-12 rounded-full border-2 border-zinc-700 bg-black overflow-hidden'}">
+                        ${index === 0 ? `<div class="absolute inset-0 rounded-full blur-md opacity-40" style="background-color: ${c};"></div><div class="w-12 h-12 rounded-full border-2 bg-black relative z-10 overflow-hidden" style="border-color: ${c};">` : ''}
+                        <img src="assets/Skills/${skill.icon}" loading="lazy" class="w-full h-full object-cover">
+                        ${index === 0 ? `</div>` : ''}
+                    </div>
+                    <span class="text-[10px] font-black uppercase tracking-wider" style="color: ${index === 0 ? c : '#a1a1aa'};">${skill.name}${skill.level ? `(${skill.level})` : ''}</span>
                 </div>
-                <span class="text-[10px] font-black uppercase tracking-wider" style="color: ${index === 0 ? c : '#a1a1aa'};">${skill.name}${skill.level ? `(${skill.level})` : ''}</span>
+                ${index < data.skills.length - 1 ? `<svg class="w-5 h-5 text-zinc-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>` : ''}
+                `).join('')}
             </div>
-            ${index < data.skills.length - 1 ? `<svg class="w-5 h-5 text-zinc-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>` : ''}
-            `).join('')}
+
+            <!-- Le Filigrane (Watermark) Dynamique pour combler l'espace -->
+            <div class="mt-auto pt-10 pb-2 flex items-center justify-center pointer-events-none select-none relative z-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                <img src="assets/Rôles/${data.role}.png" class="w-24 h-24 sm:w-32 sm:h-32 object-contain" style="filter: drop-shadow(0 0 20px ${c});" onerror="this.style.display='none'">
+            </div>
         </div>
     </div>`;
 }
