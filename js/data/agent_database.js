@@ -177,7 +177,7 @@ export const agentDatabase = {
         skills: [
             { name: "Basic", level: "12", icon: "Attaque_basic.png" }, { name: "Ex", level: "12", icon: "Ex.png" }, { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }
         ],
-        statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "Pen Ratio (DGT Glace)" }, { slot: "4", label: "Dégât Crit (TC)" } ], sub: [ { label: "Taux Crit", highlight: true }, { label: "Attaque % = Dégât Crit", highlight: false }, { label: "Pen / ATQ Flat", highlight: false } ] },
+        statPriority: { main: [ { slot: "6", label: "Attaque %" }, { slot: "5", label: "Pen Ratio (DGT Glace)" }, { slot: "4", label: "Dégât Crit" } ], sub: [ { label: "Taux Crit", highlight: true }, { label: "Attaque % = Dégât Crit", highlight: false }, { label: "Pen / ATQ Flat", highlight: false } ] },
         engines: [
             { tag: "Baseline 100%", name: "Deep Sea Visitor", img: "W-Engine_Deep_Sea_Visitor.png" }, { tag: "Alt 5★ (99.16%)", name: "Cordis Germina", img: "W-Engine_Cordis_Germina.png" }, { tag: "Alt Battle Pass", name: "Cannon Rotor", img: "W-Engine_Cannon_Rotor.png" }
         ],
