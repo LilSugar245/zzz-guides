@@ -87,8 +87,8 @@ export const agentsData = [
     { name: 'Promeia', element: 'Ice', rank: 'S', faction: 'Autorité de conformité Krampus', role: 'Anomaly', version: 'V2' },
     
     { name: 'Starlight Billy', element: 'Physical', rank: 'S', faction: 'Lièvres rusés', role: 'Rupture', version: 'V2' },
-    { name: 'Norma', element: 'Fire', rank: 'S', faction: 'Département de stratégie externe', role: 'Stun', version: 'V3' },
     { name: 'Velina', element: 'Wind', rank: 'S', faction: 'Département de stratégie externe', role: 'Anomaly', version: 'V3' },
+    { name: 'Norma', element: 'Fire', rank: 'S', faction: 'Département de stratégie externe', role: 'Stun', version: 'V3' },
     { name: 'Pyrois', element: 'Ether', rank: 'S', faction: 'Phaéthon', role: 'Attack', version: 'V3' },
     { name: 'Sigrid', element: 'Ice', rank: 'S', faction: 'Département de la patrouille aérienne', role: 'Attack', version: 'V3' },
     { name: 'Remielle', element: 'Lumiflux', rank: 'S', faction: 'Entente de Dayat', role: 'Anomaly', version: 'V3' },
