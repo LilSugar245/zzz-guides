@@ -3,46 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Balises OpenGraph (Discord / Twitter) -->
     <meta property="og:title" content="ZZZ Guides - Base de données avancée" />
     <meta property="og:description" content="Découvrez les meilleurs builds, équipes et statistiques pour vos agents de Zenless Zone Zero." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lilsugar245.github.io/zzz-guides/" />
     <meta property="og:image" content="https://lilsugar245.github.io/zzz-guides/assets/logo.png" />
     <meta name="theme-color" content="#d7f70c">
-
     <title>ZZZ Guides - Base de données avancée</title>
     <link rel="icon" type="image/png" href="assets/Icone/logo.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <style>
-        /* INTERCEPTION INLINE : Masque ultra-rapide avant le chargement du DOM */
         #fast-mask { position: fixed; inset: 0; background: #050505; z-index: 999999; transition: opacity 0.4s ease; }
-        
-        /* Barre de sélection d'onglets */
         .tab-pill { padding: 0.45rem 0.5rem; font-weight: 900; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; color: #a1a1aa; transition: all 0.25s ease; border-radius: 9999px; cursor: pointer; }
         @media (min-width: 768px) { .tab-pill { font-size: 0.75rem; padding: 0.45rem 1rem; } }
         .tab-pill:hover { color: #ffffff; }
         .tab-pill.active { background-color: #ffffff; color: #000000; transform: skewX(-12deg); box-shadow: 0 0 15px rgba(255, 255, 255, 0.35); }
         .tab-pill.active span { display: inline-block; transform: skewX(12deg); }
-
-        /* Boutons de filtres alignés et stricts */
         .filter-btn { background-color: #151515; color: #d4d4d8; border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; width: 100%; white-space: nowrap; }
         .filter-btn:hover { border-color: rgba(255, 255, 255, 0.25); color: #ffffff; }
         .filter-btn.active { background-color: #ffffff !important; color: #000000 !important; border-color: #ffffff !important; box-shadow: 0 0 20px rgba(255, 255, 255, 0.45) !important; font-weight: 900 !important; }
         .filter-btn.active img.role-icon { filter: brightness(0) !important; }
-
-        /* Animation Faisceau Laser Séparateur de Version */
         @keyframes shimmerLaser { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
         .laser-beam { animation: shimmerLaser 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        /* Lang Switcher Design */
+        .lang-switch-wrap { position: relative; width: 80px; height: 32px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 99px; display: flex; align-items: center; cursor: pointer; backdrop-filter: blur(10px); }
+        .lang-indicator { position: absolute; height: calc(100% - 6px); width: calc(50% - 3px); top: 3px; left: 3px; background: #d7f70c; border-radius: 99px; transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.26, 1.55); box-shadow: 0 0 10px rgba(215,247,12,0.4); }
+        .lang-switch-wrap[data-active="en"] .lang-indicator { transform: translateX(100%); }
+        .lang-option { flex: 1; text-align: center; font-size: 11px; font-weight: 900; z-index: 10; color: #fff; transition: color 0.3s; }
+        .lang-switch-wrap[data-active="fr"] .lang-option.fr { color: #000; }
+        .lang-switch-wrap[data-active="fr"] .lang-option.en { color: #888; }
+        .lang-switch-wrap[data-active="en"] .lang-option.en { color: #000; }
+        .lang-switch-wrap[data-active="en"] .lang-option.fr { color: #888; }
     </style>
     <script>
-        // Si l'URL contient un agent, on injecte immédiatement un écran noir
-        if (window.location.search.includes('agent=')) {
-            document.write('<div id="fast-mask"></div>');
-        }
+        if (window.location.search.includes('agent=')) document.write('<div id="fast-mask"></div>');
     </script>
 </head>
 <body class="flex flex-col h-screen bg-[#050505] text-white overflow-hidden">
@@ -53,77 +50,79 @@
             <div class="bg-yellow-400 rounded-full p-2 relative z-10"><svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg></div>
         </div>
         <div class="flex flex-col">
-            <span class="text-white font-display font-black uppercase tracking-widest text-sm drop-shadow-md">Lien copié</span>
-            <span class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase">Prêt à être partagé</span>
+            <span class="text-white font-display font-black uppercase tracking-widest text-sm drop-shadow-md" data-i18n="copied">Lien copié</span>
+            <span class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase" data-i18n="readyToShare">Prêt à être partagé</span>
         </div>
     </div>
 
-    <header class="bg-black py-4 border-b border-zinc-800 shadow-[0_10px_30px_rgba(0,0,0,0.9)] z-50 shrink-0 relative transition-all flex items-center justify-center px-4 md:px-10">
+    <header class="bg-black py-4 border-b border-zinc-800 shadow-[0_10px_30px_rgba(0,0,0,0.9)] z-50 shrink-0 relative transition-all flex items-center justify-between px-4 md:px-10">
+        <div class="w-20 md:w-32"></div> <!-- Spacer -->
+        
         <a href="index.html" class="flex items-center justify-center gap-4 relative z-10 hover:scale-105 transition-transform duration-500 cursor-pointer">
             <div class="bg-yellow-400 px-5 py-1.5 skew-x-[-15deg] shadow-[0_0_15px_rgba(232,168,56,0.3)]"><span class="block text-black font-display font-black italic text-3xl skew-x-[15deg]">ZZZ</span></div>
             <h1 class="text-white font-display font-black italic text-3xl uppercase chromatic-text drop-shadow-lg">GUIDES</h1>
         </a>
+        
+        <!-- Language Switcher -->
+        <div class="w-20 md:w-32 flex justify-end">
+            <div id="langSwitcher" class="lang-switch-wrap" data-active="fr">
+                <div class="lang-indicator"></div>
+                <div class="lang-option fr">FR</div>
+                <div class="lang-option en">EN</div>
+            </div>
+        </div>
     </header>
 
     <div class="flex flex-1 overflow-hidden relative">
-        <!-- SIDEBAR -->
         <aside class="w-20 md:w-[340px] bg-[#0a0a0a] border-r border-zinc-800 flex flex-col shrink-0 z-40 relative hidden md:flex">
             <div class="p-5 flex flex-col shrink-0 z-10 bg-[#0a0a0a] shadow-2xl relative custom-scrollbar overflow-y-auto max-h-full pb-10">
-                
                 <div class="relative w-full z-50 group mb-6">
                     <div class="relative flex items-center">
-                        <input type="text" id="searchInput" autocomplete="off" placeholder="Rechercher un agent..." class="w-full bg-[#151515] border-2 border-zinc-800 rounded-xl py-3.5 pl-4 pr-10 text-white text-sm focus:outline-none focus:border-yellow-400 focus:bg-[#1a1a1a] transition-all shadow-inner placeholder-zinc-600">
+                        <input type="text" id="searchInput" data-i18n="searchPlaceholder" autocomplete="off" placeholder="Rechercher un agent..." class="w-full bg-[#151515] border-2 border-zinc-800 rounded-xl py-3.5 pl-4 pr-10 text-white text-sm focus:outline-none focus:border-yellow-400 focus:bg-[#1a1a1a] transition-all shadow-inner placeholder-zinc-600">
                         <button id="clearSearchBtn" class="absolute right-3 text-zinc-500 hover:text-yellow-400 transition-colors hidden p-1"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg></button>
                     </div>
                     <div id="searchDropdown" class="absolute left-0 right-0 top-full mt-2 bg-black/95 border border-zinc-700 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.9)] max-h-72 overflow-y-auto flex flex-col hidden divide-y divide-zinc-800 backdrop-blur-xl transform origin-top transition-all duration-300 z-[150]"></div>
                 </div>
 
-                <!-- Onglets Principaux 3 Voies -->
                 <div class="bg-[#141414] border border-zinc-800/80 p-1.5 rounded-full flex items-center justify-between mb-5 gap-1">
-                    <button id="tabElements" class="tab-pill active flex-1 text-center"><span>Éléments</span></button>
-                    <button id="tabRoles" class="tab-pill flex-1 text-center"><span>Rôles</span></button>
-                    <button id="tabVersions" class="tab-pill flex-1 text-center"><span>Versions</span></button>
+                    <button id="tabElements" class="tab-pill active flex-1 text-center"><span data-i18n="elements">Éléments</span></button>
+                    <button id="tabRoles" class="tab-pill flex-1 text-center"><span data-i18n="roles">Rôles</span></button>
+                    <button id="tabVersions" class="tab-pill flex-1 text-center"><span data-i18n="versions">Versions</span></button>
                 </div>
 
                 <div class="mb-4">
-                    
-                    <!-- Groupe ÉLÉMENTS -->
                     <div id="groupElements">
-                        <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3">Éléments</h3>
+                        <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3" data-i18n="elements">Éléments</h3>
                         <div class="grid grid-cols-3 gap-2" id="elementFilters">
-                            <!-- "Tous" prend toute la largeur -->
-                            <button data-filter="All" class="filter-btn filter-elem-btn active col-span-3 px-3 py-2 rounded-xl text-xs font-bold">Tous</button>
-                            <button data-filter="Physical" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/physique.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Physique</button>
-                            <button data-filter="Fire" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/feu.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Feu</button>
-                            <button data-filter="Ice" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Ice.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Glace</button>
-                            <button data-filter="Electric" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Électrique</button>
-                            <button data-filter="Ether" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Ether.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Ether</button>
-                            <button data-filter="Wind" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Vent.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Vent</button>
-                            <button data-filter="Lumiflux" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Lumiflux.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"> Lumiflux</button>
+                            <button data-filter="All" class="filter-btn filter-elem-btn active col-span-3 px-3 py-2 rounded-xl text-xs font-bold" data-i18n="all">Tous</button>
+                            <button data-filter="Physical" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/physique.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Physical">Physique</span></button>
+                            <button data-filter="Fire" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/feu.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Fire">Feu</span></button>
+                            <button data-filter="Ice" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Ice.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Ice">Glace</span></button>
+                            <button data-filter="Electric" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Electric">Élec</span></button>
+                            <button data-filter="Ether" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Ether.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Ether">Ether</span></button>
+                            <button data-filter="Wind" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Vent.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Wind">Vent</span></button>
+                            <button data-filter="Lumiflux" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Lumiflux.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Lumiflux">Lumiflux</span></button>
                         </div>
                     </div>
 
-                    <!-- Groupe RÔLES -->
                     <div id="groupRoles" class="hidden">
-                        <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3">Rôles</h3>
+                        <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3" data-i18n="roles">Rôles</h3>
                         <div class="grid grid-cols-3 gap-2" id="roleFilters">
-                            <!-- "Tous" prend toute la largeur -->
-                            <button data-role="All" class="filter-btn filter-role-btn active col-span-3 px-3 py-2 rounded-xl text-xs font-bold">Tous</button>
-                            <button data-role="Attack" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Attack.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Attaque</button>
-                            <button data-role="Stun" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Stun.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Stun</button>
-                            <button data-role="Anomaly" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Anomaly.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Anomalie</button>
-                            <button data-role="Support" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Support.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Support</button>
-                            <button data-role="Defense" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Defense.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Défense</button>
-                            <button data-role="Armorer" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Armorer.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Armurier</button>
-                            <button data-role="Rupture" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Rupture.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"> Rupture</button>
+                            <button data-role="All" class="filter-btn filter-role-btn active col-span-3 px-3 py-2 rounded-xl text-xs font-bold" data-i18n="all">Tous</button>
+                            <button data-role="Attack" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Attack.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"><span class="dyn-term" data-term="Attack">Attaque</span></button>
+                            <button data-role="Stun" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Stun.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"><span class="dyn-term" data-term="Stun">Stun</span></button>
+                            <button data-role="Anomaly" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Anomaly.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"><span class="dyn-term" data-term="Anomaly">Anomalie</span></button>
+                            <button data-role="Support" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Support.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"><span class="dyn-term" data-term="Support">Soutien</span></button>
+                            <button data-role="Defense" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Defense.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"><span class="dyn-term" data-term="Defense">Défense</span></button>
+                            <button data-role="Armorer" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Armorer.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"><span class="dyn-term" data-term="Armorer">Armurier</span></button>
+                            <button data-role="Rupture" class="filter-btn filter-role-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Rôles/Rupture.png" loading="lazy" class="w-4 h-4 object-contain role-icon shrink-0"><span class="dyn-term" data-term="Rupture">Rupture</span></button>
                         </div>
                     </div>
 
-                    <!-- Groupe VERSIONS -->
                     <div id="groupVersions" class="hidden">
-                        <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3">Mises à jour</h3>
+                        <h3 class="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-3" data-i18n="versions">Mises à jour</h3>
                         <div class="grid grid-cols-2 lg:grid-cols-2 gap-2" id="versionFilters">
-                            <button data-version="All" class="filter-btn filter-version-btn active col-span-2 px-2 py-3 rounded-xl text-sm font-black tracking-widest uppercase">Toutes les versions</button>
+                            <button data-version="All" class="filter-btn filter-version-btn active col-span-2 px-2 py-3 rounded-xl text-sm font-black tracking-widest uppercase" data-i18n="allVersions">Toutes les versions</button>
                             <button data-version="V1" class="filter-btn filter-version-btn px-2 py-2 rounded-xl text-xs font-bold">V1.0 - V1.7</button>
                             <button data-version="V2" class="filter-btn filter-version-btn px-2 py-2 rounded-xl text-xs font-bold">V2.0 - V2.8</button>
                             <button data-version="V3" class="filter-btn filter-version-btn col-span-2 px-2 py-2 rounded-xl text-xs font-bold">V3.0 - V3.X</button>
@@ -135,7 +134,7 @@
                     <h3 class="text-zinc-600 text-[10px] font-black uppercase tracking-widest mb-3">Personnalisé</h3>
                     <button id="favoriteFilterBtn" class="w-full bg-[#151515] border-2 border-zinc-800 hover:border-red-500 hover:bg-red-500/10 text-zinc-400 px-4 py-3 rounded-xl text-xs font-bold flex items-center justify-between transition-all duration-300 shadow-inner group">
                         <div class="flex items-center gap-2">
-                            <svg class="w-4 h-4 text-zinc-500 group-hover:text-red-500 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Mes Favoris
+                            <svg class="w-4 h-4 text-zinc-500 group-hover:text-red-500 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> <span data-i18n="favorites">Mes Favoris</span>
                         </div>
                         <div id="favCountBadge" class="bg-zinc-800 text-zinc-400 px-2 py-0.5 rounded-md text-[10px] font-black">0</div>
                     </button>
@@ -143,7 +142,7 @@
 
                 <div id="activeFactionTag" class="hidden items-center justify-between bg-yellow-400/10 border-2 border-yellow-400/50 px-4 py-3 rounded-xl backdrop-blur-md pulse-active-tag transition-all duration-300 mt-2 mb-4">
                     <div class="flex flex-col">
-                        <span class="text-[10px] text-yellow-400 font-black uppercase tracking-widest">Faction active</span>
+                        <span class="text-[10px] text-yellow-400 font-black uppercase tracking-widest" data-i18n="activeFaction">Faction active</span>
                         <span id="activeFactionName" class="text-xs font-bold text-white mt-0.5 leading-tight"></span>
                     </div>
                     <button id="clearFactionBtn" class="text-zinc-300 hover:text-black bg-zinc-800 hover:bg-yellow-400 rounded-full p-2 transition-all transform hover:scale-110 hover:rotate-90 shadow-lg ml-2 shrink-0"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg></button>
@@ -158,7 +157,7 @@
                 <button id="openModalBtn" class="w-full bg-[#d7f70c] hover:bg-[#c4e30b] text-black font-black uppercase text-sm py-4 rounded-xl shadow-[0_0_20px_rgba(215,247,12,0.2)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(215,247,12,0.5)] hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-3 group overflow-hidden relative">
                     <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:animate-[shimmer_1s_forwards]"></div>
                     <svg class="w-5 h-5 transition-transform group-hover:rotate-180 duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                    Toutes les factions
+                    <span data-i18n="allFactions">Toutes les factions</span>
                 </button>
             </div>
         </aside>
@@ -167,7 +166,7 @@
         <main class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-10 relative z-20 scroll-smooth">
             <div class="md:hidden w-full mb-6 relative z-[100] group">
                 <div class="relative flex items-center">
-                    <input type="text" id="searchInputMobile" autocomplete="off" placeholder="Rechercher un agent..." class="w-full bg-[#151515] border-2 border-zinc-800 rounded-xl py-3.5 pl-4 pr-10 text-white text-sm focus:outline-none focus:border-yellow-400 focus:bg-[#1a1a1a] transition-all shadow-inner placeholder-zinc-600">
+                    <input type="text" id="searchInputMobile" data-i18n="searchPlaceholder" autocomplete="off" placeholder="Rechercher un agent..." class="w-full bg-[#151515] border-2 border-zinc-800 rounded-xl py-3.5 pl-4 pr-10 text-white text-sm focus:outline-none focus:border-yellow-400 focus:bg-[#1a1a1a] transition-all shadow-inner placeholder-zinc-600">
                     <button id="clearSearchBtnMobile" class="absolute right-3 text-zinc-500 hover:text-yellow-400 transition-colors hidden p-1"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg></button>
                 </div>
                 <div id="searchDropdownMobile" class="absolute left-0 right-0 top-full mt-2 bg-black/95 border border-zinc-700 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.9)] max-h-72 overflow-y-auto flex flex-col hidden divide-y divide-zinc-800 backdrop-blur-xl transform origin-top transition-all duration-300 z-[150]"></div>
@@ -177,8 +176,8 @@
             
             <div id="empty-state" class="hidden absolute inset-0 flex flex-col items-center justify-center text-zinc-600 transition-opacity duration-500">
                 <svg class="w-16 h-16 mb-4 text-zinc-700 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                <p class="text-3xl font-display font-black text-zinc-500 uppercase tracking-widest mb-3 drop-shadow-md">Signal Perdu</p>
-                <p class="text-base text-zinc-600">Aucun agent ne correspond à ces critères.</p>
+                <p class="text-3xl font-display font-black text-zinc-500 uppercase tracking-widest mb-3 drop-shadow-md" data-i18n="noSignal">Signal Perdu</p>
+                <p class="text-base text-zinc-600" data-i18n="emptyStateDesc">Aucun agent ne correspond à ces critères.</p>
             </div>
         </main>
     </div>
@@ -186,7 +185,6 @@
     <!-- Agent Detail Modal -->
     <div id="agentDetailModal" class="fixed inset-0 z-[120] hidden bg-[#050505] carbon-bg overflow-hidden opacity-0 transition-opacity duration-300">
         <div class="crt-overlay"></div>
-
         <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black/90 to-transparent z-[160] flex justify-end items-start p-6 md:p-10 pointer-events-none">
             <div class="flex gap-4 pointer-events-auto">
                 <button id="shareAgentBtn" onclick="shareCurrentAgent()" class="bg-black/60 hover:bg-[#d7f70c] text-zinc-300 hover:text-black w-12 h-12 md:w-14 md:h-14 rounded-full border border-zinc-700 hover:border-transparent flex items-center justify-center transition-all duration-500 backdrop-blur-xl shadow-2xl group overflow-hidden relative">
@@ -198,27 +196,21 @@
                 </button>
             </div>
         </div>
-
         <button id="prevAgentBtn" class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-[150] bg-black/80 border border-zinc-700 hover:border-yellow-400 hover:bg-yellow-400 text-zinc-400 hover:text-black w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(215,247,12,0.4)] hover:scale-110 opacity-0 pointer-events-none transform -translate-x-10">
             <svg class="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path></svg>
         </button>
         <button id="nextAgentBtn" class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-[150] bg-black/80 border border-zinc-700 hover:border-yellow-400 hover:bg-yellow-400 text-zinc-400 hover:text-black w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.8)] hover:shadow-[0_0_40px_rgba(215,247,12,0.4)] hover:scale-110 opacity-0 pointer-events-none transform translate-x-10">
             <svg class="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg>
         </button>
-
         <div class="absolute inset-0 flex items-center justify-center z-0 overflow-hidden pointer-events-none opacity-[0.03]">
             <h1 id="modalGiantNameText" class="text-[18vw] font-display font-black italic text-white whitespace-nowrap leading-none tracking-tighter"></h1>
         </div>
-
         <div class="relative z-10 w-full h-full flex flex-col md:flex-row pointer-events-none">
             <div class="w-full md:w-[35%] xl:w-[40%] h-[40%] md:h-full flex items-center md:items-end justify-center relative p-4 md:p-8">
                 <img id="agentSplashImage" src="" loading="lazy" class="w-full h-full md:max-h-[95%] object-contain transform translate-y-10 opacity-0 transition-all duration-700 delay-200 ease-out drop-shadow-[10px_10px_20px_rgba(0,0,0,0.8)] pointer-events-auto">
             </div>
-            
             <div class="w-full md:w-[65%] xl:w-[60%] h-[60%] md:h-full relative z-20 pointer-events-auto overflow-hidden flex flex-col bg-gradient-to-t md:bg-gradient-to-l from-black via-black/90 to-black/40 md:to-transparent backdrop-blur-md md:backdrop-blur-sm">
-                <!-- LE CONTENEUR SCROLLABLE EST ICI -->
-                <div id="agentGuideContainer" class="flex-1 overflow-y-auto custom-scrollbar pt-24 p-6 md:p-10 lg:p-14 transform translate-x-12 opacity-0 transition-all duration-500 delay-300">
-                </div>
+                <div id="agentGuideContainer" class="flex-1 overflow-y-auto custom-scrollbar pt-24 p-6 md:p-10 lg:p-14 transform translate-x-12 opacity-0 transition-all duration-500 delay-300"></div>
             </div>
         </div>
     </div>
@@ -227,14 +219,14 @@
     <div id="factionModal" class="fixed inset-0 z-[100] hidden bg-[#0f0f0f] carbon-bg transition-opacity duration-300 opacity-0">
         <div class="absolute inset-0 overflow-y-auto overflow-x-hidden p-6 md:p-16 pr-24 z-10 scroll-smooth pb-32">
             <h2 class="text-4xl md:text-6xl font-display font-black italic text-white uppercase mb-12 border-b-4 border-zinc-800 pb-4 inline-block drop-shadow-2xl">
-                Toutes les <span class="text-[#d7f70c] chromatic-text">Factions</span>
+                <span data-i18n="allFactions">Toutes les factions</span>
             </h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-10" id="modalFactionsGrid"></div>
         </div>
         <button onclick="closeModal('factionModal')" class="fixed right-0 top-1/2 -translate-y-1/2 bg-black border-l-2 border-y-2 border-zinc-700 rounded-l-3xl py-12 px-3 z-20 hover:bg-[#111] transition-all duration-300 group hover:pl-6 shadow-[0_0_50px_rgba(0,0,0,1)] hover:shadow-[0_0_60px_rgba(215,247,12,0.2)]">
             <div class="flex flex-col items-center gap-5">
                 <svg class="w-8 h-8 text-zinc-500 group-hover:text-yellow-400 transition-colors duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
-                <span class="text-[#d7f70c] font-display font-black uppercase text-2xl tracking-widest drop-shadow-lg" style="writing-mode: vertical-rl; text-orientation: mixed;">Retour <span class="text-xs text-zinc-500 ml-1 group-hover:text-yellow-400/50 block mt-2" style="writing-mode: vertical-rl;">(ECHAP)</span></span>
+                <span class="text-[#d7f70c] font-display font-black uppercase text-2xl tracking-widest drop-shadow-lg" style="writing-mode: vertical-rl; text-orientation: mixed;"><span data-i18n="return">Retour</span> <span class="text-xs text-zinc-500 ml-1 group-hover:text-yellow-400/50 block mt-2" style="writing-mode: vertical-rl;">(ECHAP)</span></span>
             </div>
         </button>
     </div>
