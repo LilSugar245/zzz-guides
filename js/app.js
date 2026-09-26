@@ -1,4 +1,5 @@
 import { factionsData } from './data/factions.js';
+import { factionsData } from './data/factions.js';
 import { agentsData, colorMap, iconMap, filterGroups } from './data/agents.js';
 import { getGuideHTML } from './guides/index.js'; 
 import { updateStaticUI, setLanguage, currentLang, tTerm } from './i18n.js';
