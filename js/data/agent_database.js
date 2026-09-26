@@ -10,7 +10,7 @@ export const agentDatabase = {
         skills: [
             { name: "Ex", level: "11", icon: "Ex.png" }, { name: "Basic", level: "11", icon: "Attaque_basic.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Ult", level: "10", icon: "Ultime.png" }
         ],
-        statPriority: { main: [ { slot: "6", label: "Anomaly" }, { slot: "5", label: "Physical DMG" }, { slot: "4", label: "Anomaly" } ], sub: [ { label: "Anomaly Proficiency", highlight: true }, { label: "ATK %", highlight: false }, { label: "PEN", highlight: false } ] },
+        statPriority: { main: [ { slot: "6", label: "Anomaly" }, { slot: "5", label: "Physical DMG" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Anomaly Proficiency", highlight: true }, { label: "ATQ %", highlight: false }, { label: "PEN", highlight: false } ] },
         engines: [
             { tag: "Baseline 100%", name: "Roaring Ride", img: "W-Engine_Roaring_Ride.png" }, { tag: "Moteur A", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, { tag: "Moteur A", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }, { tag: "Moteur A", name: "Rainforest Gourmet", img: "W-Engine_Rainforest_Gourmet.png" }
         ],
@@ -30,7 +30,7 @@ export const agentDatabase = {
         skills: [
             { name: "Ult", level: "11", icon: "Ultime.png" }, { name: "Assist", level: "11", icon: "Assist.png" }, { name: "Ex", level: "10", icon: "Ex.png" }, { name: "Basic", level: "8", icon: "Attaque_basic.png" }
         ],
-        statPriority: { main: [ { slot: "6", label: "Anomalie" }, { slot: "5", label: "PEN Ratio" }, { slot: "4", label: "Anomalie" } ], sub: [ { label: "Adre. Anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "Flat PEN / Flat ATK", highlight: false } ] },
+        statPriority: { main: [ { slot: "6", label: "Maitrise Anomalie" }, { slot: "5", label: "Taux de PEN" }, { slot: "4", label: "Adresse d'Anomalie" } ], sub: [ { label: "Adre. Anomalie", highlight: true }, { label: "Attaque %", highlight: false }, { label: "Flat PEN / Flat ATK", highlight: false } ] },
         engines: [
             { tag: "Baseline 100%", name: "Sharpened Stinger", img: "W-Engine_Sharpened_Stinger.png" }, { tag: "Alt 5★ (100%)", name: "Practiced Perfection", img: "W-Engine_Practiced_Perfection.png" }, { tag: "Alt F2P (89.12%)", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }
         ],
