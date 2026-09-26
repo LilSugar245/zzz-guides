@@ -26,6 +26,13 @@ const DOM = {
     empty: document.getElementById('empty-state'),
     scrollArea: document.querySelector('main'),
     tabContainer: document.getElementById('mainTabContainer'),
+    
+    // Nouveaux éléments pour la sidebar mobile
+    sidebar: document.getElementById('mainSidebar'),
+    sidebarMask: document.getElementById('mobileSidebarMask'),
+    openSidebarBtn: document.getElementById('openMobileSidebarBtn'),
+    closeSidebarBtn: document.getElementById('closeMobileSidebarBtn'),
+
     searchInputs: [document.getElementById('searchInput'), document.getElementById('searchInputMobile')],
     clearBtns: [document.getElementById('clearSearchBtn'), document.getElementById('clearSearchBtnMobile')],
     dropdowns: [document.getElementById('searchDropdown'), document.getElementById('searchDropdownMobile')],
@@ -49,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initModals();
     initLanguageSwitcher();
     initKeyboardNavigation();
+    initMobileSidebar(); // Activation du menu mobile
+    initMobileSwipe();   // Activation du swipe
     
     renderFactions();
     renderAgents();
@@ -286,6 +295,11 @@ window.setFactionFilter = function(faction, fromModal = false) {
     document.getElementById('activeFactionName').textContent = displayName;
     document.getElementById('activeFactionTag').classList.remove('hidden'); document.getElementById('activeFactionTag').classList.add('flex');
     if(fromModal) window.closeModal('factionModal');
+    
+    // Fermer le tiroir mobile si on a sélectionné une faction
+    if (DOM.sidebar && !DOM.sidebar.classList.contains('-translate-x-full')) {
+        DOM.closeSidebarBtn.click();
+    }
     renderAgents(); scrollToTop();
 };
 
@@ -470,7 +484,7 @@ function init3DParallax() {
 }
 
 // ==========================================
-// 12. OPTIMISATION MOBILE (SWIPE GESTURES)
+// 11. OPTIMISATION MOBILE (SWIPE)
 // ==========================================
 let touchStartX = 0;
 let touchEndX = 0;
@@ -490,15 +504,13 @@ function initMobileSwipe() {
 }
 
 function handleSwipeGesture() {
-    const swipeThreshold = 75; // Distance minimum en pixels pour valider le swipe
+    const swipeThreshold = 75; 
     
-    // Swipe vers la gauche (Personnage Suivant)
     if (touchEndX < touchStartX - swipeThreshold) {
         if (State.modalIndex < State.filteredAgents.length - 1 && State.modalIndex !== -1) {
             window.openAgentDetail(State.filteredAgents[State.modalIndex + 1].name);
         }
     }
-    // Swipe vers la droite (Personnage Précédent)
     if (touchEndX > touchStartX + swipeThreshold) {
         if (State.modalIndex > 0) {
             window.openAgentDetail(State.filteredAgents[State.modalIndex - 1].name);
@@ -506,7 +518,28 @@ function handleSwipeGesture() {
     }
 }
 
-// Lancement de la détection mobile au chargement
-document.addEventListener('DOMContentLoaded', () => {
-    initMobileSwipe();
-});
+// ==========================================
+// 12. MENU MOBILE (TIROIR COULISSANT)
+// ==========================================
+function initMobileSidebar() {
+    if(DOM.openSidebarBtn) {
+        DOM.openSidebarBtn.addEventListener('click', () => {
+            DOM.sidebarMask.classList.remove('hidden');
+            void DOM.sidebarMask.offsetWidth; 
+            DOM.sidebarMask.classList.remove('opacity-0');
+            DOM.sidebar.classList.remove('-translate-x-full');
+        });
+    }
+    
+    const closeSidebar = () => {
+        if (!DOM.sidebar) return;
+        DOM.sidebar.classList.add('-translate-x-full');
+        if (DOM.sidebarMask) {
+            DOM.sidebarMask.classList.add('opacity-0');
+            setTimeout(() => DOM.sidebarMask.classList.add('hidden'), 300);
+        }
+    };
+
+    if(DOM.closeSidebarBtn) DOM.closeSidebarBtn.addEventListener('click', closeSidebar);
+    if(DOM.sidebarMask) DOM.sidebarMask.addEventListener('click', closeSidebar);
+}
