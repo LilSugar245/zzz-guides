@@ -2251,6 +2251,61 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: { fr: "Hypercarry Élec", en: "Electric Hypercarry" }, members: [ { img: "Cissia.png", color: "#3182eb", initial: "C" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] }
         ]
     },
+    "Pyrois": {
+        color: "#f23c8a", element: "Ether", rank: "S", factionTitle: { fr: "Phaéthon", en: "Phaethon" },
+        stats: [ 
+            { label: "Attaque", value: "2800 - 3200+" }, 
+            { 
+                label: "Taux Crit", 
+                value: "57 - 72 %", 
+                note: { fr: "Avant d'équiper Sol Exuvia et M1", en: "Before equipping Sol Exuvia and M1" } 
+            }, 
+            { label: "DGT CRIT", value: "140 - 180 %+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Build Optimal 👑", en: "Optimal Build 👑" }, 
+                set1: "The_Sky_Ablaze", set2: "Puffer_Electro", 
+                set1Name: "4pc The Sky Ablaze", set2Name: "+ 2pc Puffer Electro", 
+                note: { fr: "Le set taillé sur mesure pour Pyrois. Offre de puissants DGT CRIT et un buff d'ATK % quasiment permanent grâce au faible coût de ses EX et Ultimes.", en: "Tailor-made set for Pyrois. Grants high unconditional CRIT DMG and near-permanent ATK% buff owing to low-cost EXs and Ultimates." } 
+            },
+            { 
+                tag: { fr: "Alternative Ultime", en: "Ultimate Alternative" }, 
+                set1: "Puffer_Electro", set2: "Branch_Blade_Song", 
+                set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Branch and Blade Song", 
+                note: { fr: "Une option compétitive centrée sur son Ultime à faible coût (2000 Décibels), bien que le buff ne couvre pas toute la durée de l'étourdissement.", en: "Competitive option focusing on his low-cost Ultimate (2000 Decibels), though the buff won't last the full stun duration." } 
+            }
+        ],
+        skills: [
+            { name: "Chain", level: "12", icon: "Ultime.png" }, 
+            { name: "Basic", level: "11", icon: "Attaque_basic.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Assist", level: "8", icon: "Assist.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "ATK %" }, 
+                { slot: "5", label: "PEN Ratio % > DGT Éther %" }, 
+                { slot: "4", label: "Taux CRIT > DGT CRIT" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT (Jusqu'à 100% en combat)", highlight: true }, 
+                { label: "DGT CRIT = ATK %", highlight: true }, 
+                { label: "Flat PEN", highlight: false }, 
+                { label: "Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Sol Exuvia", img: "W-Engine_Sol_Exuvia.png" }, 
+            { tag: "Alternative Nicole S (100.30%)", name: "Cordis Germina", img: "W-Engine_Cordis_Germina.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Meta Éther 👑", en: "Ether Meta 👑" }, members: [ { img: "Pyrois.png", color: "#5d57a6", initial: "P" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 02", tag: { fr: "Synergie Nicole", en: "Nicole Synergy" }, members: [ { img: "Pyrois.png", color: "#5d57a6", initial: "P" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] },
+            { name: "TEAM 03", tag: { fr: "Confort Stun", en: "Stun Comfort" }, members: [ { img: "Pyrois.png", color: "#5d57a6", initial: "P" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
         stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
