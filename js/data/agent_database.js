@@ -1053,6 +1053,124 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: { fr: "F2P Ordre Urbain", en: "F2P Public Security" }, members: [ { img: "Billy.png", color: "#e8a838", initial: "B" }, { img: "Seth.png", color: "#3182eb", initial: "S" }, { img: "Anby.png", color: "#3182eb", initial: "A" } ] }
         ]
     },
+    "Qingyi": {
+        color: "#3182eb", element: "Electric", rank: "S", factionTitle: { fr: "Division de l'Ordre urbain", en: "Public Security" },
+        stats: [ 
+            { label: "Impact", value: "169 - 193+" }, 
+            { label: "Taux Crit", value: "≥ 50 %" }, 
+            { label: "Attaque", value: "1800 - 2000+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Stun Optimal 👑", en: "Best Stun 👑" }, 
+                set1: "King_of_the_Summit", set2: "Shockstar_Disco", 
+                set1Name: "4pc King of the Summit", set2Name: "+ 2pc Shockstar Disco", 
+                note: { fr: "Nécessite au moins 50% de Taux CRIT. Ne pas équiper en double dans l'équipe.", en: "Requires 50% CRIT Rate or higher. You cannot run this set multiple times on the same team." } 
+            },
+            { 
+                tag: { fr: "Soutien Généraliste", en: "Generalist Support" }, 
+                set1: "Astral_Voice", set2: "King_of_the_Summit", 
+                set1Name: "4pc Astral Voice", set2Name: "+ 2pc King of the Summit", 
+                note: { fr: "Le meilleur buff de DGT du jeu via les Assistances Rapides.", en: "The biggest DMG buff provided via Quick Assists." } 
+            },
+            { 
+                tag: { fr: "Niche (Assistances)", en: "Niche (Assists)" }, 
+                set1: "Proto_Punk", set2: "King_of_the_Summit", 
+                set1Name: "4pc Proto Punk", set2Name: "+ 2pc King of the Summit", 
+                note: { fr: "Utile pour les équipes qui déclenchent souvent des Assistances Parfaites.", en: "Used for teams that are in the position of triggering Perfect Assists often." } 
+            }
+        ],
+        skills: [
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Chain", level: "11", icon: "Ultime.png" }, 
+            { name: "Dodge", level: "8", icon: "Esquive.png" }, 
+            { name: "Assist", level: "8", icon: "Assist.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Impact" }, 
+                { slot: "5", label: "DGT Électrique / ATK %" }, 
+                { slot: "4", label: "Taux CRIT" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT", highlight: true }, 
+                { label: "DGT CRIT", highlight: true }, 
+                { label: "ATK %", highlight: false }, 
+                { label: "PEN / Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Ice-Jade Teapot", img: "W-Engine_Ice-Jade_Teapot.png" }, 
+            { tag: "Alternative 5★", name: "The Restrained", img: "W-Engine_The_Restrained.png" }, 
+            { tag: "F2P Craftable", name: "Steam Oven", img: "W-Engine_Steam_Oven.png" }, 
+            { tag: "Alternative A", name: "Precious Fossilized Core", img: "W-Engine_Precious_Fossilized.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Meta Shiyu 👑", en: "Shiyu Meta 👑" }, members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "Z" }, { img: "Qingyi.png", color: "#3182eb", initial: "Q" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] },
+            { name: "TEAM 02", tag: { fr: "Synergie Burst", en: "Burst Synergy" }, members: [ { img: "Harumasa.png", color: "#3182eb", initial: "H" }, { img: "Qingyi.png", color: "#3182eb", initial: "Q" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] },
+            { name: "TEAM 03", tag: { fr: "Alternative Physique", en: "Physical Alternative" }, members: [ { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Qingyi.png", color: "#3182eb", initial: "Q" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] }
+        ]
+    },
+    "Caesar": {
+        color: "#e8a838", element: "Physical", rank: "S", factionTitle: { fr: "Fils de Calydon", en: "Sons of Calydon" },
+        stats: [ 
+            { label: "Impact", value: "145 - 170+" }, 
+            { label: "Attaque", value: "1400 - 2000+" }, 
+            { label: "HP", value: "12 000+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Soutien Général 👑", en: "Best Support 👑" }, 
+                set1: "Astral_Voice", set2: "Shockstar_Disco", 
+                set1Name: "4pc Astral Voice", set2Name: "+ 2pc Shockstar Disco", 
+                note: { fr: "Le set de soutien idéal pour booster les dégâts via les Assistances Rapides.", en: "Best generalist Support set, buffing DMG via Quick Assists." } 
+            },
+            { 
+                tag: { fr: "Boucliers & Assistances", en: "Shields & Assists" }, 
+                set1: "Proto_Punk", set2: "Shockstar_Disco", 
+                set1Name: "4pc Proto Punk", set2Name: "+ 2pc Shockstar Disco", 
+                note: { fr: "Augmente la taille des boucliers et les dégâts de l'équipe lors des Assistances Parfaites.", en: "Increases Shield potency and squad DMG when triggering Perfect Assists." } 
+            },
+            { 
+                tag: { fr: "Support Anomalie", en: "Anomaly Support" }, 
+                set1: "Freedom_Blues", set2: "Shockstar_Disco", 
+                set1Name: "4pc Freedom Blues", set2Name: "+ 2pc Shockstar Disco", 
+                note: { fr: "Le choix privilégié lorsqu'elle accompagne un DPS d'Anomalie Physique.", en: "Strong set option when supporting Physical Anomaly DPS Agents." } 
+            }
+        ],
+        skills: [
+            { name: "Assist", level: "12", icon: "Assist.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Basic", level: "11", icon: "Attaque_basic.png" }, 
+            { name: "Dodge", level: "8", icon: "Esquive.png" }, 
+            { name: "Chain", level: "8", icon: "Ultime.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Impact" }, 
+                { slot: "5", label: "DGT Physique / ATK % / PEN Ratio" }, 
+                { slot: "4", label: "Taux CRIT / Adresse d'Anomalie" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT / Adresse d'Anomalie", highlight: true }, 
+                { label: "DGT CRIT", highlight: true }, 
+                { label: "ATK %", highlight: false }, 
+                { label: "PEN / Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Tusks of Fury", img: "W-Engine_Tusks_of_Fury.png" }, 
+            { tag: "Option Impact A", name: "Original Transmorpher", img: "W-Engine_Original_Transmorpher.png" }, 
+            { tag: "Option Énergie A", name: "Spring Embrace", img: "W-Engine_Spring_Embrace.png" }, 
+            { tag: "Option Anomalie A", name: "Peacekeeper - Specialized", img: "W-Engine_Peacekeeper_-_Specialized.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Synergie Anomalie 👑", en: "Anomaly Synergy 👑" }, members: [ { img: "Jane.png", color: "#e8a838", initial: "J" }, { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] },
+            { name: "TEAM 02", tag: { fr: "Deadly Assault", en: "Deadly Assault" }, members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S" }, { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] },
+            { name: "TEAM 03", tag: { fr: "Synergie Physique", en: "Physical Synergy" }, members: [ { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
         stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
