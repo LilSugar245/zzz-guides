@@ -1318,6 +1318,120 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: { fr: "Duo Électrique", en: "Electric Duo" }, members: [ { img: "Harumasa.png", color: "#3182eb", initial: "H" }, { img: "Qingyi.png", color: "#3182eb", initial: "Q" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] }
         ]
     },
+    "Evelyn": {
+        color: "#f05432", element: "Fire", rank: "S", factionTitle: { fr: "Étoiles de la Lyre", en: "Lyre Stars" },
+        stats: [ 
+            { label: "DGT CRIT", value: "160 - 200 %+" }, 
+            { 
+                label: "Taux Crit", 
+                value: "80 - 100 %", 
+                note: { fr: "Min. 55% requis sur la fiche de stat", en: "Min. 55% required on stat screen" } 
+            }, 
+            { label: "Attaque", value: "2600 - 3400+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "DPS Build 👑", en: "DPS Build 👑" }, 
+                set1: "Woodpecker_Electro", set2: "Puffer_Electro", 
+                set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Puffer Electro", 
+                note: { fr: "Le meilleur choix absolu pour maintenir un buff constant et optimiser les dégâts de son Ultime.", en: "Absolute best choice to maintain constant buffs and optimize Ultimate burst DMG." } 
+            },
+            { 
+                tag: { fr: "Alternative Feu", en: "Fire Alternative" }, 
+                set1: "Inferno_Metal", set2: "Puffer_Electro", 
+                set1Name: "4pc Inferno Metal", set2Name: "+ 2pc Puffer Electro", 
+                note: { fr: "Une excellente option à 95% d'efficacité si vous pouvez maintenir les ennemis brûlés.", en: "Excellent 95% efficiency option if you can keep enemies burning." } 
+            }
+        ],
+        skills: [
+            { name: "Chain", level: "12", icon: "Ultime.png" }, 
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Assist", level: "8", icon: "Assist.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "ATK %" }, 
+                { slot: "5", label: "PEN Ratio % > DGT Feu % > ATK %" }, 
+                { slot: "4", label: "ATK % > DGT CRIT %" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT (Jusqu'à 75% max)", highlight: true }, 
+                { label: "DGT CRIT = ATK %", highlight: true }, 
+                { label: "PEN", highlight: false }, 
+                { label: "Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Heartstring Nocturne", img: "W-Engine_Heartstring_Nocturne.png" }, 
+            { tag: "Stat Stick S", name: "Severed Innocence", img: "W-Engine_Severed_Innocence.png" }, 
+            { tag: "Meilleure Option A", name: "Starlight Engine", img: "Starlight_Engine.png" }, 
+            { tag: "Alternative A", name: "Steel Cushion", img: "W-Engine_Steel_Cushion.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Premium Meta 👑", en: "Premium Meta 👑" }, members: [ { img: "Evelyn.png", color: "#f05432", initial: "E" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 02", tag: { fr: "Synergie Lighter", en: "Lighter Synergy" }, members: [ { img: "Evelyn.png", color: "#f05432", initial: "E" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 03", tag: { fr: "Double Feu", en: "Dual Fire" }, members: [ { img: "Evelyn.png", color: "#f05432", initial: "E" }, { img: "Koleda.png", color: "#f05432", initial: "K" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] }
+        ]
+    },
+    "Astra": {
+        color: "#f23c8a", element: "Ether", rank: "S", factionTitle: { fr: "Étoiles de la Lyre", en: "Lyre Stars" },
+        stats: [ 
+            { 
+                label: "Attaque", 
+                value: "3430+", 
+                note: { fr: "Cap vital pour maxer le buff de l'équipe", en: "Vital cap to maximize team-wide buff" } 
+            }, 
+            { label: "Réc. d'énergie", value: "0 - 130 %" }, 
+            { label: "HP", value: "10 500+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Meilleur Set 👑", en: "Best Set 👑" }, 
+                set1: "Astral_Voice", set2: "Swing_Jazz", 
+                set1Name: "4pc Astral Voice", set2Name: "+ 2pc Swing Jazz", 
+                note: { fr: "Son meilleur set de loin. Le 4-pièces se cumule facilement grâce aux nombreuses assistances rapides qu'Astra génère.", en: "Her best set by a long shot. The 4-piece stacks quickly thanks to the Quick Assists she continually grants." } 
+            },
+            { 
+                tag: { fr: "Alternative (Support secondaire)", en: "Alternative (Secondary Support)" }, 
+                set1: "Moonlight_Lullaby", set2: "Swing_Jazz", 
+                set1Name: "4pc Moonlight Lullaby", set2Name: "+ 2pc Swing Jazz", 
+                note: { fr: "À utiliser uniquement si un autre agent de l'équipe est déjà équipé du set Astral Voice complet.", en: "Only use this set if another Agent is already wielding the full Astral Voice set." } 
+            }
+        ],
+        skills: [
+            { name: "Ex", level: "12", icon: "Ex.png" }, 
+            { name: "Chain", level: "11", icon: "Ultime.png" }, 
+            { name: "Assist", level: "11", icon: "Assist.png" }, 
+            { name: "Dodge", level: "8", icon: "Esquive.png" }, 
+            { name: "Basic", level: "6", icon: "Attaque_basic.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Réc. d'énergie = ATK %" }, 
+                { slot: "5", label: "ATK %" }, 
+                { slot: "4", label: "ATK %" } 
+            ], 
+            sub: [ 
+                { label: "ATK % (Jusqu'à 3430 ATK globale)", highlight: true }, 
+                { label: "Flat ATK", highlight: true }, 
+                { label: "Taux CRIT = DGT CRIT", highlight: false }, 
+                { label: "Adresse d'Anomalie", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature", name: "Elegant Vanity", img: "W-Engine_Elegant_Vanity.png" }, 
+            { tag: "Excellente Alternative S", name: "Bashful Demon", img: "W-Engine_Bashful_Demon.png" }, 
+            { tag: "Alternative A", name: "Kaboom the Cannon", img: "W-Engine_Kaboom_the_Cannon.png" }, 
+            { tag: "Alternative Énergie A", name: "The Vault", img: "W-Engine_The_Vault.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Support Attaquant 👑", en: "Attacker Support 👑" }, members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 02", tag: { fr: "Synergie Spéciale", en: "Special Synergy" }, members: [ { img: "Evelyn.png", color: "#f05432", initial: "E" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 03", tag: { fr: "Double Support", en: "Double Support" }, members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "Z" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
         stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
