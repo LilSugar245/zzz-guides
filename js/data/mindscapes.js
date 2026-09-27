@@ -219,6 +219,226 @@ export const mindscapesData = {
             desc: { fr: "Après avoir lancé une attaque ou un enchaînement d'assistance pendant l'Attaque Spéciale EX de Ben, le Daze (Étourdissement) infligé par ses Attaques de base, son Attaque d'esquive et sa Contre-esquive augmente de 20 % pendant 12s.", en: "After launching an attack or follow-up attack during Ben's EX Special Attack, Daze inflicted by Basic Attacks, Dash Attack, and Dodge Counter is increased by 20%, lasting 12s." } 
         }
     ],
+    "Lycaon": [
+        { 
+            rank: "M1", 
+            title: { fr: "Élan de la pleine lune", en: "Full Moon Momentum" }, 
+            desc: { fr: "Augmente le Daze (Étourdissement) infligé par l'Attaque Spéciale EX de 12 % (recharge 8s). Charger l'attaque au maximum octroie un bonus supplémentaire de 10 % de Daze.", en: "Increases Daze from EX Special Attack by 12% (8s cooldown). Fully charging the attack grants an additional 10% Daze." } 
+        },
+        { 
+            rank: "M2", 
+            title: { fr: "Retour d'énergie", en: "Energy Feedback" }, 
+            desc: { fr: "Récupère 5 points d'énergie lors de l'étourdissement d'un ennemi ou du déclenchement d'un Enchaînement (recharge 1s).", en: "Recovers 5 Energy when stunning an enemy or triggering a Chain Attack (1s cooldown)." } 
+        },
+        { 
+            rank: "M4", 
+            title: { fr: "Attitude gracieuse", en: "Graceful Demeanor" }, 
+            desc: { fr: "Subir des DGT pendant une Attaque de base ou Spéciale génère un bouclier équivalent à 7,5 % des PV max pendant 15s. Le bouclier augmente le niveau d'anti-interruption (recharge 15s).", en: "Taking damage during a Basic or Special Attack grants a Shield equal to 7.5% Max HP for 15s, increasing Anti-Interrupt (15s cooldown)." } 
+        },
+        { 
+            rank: "M6", 
+            title: { fr: "Chasseur impitoyable", en: "Ruthless Hunter" }, 
+            desc: { fr: "Toucher un ennemi avec une attaque chargée augmente les DGT qu'il subit de la part de Lycaon de 10 % pendant 12s, cumulable jusqu'à 5 fois.", en: "Charged attacks increase the target's damage taken from Lycaon by 10% for 12s, stacking up to 5 times." } 
+        }
+    ],
+    "Corin": [
+        { 
+            rank: "M1", 
+            title: { fr: "Traumatisme ouvert", en: "Open Trauma" }, 
+            desc: { fr: "Lorsqu'un Enchaînement ou un Ultime touche un ennemi, les DGT de Corin contre cette cible augmentent de 12 % pendant 15s.", en: "Hitting an enemy with a Chain Attack or Ultimate increases Corin's damage against them by 12% for 15s." } 
+        },
+        { 
+            rank: "M2", 
+            title: { fr: "Frappe atomique", en: "Atomic Smash" }, 
+            desc: { fr: "L'Attaque Spéciale EX, l'Enchaînement ou l'Ultime réduisent la RÉS Physique de la cible de 0,5 % par coup, cumulable 20 fois pendant 5s.", en: "EX Special, Chain Attack, or Ultimate hits reduce the target's Physical RES by 0.5%, stacking up to 20 times for 5s." } 
+        },
+        { 
+            rank: "M4", 
+            title: { fr: "Servante de champ de bataille", en: "Battlefield Retainer" }, 
+            desc: { fr: "Restaure 7,2 points d'énergie lors de l'utilisation d'une Assistance Rapide, Défensive ou d'un Enchaînement (recharge 16s).", en: "Recovers 7.2 Energy upon using a Quick Assist, Defensive Assist, or Chain Attack (16s cooldown)." } 
+        },
+        { 
+            rank: "M6", 
+            title: { fr: "Libération accumulée", en: "Accumulated Release" }, 
+            desc: { fr: "Les frappes prolongées génèrent des cumuls de Charge (max 40). Les détonations de tronçonneuse les consomment toutes pour infliger 3 % d'ATK en DGT bonus par cumul.", en: "Extended slashes generate Charge stacks (max 40). Chainsaw detonations consume these stacks to deal an extra 3% ATK as DMG per stack." } 
+        }
+    ],
+    "Anton": [
+        { 
+            rank: "M1", 
+            title: { fr: "Exercices d'échauffement", en: "Warm-Up Exercises" }, 
+            desc: { fr: "Les attaques plongeantes restaurent jusqu'à 5 points d'énergie supplémentaires par utilisation.", en: "Drill Attacks grant up to 5 additional Energy per skill use." } 
+        },
+        { 
+            rank: "M2", 
+            title: { fr: "État de fluidité", en: "State of Flow" }, 
+            desc: { fr: "Entrer en Mode Furie octroie un Bouclier égal à 7,5 % des PV max. Changer de personnage réapplique le bouclier (recharge 15s). Il disparaît à la fin de la Furie.", en: "Entering Burst Mode grants a Shield equal to 7.5% of max HP, refreshing when switching in (15s cooldown). Shield vanishes when Burst Mode ends." } 
+        },
+        { 
+            rank: "M4", 
+            title: { fr: "Que tout le monde s'enflamme !", en: "Everyone Get Fired Up!" }, 
+            desc: { fr: "Utiliser un Enchaînement ou un Ultime augmente le Taux CRIT de l'escouade de 10 % pendant 12s.", en: "Using a Chain Attack or Ultimate boosts the squad's CRIT Rate by 10% for 12s." } 
+        },
+        { 
+            rank: "M6", 
+            title: { fr: "Dépasser les limites", en: "Break the Limit" }, 
+            desc: { fr: "Les coups critiques des frappes lourdes augmentent les DGT de l'Attaque de base (Furie) et de la Contre-esquive de 4 % pendant 30s, cumulable 6 fois.", en: "Critical hits from Piledriver Attacks increase his Burst Mode Basic and Dodge Counter DMG by 4% for 30s, stacking up to 6 times." } 
+        }
+    ],
+    "Nekomata": [
+        { 
+            rank: "M1", 
+            title: { fr: "Chasseur d'oiseaux", en: "Bird Hunter" }, 
+            desc: { fr: "Les attaques dans le dos ignorent 16 % de la RÉS Physique. Les attaques sur des ennemis étourdis sont toujours considérées comme des attaques dans le dos.", en: "Back attacks ignore 16% Physical RES. Attacks against stunned enemies always count as back attacks." } 
+        },
+        { 
+            rank: "M2", 
+            title: { fr: "Le chat et la souris", en: "Cat & Mouse" }, 
+            desc: { fr: "Lorsqu'il ne reste qu'un seul ennemi sur le terrain, le Taux de génération d'énergie augmente de 25 %.", en: "When only one enemy is on the field, Energy Generation Rate increases by 25%." } 
+        },
+        { 
+            rank: "M4", 
+            title: { fr: "Aiguiser les griffes", en: "Sharpen Claws" }, 
+            desc: { fr: "Utiliser l'Attaque Spéciale EX augmente le Taux CRIT de 7 % pendant 15s, cumulable 2 fois de manière indépendante.", en: "Using EX Special Attack grants 7% CRIT Rate for 15s, stacking up to 2 times independently." } 
+        },
+        { 
+            rank: "M6", 
+            title: { fr: "Lignée de prédateurs", en: "Predator Lineage" }, 
+            desc: { fr: "Les Enchaînements et Ultimes augmentent les DGT CRIT de 18 %, cumulable 3 fois en combat. Vaincre un ennemi octroie directement les cumuls max.", en: "Chain Attacks or Ultimates increase CRIT DMG by 18%, stacking up to 3 times while in combat. Defeating an enemy instantly grants max stacks." } 
+        }
+    ],
+    "Nicole": [
+        { 
+            rank: "M1", 
+            title: { fr: "Bombe surchargée", en: "Supercharged Bomb" }, 
+            desc: { fr: "Augmente les DGT et l'Anomalie de l'Attaque Spéciale EX de 16 %. Charger l'attaque prolonge la durée du champ d'énergie de 0,15s par 0,1s de charge.", en: "EX Special Anomaly Buildup and DMG increase by 16%. Charging extends the energy field duration by 0.15s for every 0.1s charged." } 
+        },
+        { 
+            rank: "M2", 
+            title: { fr: "Dispositif de charge", en: "Charging Device" }, 
+            desc: { fr: "Restaure 5 points d'énergie lorsque le débuff du Passif Principal est déclenché (recharge 15s).", en: "Recovers 5 Energy when her Core Passive debuff is triggered (15s cooldown)." } 
+        },
+        { 
+            rank: "M4", 
+            title: { fr: "Expansion de zone", en: "Field Expansion" }, 
+            desc: { fr: "Augmente le diamètre du champ d'énergie généré de 3 mètres lors des Attaques Spéciales EX, Enchaînements et Ultimes.", en: "Increases the energy field diameter by 3m for EX Specials, Chain Attacks, and Ultimates." } 
+        },
+        { 
+            rank: "M6", 
+            title: { fr: "Champ d'énergie corrupteur", en: "Corrupting Energy Field" }, 
+            desc: { fr: "Les ennemis touchés par les champs d'énergie confèrent à l'équipe un bonus de 1,5 % de Taux CRIT contre eux pendant 12s, cumulable jusqu'à 10 fois.", en: "Enemies damaged by her energy fields grant allies 1.5% CRIT Rate against them for 12s, stacking up to 10 times." } 
+        }
+    ],
+    "Billy": [
+        { 
+            rank: "M1", 
+            title: { fr: "Entrée éblouissante", en: "Dazzling Entrance" }, 
+            desc: { fr: "Les Attaques d'esquive et Contre-esquives restaurent 2,7 points d'énergie en touchant un ennemi (recharge 5s).", en: "Dash Attacks and Dodge Counters restore 2.7 Energy upon hitting an enemy (5s cooldown)." } 
+        },
+        { 
+            rank: "M2", 
+            title: { fr: "Pistolero itinérant", en: "Roaming Gunslinger" }, 
+            desc: { fr: "Augmente les DGT de la Contre-esquive de 25 %. Les Tirs Roulés rendent Billy invulnérable, peuvent déclencher des Esquives Parfaites et se transforment en Contre-esquive.", en: "Dodge Counter DMG increases by 25%. Rolling Shots grant invulnerability, trigger Perfect Dodges, and automatically upgrade to Dodge Counters." } 
+        },
+        { 
+            rank: "M4", 
+            title: { fr: "Balistique Starlight", en: "Starlight Ballistics" }, 
+            desc: { fr: "Le Taux CRIT de l'Attaque Spéciale EX augmente à mesure qu'il est proche de la cible, jusqu'à un maximum de 32 %.", en: "EX Special Attack CRIT Rate increases based on target proximity, up to a maximum of 32%." } 
+        },
+        { 
+            rank: "M6", 
+            title: { fr: "Héros Starlight", en: "Starlight Hero" }, 
+            desc: { fr: "Atteindre 10 coups ou déclencher une Esquive Parfaite augmente les DGT de 6 %, cumulable 5 fois. Le buff disparaît s'il est repoussé par une attaque.", en: "Dealing 10 hits or triggering a Perfect Dodge grants a 6% DMG boost, stacking up to 5 times. Lost upon being knocked back." } 
+        }
+    ],
+    "Anby": [
+        { 
+            rank: "M1", 
+            title: { fr: "Mode charge rapide", en: "Rapid Charge Mode" }, 
+            desc: { fr: "Toucher un ennemi avec le 4ème coup de l'Attaque de Base augmente la génération d'énergie de 12 % pendant 30s.", en: "Hitting an enemy with the 4th hit of her Basic Attack boosts Energy Generation Rate by 12% for 30s." } 
+        },
+        { 
+            rank: "M2", 
+            title: { fr: "Décharge de précision", en: "Precision Discharge" }, 
+            desc: { fr: "L'Attaque de base : Coup de foudre inflige 30 % de DGT supplémentaires aux cibles étourdies. L'Attaque Spéciale EX inflige 10 % de Daze supplémentaire aux cibles non étourdies.", en: "Basic Attack: Thunderbolt deals 30% more DMG to stunned enemies. EX Special Attack deals 10% more Daze to non-stunned enemies." } 
+        },
+        { 
+            rank: "M4", 
+            title: { fr: "Charge conductrice", en: "Conducting Charge" }, 
+            desc: { fr: "Les Enchaînements et Ultimes restaurent 3 points d'énergie aux personnages Électriques hors-terrain, plus 2 points par tranche de 12 % de Taux de génération d'énergie (max 6).", en: "Chain Attacks or Ultimates restore 3 Energy to off-field Electric characters, plus an extra 2 Energy for every 12% of Anby's Energy Gen Rate (max 6 extra)." } 
+        },
+        { 
+            rank: "M6", 
+            title: { fr: "Champ de charge", en: "Charging Field" }, 
+            desc: { fr: "L'Attaque Spéciale EX octroie 8 cumuls de Charge. Les Attaques de base et d'esquive consomment 1 cumul pour augmenter leurs DGT de 45 %.", en: "EX Special grants 8 Charge stacks. Basic and Dash Attacks consume 1 stack to increase their DMG by 45%." } 
+        }
+    ],
+    "Seth": [
+        { 
+            rank: "M1", 
+            title: { fr: "Héroïsme", en: "Heroism" }, 
+            desc: { fr: "La valeur du bouclier et sa limite augmentent de 30 %. À sa dissipation, le buff d'Adresse d'Anomalie est prolongé de 10s.", en: "Shield values and maximum limits increase by 30%. When the Shield breaks, the Anomaly Proficiency buff lasts for an extra 10s." } 
+        },
+        { 
+            rank: "M2", 
+            title: { fr: "Insouciance de la jeunesse", en: "Recklessness of Youth" }, 
+            desc: { fr: "Commence le combat avec 75 % de Détermination. L'Attaque de base électrifiée applique 35 % d'Anomalie Électrique supplémentaire.", en: "Starts battles with 75% Resolve. Hitting enemies with the Electrified Basic Attack boosts its Electric Anomaly Buildup by 35%." } 
+        },
+        { 
+            rank: "M4", 
+            title: { fr: "Aspiration profonde", en: "Core Aspiration" }, 
+            desc: { fr: "Le Daze infligé par l'Assistance Défensive est augmenté de 25 %.", en: "Defensive Assist Daze is increased by 25%." } 
+        },
+        { 
+            rank: "M6", 
+            title: { fr: "Idéaliste", en: "Idealist" }, 
+            desc: { fr: "Le coup final de l'Attaque de base électrifiée inflige 500 % d'ATK en DGT supplémentaires, garantit un coup critique et augmente les DGT CRIT de 60 %.", en: "The finishing strike of the Electrified Basic Attack deals 500% ATK as extra DMG, is guaranteed to CRIT, and boosts CRIT DMG by 60%." } 
+        }
+    ],
+    "Ellen": [
+        { 
+            rank: "M1", 
+            title: { fr: "Présage glacial", en: "Glacial Omen" }, 
+            desc: { fr: "Les attaques d'esquive génèrent 3 (rapide) ou 6 (chargée) Charges de Gel. Consommer une charge octroie 2 % de Taux CRIT pendant 15s (max 6 cumuls).", en: "Dash Attacks generate more Flash Freeze Charges (3 for Swift, 6 for Charged). Consuming a charge grants 2% CRIT Rate for 15s, stacking up to 6 times." } 
+        },
+        { 
+            rank: "M2", 
+            title: { fr: "Prédateur de l'océan arctique", en: "Arctic Ocean Predator" }, 
+            desc: { fr: "Le 3ème coup de l'Attaque de Base peut s'enchaîner directement avec l'EX Spécial. Chaque Charge de Gel booste les DGT CRIT de l'EX Spécial de 20 % (max 60 %).", en: "The 3rd hit of the Basic Attack can combo directly into EX Special Attack. Each Flash Freeze Charge boosts EX Special CRIT DMG by 20% (max 60%)." } 
+        },
+        { 
+            rank: "M4", 
+            title: { fr: "Givre sans fin", en: "Endless Hoarfrost" }, 
+            desc: { fr: "Lorsqu'un allié gèle ou étourdit un ennemi, Ellen gagne 6 Charges de Gel, une Charge Rapide et 4 points d'énergie (recharge 10s).", en: "When any squad member Freezes or Stuns an enemy, Ellen gains 6 Flash Freeze Charges, Quick Charge, and 4 Energy (10s cooldown)." } 
+        },
+        { 
+            rank: "M6", 
+            title: { fr: "Le festin commence", en: "The Feast Begins" }, 
+            desc: { fr: "L'EX Spécial, les Enchaînements ou la Charge Rapide augmentent le Taux de Pénétration de 20 % (6s) et ajoutent un cumul de Festin (max 3). Les ciseaux chargés consomment tout pour augmenter les DGT de 250 %.", en: "EX Specials, Chain Attacks, or gaining Quick Charge boosts PEN Ratio by 20% for 6s and grants a Feast stack (max 3). Charged scissors consume all stacks to boost DMG by 250%." } 
+        }
+    ],
+    "Zhu Yuan": [
+        { 
+            rank: "M1", 
+            title: { fr: "Rechargement rapide", en: "Quick Reload" }, 
+            desc: { fr: "Les Enchaînements et Ultimes octroient Rechargement Rapide. Épuiser les cartouches renforcées consomme l'effet pour en recharger instantanément 6 à 9.", en: "Chain Attacks or Ultimates grant Quick Reload. Emptying all Enhanced Shotshells consumes the buff to instantly refill 6 to 9 shots." } 
+        },
+        { 
+            rank: "M2", 
+            title: { fr: "Braise d'Éther", en: "Ether Ember" }, 
+            desc: { fr: "Le Mode Suppression augmente l'anti-interruption et réduit les DGT subis de 10 %. Les cartouches renforcées augmentent les DGT Éther subis par la cible de 10 % (5s), cumulable 5 fois.", en: "Suppressive Mode boosts Anti-Interrupt and reduces DMG taken by 10%. Enhanced Shotshells increase target's Ether DMG taken from specific attacks by 10% for 5s, stacking up to 5 times." } 
+        },
+        { 
+            rank: "M4", 
+            title: { fr: "Perforation d'Éther", en: "Ether Perforation" }, 
+            desc: { fr: "Toucher un ennemi avec des cartouches renforcées permet aux Attaques de base et d'esquive d'ignorer 25 % de la RÉS Éther de la cible.", en: "Hitting enemies with Enhanced Shotshells makes her Basic and Dash Attacks ignore 25% Ether RES." } 
+        },
+        { 
+            rank: "M6", 
+            title: { fr: "Pack d'énergie étendu III", en: "Expanded Energy Pack III" }, 
+            desc: { fr: "Consommer 12 cartouches réduit le coût du prochain EX Spécial de 30 énergie. Cet EX Spécial tire 4 balles d'Éther bonus infligeant chacune 220 % de l'ATK en DGT.", en: "Consuming 12 Enhanced Shotshells reduces the next EX Special cost by 30 Energy. This EX Special fires 4 extra Ether rounds dealing 220% ATK as DMG each." } 
+        }
+    ],
     "Sigrid": [
         { 
             rank: "M1", 
