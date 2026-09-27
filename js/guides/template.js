@@ -29,7 +29,9 @@ function buildStats(data, c, txt) {
             ${data.stats.map(stat => `
             <div class="bg-black/50 p-4 rounded-xl border border-zinc-800 w-full sm:flex-1 shadow-inner flex justify-between items-center">
                 <span class="block text-zinc-400 text-[10px] font-bold uppercase tracking-widest mb-1.5">${tStats(stat.label)}</span>
-                <span class="text-white font-black text-xl drop-shadow-md">${stat.value}</span>
+                <div class="flex flex-col items-end text-right">
+                    <span class="text-white font-black text-xl drop-shadow-md">${stat.value}</span>${stat.note ? `<span class="text-zinc-500 text-[8px] uppercase tracking-widest mt-1 leading-tight">${tData(stat.note)}</span>` : ''}
+                </div>
             </div>`).join('')}
         </div>
     </div>`;
