@@ -1599,6 +1599,116 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: { fr: "Soutien Physique", en: "Physical Support" }, members: [ { img: "Yixuan.png", color: "#5d57a6", initial: "Y" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" } ] }
         ]
     },
+    "Pan Yinhu": {
+        color: "#e8a838", element: "Physical", rank: "A", factionTitle: { fr: "Cimes de Yunkui", en: "Yunkui Peaks" },
+        stats: [ 
+            { 
+                label: "Attaque", 
+                value: "3000+", 
+                note: { fr: "L'unique cap requis", en: "The only required cap" } 
+            }, 
+            { label: "HP", value: "10 000+" }, 
+            { label: "DEF", value: "800+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Soutien Généraliste 👑", en: "Generalist Support 👑" }, 
+                set1: "Astral_Voice", set2: "Hormone_Punk", 
+                set1Name: "4pc Astral Voice", set2Name: "+ 2pc Hormone Punk", 
+                note: { fr: "Meilleur set de soutien global pour buffer les dégâts via les Assistances rapides. Le 2-pièces Hormone Punk aide à atteindre les 3000 d'ATK.", en: "Best generalist Support set buffing DMG via Quick Assists. 2pc Hormone Punk helps reach the 3000 ATK requirement." } 
+            },
+            { 
+                tag: { fr: "Niche (Assistances)", en: "Niche (Assists)" }, 
+                set1: "Proto_Punk", set2: "Hormone_Punk", 
+                set1Name: "4pc Proto Punk", set2Name: "+ 2pc Hormone Punk", 
+                note: { fr: "Option de soutien si vous déclenchez très souvent des Assistances Parfaites.", en: "Niche supportive set if you constantly trigger Perfect Assists." } 
+            }
+        ],
+        skills: [
+            { name: "Chain", level: "12", icon: "Ultime.png" }, 
+            { name: "Assist", level: "11", icon: "Assist.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "ATK %" }, 
+                { slot: "5", label: "DGT Physique % > ATK %" }, 
+                { slot: "4", label: "Taux CRIT = DGT CRIT > ATK %" } 
+            ], 
+            sub: [ 
+                { label: "ATK % / Flat ATK (Jusqu'à 3000)", highlight: true }, 
+                { label: "Taux CRIT = DGT CRIT", highlight: false }, 
+                { label: "PEN", highlight: false }, 
+                { label: "HP %", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Option S", name: "Tusks of Fury", img: "W-Engine_Tusks_of_Fury.png" }, 
+            { tag: "Signature (A)", name: "Tremor Trigram Vessel", img: "W-Engine_Tremor_Trigram_Vessel.png" }, 
+            { tag: "Alternative A", name: "Spring Embrace", img: "W-Engine_Spring_Embrace.png" }, 
+            { tag: "Alternative A", name: "Peacekeeper - Specialized", img: "W-Engine_Peacekeeper_-_Specialized.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Synergie Rupture 👑", en: "Rupture Synergy 👑" }, members: [ { img: "Yixuan.png", color: "#5d57a6", initial: "Y" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
+            { name: "TEAM 02", tag: { fr: "Rupture (Alternative)", en: "Rupture (Alternative)" }, members: [ { img: "Yixuan.png", color: "#5d57a6", initial: "Y" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" } ] },
+            { name: "TEAM 03", tag: { fr: "Duo Rupture Yunkui", en: "Yunkui Rupture Duo" }, members: [ { img: "Yixuan.png", color: "#5d57a6", initial: "Y" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
+        ]
+    },
+    "Alice": {
+        color: "#e8a838", element: "Physical", rank: "S", factionTitle: { fr: "Maison hantée", en: "Spook Shack" },
+        stats: [ 
+            { label: "Adre. d'Anomalie", value: "330 - 420+" }, 
+            { label: "Maî. d'Anomalie", value: "184+" }, 
+            { label: "Attaque", value: "2600 - 2900+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "DPS Anomalie 👑", en: "Anomaly DPS 👑" }, 
+                set1: "Fanged_Metal", set2: "Phaethon_Melody", 
+                set1Name: "4pc Fanged Metal", set2Name: "+ 2pc Phaethon's Melody", 
+                note: { fr: "Meilleure option pour un DPS Physique axé Anomalie, accordant +35% de DGT contre les ennemis sous l'effet Assaut.", en: "Best option for direct Anomaly Physical DPS, granting 35% increased DMG against Assaulted enemies." } 
+            },
+            { 
+                tag: { fr: "Alternative Niche", en: "Niche Alternative" }, 
+                set1: "Hormone_Punk", set2: "Phaethon_Melody", 
+                set1Name: "4pc Hormone Punk", set2Name: "+ 2pc Phaethon's Melody", 
+                note: { fr: "Performant sur ses fenêtres de burst, mais moins consistant que Fanged Metal car Alice passe beaucoup de temps sur le terrain.", en: "Strong burst windows, but less consistent than Fanged Metal due to her high on-field presence." } 
+            }
+        ],
+        skills: [
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, 
+            { name: "Chain", level: "11", icon: "Ultime.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Dodge", level: "8", icon: "Esquive.png" }, 
+            { name: "Assist", level: "6", icon: "Assist.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Maîtrise d'Anomalie" }, 
+                { slot: "5", label: "PEN Ratio % > DGT Physique %" }, 
+                { slot: "4", label: "Adresse d'Anomalie > ATK %" } 
+            ], 
+            sub: [ 
+                { label: "Adresse d'Anomalie", highlight: true }, 
+                { label: "ATK %", highlight: true }, 
+                { label: "PEN", highlight: false }, 
+                { label: "Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Practiced Perfection", img: "W-Engine_Practiced_Perfection.png" }, 
+            { tag: "Option On-field S", name: "Sharpened Stinger", img: "W-Engine_Sharpened_Stinger.png" }, 
+            { tag: "Option Accessible S", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }, 
+            { tag: "F2P Craftable A", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Synergie Désordre 👑", en: "Disorder Synergy 👑" }, members: [ { img: "Alice.png", color: "#e8a838", initial: "A" }, { img: "Vivian.png", color: "#f23c8a", initial: "V" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 02", tag: { fr: "Désordre Feu", en: "Fire Disorder" }, members: [ { img: "Alice.png", color: "#e8a838", initial: "A" }, { img: "Burnice.png", color: "#f05432", initial: "B" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 03", tag: { fr: "Alternative F2P", en: "F2P Alternative" }, members: [ { img: "Alice.png", color: "#e8a838", initial: "A" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
         stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
