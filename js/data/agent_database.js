@@ -1926,6 +1926,114 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: { fr: "Synergie Physique", en: "Physical Synergy" }, members: [ { img: "Nekomata.png", color: "#e8a838", initial: "N" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] }
         ]
     },
+    "Zhao": {
+        color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Autorité de conformité Krampus", en: "Krampus Compliance Authority" },
+        stats: [ 
+            { 
+                label: "HP", 
+                value: "25 000+", 
+                note: { fr: "Focus jusqu'à 27 000 PV initiaux", en: "Focus until 27,000 Initial HP" } 
+            }, 
+            { label: "Attaque", value: "1900+" }, 
+            { label: "Taux Crit", value: "30 %+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Soutien Optimal 👑", en: "Optimal Support 👑" }, 
+                set1: "Bunny_in_Wonderland", set2: "Yunkui_Tales", 
+                set1Name: "4pc Bunny in Wonderland", set2Name: "+ 2pc Yunkui Tales", 
+                note: { fr: "Son meilleur choix absolu. Le 4-pièces donne un buff d'équipe de 18% DGT très facile à maintenir, et le 2-pièces Yunkui l'aide à atteindre ses cap de PV.", en: "Easily best-in-slot. Grants a highly maintainable 18% team DMG buff, while the 2-pc helps meet her steep HP thresholds." } 
+            },
+            { 
+                tag: { fr: "Alternative Soutien", en: "Support Alternative" }, 
+                set1: "Astral_Voice", set2: "Moonlight_Lullaby", 
+                set1Name: "4pc Astral Voice", set2Name: "+ 2pc Moonlight Lullaby", 
+                note: { fr: "Une bonne alternative si gérée correctement via ses nombreuses Assistances Rapides et activations d'Ether Veil.", en: "Handy alternative via Quick Assists and Ether Veil activations, though harder to maintain max stacks." } 
+            }
+        ],
+        skills: [
+            { name: "Ex", level: "12", icon: "Ex.png" }, 
+            { name: "Chain", level: "11", icon: "Ultime.png" }, 
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" }, 
+            { name: "Assist", level: "8", icon: "Assist.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Régénération d'Énergie" }, 
+                { slot: "5", label: "HP %" }, 
+                { slot: "4", label: "HP %" } 
+            ], 
+            sub: [ 
+                { label: "HP % / Flat HP (Jusqu'à 27k PV)", highlight: true }, 
+                { label: "Taux CRIT = DGT CRIT", highlight: false }, 
+                { label: "ATK %", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Half-Sugar Bunny", img: "W-Engine_Half-Sugar_Bunny.png" }, 
+            { tag: "Option DGT Équipe S", name: "Tusks of Fury", img: "W-Engine_Tusks_of_Fury.png" }, 
+            { tag: "F2P Accessible A (68.12%)", name: "Original Transmorpher", img: "W-Engine_Original_Transmorpher.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Synergie Épée 👑", en: "Sword Synergy 👑" }, members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Zhao.png", color: "#3bbedb", initial: "Z" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 02", tag: { fr: "Généraliste Attaque", en: "Attack Generalist" }, members: [ { img: "Ellen.png", color: "#3bbedb", initial: "E" }, { img: "Zhao.png", color: "#3bbedb", initial: "Z" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 03", tag: { fr: "Généraliste Anomalie", en: "Anomaly Generalist" }, members: [ { img: "Jane.png", color: "#e8a838", initial: "J" }, { img: "Zhao.png", color: "#3bbedb", initial: "Z" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] }
+        ]
+    },
+    "Aria": {
+        color: "#f23c8a", element: "Ether", rank: "S", factionTitle: { fr: "Anges de l'illusion", en: "Angels of Delusion" },
+        stats: [ 
+            { label: "Adre. d'Anomalie", value: "330 - 420+" }, 
+            { label: "Maî. d'Anomalie", value: "184 - 244" }, 
+            { label: "Attaque", value: "2600 - 2900+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "DPS Anomalie 👑", en: "Anomaly DPS 👑" }, 
+                set1: "Phaethon_Melody", set2: "Freedom_Blues", 
+                set1Name: "4pc Phaethon's Melody", set2Name: "+ 2pc Freedom Blues", 
+                note: { fr: "Le set offrant le plus haut plafond de dégâts, mais nécessite une gestion active (buff de 8s) et beaucoup de Réc. d'Énergie sur le reste de l'équipe.", en: "Highest DMG ceiling option, but strict to play. Requires constant juggling between Agents to maintain its 8s buff timer." } 
+            },
+            { 
+                tag: { fr: "Alternative Confort", en: "Comfort Alternative" }, 
+                set1: "Shining_Aria", set2: "Phaethon_Melody", 
+                set1Name: "4pc Shining Aria", set2Name: "+ 2pc Phaethon's Melody", 
+                note: { fr: "Une option sans prise de tête. Légèrement moins forte sur le papier, mais beaucoup plus facile à exploiter en combat réel.", en: "Hassle-free pick. Falls short of being the strongest on paper, but far easier to use in actual combat." } 
+            }
+        ],
+        skills: [
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, 
+            { name: "Assist", level: "11", icon: "Assist.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Chain", level: "8", icon: "Ultime.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Maîtrise d'Anomalie" }, 
+                { slot: "5", label: "DGT Éther % = ATK %" }, 
+                { slot: "4", label: "Adresse d'Anomalie" } 
+            ], 
+            sub: [ 
+                { label: "Adresse d'Anomalie", highlight: true }, 
+                { label: "ATK %", highlight: true }, 
+                { label: "PEN", highlight: false }, 
+                { label: "Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Angel in the Shell", img: "W-Engine_Angel_in_the_Shell.png" }, 
+            { tag: "Alternative S (88.05%)", name: "Flight of Fancy", img: "W-Engine_Flight_of_Fancy.png" }, 
+            { tag: "F2P Craftable A", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }, 
+            { tag: "Alternative A", name: "Weeping Gemini", img: "W-Engine_Weeping_Gemini.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Duo Illusion 👑", en: "Delusion Duo 👑" }, members: [ { img: "Aria.png", color: "#f23c8a", initial: "A" }, { img: "Sunna.png", color: "#e8a838", initial: "S" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 02", tag: { fr: "Synergie Stun", en: "Stun Synergy" }, members: [ { img: "Aria.png", color: "#f23c8a", initial: "A" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 03", tag: { fr: "Alternative Off-field", en: "Off-field Alternative" }, members: [ { img: "Aria.png", color: "#f23c8a", initial: "A" }, { img: "Trigger.png", color: "#3182eb", initial: "T" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
         stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
