@@ -449,7 +449,7 @@ window.openAgentDetail = function(agentName) {
     if (splashImg) {
         splashImg.style.opacity = '0';
         splashImg.onerror = function() { this.onerror = null; this.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; };
-        splashImg.src = `assets/splash/${agentName}.png`; 
+        splashImg.src = `assets/splash/${agentName}.webp`; 
     }
     if (giantName) giantName.textContent = agentName;
     if (guideContainer) { guideContainer.innerHTML = getGuideHTML(agentName, agentsData.find(a => a.name === agentName)); }
