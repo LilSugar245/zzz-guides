@@ -24,10 +24,9 @@ const DOM = {
     grid: document.getElementById('agents-grid'),
     empty: document.getElementById('empty-state'),
     scrollArea: document.querySelector('main'),
-    ascensionModule: document.getElementById('ascensionModule'), // NOUVEAU
+    ascensionModule: document.getElementById('ascensionModule'),
     
     tabContainers: [document.getElementById('mainTabContainer'), document.getElementById('mobileTabContainer')],
-    
     groups: {
         elements: [document.getElementById('groupElements'), document.getElementById('groupElementsMobile')],
         roles: [document.getElementById('groupRoles'), document.getElementById('groupRolesMobile')],
@@ -40,8 +39,14 @@ const DOM = {
     
     mobileFilterModal: document.getElementById('mobileFilterModal'),
     mobileFilterBtn: document.getElementById('mobileFilterBtn'),
-    closeMobileFilterBtn: document.getElementById('closeMobileFilterBtn')
+    closeMobileFilterBtn: document.getElementById('closeMobileFilterBtn'),
+    
+    // NOUVEAU : Cache pour les éléments générés dynamiquement (Zéro Reflow)
+    agentCards: [],
+    separators: []
 };
+
+let searchTimeout;
 
 // ==========================================
 // 3. INITIALISATION
@@ -60,7 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileDrawer();
     
     renderFactions();
-    renderAgents();
+    buildInitialGrid(); // NOUVEAU : Génère le HTML une seule fois
+    renderAgents();     // Filtre en temps réel avec des classes
     
     setTimeout(() => { updateAllSliders('elements'); }, 100);
     window.addEventListener('resize', () => { updateAllSliders(State.mode); });
@@ -73,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function scrollToTop() {
     if (DOM.scrollArea) DOM.scrollArea.scrollTo({ top: 0, behavior: 'smooth' });
 }
-window.scrollToTop = scrollToTop; // Exposé pour le HTML
+window.scrollToTop = scrollToTop;
 
 function updateSliderPosition(container, activePill) {
     if (!container || !activePill) return;
@@ -86,7 +92,6 @@ function updateSliderPosition(container, activePill) {
 function updateAllSliders(mode) {
     const desktopPill = document.querySelector(`#mainTabContainer .tab-pill[id*="${mode.charAt(0).toUpperCase() + mode.slice(1)}"]`);
     const mobilePill = document.querySelector(`#mobileTabContainer .tab-pill[id*="${mode.charAt(0).toUpperCase() + mode.slice(1)}"]`);
-
     if (DOM.tabContainers[0] && desktopPill) updateSliderPosition(DOM.tabContainers[0], desktopPill);
     if (DOM.tabContainers[1] && mobilePill) updateSliderPosition(DOM.tabContainers[1], mobilePill);
 }
@@ -132,13 +137,19 @@ function initFilters(selector, filterType) {
 }
 
 // ==========================================
-// 5. RECHERCHE
+// 5. RECHERCHE OPTIMISÉE (Debounce 150ms)
 // ==========================================
 function initSearch() {
     DOM.searchInputs.forEach(input => {
         if (!input) return;
-        input.addEventListener('input', (e) => handleSearch(e.target.value));
-        input.addEventListener('focus', (e) => handleSearch(e.target.value));
+        input.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => handleSearch(e.target.value), 150);
+        });
+        input.addEventListener('focus', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => handleSearch(e.target.value), 150);
+        });
         input.addEventListener('blur', () => setTimeout(() => DOM.dropdowns.forEach(d => d && d.classList.add('hidden')), 300));
     });
     DOM.clearBtns.forEach(btn => { if (btn) btn.addEventListener('click', clearSearch); });
@@ -211,17 +222,24 @@ function initFavorites() {
 
 window.toggleFavorite = function(btn, agentName, event) {
     event.stopPropagation(); 
-    const svg = btn.querySelector('svg');
     if (State.favorites.includes(agentName)) {
         State.favorites = State.favorites.filter(f => f !== agentName);
-        svg.classList.remove('text-red-500', 'fill-red-500'); svg.classList.add('text-zinc-500', 'fill-none');
     } else {
         State.favorites.push(agentName);
-        svg.classList.add('text-red-500', 'fill-red-500'); svg.classList.remove('text-zinc-500', 'fill-none');
     }
     localStorage.setItem('zzz_favorites', JSON.stringify(State.favorites)); 
     updateFavBadges();
-    if (State.showFavorites) renderAgents();
+    
+    if (State.showFavorites) {
+        renderAgents();
+    } else {
+        const svg = btn.querySelector('svg');
+        if (State.favorites.includes(agentName)) {
+            svg.classList.add('text-red-500', 'fill-red-500'); svg.classList.remove('text-zinc-500', 'fill-none');
+        } else {
+            svg.classList.remove('text-red-500', 'fill-red-500'); svg.classList.add('text-zinc-500', 'fill-none');
+        }
+    }
 };
 
 // ==========================================
@@ -277,12 +295,42 @@ document.querySelectorAll('.clear-faction-btn').forEach(btn => {
 });
 
 // ==========================================
-// 8. GRILLE DES AGENTS
+// 8. GRILLE DES AGENTS (ZÉRO REFLOW)
 // ==========================================
-function renderAgents() {
-    DOM.grid.innerHTML = ''; State.filteredAgents = []; const agentsByVersion = {};
-
+function buildInitialGrid() {
+    DOM.grid.innerHTML = ''; 
+    let currentV = '';
+    
     agentsData.forEach((agent) => {
+        const v = agent.version || 'Inconnu';
+        if (v !== currentV) {
+            currentV = v;
+            const sepHTML = `<div class="version-separator col-span-full relative mt-16 mb-12 flex items-center justify-center group/sep perspective-1000 hidden" data-version="${v}"><div class="absolute inset-0 flex items-center justify-center pointer-events-none"><div class="w-[80%] md:w-[60%] h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#d7f70c] to-transparent -translate-x-full laser-beam"></div></div></div><div class="relative bg-[#050505] px-8 py-3 border border-zinc-800/80 rounded-full flex items-center gap-4 shadow-[0_0_40px_rgba(0,0,0,0.6)] transform transition-transform duration-700 hover:scale-110 hover:border-[#d7f70c]/50 hover:shadow-[0_0_50px_rgba(215,247,12,0.2)] z-10 cursor-default"><div class="w-2.5 h-2.5 bg-[#d7f70c] rounded-full animate-pulse shadow-[0_0_10px_#d7f70c]"></div><span class="font-display font-black italic text-2xl tracking-[0.3em] text-white uppercase drop-shadow-md">Version <span class="text-[#d7f70c]">${v.replace('V', '')}</span></span><div class="w-2.5 h-2.5 bg-[#d7f70c] rounded-full animate-pulse shadow-[0_0_10px_#d7f70c]"></div><div class="absolute inset-0 bg-[#d7f70c]/5 blur-xl rounded-full -z-10 group-hover/sep:bg-[#d7f70c]/15 transition-colors duration-500"></div></div></div>`;
+            DOM.grid.insertAdjacentHTML('beforeend', sepHTML);
+        }
+        DOM.grid.insertAdjacentHTML('beforeend', createCardHTML(agent));
+    });
+    
+    // Mise en cache des noeuds générés
+    DOM.agentCards = Array.from(DOM.grid.querySelectorAll('.agent-card-container')).map((el, i) => ({
+        el: el,
+        agent: agentsData[i],
+        version: agentsData[i].version || 'Inconnu'
+    }));
+    DOM.separators = Array.from(DOM.grid.querySelectorAll('.version-separator'));
+    
+    init3DParallax(); // Initialise l'animation 3D sur les cartes fraîchement créées
+}
+
+function renderAgents() {
+    State.filteredAgents = []; 
+    let visibleIndex = 0;
+    const visibleVersions = new Set();
+    const isVersionModeAll = State.mode === 'versions' && State.filters.version === 'All';
+
+    // 1. Filtrer en temps réel avec des classes (Zéro Reflow)
+    DOM.agentCards.forEach((card) => {
+        const agent = card.agent;
         const matchSearch = agent.name.toLowerCase().startsWith(State.search.toLowerCase());
         
         let matchFilter = true;
@@ -294,31 +342,48 @@ function renderAgents() {
         const matchFav = !State.showFavorites || State.favorites.includes(agent.name);
         
         if (matchSearch && matchFilter && matchFaction && matchFav) {
-            State.filteredAgents.push(agent); const v = agent.version || 'Inconnu'; if (!agentsByVersion[v]) agentsByVersion[v] = []; agentsByVersion[v].push(agent);
+            State.filteredAgents.push(agent);
+            visibleVersions.add(card.version);
+            
+            // Met à jour l'icône de favori si l'état a changé sans recréer la carte
+            const svg = card.el.querySelector('button.group\\/fav svg');
+            if(State.favorites.includes(agent.name)) {
+                svg.classList.add('text-red-500', 'fill-red-500'); svg.classList.remove('text-zinc-500', 'fill-none');
+            } else {
+                svg.classList.remove('text-red-500', 'fill-red-500'); svg.classList.add('text-zinc-500', 'fill-none');
+            }
+            
+            card.el.classList.remove('hidden');
+            card.el.classList.remove('animate-fade-in-up');
+            void card.el.offsetWidth; // Force le navigateur à relancer l'animation CSS
+            card.el.classList.add('animate-fade-in-up');
+            card.el.style.animationDelay = `${Math.min(visibleIndex * 40, 800)}ms`;
+            
+            visibleIndex++;
+        } else {
+            card.el.classList.add('hidden');
         }
     });
 
+    // 2. Gérer les séparateurs de versions
+    DOM.separators.forEach(sep => {
+        const v = sep.getAttribute('data-version');
+        if (isVersionModeAll && visibleVersions.has(v)) {
+            sep.classList.remove('hidden');
+        } else {
+            sep.classList.add('hidden');
+        }
+    });
+
+    // 3. Afficher ou cacher les modules externes
     if (State.filteredAgents.length > 0) {
         DOM.empty.classList.add('hidden'); DOM.empty.classList.remove('opacity-100'); 
-        let globalDelay = 0;
-        
-        if (State.mode === 'versions' && State.filters.version === 'All') {
-            Object.keys(agentsByVersion).sort().forEach(version => {
-                DOM.grid.insertAdjacentHTML('beforeend', `<div class="col-span-full relative mt-16 mb-12 flex items-center justify-center group/sep perspective-1000"><div class="absolute inset-0 flex items-center justify-center pointer-events-none"><div class="w-[80%] h-px bg-gradient-to-r from-transparent via-zinc-700/80 to-transparent relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#d7f70c] to-transparent -translate-x-full laser-beam"></div></div></div><div class="relative bg-[#050505] px-8 py-3 border border-zinc-800/80 rounded-full flex items-center gap-4 shadow-[0_0_40px_rgba(0,0,0,0.6)] transform transition-transform duration-700 hover:scale-110 hover:border-[#d7f70c]/50 hover:shadow-[0_0_50px_rgba(215,247,12,0.2)] z-10 cursor-default"><div class="w-2.5 h-2.5 bg-[#d7f70c] rounded-full animate-pulse shadow-[0_0_10px_#d7f70c]"></div><span class="font-display font-black italic text-2xl tracking-[0.3em] text-white uppercase drop-shadow-md">Version <span class="text-[#d7f70c]">${version.replace('V', '')}</span></span><div class="w-2.5 h-2.5 bg-[#d7f70c] rounded-full animate-pulse shadow-[0_0_10px_#d7f70c]"></div><div class="absolute inset-0 bg-[#d7f70c]/5 blur-xl rounded-full -z-10 group-hover/sep:bg-[#d7f70c]/15 transition-colors duration-500"></div></div></div>`);
-                agentsByVersion[version].forEach(agent => DOM.grid.insertAdjacentHTML('beforeend', createCardHTML(agent, globalDelay++)));
-            });
-        } else { State.filteredAgents.forEach(agent => DOM.grid.insertAdjacentHTML('beforeend', createCardHTML(agent, globalDelay++))); }
-        
-        // Afficher le Module d'Ascension
         if (DOM.ascensionModule) {
             DOM.ascensionModule.classList.remove('hidden');
             setTimeout(() => DOM.ascensionModule.classList.add('opacity-100'), 300);
         }
-        
-        setTimeout(init3DParallax, 50);
     } else { 
         DOM.empty.classList.remove('hidden'); setTimeout(() => DOM.empty.classList.add('opacity-100'), 10); 
-        // Cacher le Module d'Ascension
         if (DOM.ascensionModule) {
             DOM.ascensionModule.classList.remove('opacity-100');
             setTimeout(() => DOM.ascensionModule.classList.add('hidden'), 300);
@@ -328,14 +393,14 @@ function renderAgents() {
     updateModalNavigation();
 }
 
-function createCardHTML(agent, delayIndex) {
+function createCardHTML(agent) {
     const hexColor = colorMap[agent.element] || '#ffffff'; const cleanHex = hexColor.replace('#', ''); 
     const isFav = State.favorites.includes(agent.name); 
     const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-none'; 
     const displayName = agent.name === 'Jane' ? 'Jane Doe' : agent.name;
 
     return `
-    <div class="agent-card-container flex flex-col cursor-pointer w-full group animate-fade-in-up" style="--elem-color: ${hexColor}; animation-delay: ${Math.min(delayIndex * 40, 800)}ms;" onclick="window.openAgentDetail('${agent.name.replace(/'/g, "\\'")}')">
+    <div class="agent-card-container hidden flex flex-col cursor-pointer w-full group animate-fade-in-up" style="--elem-color: ${hexColor};" onclick="window.openAgentDetail('${agent.name.replace(/'/g, "\\'")}')">
         <div class="agent-shape-wrapper w-full aspect-square bg-zinc-800 relative">
             <div class="agent-shape-inner relative overflow-hidden flex items-end justify-center h-full w-full">
                 <img src="assets/Agents/${agent.name}.png" loading="lazy" class="agent-image absolute bottom-0 w-full h-auto min-h-full object-cover object-bottom" onerror="this.onerror=null; this.src='https://placehold.co/400x400/181818/${cleanHex}?text=${agent.name.charAt(0)}&font=montserrat'">
@@ -452,7 +517,7 @@ function checkUrlForAgent() {
 }
 
 // ==========================================
-// 10. UTILITAIRES
+// 10. UTILITAIRES & PARALLAXE FLUIDE (60 FPS)
 // ==========================================
 function initLanguageSwitcher() {
     const langSwitcher = document.getElementById('langSwitcher');
@@ -469,14 +534,31 @@ function initLanguageSwitcher() {
 
 function init3DParallax() {
     if (window.matchMedia("(hover: none)").matches) return; 
-    // Le module d'ascension est maintenant inclus dans le système de parallaxe !
+    
     document.querySelectorAll('.agent-card-container, .ascension-btn').forEach(card => {
+        let ticking = false;
+        let mouseX = 0, mouseY = 0;
+        
         card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-            card.classList.remove('reset-transition'); 
-            card.style.transform = `rotateX(${(((y - (rect.height / 2)) / (rect.height / 2)) * -12)}deg) rotateY(${(((x - (rect.width / 2)) / (rect.width / 2)) * 12)}deg) scale3d(1.05, 1.05, 1.05)`;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const rect = card.getBoundingClientRect(); 
+                    const x = mouseX - rect.left; 
+                    const y = mouseY - rect.top;
+                    card.classList.remove('reset-transition'); 
+                    card.style.transform = `rotateX(${(((y - (rect.height / 2)) / (rect.height / 2)) * -12)}deg) rotateY(${(((x - (rect.width / 2)) / (rect.width / 2)) * 12)}deg) scale3d(1.05, 1.05, 1.05)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
         });
-        card.addEventListener('mouseleave', () => { card.classList.add('reset-transition'); card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; });
+        card.addEventListener('mouseleave', () => { 
+            card.classList.add('reset-transition'); 
+            card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; 
+        });
     });
 }
 
