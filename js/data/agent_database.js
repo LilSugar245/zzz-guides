@@ -1709,6 +1709,116 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: { fr: "Alternative F2P", en: "F2P Alternative" }, members: [ { img: "Alice.png", color: "#e8a838", initial: "A" }, { img: "Yanagi.png", color: "#3182eb", initial: "Y" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
         ]
     },
+    "Orphie and Magus": {
+        color: "#f05432", element: "Fire", rank: "S", factionTitle: { fr: "Enquêtes Criminelles", en: "N.E.P.S." },
+        stats: [ 
+            { label: "Taux Crit", value: "90 - 100 % (Passifs Inclus)" }, 
+            { label: "DGT CRIT", value: "120 %+" }, 
+            { label: "Réc. Énergie", value: "80 %+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "DPS Principal 👑", en: "Main DPS 👑" }, 
+                set1: "Shadow_Harmony", set2: "Swing_Jazz", 
+                set1Name: "4pc Shadow Harmony", set2Name: "+ 2pc Swing Jazz", 
+                note: { fr: "Meilleur set pour ses dégâts personnels. Facile à jouer et nécessite très peu de gestion.", en: "Best set for Orphie's personal damage. Easy to play around and requires very little maintenance." } 
+            },
+            { 
+                tag: { fr: "Support Attaquant", en: "Attacker Support" }, 
+                set1: "Astral_Voice", set2: "Swing_Jazz", 
+                set1Name: "4pc Astral Voice", set2Name: "+ 2pc Swing Jazz", 
+                note: { fr: "Set de buff extrêmement puissant, particulièrement utile dans les compositions à double attaquant.", en: "Best usable buffing set, highly recommended in Dual Attacker compositions." } 
+            }
+        ],
+        skills: [
+            { name: "Ex", level: "12", icon: "Ex.png" }, 
+            { name: "Chain", level: "12", icon: "Ultime.png" }, 
+            { name: "Assist", level: "11", icon: "Assist.png" }, 
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Réc. Énergie / ATK %" }, 
+                { slot: "5", label: "DGT Feu % / ATK %" }, 
+                { slot: "4", label: "Taux CRIT = DGT CRIT" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT = DGT CRIT", highlight: true }, 
+                { label: "ATK %", highlight: true }, 
+                { label: "PEN", highlight: false }, 
+                { label: "Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Bellicose Blaze", img: "W-Engine_Bellicose_Blaze.png" }, 
+            { tag: "Stat Stick S", name: "Heartstring Nocturne", img: "W-Engine_Heartstring_Nocturne.png" }, 
+            { tag: "Alternative S", name: "Severed Innocence", img: "W-Engine_Severed_Innocence.png" }, 
+            { tag: "Meilleur F2P A", name: "Gilded Blossom", img: "Gilded_Blossom.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "DPS Principal 👑", en: "Primary DPS 👑" }, members: [ { img: "Orphie and Magus.png", color: "#f05432", initial: "O" }, { img: "Trigger.png", color: "#3182eb", initial: "T" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 02", tag: { fr: "Double Attaquant", en: "Dual Attacker" }, members: [ { img: "Soldier 0 Anby.png", color: "#3182eb", initial: "S0" }, { img: "Orphie and Magus.png", color: "#f05432", initial: "O" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 03", tag: { fr: "Synergie Stun", en: "Stun Synergy" }, members: [ { img: "Orphie and Magus.png", color: "#f05432", initial: "O" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] }
+        ]
+    },
+    "Manato": {
+        color: "#f05432", element: "Fire", rank: "A", factionTitle: { fr: "Maison hantée", en: "Spook Shack" },
+        stats: [ 
+            { label: "Sheer Force", value: "2100 - 2400+" }, 
+            { label: "HP", value: "18 000+" }, 
+            { 
+                label: "Taux Crit", 
+                value: "44 - 66 %", 
+                note: { fr: "Atteint 90 à 100% en combat", en: "Reaches 90-100% in-combat" } 
+            } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Build Optimal 👑", en: "Optimal Build 👑" }, 
+                set1: "Yunkui_Tales", set2: "Woodpecker_Electro", 
+                set1Name: "4pc Yunkui Tales", set2Name: "+ 2pc Woodpecker Electro", 
+                note: { fr: "Le meilleur choix absolu pour maximiser ses DGT durant l'étourdissement en exploitant sa synergie avec les HP.", en: "The best option to maximize his damage during Stun while scaling off his HP." } 
+            },
+            { 
+                tag: { fr: "Alternative DGT CRIT", en: "CRIT DMG Alternative" }, 
+                set1: "Yunkui_Tales", set2: "Branch_Blade_Song", 
+                set1Name: "4pc Yunkui Tales", set2Name: "+ 2pc Branch and Blade Song", 
+                note: { fr: "Une alternative solide si vous n'avez pas besoin des 8% de Taux CRIT de Woodpecker Electro.", en: "Solid alternative if you do not need the 8% CRIT Rate from Woodpecker Electro." } 
+            }
+        ],
+        skills: [
+            { name: "Chain", level: "12", icon: "Ultime.png" }, 
+            { name: "Assist", level: "11", icon: "Assist.png" }, 
+            { name: "Basic", level: "11", icon: "Attaque_basic.png" }, 
+            { name: "Ex", level: "8", icon: "Ex.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "HP %" }, 
+                { slot: "5", label: "DGT Feu % > HP %" }, 
+                { slot: "4", label: "Taux CRIT = DGT CRIT" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT = DGT CRIT", highlight: true }, 
+                { label: "HP %", highlight: true }, 
+                { label: "Flat HP", highlight: false }, 
+                { label: "ATK %", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature A (100 %)", name: "Grill O'Wisp", img: "W-Engine_Grill_O_Wisp.png" }, 
+            { tag: "Stat Stick S", name: "Wrathful Vajra", img: "W-Engine_Wrathful_Vajra.png" }, 
+            { tag: "Alternative A", name: "Radiowave Journey", img: "W-Engine_Radiowave_Journey.png" }, 
+            { tag: "Alternative A", name: "Puzzle Sphere", img: "W-Engine_Puzzle_Sphere.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Manato Rupture 👑", en: "Manato Rupture 👑" }, members: [ { img: "Manato.png", color: "#f05432", initial: "M" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
+            { name: "TEAM 02", tag: { fr: "Soutien Yunkui", en: "Yunkui Support" }, members: [ { img: "Manato.png", color: "#f05432", initial: "M" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" } ] },
+            { name: "TEAM 03", tag: { fr: "Alternative Off-field", en: "Off-field Alternative" }, members: [ { img: "Manato.png", color: "#f05432", initial: "M" }, { img: "Pulchra.png", color: "#e8a838", initial: "P" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
         stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
