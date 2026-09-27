@@ -1538,6 +1538,67 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: { fr: "Double Stun", en: "Dual Stun" }, members: [ { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" }, { img: "Trigger.png", color: "#3182eb", initial: "T" } ] }
         ]
     },
+    "Yixuan": {
+        color: "#5d57a6", 
+        element: "Auric Ink", 
+        elementIcon: "Auric_Ink.png", 
+        rank: "S", 
+        factionTitle: { fr: "Cimes de Yunkui", en: "Yunkui Peaks" },
+        stats: [ 
+            { label: "Sheer Force", value: "2100 - 2400" }, 
+            { label: "HP", value: "16 000 - 18 000+" }, 
+            { 
+                label: "Taux Crit", 
+                value: "80 - 90 %", 
+                note: { fr: "Bonus de disques inclus", en: "Including Disc Drive Bonus" } 
+            } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Build Optimal 👑", en: "Optimal Build 👑" }, 
+                set1: "Yunkui_Tales", set2: "Woodpecker_Electro", 
+                set1Name: "4pc Yunkui Tales", set2Name: "+ 2pc Woodpecker Electro", 
+                note: { fr: "La meilleure (et seule) option à considérer. Fournit des PV%, du Taux CRIT cumulable et augmente les DGT Sheer.", en: "The best (and frankly only) option to consider. Provides HP%, stackable CRIT Rate and boosts Sheer DMG." } 
+            },
+            { 
+                tag: { fr: "Alternative DGT CRIT", en: "CRIT DMG Alternative" }, 
+                set1: "Yunkui_Tales", set2: "Branch_Blade_Song", 
+                set1Name: "4pc Yunkui Tales", set2Name: "+ 2pc Branch and Blade Song", 
+                note: { fr: "Si vous atteignez déjà votre cap de Taux CRIT, ce 2-pièces apportera de précieux DGT CRIT.", en: "If CRIT Rate is already capped, this 2-pc will provide valuable CRIT DMG." } 
+            }
+        ],
+        skills: [
+            { name: "Chain", level: "12", icon: "Ultime.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Basic", level: "11", icon: "Attaque_basic.png" }, 
+            { name: "Assist", level: "8", icon: "Assist.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "HP %" }, 
+                { slot: "5", label: "DGT Éther % > HP %" }, 
+                { slot: "4", label: "Taux CRIT = DGT CRIT" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT = DGT CRIT", highlight: true }, 
+                { label: "HP %", highlight: true }, 
+                { label: "ATK %", highlight: false }, 
+                { label: "Flat HP", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Qingming Birdcage", img: "W-Engine_Qingming_Birdcage.png" }, 
+            { tag: "Alternative A (85.77 %)", name: "Cauldron of Clarity", img: "W-Engine_Cauldron_of_Clarity.png" }, 
+            { tag: "Alternative A", name: "Radiowave Journey", img: "W-Engine_Radiowave_Journey.png" }, 
+            { tag: "F2P Craftable A", name: "Puzzle Sphere", img: "W-Engine_Puzzle_Sphere.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Rupture Premium 👑", en: "Premium Rupture 👑" }, members: [ { img: "Yixuan.png", color: "#5d57a6", initial: "Y" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" } ] },
+            { name: "TEAM 02", tag: { fr: "Synergie Faction", en: "Faction Synergy" }, members: [ { img: "Yixuan.png", color: "#5d57a6", initial: "Y" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" } ] },
+            { name: "TEAM 03", tag: { fr: "Soutien Physique", en: "Physical Support" }, members: [ { img: "Yixuan.png", color: "#5d57a6", initial: "Y" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
         stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
