@@ -24,23 +24,20 @@ const DOM = {
     grid: document.getElementById('agents-grid'),
     empty: document.getElementById('empty-state'),
     scrollArea: document.querySelector('main'),
+    ascensionModule: document.getElementById('ascensionModule'), // NOUVEAU
     
-    // Conteneurs d'onglets
     tabContainers: [document.getElementById('mainTabContainer'), document.getElementById('mobileTabContainer')],
     
-    // Groupes de filtres par mode
     groups: {
         elements: [document.getElementById('groupElements'), document.getElementById('groupElementsMobile')],
         roles: [document.getElementById('groupRoles'), document.getElementById('groupRolesMobile')],
         versions: [document.getElementById('groupVersions'), document.getElementById('groupVersionsMobile')]
     },
 
-    // Recherche
     searchInputs: [document.getElementById('searchInput'), document.getElementById('searchInputMobile')],
     clearBtns: [document.getElementById('clearSearchBtn'), document.getElementById('clearSearchBtnMobile')],
     dropdowns: [document.getElementById('searchDropdown'), document.getElementById('searchDropdownMobile')],
     
-    // Modale Mobile
     mobileFilterModal: document.getElementById('mobileFilterModal'),
     mobileFilterBtn: document.getElementById('mobileFilterBtn'),
     closeMobileFilterBtn: document.getElementById('closeMobileFilterBtn')
@@ -65,23 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFactions();
     renderAgents();
     
-    setTimeout(() => {
-        updateAllSliders('elements');
-    }, 100);
-
-    window.addEventListener('resize', () => {
-        updateAllSliders(State.mode);
-    });
-
+    setTimeout(() => { updateAllSliders('elements'); }, 100);
+    window.addEventListener('resize', () => { updateAllSliders(State.mode); });
     checkUrlForAgent();
 });
 
 // ==========================================
-// 4. ONGLETS ET FILTRES (SYNC BUREAU & MOBILE)
+// 4. ONGLETS ET FILTRES
 // ==========================================
 function scrollToTop() {
     if (DOM.scrollArea) DOM.scrollArea.scrollTo({ top: 0, behavior: 'smooth' });
 }
+window.scrollToTop = scrollToTop; // Exposé pour le HTML
 
 function updateSliderPosition(container, activePill) {
     if (!container || !activePill) return;
@@ -105,33 +97,22 @@ function initTabs() {
         if (!btn) return;
         btn.addEventListener('click', () => {
             State.mode = mode;
-            
-            // Activer les bons boutons sur Desktop et Mobile
             document.querySelectorAll('.tab-pill').forEach(p => {
                 const isCurrent = p.id.toLowerCase().includes(mode.toLowerCase());
                 p.classList.toggle('active', isCurrent);
             });
-
-            // Afficher / Masquer les groupes
             Object.keys(DOM.groups).forEach(gKey => {
                 const isGroupActive = gKey === mode;
-                DOM.groups[gKey].forEach(el => {
-                    if (el) el.classList.toggle('hidden', !isGroupActive);
-                });
+                DOM.groups[gKey].forEach(el => { if (el) el.classList.toggle('hidden', !isGroupActive); });
             });
-
             updateAllSliders(mode);
             renderAgents();
             scrollToTop();
         });
     };
-
-    attachTabEvent('tabElements', 'elements');
-    attachTabEvent('tabElementsMobile', 'elements');
-    attachTabEvent('tabRoles', 'roles');
-    attachTabEvent('tabRolesMobile', 'roles');
-    attachTabEvent('tabVersions', 'versions');
-    attachTabEvent('tabVersionsMobile', 'versions');
+    attachTabEvent('tabElements', 'elements'); attachTabEvent('tabElementsMobile', 'elements');
+    attachTabEvent('tabRoles', 'roles'); attachTabEvent('tabRolesMobile', 'roles');
+    attachTabEvent('tabVersions', 'versions'); attachTabEvent('tabVersionsMobile', 'versions');
 }
 
 function initFilters(selector, filterType) {
@@ -140,13 +121,10 @@ function initFilters(selector, filterType) {
         btn.addEventListener('click', () => {
             const val = btn.getAttribute(`data-${filterType === 'element' ? 'filter' : filterType}`);
             State.filters[filterType] = val;
-
-            // Synchroniser la classe active sur tous les boutons ayant la même valeur (Bureau + Mobile)
             btns.forEach(b => {
                 const bVal = b.getAttribute(`data-${filterType === 'element' ? 'filter' : filterType}`);
                 b.classList.toggle('active', bVal === val);
             });
-
             renderAgents();
             scrollToTop();
         });
@@ -163,10 +141,7 @@ function initSearch() {
         input.addEventListener('focus', (e) => handleSearch(e.target.value));
         input.addEventListener('blur', () => setTimeout(() => DOM.dropdowns.forEach(d => d && d.classList.add('hidden')), 300));
     });
-
-    DOM.clearBtns.forEach(btn => {
-        if (btn) btn.addEventListener('click', clearSearch);
-    });
+    DOM.clearBtns.forEach(btn => { if (btn) btn.addEventListener('click', clearSearch); });
 }
 
 function handleSearch(query) {
@@ -188,10 +163,7 @@ function clearSearch() {
 }
 
 function updateDropdownUI(query) {
-    let filtered = query 
-        ? agentsData.filter(a => a.name.toLowerCase().startsWith(query.toLowerCase()))
-        : [...agentsData];
-    
+    let filtered = query ? agentsData.filter(a => a.name.toLowerCase().startsWith(query.toLowerCase())) : [...agentsData];
     filtered.sort((a, b) => a.name.localeCompare(b.name));
 
     const html = filtered.length === 0 
@@ -200,13 +172,8 @@ function updateDropdownUI(query) {
             const iconFile = iconMap[agent.element] || 'physique.png';
             return `
             <div class="dropdown-item-anim flex items-center gap-4 p-4 hover:bg-[#1a1a1a] cursor-pointer transition-colors group" style="animation-delay: ${delay * 15}ms" onmousedown="window.triggerSearchSelect('${agent.name.replace(/'/g, "\\'")}')">
-                <div class="w-12 h-12 rounded-xl bg-[#121212] border border-zinc-700 overflow-hidden flex-shrink-0 relative shadow-inner">
-                    <img src="assets/Agents/${agent.name}.png" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://placehold.co/100x100/222222/ffffff?text=${agent.name.charAt(0)}'">
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-white text-sm font-black tracking-widest group-hover:text-yellow-400 transition-colors uppercase">${agent.name}</span>
-                    <div class="flex items-center gap-1.5 mt-1"><img src="assets/Icone/${iconFile}" class="w-3.5 h-3.5 object-contain opacity-80"><span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest">${tTerm(agent.element)}</span></div>
-                </div>
+                <div class="w-12 h-12 rounded-xl bg-[#121212] border border-zinc-700 overflow-hidden flex-shrink-0 relative shadow-inner"><img src="assets/Agents/${agent.name}.png" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://placehold.co/100x100/222222/ffffff?text=${agent.name.charAt(0)}'"></div>
+                <div class="flex flex-col"><span class="text-white text-sm font-black tracking-widest group-hover:text-yellow-400 transition-colors uppercase">${agent.name}</span><div class="flex items-center gap-1.5 mt-1"><img src="assets/Icone/${iconFile}" class="w-3.5 h-3.5 object-contain opacity-80"><span class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest">${tTerm(agent.element)}</span></div></div>
             </div>`;
         }).join('');
 
@@ -221,37 +188,23 @@ window.triggerSearchSelect = function(agentName) {
 // ==========================================
 // 6. FAVORIS
 // ==========================================
-function updateFavBadges() { 
-    document.querySelectorAll('.fav-count-badge').forEach(badge => {
-        badge.textContent = State.favorites.length;
-    });
-}
+function updateFavBadges() { document.querySelectorAll('.fav-count-badge').forEach(badge => { badge.textContent = State.favorites.length; }); }
 
 function initFavorites() {
     updateFavBadges();
     const favButtons = document.querySelectorAll('.favorite-filter-btn');
-
     favButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             State.showFavorites = !State.showFavorites;
-            
             favButtons.forEach(b => {
                 const svg = b.querySelector('svg');
                 if (State.showFavorites) {
-                    b.classList.replace('border-zinc-800', 'border-red-500'); 
-                    b.classList.replace('text-zinc-400', 'text-white'); 
-                    b.classList.add('bg-red-500/10'); 
-                    if (svg) svg.classList.add('text-red-500');
+                    b.classList.replace('border-zinc-800', 'border-red-500'); b.classList.replace('text-zinc-400', 'text-white'); b.classList.add('bg-red-500/10'); if (svg) svg.classList.add('text-red-500');
                 } else {
-                    b.classList.replace('border-red-500', 'border-zinc-800'); 
-                    b.classList.replace('text-white', 'text-zinc-400'); 
-                    b.classList.remove('bg-red-500/10'); 
-                    if (svg) svg.classList.remove('text-red-500');
+                    b.classList.replace('border-red-500', 'border-zinc-800'); b.classList.replace('text-white', 'text-zinc-400'); b.classList.remove('bg-red-500/10'); if (svg) svg.classList.remove('text-red-500');
                 }
             });
-
-            renderAgents(); 
-            scrollToTop();
+            renderAgents(); scrollToTop();
         });
     });
 }
@@ -261,12 +214,10 @@ window.toggleFavorite = function(btn, agentName, event) {
     const svg = btn.querySelector('svg');
     if (State.favorites.includes(agentName)) {
         State.favorites = State.favorites.filter(f => f !== agentName);
-        svg.classList.remove('text-red-500', 'fill-red-500'); 
-        svg.classList.add('text-zinc-500', 'fill-none'); // Correction : utiliser fill-none
+        svg.classList.remove('text-red-500', 'fill-red-500'); svg.classList.add('text-zinc-500', 'fill-none');
     } else {
         State.favorites.push(agentName);
-        svg.classList.add('text-red-500', 'fill-red-500'); 
-        svg.classList.remove('text-zinc-500', 'fill-none'); // Correction : utiliser fill-none
+        svg.classList.add('text-red-500', 'fill-red-500'); svg.classList.remove('text-zinc-500', 'fill-none');
     }
     localStorage.setItem('zzz_favorites', JSON.stringify(State.favorites)); 
     updateFavBadges();
@@ -287,35 +238,21 @@ function renderFactions() {
             return `
             <div class="mb-5 px-1 transform-gpu hidden md:block">
                 <div class="faction-box rounded-[1.5rem] p-4 flex flex-col items-center gap-4 cursor-pointer w-full group bg-gradient-to-br from-[#121212] to-[#050505] border-2 border-zinc-800 hover:border-yellow-400/50 transition-colors transform-gpu" onclick="window.setFactionFilter('${faction.replace(/'/g, "\\'")}')">
-                    <div class="w-40 h-40 md:w-44 md:h-44 bg-black rounded-[1.2rem] overflow-hidden flex items-center justify-center p-2 shadow-inner group-hover:bg-[#0a0a0a] transition-colors relative transform-gpu">
-                        <img src="${imgPath}" loading="eager" decoding="sync" alt="${faction}" class="w-full h-full object-contain scale-110 drop-shadow-xl relative z-10 transform-gpu" style="backface-visibility: hidden;" onerror="this.onerror=null; this.src='${fallbackImg}'">
-                    </div>
-                    <div class="bg-black/95 px-3 py-2.5 rounded-xl text-xs font-black text-center w-full border border-zinc-700/80 text-zinc-400 group-hover:text-white group-hover:border-yellow-400/80 transition-colors shadow-lg uppercase leading-tight transform-gpu flex-1 flex flex-col justify-center">
-                        ${displayName}${subName ? `<span class="block text-[8px] text-zinc-500 mt-0.5 tracking-wider">${subName}</span>` : ''}
-                    </div>
+                    <div class="w-40 h-40 md:w-44 md:h-44 bg-black rounded-[1.2rem] overflow-hidden flex items-center justify-center p-2 shadow-inner group-hover:bg-[#0a0a0a] transition-colors relative transform-gpu"><img src="${imgPath}" loading="eager" decoding="sync" alt="${faction}" class="w-full h-full object-contain scale-110 drop-shadow-xl relative z-10 transform-gpu" style="backface-visibility: hidden;" onerror="this.onerror=null; this.src='${fallbackImg}'"></div>
+                    <div class="bg-black/95 px-3 py-2.5 rounded-xl text-xs font-black text-center w-full border border-zinc-700/80 text-zinc-400 group-hover:text-white group-hover:border-yellow-400/80 transition-colors shadow-lg uppercase leading-tight transform-gpu flex-1 flex flex-col justify-center">${displayName}${subName ? `<span class="block text-[8px] text-zinc-500 mt-0.5 tracking-wider">${subName}</span>` : ''}</div>
                 </div>
             </div>`;
         } else {
             return `
             <div class="bg-[#121212] border-2 border-zinc-800 rounded-2xl sm:rounded-[2rem] p-3 sm:p-6 flex flex-col items-center justify-start gap-3 sm:gap-6 cursor-pointer hover:border-yellow-400 hover:-translate-y-2 transition-all duration-300 group shadow-lg sm:shadow-2xl relative overflow-hidden h-full" onclick="window.setFactionFilter('${faction.replace(/'/g, "\\'")}', true)">
-                <div class="w-20 h-20 sm:w-32 sm:h-32 md:w-48 md:h-48 transition-all duration-500 group-hover:scale-110 relative z-10 flex-shrink-0 flex items-center justify-center mt-1 sm:mt-0">
-                    <img src="${imgPath}" loading="lazy" alt="${faction}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='${fallbackImg}'">
-                </div>
-                <div class="mt-auto bg-black/80 px-2 py-2.5 sm:px-5 sm:py-3 rounded-xl text-[9px] sm:text-xs md:text-sm font-black w-full text-center border border-zinc-800 group-hover:border-yellow-400 text-zinc-300 shadow-inner group-hover:text-yellow-400 transition-colors duration-300 uppercase tracking-wider relative z-10 flex flex-col justify-center items-center">
-                    ${displayName}${subName ? `<span class="block text-[7.5px] sm:text-[10px] text-zinc-500 mt-1 leading-tight">${subName}</span>` : ''}
-                </div>
+                <div class="w-20 h-20 sm:w-32 sm:h-32 md:w-48 md:h-48 transition-all duration-500 group-hover:scale-110 relative z-10 flex-shrink-0 flex items-center justify-center mt-1 sm:mt-0"><img src="${imgPath}" loading="lazy" alt="${faction}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='${fallbackImg}'"></div>
+                <div class="mt-auto bg-black/80 px-2 py-2.5 sm:px-5 sm:py-3 rounded-xl text-[9px] sm:text-xs md:text-sm font-black w-full text-center border border-zinc-800 group-hover:border-yellow-400 text-zinc-300 shadow-inner group-hover:text-yellow-400 transition-colors duration-300 uppercase tracking-wider relative z-10 flex flex-col justify-center items-center">${displayName}${subName ? `<span class="block text-[7.5px] sm:text-[10px] text-zinc-500 mt-1 leading-tight">${subName}</span>` : ''}</div>
             </div>`;
         }
     };
     
-    const modalGrid = document.getElementById('modalFactionsGrid'); 
-    if (modalGrid) modalGrid.innerHTML = factionsData.map(f => generateFactionHTML(f, false)).join('');
-    
-    const sidebarList = document.getElementById('sidebarFactionsList'); 
-    if (sidebarList) { 
-        const sidebarHTML = factionsData.map(f => generateFactionHTML(f, true)).join(''); 
-        sidebarList.innerHTML = sidebarHTML + sidebarHTML; 
-    }
+    const modalGrid = document.getElementById('modalFactionsGrid'); if (modalGrid) modalGrid.innerHTML = factionsData.map(f => generateFactionHTML(f, false)).join('');
+    const sidebarList = document.getElementById('sidebarFactionsList'); if (sidebarList) { const sidebarHTML = factionsData.map(f => generateFactionHTML(f, true)).join(''); sidebarList.innerHTML = sidebarHTML + sidebarHTML; }
 }
 
 window.setFactionFilter = function(faction, fromModal = false) {
@@ -325,26 +262,17 @@ window.setFactionFilter = function(faction, fromModal = false) {
     
     const labelText = faction === "Équipe d'intervention spéciale des Enquêtes criminelles" ? "N.E.P.S." : faction;
     nameLabels.forEach(nl => nl.textContent = labelText);
-    tags.forEach(t => {
-        t.classList.remove('hidden');
-        t.classList.add('flex');
-    });
+    tags.forEach(t => { t.classList.remove('hidden'); t.classList.add('flex'); });
 
     if (fromModal) window.closeModal('factionModal');
-    renderAgents(); 
-    scrollToTop();
+    renderAgents(); scrollToTop();
 };
 
 document.querySelectorAll('.clear-faction-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
-        e.stopPropagation(); 
-        State.faction = null;
-        document.querySelectorAll('.active-faction-tag').forEach(t => {
-            t.classList.add('hidden');
-            t.classList.remove('flex');
-        });
-        renderAgents(); 
-        scrollToTop();
+        e.stopPropagation(); State.faction = null;
+        document.querySelectorAll('.active-faction-tag').forEach(t => { t.classList.add('hidden'); t.classList.remove('flex'); });
+        renderAgents(); scrollToTop();
     });
 });
 
@@ -352,9 +280,7 @@ document.querySelectorAll('.clear-faction-btn').forEach(btn => {
 // 8. GRILLE DES AGENTS
 // ==========================================
 function renderAgents() {
-    DOM.grid.innerHTML = ''; 
-    State.filteredAgents = []; 
-    const agentsByVersion = {};
+    DOM.grid.innerHTML = ''; State.filteredAgents = []; const agentsByVersion = {};
 
     agentsData.forEach((agent) => {
         const matchSearch = agent.name.toLowerCase().startsWith(State.search.toLowerCase());
@@ -368,16 +294,12 @@ function renderAgents() {
         const matchFav = !State.showFavorites || State.favorites.includes(agent.name);
         
         if (matchSearch && matchFilter && matchFaction && matchFav) {
-            State.filteredAgents.push(agent); 
-            const v = agent.version || 'Inconnu'; 
-            if (!agentsByVersion[v]) agentsByVersion[v] = []; 
-            agentsByVersion[v].push(agent);
+            State.filteredAgents.push(agent); const v = agent.version || 'Inconnu'; if (!agentsByVersion[v]) agentsByVersion[v] = []; agentsByVersion[v].push(agent);
         }
     });
 
     if (State.filteredAgents.length > 0) {
-        DOM.empty.classList.add('hidden'); 
-        DOM.empty.classList.remove('opacity-100'); 
+        DOM.empty.classList.add('hidden'); DOM.empty.classList.remove('opacity-100'); 
         let globalDelay = 0;
         
         if (State.mode === 'versions' && State.filters.version === 'All') {
@@ -385,23 +307,31 @@ function renderAgents() {
                 DOM.grid.insertAdjacentHTML('beforeend', `<div class="col-span-full relative mt-16 mb-12 flex items-center justify-center group/sep perspective-1000"><div class="absolute inset-0 flex items-center justify-center pointer-events-none"><div class="w-[80%] h-px bg-gradient-to-r from-transparent via-zinc-700/80 to-transparent relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#d7f70c] to-transparent -translate-x-full laser-beam"></div></div></div><div class="relative bg-[#050505] px-8 py-3 border border-zinc-800/80 rounded-full flex items-center gap-4 shadow-[0_0_40px_rgba(0,0,0,0.6)] transform transition-transform duration-700 hover:scale-110 hover:border-[#d7f70c]/50 hover:shadow-[0_0_50px_rgba(215,247,12,0.2)] z-10 cursor-default"><div class="w-2.5 h-2.5 bg-[#d7f70c] rounded-full animate-pulse shadow-[0_0_10px_#d7f70c]"></div><span class="font-display font-black italic text-2xl tracking-[0.3em] text-white uppercase drop-shadow-md">Version <span class="text-[#d7f70c]">${version.replace('V', '')}</span></span><div class="w-2.5 h-2.5 bg-[#d7f70c] rounded-full animate-pulse shadow-[0_0_10px_#d7f70c]"></div><div class="absolute inset-0 bg-[#d7f70c]/5 blur-xl rounded-full -z-10 group-hover/sep:bg-[#d7f70c]/15 transition-colors duration-500"></div></div></div>`);
                 agentsByVersion[version].forEach(agent => DOM.grid.insertAdjacentHTML('beforeend', createCardHTML(agent, globalDelay++)));
             });
-        } else { 
-            State.filteredAgents.forEach(agent => DOM.grid.insertAdjacentHTML('beforeend', createCardHTML(agent, globalDelay++))); 
+        } else { State.filteredAgents.forEach(agent => DOM.grid.insertAdjacentHTML('beforeend', createCardHTML(agent, globalDelay++))); }
+        
+        // Afficher le Module d'Ascension
+        if (DOM.ascensionModule) {
+            DOM.ascensionModule.classList.remove('hidden');
+            setTimeout(() => DOM.ascensionModule.classList.add('opacity-100'), 300);
         }
+        
         setTimeout(init3DParallax, 50);
     } else { 
-        DOM.empty.classList.remove('hidden'); 
-        setTimeout(() => DOM.empty.classList.add('opacity-100'), 10); 
+        DOM.empty.classList.remove('hidden'); setTimeout(() => DOM.empty.classList.add('opacity-100'), 10); 
+        // Cacher le Module d'Ascension
+        if (DOM.ascensionModule) {
+            DOM.ascensionModule.classList.remove('opacity-100');
+            setTimeout(() => DOM.ascensionModule.classList.add('hidden'), 300);
+        }
     }
     
     updateModalNavigation();
 }
 
 function createCardHTML(agent, delayIndex) {
-    const hexColor = colorMap[agent.element] || '#ffffff'; 
-    const cleanHex = hexColor.replace('#', ''); 
+    const hexColor = colorMap[agent.element] || '#ffffff'; const cleanHex = hexColor.replace('#', ''); 
     const isFav = State.favorites.includes(agent.name); 
-    const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-none'; // Correction ici
+    const heartClass = isFav ? 'text-red-500 fill-red-500' : 'text-zinc-500 fill-none'; 
     const displayName = agent.name === 'Jane' ? 'Jane Doe' : agent.name;
 
     return `
@@ -425,41 +355,30 @@ function createCardHTML(agent, delayIndex) {
 window.openModal = function(id) {
     const m = document.getElementById(id);
     if (!m) return;
-    m.classList.remove('hidden'); 
-    void m.offsetWidth; 
-    m.classList.add('opacity-100');
+    m.classList.remove('hidden'); void m.offsetWidth; m.classList.add('opacity-100');
 };
 
 window.closeModal = function(id) {
     const m = document.getElementById(id);
     if (!m) return;
     if (id === 'agentDetailModal') {
-        const splash = document.getElementById('agentSplashImage');
-        const guide = document.getElementById('agentGuideContainer');
+        const splash = document.getElementById('agentSplashImage'); const guide = document.getElementById('agentGuideContainer');
         if (splash) { splash.style.opacity = '0'; splash.style.transform = 'translateY(20px) scale(0.9)'; }
         if (guide) { guide.style.opacity = '0'; guide.style.transform = 'translateX(20px)'; }
-        window.history.pushState({}, '', window.location.pathname);
-        State.modalIndex = -1;
+        window.history.pushState({}, '', window.location.pathname); State.modalIndex = -1;
     }
-    m.classList.remove('opacity-100'); 
-    setTimeout(() => m.classList.add('hidden'), 300);
+    m.classList.remove('opacity-100'); setTimeout(() => m.classList.add('hidden'), 300);
 };
 
 window.openAgentDetail = function(agentName) {
     const modal = document.getElementById('agentDetailModal');
     if (!modal) return;
-    
-    if (modal.parentElement !== document.body) {
-        document.body.appendChild(modal);
-    }
+    if (modal.parentElement !== document.body) { document.body.appendChild(modal); }
 
-    const splashImg = document.getElementById('agentSplashImage');
-    const giantName = document.getElementById('modalGiantNameText');
-    const guideContainer = document.getElementById('agentGuideContainer');
+    const splashImg = document.getElementById('agentSplashImage'); const giantName = document.getElementById('modalGiantNameText'); const guideContainer = document.getElementById('agentGuideContainer');
     
     State.modalIndex = State.filteredAgents.findIndex(a => a.name === agentName); 
     updateModalNavigation();
-    
     window.history.pushState({}, '', '?' + new URLSearchParams({ agent: agentName }).toString());
     
     if (splashImg) {
@@ -468,40 +387,24 @@ window.openAgentDetail = function(agentName) {
         splashImg.src = `assets/splash/${agentName}.png`; 
     }
     if (giantName) giantName.textContent = agentName;
-    if (guideContainer) {
-        guideContainer.innerHTML = getGuideHTML(agentName, agentsData.find(a => a.name === agentName));
-    }
+    if (guideContainer) { guideContainer.innerHTML = getGuideHTML(agentName, agentsData.find(a => a.name === agentName)); }
 
     window.openModal('agentDetailModal');
     
     setTimeout(() => {
-        if (splashImg) {
-            splashImg.style.opacity = '1'; 
-            splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)';
-        }
-        if (guideContainer) {
-            guideContainer.scrollTo(0, 0); // La réinitialisation du défilement est maintenant ici
-            guideContainer.style.opacity = '1'; 
-            guideContainer.style.transform = 'translateX(0)';
-        }
+        if (splashImg) { splashImg.style.opacity = '1'; splashImg.style.transform = agentName.toLowerCase() === 'remielle' ? 'translateY(0) scale(1.4)' : 'translateY(0) scale(1)'; }
+        if (guideContainer) { guideContainer.scrollTo(0, 0); guideContainer.style.opacity = '1'; guideContainer.style.transform = 'translateX(0)'; }
     }, 50);
 };
 
 function updateModalNavigation() {
-    const prevBtn = document.getElementById('prevAgentBtn'); 
-    const nextBtn = document.getElementById('nextAgentBtn');
+    const prevBtn = document.getElementById('prevAgentBtn'); const nextBtn = document.getElementById('nextAgentBtn');
     if (!prevBtn || !nextBtn) return;
     
-    const hasPrev = State.modalIndex > 0;
-    const hasNext = State.modalIndex < State.filteredAgents.length - 1 && State.modalIndex !== -1;
+    const hasPrev = State.modalIndex > 0; const hasNext = State.modalIndex < State.filteredAgents.length - 1 && State.modalIndex !== -1;
 
-    prevBtn.classList.toggle('opacity-0', !hasPrev); 
-    prevBtn.classList.toggle('pointer-events-none', !hasPrev); 
-    prevBtn.classList.toggle('-translate-x-10', !hasPrev);
-
-    nextBtn.classList.toggle('opacity-0', !hasNext); 
-    nextBtn.classList.toggle('pointer-events-none', !hasNext); 
-    nextBtn.classList.toggle('translate-x-10', !hasNext);
+    prevBtn.classList.toggle('opacity-0', !hasPrev); prevBtn.classList.toggle('pointer-events-none', !hasPrev); prevBtn.classList.toggle('-translate-x-10', !hasPrev);
+    nextBtn.classList.toggle('opacity-0', !hasNext); nextBtn.classList.toggle('pointer-events-none', !hasNext); nextBtn.classList.toggle('translate-x-10', !hasNext);
 
     if (hasPrev) prevBtn.onclick = (e) => { e.stopPropagation(); window.openAgentDetail(State.filteredAgents[State.modalIndex - 1].name); };
     if (hasNext) nextBtn.onclick = (e) => { e.stopPropagation(); window.openAgentDetail(State.filteredAgents[State.modalIndex + 1].name); };
@@ -509,16 +412,12 @@ function updateModalNavigation() {
 
 function initModals() {
     const openModalBtn = document.getElementById('openModalBtn');
-    if (openModalBtn) {
-        openModalBtn.addEventListener('click', () => window.openModal('factionModal'));
-    }
+    if (openModalBtn) { openModalBtn.addEventListener('click', () => window.openModal('factionModal')); }
 }
 
 function initKeyboardNavigation() {
     document.addEventListener('keydown', (e) => {
-        const modalAgent = document.getElementById('agentDetailModal');
-        const modalFaction = document.getElementById('factionModal');
-        const modalMobileFilter = document.getElementById('mobileFilterModal');
+        const modalAgent = document.getElementById('agentDetailModal'); const modalFaction = document.getElementById('factionModal'); const modalMobileFilter = document.getElementById('mobileFilterModal');
 
         if (e.key === 'Escape') { 
             if (modalAgent && !modalAgent.classList.contains('hidden')) window.closeModal('agentDetailModal'); 
@@ -538,29 +437,17 @@ window.shareCurrentAgent = function() {
     navigator.clipboard.writeText(url).then(() => {
         const toast = document.getElementById('toastNotification');
         if (!toast) return;
-        toast.classList.remove('-translate-y-32', 'opacity-0'); 
-        toast.classList.add('translate-y-0', 'opacity-100');
-        setTimeout(() => { 
-            toast.classList.remove('translate-y-0', 'opacity-100'); 
-            toast.classList.add('-translate-y-32', 'opacity-0'); 
-        }, 3000);
+        toast.classList.remove('-translate-y-32', 'opacity-0'); toast.classList.add('translate-y-0', 'opacity-100');
+        setTimeout(() => { toast.classList.remove('translate-y-0', 'opacity-100'); toast.classList.add('-translate-y-32', 'opacity-0'); }, 3000);
     });
 };
 
 function checkUrlForAgent() {
-    const agentParam = new URLSearchParams(window.location.search).get('agent'); 
-    const fastMask = document.getElementById('fast-mask');
+    const agentParam = new URLSearchParams(window.location.search).get('agent'); const fastMask = document.getElementById('fast-mask');
     if (agentParam) {
         const agent = agentsData.find(a => a.name.toLowerCase() === agentParam.toLowerCase());
-        if (agent) { 
-            window.openAgentDetail(agent.name); 
-            setTimeout(() => { 
-                if (fastMask) { 
-                    fastMask.style.opacity = '0'; 
-                    setTimeout(() => fastMask.remove(), 400); 
-                } 
-            }, 100); 
-        } else if (fastMask) fastMask.remove();
+        if (agent) { window.openAgentDetail(agent.name); setTimeout(() => { if (fastMask) { fastMask.style.opacity = '0'; setTimeout(() => fastMask.remove(), 400); } }, 100); } 
+        else if (fastMask) fastMask.remove();
     } else if (fastMask) fastMask.remove();
 }
 
@@ -572,36 +459,24 @@ function initLanguageSwitcher() {
     if (langSwitcher) {
         langSwitcher.setAttribute('data-active', currentLang);
         langSwitcher.addEventListener('click', () => {
-            const newLang = langSwitcher.getAttribute('data-active') === 'fr' ? 'en' : 'fr'; 
-            langSwitcher.setAttribute('data-active', newLang); 
-            setLanguage(newLang);
-            document.querySelectorAll('.dyn-term').forEach(el => { 
-                const term = el.getAttribute('data-term'); 
-                if (term) el.textContent = tTerm(term); 
-            });
-            renderAgents(); 
-            scrollToTop();
-            if (State.modalIndex !== -1 && !document.getElementById('agentDetailModal').classList.contains('hidden')) { 
-                document.getElementById('agentGuideContainer').innerHTML = getGuideHTML(State.filteredAgents[State.modalIndex].name, State.filteredAgents[State.modalIndex]); 
-            }
+            const newLang = langSwitcher.getAttribute('data-active') === 'fr' ? 'en' : 'fr'; langSwitcher.setAttribute('data-active', newLang); setLanguage(newLang);
+            document.querySelectorAll('.dyn-term').forEach(el => { const term = el.getAttribute('data-term'); if (term) el.textContent = tTerm(term); });
+            renderAgents(); scrollToTop();
+            if (State.modalIndex !== -1 && !document.getElementById('agentDetailModal').classList.contains('hidden')) { document.getElementById('agentGuideContainer').innerHTML = getGuideHTML(State.filteredAgents[State.modalIndex].name, State.filteredAgents[State.modalIndex]); }
         });
     }
 }
 
 function init3DParallax() {
     if (window.matchMedia("(hover: none)").matches) return; 
-    document.querySelectorAll('.agent-card-container').forEach(card => {
+    // Le module d'ascension est maintenant inclus dans le système de parallaxe !
+    document.querySelectorAll('.agent-card-container, .ascension-btn').forEach(card => {
         card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect(); 
-            const x = e.clientX - rect.left; 
-            const y = e.clientY - rect.top;
+            const rect = card.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top;
             card.classList.remove('reset-transition'); 
             card.style.transform = `rotateX(${(((y - (rect.height / 2)) / (rect.height / 2)) * -12)}deg) rotateY(${(((x - (rect.width / 2)) / (rect.width / 2)) * 12)}deg) scale3d(1.05, 1.05, 1.05)`;
         });
-        card.addEventListener('mouseleave', () => { 
-            card.classList.add('reset-transition'); 
-            card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; 
-        });
+        card.addEventListener('mouseleave', () => { card.classList.add('reset-transition'); card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; });
     });
 }
 
@@ -610,15 +485,6 @@ function init3DParallax() {
 // ==========================================
 function initMobileDrawer() {
     if (!DOM.mobileFilterBtn || !DOM.mobileFilterModal) return;
-
-    DOM.mobileFilterBtn.addEventListener('click', () => {
-        window.openModal('mobileFilterModal');
-        updateAllSliders(State.mode);
-    });
-
-    if (DOM.closeMobileFilterBtn) {
-        DOM.closeMobileFilterBtn.addEventListener('click', () => {
-            window.closeModal('mobileFilterModal');
-        });
-    }
+    DOM.mobileFilterBtn.addEventListener('click', () => { window.openModal('mobileFilterModal'); updateAllSliders(State.mode); });
+    if (DOM.closeMobileFilterBtn) { DOM.closeMobileFilterBtn.addEventListener('click', () => { window.closeModal('mobileFilterModal'); }); }
 }
