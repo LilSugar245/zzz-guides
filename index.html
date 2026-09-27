@@ -332,12 +332,17 @@
             <h2 class="text-4xl md:text-6xl font-display font-black italic text-white uppercase mb-12 border-b-4 border-zinc-800 pb-4 inline-block drop-shadow-2xl">
                 <span data-i18n="allFactions">Toutes les factions</span>
             </h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-10" id="modalFactionsGrid"></div>
+            <!-- Grille resserrée sur mobile (gap-3) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-6 md:gap-10" id="modalFactionsGrid"></div>
         </div>
         <button onclick="window.closeModal('factionModal')" class="fixed right-0 top-1/2 -translate-y-1/2 bg-black border-l-2 border-y-2 border-zinc-700 rounded-l-3xl py-12 px-3 z-20 hover:bg-[#111] transition-all duration-300 group hover:pl-6 shadow-[0_0_50px_rgba(0,0,0,1)] hover:shadow-[0_0_60px_rgba(215,247,12,0.2)]">
             <div class="flex flex-col items-center gap-5">
                 <svg class="w-8 h-8 text-zinc-500 group-hover:text-yellow-400 transition-colors duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
-                <span class="text-[#d7f70c] font-display font-black uppercase text-2xl tracking-widest drop-shadow-lg" style="writing-mode: vertical-rl; text-orientation: mixed;"><span data-i18n="return">Retour</span> <span class="text-xs text-zinc-500 ml-1 group-hover:text-yellow-400/50 block mt-2" style="writing-mode: vertical-rl;">(ECHAP)</span></span>
+                <span class="text-[#d7f70c] font-display font-black uppercase text-2xl tracking-widest drop-shadow-lg" style="writing-mode: vertical-rl; text-orientation: mixed;">
+                    <span data-i18n="return">Retour</span> 
+                    <!-- Ajout de "hidden md:block" pour cacher sur mobile -->
+                    <span class="hidden md:block text-xs text-zinc-500 ml-1 group-hover:text-yellow-400/50 mt-2" style="writing-mode: vertical-rl;">(ECHAP)</span>
+                </span>
             </div>
         </button>
     </div>
