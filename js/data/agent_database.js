@@ -1712,7 +1712,11 @@ export const agentDatabase = {
     "Orphie and Magus": {
         color: "#f05432", element: "Fire", rank: "S", factionTitle: { fr: "Enquêtes Criminelles", en: "N.E.P.S." },
         stats: [ 
-            { label: "Taux Crit", value: "90 - 100 % (Passifs Inclus)" }, 
+            { 
+                label: "Taux Crit", 
+                value: "90 - 100 %", 
+                note: { fr: "Passifs inclus", en: "Including passives" } 
+            }, 
             { label: "DGT CRIT", value: "120 %+" }, 
             { label: "Réc. Énergie", value: "80 %+" } 
         ],
