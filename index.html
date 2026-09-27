@@ -52,6 +52,12 @@
         .mindscape-node:hover { transform: scale(1.2); }
         .mindscape-node.active { transform: scale(1.25); box-shadow: 0 0 15px currentColor; }
         .mindscape-line { transition: width 0.5s ease-out; }
+
+        /* Animation pour le bouton Ascension */
+        @keyframes rainUp {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(-200%); }
+        }
     </style>
     <script>
         if (window.location.search.includes('agent=')) document.write('<div id="fast-mask"></div>');
@@ -112,7 +118,7 @@
                             <button data-filter="Physical" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/physique.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Physical">Physique</span></button>
                             <button data-filter="Fire" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/feu.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Fire">Feu</span></button>
                             <button data-filter="Ice" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Ice.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Ice">Glace</span></button>
-                            <button data-filter="Electric" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Electric">Électrique</span></button>
+                            <button data-filter="Electric" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/electrique.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Electric">Élec</span></button>
                             <button data-filter="Ether" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Ether.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Ether">Ether</span></button>
                             <button data-filter="Wind" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Vent.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Wind">Vent</span></button>
                             <button data-filter="Lumiflux" class="filter-btn filter-elem-btn px-2 py-2 rounded-xl text-xs font-bold gap-1.5"><img src="assets/Icone/Lumiflux.png" loading="lazy" class="w-4 h-4 object-contain shrink-0"><span class="dyn-term" data-term="Lumiflux">Lumiflux</span></button>
@@ -188,13 +194,63 @@
                     <button id="clearSearchBtnMobile" class="absolute right-3 text-zinc-500 hover:text-yellow-400 transition-colors hidden p-1"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg></button>
                 </div>
                 <button id="mobileFilterBtn" class="bg-[#151515] border-2 border-zinc-800 rounded-xl px-4 flex items-center justify-center text-zinc-400 hover:text-yellow-400 hover:border-yellow-400 transition-colors shadow-inner">
-    <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
-</button>
+                    <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+                </button>
                 <div id="searchDropdownMobile" class="absolute left-0 right-0 top-full mt-2 bg-black/95 border border-zinc-700 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.9)] max-h-72 overflow-y-auto flex flex-col hidden divide-y divide-zinc-800 backdrop-blur-xl transform origin-top transition-all duration-300 z-[150]"></div>
             </div>
 
-            <div id="agents-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-5 gap-y-14 sm:gap-8 pb-20 relative"></div>
+            <!-- Grille des Agents -->
+            <div id="agents-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-5 gap-y-14 sm:gap-8 relative z-10"></div>
             
+            <!-- MODULE D'ASCENSION (Retour en haut) -->
+            <div id="ascensionModule" class="w-full mt-24 mb-16 flex justify-center hidden opacity-0 transition-opacity duration-1000 z-10 relative perspective-1000">
+                <!-- Ligne Laser décorative -->
+                <div class="absolute inset-0 flex justify-center items-start pointer-events-none -top-12">
+                    <div class="w-[60%] h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent relative">
+                        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-yellow-400 to-transparent -translate-x-full animate-[shimmerLaser_3s_infinite_ease-in-out]"></div>
+                    </div>
+                </div>
+
+                <button onclick="window.scrollToTop()" class="ascension-btn group relative w-full max-w-[280px] sm:max-w-[360px] h-20 sm:h-24 bg-[#0a0a0a] rounded-2xl border-2 border-zinc-800 overflow-hidden transition-all duration-500 hover:border-[#d7f70c] hover:shadow-[0_0_40px_rgba(215,247,12,0.3)] hover:-translate-y-2 transform-gpu">
+                    
+                    <!-- Remplissage fond Jaune -->
+                    <div class="absolute inset-0 bg-[#d7f70c] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"></div>
+                    
+                    <!-- Grille Cyber (Tech Pattern) -->
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" style="background-image: radial-gradient(black 1px, transparent 1px); background-size: 15px 15px;"></div>
+
+                    <!-- Contenu du bouton -->
+                    <div class="relative z-10 w-full h-full flex items-center justify-between px-6 sm:px-8">
+                        
+                        <div class="flex flex-col items-start overflow-hidden w-full">
+                            <span class="text-zinc-500 group-hover:text-black/60 text-[8px] sm:text-[10px] font-black uppercase tracking-[0.3em] transition-colors duration-500 flex items-center gap-2">
+                                <div class="w-1.5 h-1.5 rounded-full bg-zinc-600 group-hover:bg-black animate-pulse"></div>
+                                Fin de la zone
+                            </span>
+                            <!-- Glitch Text Wrapper -->
+                            <div class="relative h-6 sm:h-8 overflow-hidden w-full mt-0.5">
+                                <span class="text-white font-display font-black italic text-xl sm:text-3xl tracking-widest uppercase group-hover:-translate-y-full transition-transform duration-500 absolute left-0 top-0 w-full flex items-center">Ascension</span>
+                                <span class="text-black font-display font-black italic text-xl sm:text-3xl tracking-widest uppercase translate-y-full group-hover:translate-y-0 transition-transform duration-500 absolute left-0 top-0 w-full flex items-center">Ascension</span>
+                            </div>
+                        </div>
+
+                        <!-- Icônes Flèches -->
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl border-2 border-zinc-700 group-hover:border-black bg-[#151515] group-hover:bg-transparent flex items-center justify-center relative overflow-hidden transition-colors duration-500 shadow-inner flex-shrink-0">
+                            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-zinc-400 group-hover:text-black transform group-hover:-translate-y-[200%] transition-transform duration-500 ease-in-out absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-black transform translate-y-[200%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                        </div>
+                    </div>
+
+                    <!-- Speedlines / Rain Effect -->
+                    <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute w-[2px] h-16 bg-black/10 left-[15%] animate-[rainUp_0.6s_linear_infinite]" style="animation-delay: 0.1s"></div>
+                        <div class="absolute w-[2px] h-24 bg-black/15 left-[45%] animate-[rainUp_0.8s_linear_infinite]" style="animation-delay: 0.3s"></div>
+                        <div class="absolute w-[2px] h-12 bg-black/10 left-[85%] animate-[rainUp_0.5s_linear_infinite]" style="animation-delay: 0.2s"></div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Signal Perdu -->
             <div id="empty-state" class="hidden absolute inset-0 flex flex-col items-center justify-center text-zinc-600 transition-opacity duration-500">
                 <svg class="w-16 h-16 mb-4 text-zinc-700 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                 <p class="text-3xl font-display font-black text-zinc-500 uppercase tracking-widest mb-3 drop-shadow-md" data-i18n="noSignal">Signal Perdu</p>
@@ -203,7 +259,7 @@
         </main>
     </div>
 
-    <!-- MODALE DES FILTRES MOBILE (Restaurée et optimisée) -->
+    <!-- MODALE DES FILTRES MOBILE -->
     <div id="mobileFilterModal" class="fixed inset-0 z-[180] hidden md:hidden bg-[#050505] overflow-y-auto p-5 transition-opacity duration-300 opacity-0 flex flex-col justify-between">
         <div>
             <!-- Header Filtres Mobile -->
@@ -284,7 +340,6 @@
             </div>
         </div>
 
-        <!-- Bouton Toutes les Factions Mobile Directement sous Favoris -->
         <div class="mt-4 pt-4">
             <button onclick="window.openModal('factionModal'); window.closeModal('mobileFilterModal');" class="w-full bg-[#d7f70c] hover:bg-[#c4e30b] text-black font-black uppercase text-sm py-4 rounded-xl shadow-[0_0_20px_rgba(215,247,12,0.2)] transition-all duration-300 flex items-center justify-center gap-3">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
@@ -332,17 +387,12 @@
             <h2 class="text-4xl md:text-6xl font-display font-black italic text-white uppercase mb-12 border-b-4 border-zinc-800 pb-4 inline-block drop-shadow-2xl">
                 <span data-i18n="allFactions">Toutes les factions</span>
             </h2>
-            <!-- Grille resserrée sur mobile (gap-3) -->
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-6 md:gap-10" id="modalFactionsGrid"></div>
         </div>
         <button onclick="window.closeModal('factionModal')" class="fixed right-0 top-1/2 -translate-y-1/2 bg-black border-l-2 border-y-2 border-zinc-700 rounded-l-3xl py-12 px-3 z-20 hover:bg-[#111] transition-all duration-300 group hover:pl-6 shadow-[0_0_50px_rgba(0,0,0,1)] hover:shadow-[0_0_60px_rgba(215,247,12,0.2)]">
             <div class="flex flex-col items-center gap-5">
                 <svg class="w-8 h-8 text-zinc-500 group-hover:text-yellow-400 transition-colors duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
-                <span class="text-[#d7f70c] font-display font-black uppercase text-2xl tracking-widest drop-shadow-lg" style="writing-mode: vertical-rl; text-orientation: mixed;">
-                    <span data-i18n="return">Retour</span> 
-                    <!-- Ajout de "hidden md:block" pour cacher sur mobile -->
-                    <span class="hidden md:block text-xs text-zinc-500 ml-1 group-hover:text-yellow-400/50 mt-2" style="writing-mode: vertical-rl;">(ECHAP)</span>
-                </span>
+                <span class="text-[#d7f70c] font-display font-black uppercase text-2xl tracking-widest drop-shadow-lg" style="writing-mode: vertical-rl; text-orientation: mixed;"><span data-i18n="return">Retour</span> <span class="hidden md:block text-xs text-zinc-500 ml-1 group-hover:text-yellow-400/50 mt-2" style="writing-mode: vertical-rl;">(ECHAP)</span></span>
             </div>
         </button>
     </div>
