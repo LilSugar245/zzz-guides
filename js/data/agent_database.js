@@ -2034,6 +2034,114 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: { fr: "Alternative Off-field", en: "Off-field Alternative" }, members: [ { img: "Aria.png", color: "#f23c8a", initial: "A" }, { img: "Trigger.png", color: "#3182eb", initial: "T" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] }
         ]
     },
+    "Sunna": {
+        color: "#e8a838", element: "Physical", rank: "S", factionTitle: { fr: "Anges de l'illusion", en: "Angels of Delusion" },
+        stats: [ 
+            { 
+                label: "Attaque", 
+                value: "3500+", 
+                note: { fr: "L'unique cap vital pour ses buffs", en: "The only vital cap for her buffs" } 
+            }, 
+            { label: "Réc. d'énergie", value: "Priorité absolue" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Soutien Optimal 👑", en: "Optimal Support 👑" }, 
+                set1: "Moonlight_Lullaby", set2: "Swing_Jazz", 
+                set1Name: "4pc Moonlight Lullaby", set2Name: "+ 2pc Swing Jazz", 
+                note: { fr: "Maintient facilement le buff de DGT d'équipe de Moonlight grâce au faible coût de son EX Spécial. Le 2-pièces Swing Jazz est obligatoire vu sa faible Réc. Énergie de base.", en: "Easily maintains Moonlight's team DMG buff. 2-pc Swing Jazz is strictly required due to her very low base Energy Regen." } 
+            },
+            { 
+                tag: { fr: "Option ATK (Si besoin)", en: "ATK Option (If needed)" }, 
+                set1: "Moonlight_Lullaby", set2: "Hormone_Punk", 
+                set1Name: "4pc Moonlight Lullaby", set2Name: "+ 2pc Hormone Punk", 
+                note: { fr: "À utiliser uniquement si vous avez du mal à atteindre les 3500 d'ATK requis.", en: "Use only if you are struggling to meet her 3500 Core Passive ATK threshold." } 
+            }
+        ],
+        skills: [
+            { name: "Ex", level: "12", icon: "Ex.png" }, 
+            { name: "Chain", level: "11", icon: "Ultime.png" }, 
+            { name: "Assist", level: "8", icon: "Assist.png" }, 
+            { name: "Basic", level: "6", icon: "Attaque_basic.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Régénération d'Énergie" }, 
+                { slot: "5", label: "ATK %" }, 
+                { slot: "4", label: "ATK %" } 
+            ], 
+            sub: [ 
+                { label: "ATK % / Flat ATK (Jusqu'à 3500)", highlight: true }, 
+                { label: "Adresse d'Anomalie", highlight: false }, 
+                { label: "PEN", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Thoughtbop", img: "W-Engine_Thoughtbop.png" }, 
+            { tag: "Alternative S", name: "Weeping Cradle", img: "W-Engine_Weeping_Cradle.png" }, 
+            { tag: "Meilleure Option A", name: "Kaboom the Cannon", img: "W-Engine_Kaboom_the_Cannon.png" }, 
+            { tag: "Alternative de Niche A", name: "Unfettered Game Ball", img: "W-Engine_Unfettered_Game_Ball.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Synergie Épée 👑", en: "Sword Synergy 👑" }, members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Zhao.png", color: "#3bbedb", initial: "Z" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 02", tag: { fr: "Double Illusion", en: "Dual Delusion" }, members: [ { img: "Aria.png", color: "#f23c8a", initial: "A" }, { img: "Nangong Yu.png", color: "#f23c8a", initial: "N" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 03", tag: { fr: "Soutien Généraliste", en: "Generalist Support" }, members: [ { img: "Harumasa.png", color: "#3182eb", initial: "H" }, { img: "Qingyi.png", color: "#3182eb", initial: "Q" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] }
+        ]
+    },
+    "Promeia": {
+        color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Autorité de conformité Krampus", en: "Krampus Compliance Authority" },
+        stats: [ 
+            { label: "Adre. d'Anomalie", value: "287 - 350+" }, 
+            { label: "Maî. d'Anomalie", value: "184 - 248" }, 
+            { label: "Attaque", value: "2600 - 2900+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "DPS Anomalie Glace 👑", en: "Ice Anomaly DPS 👑" }, 
+                set1: "Notes_From_the_Chained", set2: "Phaethon_Melody", 
+                set1Name: "4pc Notes From the Chained", set2Name: "+ 2pc Phaethon's Melody", 
+                note: { fr: "Un set sur mesure conçu pour l'application constante de Gel et d'Ablooms.", en: "A tailor-made set for her constant Freeze application and Ablooms." } 
+            },
+            { 
+                tag: { fr: "Alternative Off-field", en: "Off-field Alternative" }, 
+                set1: "Notes_From_the_Chained", set2: "Freedom_Blues", 
+                set1Name: "4pc Notes From the Chained", set2Name: "+ 2pc Freedom Blues", 
+                note: { fr: "Excellente synergie avec des équipes misant lourdement sur le statut Désordre.", en: "Excellent synergy in heavy Disorder-focused team compositions." } 
+            }
+        ],
+        skills: [
+            { name: "Ex", level: "12", icon: "Ex.png" }, 
+            { name: "Chain", level: "11", icon: "Ultime.png" }, 
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" }, 
+            { name: "Assist", level: "6", icon: "Assist.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Maîtrise d'Anomalie" }, 
+                { slot: "5", label: "DGT Glace % = ATK %" }, 
+                { slot: "4", label: "Adresse d'Anomalie" } 
+            ], 
+            sub: [ 
+                { label: "Adresse d'Anomalie", highlight: true }, 
+                { label: "ATK %", highlight: true }, 
+                { label: "PEN", highlight: false }, 
+                { label: "Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Frostfall Sickle", img: "W-Engine_Frostfall_Sickle.png" }, 
+            { tag: "Meilleure Option S (99.31%)", name: "Fusion Compiler", img: "W-Engine_Fusion_Compiler.png" }, 
+            { tag: "Option S", name: "Angel in the Shell", img: "W-Engine_Angel_in_the_Shell.png" }, 
+            { tag: "Alternative A", name: "Electro-Lip Gloss", img: "W-Engine_Electro-Lip_Gloss.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Synergie Stun-Abloom 👑", en: "Stun-Abloom Synergy 👑" }, members: [ { img: "Promeia.png", color: "#3bbedb", initial: "P" }, { img: "Nangong Yu.png", color: "#f23c8a", initial: "NY" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 02", tag: { fr: "Désordre Glace", en: "Ice Disorder" }, members: [ { img: "Promeia.png", color: "#3bbedb", initial: "P" }, { img: "Vivian.png", color: "#f23c8a", initial: "V" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 03", tag: { fr: "Alternative F2P", en: "F2P Alternative" }, members: [ { img: "Promeia.png", color: "#3bbedb", initial: "P" }, { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
         stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
