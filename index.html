@@ -203,15 +203,16 @@
             <div id="agents-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-5 gap-y-14 sm:gap-8 relative z-10"></div>
             
             <!-- MODULE D'ASCENSION (Retour en haut) -->
-            <div id="ascensionModule" class="w-full mt-24 mb-16 flex justify-center hidden opacity-0 transition-opacity duration-1000 z-10 relative perspective-1000">
-                <!-- Ligne Laser décorative -->
-                <div class="absolute inset-0 flex justify-center items-start pointer-events-none -top-12">
-                    <div class="w-[60%] h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent relative">
+            <div id="ascensionModule" class="w-full mt-24 mb-16 flex flex-col items-center hidden opacity-0 transition-opacity duration-1000 z-10 relative perspective-1000">
+                
+                <!-- Conteneur sécurisé pour la ligne Laser (Empêche le scroll horizontal) -->
+                <div class="w-full max-w-4xl overflow-hidden absolute -top-12 h-2 flex justify-center items-start pointer-events-none">
+                    <div class="w-[80%] md:w-[60%] h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent relative">
                         <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-yellow-400 to-transparent -translate-x-full animate-[shimmerLaser_3s_infinite_ease-in-out]"></div>
                     </div>
                 </div>
 
-                <button onclick="window.scrollToTop()" class="ascension-btn group relative w-full max-w-[280px] sm:max-w-[360px] h-20 sm:h-24 bg-[#0a0a0a] rounded-2xl border-2 border-zinc-800 overflow-hidden transition-all duration-500 hover:border-[#d7f70c] hover:shadow-[0_0_40px_rgba(215,247,12,0.3)] hover:-translate-y-2 transform-gpu">
+                <button onclick="window.scrollToTop()" class="ascension-btn group relative w-[280px] sm:w-[360px] h-20 sm:h-24 bg-[#0a0a0a] rounded-2xl border-2 border-zinc-800 overflow-hidden transition-all duration-500 hover:border-[#d7f70c] hover:shadow-[0_0_40px_rgba(215,247,12,0.3)] hover:-translate-y-2 transform-gpu">
                     
                     <!-- Remplissage fond Jaune -->
                     <div class="absolute inset-0 bg-[#d7f70c] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"></div>
@@ -241,7 +242,7 @@
                         </div>
                     </div>
 
-                    <!-- Speedlines / Rain Effect -->
+                    <!-- Speedlines / Rain Effect sécurisées -->
                     <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute w-[2px] h-16 bg-black/10 left-[15%] animate-[rainUp_0.6s_linear_infinite]" style="animation-delay: 0.1s"></div>
                         <div class="absolute w-[2px] h-24 bg-black/15 left-[45%] animate-[rainUp_0.8s_linear_infinite]" style="animation-delay: 0.3s"></div>
