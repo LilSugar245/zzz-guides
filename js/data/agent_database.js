@@ -1823,6 +1823,109 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: { fr: "Alternative Off-field", en: "Off-field Alternative" }, members: [ { img: "Manato.png", color: "#f05432", initial: "M" }, { img: "Pulchra.png", color: "#e8a838", initial: "P" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
         ]
     },
+    "Lucia": {
+        color: "#f23c8a", element: "Ether", rank: "S", factionTitle: { fr: "Maison hantée", en: "Spook Shack" },
+        stats: [ 
+            { 
+                label: "HP", 
+                value: "22 000 - 24 000+", 
+                note: { fr: "Focus vital pour maxer le buff de Sheer Force", en: "Vital focus to maximize Sheer Force buff" } 
+            }, 
+            { label: "Attaque", value: "1800+" }, 
+            { label: "DEF", value: "800+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Soutien Optimal 👑", en: "Optimal Support 👑" }, 
+                set1: "Moonlight_Lullaby", set2: "Yunkui_Tales", 
+                set1Name: "4pc Moonlight Lullaby", set2Name: "+ 2pc Yunkui Tales", 
+                note: { fr: "Le set ultime pour tout Agent de Soutien. Fournit 20% de Réc. Énergie et un énorme buff de DGT d'équipe (18%) qui dure très longtemps (25s) via un simple EX Spécial.", en: "The ultimate set for Support Agents. Provides Energy Regen and a massive 18% team DMG buff that lasts 25s, easily triggered via EX Special." } 
+            }
+        ],
+        skills: [
+            { name: "Ex", level: "12", icon: "Ex.png" }, 
+            { name: "Chain", level: "11", icon: "Ultime.png" }, 
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" }, 
+            { name: "Assist", level: "8", icon: "Assist.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "HP %" }, 
+                { slot: "5", label: "HP %" }, 
+                { slot: "4", label: "HP %" } 
+            ], 
+            sub: [ 
+                { label: "HP %", highlight: true }, 
+                { label: "Flat HP", highlight: true }, 
+                { label: "Taux CRIT (≥ DGT CRIT)", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Dreamlit Hearth", img: "W-Engine_Dreamlit_Hearth.png" }, 
+            { tag: "Alternative Off-field S", name: "Weeping Cradle", img: "W-Engine_Weeping_Cradle.png" }, 
+            { tag: "F2P Craftable A", name: "Kaboom the Cannon", img: "W-Engine_Kaboom_the_Cannon.png" }, 
+            { tag: "Alternative Niche A", name: "Unfettered Game Ball", img: "W-Engine_Unfettered_Game_Ball.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Rupture Yixuan 👑", en: "Yixuan Rupture 👑" }, members: [ { img: "Yixuan.png", color: "#5d57a6", initial: "Y" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
+            { name: "TEAM 02", tag: { fr: "Rupture Manato", en: "Manato Rupture" }, members: [ { img: "Manato.png", color: "#f05432", initial: "M" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
+            { name: "TEAM 03", tag: { fr: "Rupture Yidhari", en: "Yidhari Rupture" }, members: [ { img: "Yidhari.png", color: "#3bbedb", initial: "Y" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] }
+        ]
+    },
+    "Dialyn": {
+        color: "#e8a838", element: "Physical", rank: "S", factionTitle: { fr: "Autorité de conformité Krampus", en: "Krampus Compliance Authority" },
+        stats: [ 
+            { label: "Taux Crit", value: "80 - 100 %" }, 
+            { label: "DGT CRIT", value: "100 %+" }, 
+            { label: "Attaque", value: "2400+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Stun Optimal 👑", en: "Best Stun 👑" }, 
+                set1: "King_of_the_Summit", set2: "Woodpecker_Electro", 
+                set1Name: "4pc King of the Summit", set2Name: "+ 2pc Woodpecker Electro", 
+                note: { fr: "Le set Stun de facto. Comme elle build du Taux CRIT naturellement, le palier de 50% pour activer le buff d'équipe est garanti.", en: "De facto best Stunner set. As she naturally builds CRIT Rate, the 50% threshold for the team buff is guaranteed." } 
+            },
+            { 
+                tag: { fr: "Alternative Énergie", en: "Energy Alternative" }, 
+                set1: "King_of_the_Summit", set2: "Swing_Jazz", 
+                set1Name: "4pc King of the Summit", set2Name: "+ 2pc Swing Jazz", 
+                note: { fr: "À utiliser si vous avez déjà atteint le cap de Taux CRIT et que vous avez besoin de Régénération d'Énergie pour spammer ses EX Spéciaux.", en: "Use if CRIT Rate is capped and you need Energy Regen to sustain EX Special spam." } 
+            }
+        ],
+        skills: [
+            { name: "Chain", level: "12", icon: "Ultime.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Assist", level: "8", icon: "Assist.png" }, 
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Régénération d'Énergie" }, 
+                { slot: "5", label: "ATK % > DGT Physique % = PEN Ratio" }, 
+                { slot: "4", label: "Taux CRIT" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT (Jusqu'à 100%)", highlight: true }, 
+                { label: "DGT CRIT = ATK %", highlight: true }, 
+                { label: "PEN", highlight: false }, 
+                { label: "Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Yesterday Calls", img: "W-Engine_Yesterday_Calls.png" }, 
+            { tag: "Alternative Off-field S", name: "Hellfire Gears", img: "W-Engine_Hellfire_Gears.png" }, 
+            { tag: "F2P Énergie A", name: "Steam Oven", img: "W-Engine_Steam_Oven.png" }, 
+            { tag: "F2P Impact A", name: "Precious Fossilized Core", img: "W-Engine_Precious_Fossilized.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Double Ultime 👑", en: "Double Ultimate 👑" }, members: [ { img: "Ye Shunguang.png", color: "#e8a838", initial: "YS" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 02", tag: { fr: "Rupture Burst", en: "Rupture Burst" }, members: [ { img: "Yixuan.png", color: "#5d57a6", initial: "Y" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
+            { name: "TEAM 03", tag: { fr: "Synergie Physique", en: "Physical Synergy" }, members: [ { img: "Nekomata.png", color: "#e8a838", initial: "N" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
         stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
