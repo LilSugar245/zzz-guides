@@ -2142,6 +2142,115 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: { fr: "Alternative F2P", en: "F2P Alternative" }, members: [ { img: "Promeia.png", color: "#3bbedb", initial: "P" }, { img: "Lycaon.png", color: "#3bbedb", initial: "L" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
         ]
     },
+    "Starlight Billy": {
+        color: "#e8a838", element: "Physical", rank: "S", factionTitle: { fr: "Lièvres rusés", en: "Cunning Hares" },
+        stats: [ 
+            { label: "Sheer Force", value: "2200+" }, 
+            { label: "HP", value: "18 000+" }, 
+            { 
+                label: "Taux Crit", 
+                value: "90 - 100 %", 
+                note: { fr: "En combat, disques et arme inclus", en: "In combat, including discs & signature" } 
+            } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Build Optimal 👑", en: "Optimal Build 👑" }, 
+                set1: "Yunkui_Tales", set2: "Woodpecker_Electro", 
+                set1Name: "4pc Yunkui Tales", set2Name: "+ 2pc Woodpecker Electro", 
+                note: { fr: "Le seul set 4-pièces viable pour Billy. Utilisez 'Cool Wheelies' souvent pour maintenir le buff.", en: "The only real viable 4-piece set. Be sure to use 'Cool Wheelies' often to maintain the buff." } 
+            },
+            { 
+                tag: { fr: "Alternative DGT", en: "DMG Alternative" }, 
+                set1: "Yunkui_Tales", set2: "Branch_Blade_Song", 
+                set1Name: "4pc Yunkui Tales", set2Name: "+ 2pc Branch and Blade Song", 
+                note: { fr: "Une bonne option si vous atteignez déjà votre cap de Taux CRIT.", en: "A good option if you are already capped on CRIT Rate." } 
+            }
+        ],
+        skills: [
+            { name: "Chain", level: "12", icon: "Ultime.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" }, 
+            { name: "Assist", level: "8", icon: "Assist.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "HP %" }, 
+                { slot: "5", label: "DGT Physique % > HP %" }, 
+                { slot: "4", label: "Taux CRIT = DGT CRIT = HP %" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT = DGT CRIT = HP %", highlight: true }, 
+                { label: "Flat HP", highlight: true }, 
+                { label: "Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Starlight Rider Faceplate", img: "W-Engine_Starlight_Rider_Faceplate.png" }, 
+            { tag: "Alternative A (84.10%)", name: "Cauldron of Clarity", img: "W-Engine_Cauldron_of_Clarity.png" }, 
+            { tag: "Stat Stick S", name: "Qingming Birdcage", img: "W-Engine_Qingming_Birdcage.png" }, 
+            { tag: "F2P Craftable A", name: "Puzzle Sphere", img: "W-Engine_Puzzle_Sphere.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Premium Rupture 👑", en: "Premium Rupture 👑" }, members: [ { img: "Starlight Billy.png", color: "#e8a838", initial: "SB" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
+            { name: "TEAM 02", tag: { fr: "Synergie Stun", en: "Stun Synergy" }, members: [ { img: "Starlight Billy.png", color: "#e8a838", initial: "SB" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" }, { img: "Trigger.png", color: "#3182eb", initial: "T" } ] },
+            { name: "TEAM 03", tag: { fr: "Alternative A-Rank", en: "A-Rank Alternative" }, members: [ { img: "Starlight Billy.png", color: "#e8a838", initial: "SB" }, { img: "Pan Yinhu.png", color: "#e8a838", initial: "P" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] }
+        ]
+    },
+    "Norma": {
+        color: "#f05432", element: "Fire", rank: "S", factionTitle: { fr: "Département de stratégie externe", en: "External Strategy Department" },
+        stats: [ 
+            { label: "Taux Crit", value: "80 - 100 %" }, 
+            { label: "DGT CRIT", value: "100 %+" }, 
+            { label: "Attaque", value: "2400+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Stun Optimal 👑", en: "Best Stun 👑" }, 
+                set1: "King_of_the_Summit", set2: "Swing_Jazz", 
+                set1Name: "4pc King of the Summit", set2Name: "+ 2pc Swing Jazz", 
+                note: { fr: "Son set naturel. Elle maintient facilement le buff d'équipe grâce au faible coût de son EX Spécial.", en: "Her natural choice. She maintains the team buff easily owing to her low cost EX Special." } 
+            },
+            { 
+                tag: { fr: "Alternative Soutien", en: "Support Alternative" }, 
+                set1: "Astral_Voice", set2: "Swing_Jazz", 
+                set1Name: "4pc Astral Voice", set2Name: "+ 2pc Swing Jazz", 
+                note: { fr: "Une excellente option de soutien. Norma possède l'une des Assistances Rapides les plus accessibles du jeu (en maintenant l'Attaque de Base).", en: "A great generalist Support set. Norma has some of the most accessible Quick Assists in the game (hold Basic)." } 
+            }
+        ],
+        skills: [
+            { name: "Ex", level: "12", icon: "Ex.png" }, 
+            { name: "Chain", level: "12", icon: "Ultime.png" }, 
+            { name: "Assist", level: "8", icon: "Assist.png" }, 
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Régénération d'Énergie = Impact %" }, 
+                { slot: "5", label: "DGT Feu % > PEN Ratio % > ATK %" }, 
+                { slot: "4", label: "Taux CRIT" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT (Jusqu'à 100% en combat)", highlight: true }, 
+                { label: "DGT CRIT = ATK %", highlight: true }, 
+                { label: "Flat PEN", highlight: false }, 
+                { label: "Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Chief Sidekick", img: "W-Engine_Chief_Sidekick.png" }, 
+            { tag: "Alternative S (96.16%)", name: "Hellfire Gears", img: "W-Engine_Hellfire_Gears.png" }, 
+            { tag: "F2P Craftable A", name: "Steam Oven", img: "W-Engine_Steam_Oven.png" }, 
+            { tag: "Option Lighter S", name: "Blazing Laurel", img: "W-Engine_Blazing_Laurel.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Duo E.S.D 👑", en: "E.S.D Duo 👑" }, members: [ { img: "Pyrois.png", color: "#5d57a6", initial: "P" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 02", tag: { fr: "Attaque Feu", en: "Fire Attack" }, members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] },
+            { name: "TEAM 03", tag: { fr: "Hypercarry Élec", en: "Electric Hypercarry" }, members: [ { img: "Cissia.png", color: "#3182eb", initial: "C" }, { img: "Norma.png", color: "#f05432", initial: "N" }, { img: "Sunna.png", color: "#e8a838", initial: "S" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
         stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
