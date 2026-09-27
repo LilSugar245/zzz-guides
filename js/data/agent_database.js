@@ -573,23 +573,60 @@ export const agentDatabase = {
     },
     "Zhu Yuan": {
         color: "#f23c8a", element: "Ether", rank: "S", factionTitle: { fr: "Division de l'Ordre urbain", en: "Public Security" },
-        stats: [ { label: "DGT CRIT", value: "≥ 250 %" }, { label: "Taux Crit", value: "≥ 44 %" }, { label: "Attaque", value: "≥ 2700" } ],
+        stats: [ 
+            { label: "DGT CRIT", value: "160 - 180 %+" }, 
+            { label: "Taux Crit", value: "60 - 70 % (Max 55% avec Nicole M6)" }, 
+            { label: "Attaque", value: "3000+" } 
+        ],
         discs: [
-            { tag: { fr: "Set 1 👑", en: "Set 1 👑" }, set1: "Woodpecker_Electro", set2: "Chaotic_Metal", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Chaos Metal", note: "" },
-            { tag: "Set 2", set1: "Woodpecker_Electro", set2: "Puffer_Electro", set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Puffer Electro", note: "" },
-            { tag: "Set 3", set1: "Chaotic_Metal", set2: "Woodpecker_Electro", set1Name: "4pc Chaos Metal", set2Name: "+ 2pc Woodpecker Electro", note: "" }
+            { 
+                tag: { fr: "Set 1 👑", en: "Set 1 👑" }, 
+                set1: "Chaotic_Metal", set2: "Woodpecker_Electro", 
+                set1Name: "4pc Chaotic Metal", set2Name: "+ 2pc Woodpecker Electro", 
+                note: { fr: "Le meilleur choix pour un DPS Éther. Confère jusqu'à 53% de DGT CRIT. Nécessite Nicole pour appliquer la Corruption facilement.", en: "Competitive option for Ether DPS, granting up to 53% CRIT DMG. Requires another source of Ether application such as Nicole." } 
+            },
+            { 
+                tag: { fr: "Burst Dialyn", en: "Dialyn Burst" }, 
+                set1: "Puffer_Electro", set2: "Woodpecker_Electro", 
+                set1Name: "4pc Puffer Electro", set2Name: "+ 2pc Woodpecker Electro", 
+                note: { fr: "Le set le plus puissant si vous jouez avec Dialyn. La rotation 'Double Ultime' permet à Puffer Electro de surpasser Chaotic Metal.", en: "Strongest set reliant on Dialyn. Allowing for double Ultimate rotations leads it to outperform Chaotic Metal." } 
+            },
+            { 
+                tag: { fr: "Alternatif", en: "Alternative" }, 
+                set1: "Woodpecker_Electro", set2: "Branch_Blade_Song", 
+                set1Name: "4pc Woodpecker Electro", set2Name: "+ 2pc Branch and Blade Song", 
+                note: { fr: "Option polyvalente offrant beaucoup de Taux CRIT et d'ATK% avec des conditions très générales.", en: "Versatile option providing extra CRIT Rate and ATK% triggered using very general conditions." } 
+            }
         ],
         skills: [
-            { name: "Core", level: "", icon: "Core.webp" }, { name: "Ex", level: "", icon: "Ex.png" }, { name: "Ult", level: "", icon: "Ultime.png" }, { name: "Basic", level: "", icon: "Attaque_basic.png" }, { name: "Assist", level: "", icon: "Assist.png" }
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, 
+            { name: "Chain", level: "12", icon: "Ultime.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Dodge", level: "8", icon: "Esquive.png" }, 
+            { name: "Assist", level: "6", icon: "Assist.png" }
         ],
-        statPriority: { main: [ { slot: "6", label: "ATQ" }, { slot: "5", label: "Ether DMG" }, { slot: "4", label: "TC / DC" } ], sub: [ { label: "TC / DC", highlight: true }, { label: "ATQ %", highlight: false } ] },
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "ATK %" }, 
+                { slot: "5", label: "ATK % > DGT Éther % = PEN Ratio" }, 
+                { slot: "4", label: "DGT CRIT = Taux CRIT" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT = DGT CRIT = ATK %", highlight: true }, 
+                { label: "PEN", highlight: false }, 
+                { label: "Flat ATK", highlight: false } 
+            ] 
+        },
         engines: [
-            { tag: "Moteur S", name: "Riot Suppressor Mark VI", img: "W-Engine_Riot_Suppressor_Mark_VI.png" }, { tag: "Moteur S", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" }, { tag: "Moteur A", name: "Cannon Rotor", img: "W-Engine_Cannon_Rotor.png" }, { tag: "Moteur A", name: "Starlight Engine", img: "Starlight_Engine.png" }
+            { tag: "Meilleur Moteur (100.90%)", name: "Cordis Germina", img: "W-Engine_Cordis_Germina.png" }, 
+            { tag: "Alternative 5★ (100%)", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" }, 
+            { tag: "Signature (96.05%)", name: "Riot Suppressor Mark VI", img: "W-Engine_Riot_Suppressor_Mark_VI.png" }, 
+            { tag: "Option F2P (87.30%)", name: "Starlight Engine", img: "Starlight_Engine.png" }
         ],
         teams: [
-            { name: "TEAM 01", tag: "Premium", members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "ZY" }, { img: "Qingyi.png", color: "#3182eb", initial: "Q" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] },
-            { name: "TEAM 02", tag: { fr: "Alternative", en: "Alternative" }, members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "ZY" }, { img: "Trigger.png", color: "#3182eb", initial: "T" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
-            { name: "TEAM 03", tag: "Free To Play", members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "ZY" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] }
+            { name: "TEAM 01", tag: { fr: "Plafond Burst 👑", en: "Burst Ceiling 👑" }, members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "ZY" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] },
+            { name: "TEAM 02", tag: { fr: "Synergie Stun", en: "Stun Synergy" }, members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "ZY" }, { img: "Qingyi.png", color: "#3182eb", initial: "Q" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] },
+            { name: "TEAM 03", tag: { fr: "Free To Play", en: "Free To Play" }, members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "ZY" }, { img: "Anby.png", color: "#3182eb", initial: "A" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] }
         ]
     },
     "Lucy": {
