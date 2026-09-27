@@ -1171,6 +1171,112 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: { fr: "Synergie Physique", en: "Physical Synergy" }, members: [ { img: "Corin.png", color: "#e8a838", initial: "C" }, { img: "Caesar.png", color: "#e8a838", initial: "C" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] }
         ]
     },
+    "Lighter": {
+        color: "#f05432", element: "Fire", rank: "S", factionTitle: { fr: "Fils de Calydon", en: "Sons of Calydon" },
+        stats: [ 
+            { label: "Impact", value: "170 - 195+" }, 
+            { label: "Taux Crit", value: "≥ 50 %" }, 
+            { label: "Attaque", value: "1700 - 2000+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Stun Optimal 👑", en: "Best Stun 👑" }, 
+                set1: "King_of_the_Summit", set2: "Shockstar_Disco", 
+                set1Name: "4pc King of the Summit", set2Name: "+ 2pc Shockstar Disco", 
+                note: { fr: "Le meilleur set de Stun actuel. Nécessite 50% de Taux CRIT pour maintenir le bonus de l'équipe.", en: "New best Stun set. Requires 50% CRIT Rate to maintain the squad-wide CRIT DMG buff." } 
+            },
+            { 
+                tag: { fr: "Soutien Généraliste", en: "Generalist Support" }, 
+                set1: "Astral_Voice", set2: "King_of_the_Summit", 
+                set1Name: "4pc Astral Voice", set2Name: "+ 2pc King of the Summit", 
+                note: { fr: "Excellent set de soutien généraliste si votre équipe utilise les assistances rapides.", en: "Best generalist Support set, buffing DMG via Quick Assists." } 
+            }
+        ],
+        skills: [
+            { name: "Basic", level: "12", icon: "Attaque_basic.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Chain", level: "11", icon: "Ultime.png" }, 
+            { name: "Assist", level: "8", icon: "Assist.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Impact" }, 
+                { slot: "5", label: "ATK % / DGT Feu % / PEN Ratio" }, 
+                { slot: "4", label: "Taux CRIT (≥ DGT CRIT)" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT", highlight: true }, 
+                { label: "DGT CRIT", highlight: true }, 
+                { label: "ATK %", highlight: false }, 
+                { label: "PEN / Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Blazing Laurel", img: "W-Engine_Blazing_Laurel.png" }, 
+            { tag: "Option Stun S", name: "Ice-Jade Teapot", img: "W-Engine_Ice-Jade_Teapot.png" }, 
+            { tag: "Alternative S", name: "Hellfire Gears", img: "W-Engine_Hellfire_Gears.png" }, 
+            { tag: "F2P Craftable A", name: "Precious Fossilized Core", img: "W-Engine_Precious_Fossilized.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Burst Glace", en: "Ice Burst" }, members: [ { img: "Miyabi.png", color: "#3bbedb", initial: "M" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Yuzuha.png", color: "#e8a838", initial: "Y" } ] },
+            { name: "TEAM 02", tag: { fr: "Team Calydon", en: "Calydon Team" }, members: [ { img: "Soldier 11.png", color: "#f05432", initial: "S11" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Lucy.png", color: "#f05432", initial: "L" } ] },
+            { name: "TEAM 03", tag: { fr: "Attaque Orphie", en: "Orphie Attack" }, members: [ { img: "Orphie and Magus.png", color: "#f05432", initial: "O" }, { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
+        ]
+    },
+    "Harumasa": {
+        color: "#3182eb", element: "Electric", rank: "S", factionTitle: { fr: "Section 6", en: "Section 6" },
+        stats: [ 
+            { label: "Attaque", value: "2600 - 3400+" }, 
+            { label: "Taux Crit", value: "max. 75 %" }, 
+            { label: "Dégât Crit", value: "150 - 190 %" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Meilleur Set 👑", en: "Best Set 👑" }, 
+                set1: "Thunder_Metal", set2: "Hormone_Punk", 
+                set1Name: "4pc Thunder Metal", set2Name: "+ 2pc Hormone Punk", 
+                note: { fr: "La plus grande source d'ATK% pour Harumasa. Nécessite qu'un agent Électrique maintienne l'état Choc sur l'ennemi.", en: "Highest source of ATK%. Requires Shock to be active, limiting comps to those with Electric Agents." } 
+            },
+            { 
+                tag: { fr: "Alternative Polyvalente", en: "Versatile Alternative" }, 
+                set1: "Shadow_Harmony", set2: "Branch_Blade_Song", 
+                set1Name: "4pc Shadow Harmony", set2Name: "+ 2pc Branch and Blade Song", 
+                note: { fr: "Offre moins d'ATK brute, mais beaucoup plus simple à gérer en combat tout en offrant d'excellents dégâts.", en: "Easiest set to manage while still offering significant damage gains without strict combo management." } 
+            }
+        ],
+        skills: [
+            { name: "Dodge", level: "12", icon: "Esquive.png" }, 
+            { name: "Chain", level: "11", icon: "Ultime.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" }, 
+            { name: "Assist", level: "6", icon: "Assist.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "ATK %" }, 
+                { slot: "5", label: "ATK % > DGT Électrique %" }, 
+                { slot: "4", label: "ATK % > DGT CRIT = Taux CRIT" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT (Jusqu'à 75% max)", highlight: true }, 
+                { label: "ATK %", highlight: true }, 
+                { label: "DGT CRIT", highlight: false }, 
+                { label: "Flat PEN / Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Cordis Germina", img: "W-Engine_Cordis_Germina.png" }, 
+            { tag: "Option S", name: "Zanshin Herb Case", img: "W-Engine_Zanshin_Herb_Case.png" }, 
+            { tag: "Alternative S", name: "The Brimstone", img: "W-Engine_The_Brimstone.png" }, 
+            { tag: "F2P Craftable", name: "Starlight Engine", img: "Starlight_Engine.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Premium Burst 👑", en: "Premium Burst 👑" }, members: [ { img: "Harumasa.png", color: "#3182eb", initial: "H" }, { img: "Dialyn.png", color: "#e8a838", initial: "D" }, { img: "Rina.png", color: "#3182eb", initial: "R" } ] },
+            { name: "TEAM 02", tag: { fr: "Alternative Stun", en: "Stun Alternative" }, members: [ { img: "Harumasa.png", color: "#3182eb", initial: "H" }, { img: "Trigger.png", color: "#3182eb", initial: "T" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 03", tag: { fr: "Duo Électrique", en: "Electric Duo" }, members: [ { img: "Harumasa.png", color: "#3182eb", initial: "H" }, { img: "Qingyi.png", color: "#3182eb", initial: "Q" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
         stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
