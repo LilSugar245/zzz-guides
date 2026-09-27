@@ -1432,6 +1432,112 @@ export const agentDatabase = {
             { name: "TEAM 03", tag: { fr: "Double Support", en: "Double Support" }, members: [ { img: "Zhu Yuan.png", color: "#f23c8a", initial: "Z" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] }
         ]
     },
+    "Pulchra": {
+        color: "#e8a838", element: "Physical", rank: "A", factionTitle: { fr: "Fils de Calydon", en: "Sons of Calydon" },
+        stats: [ 
+            { label: "Impact", value: "169 - 189+" }, 
+            { label: "Taux Crit", value: "50 - 60 %+" }, 
+            { label: "Adre. d'Anomalie", value: "250 - 300+" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Stun / CRIT 👑", en: "Stun / CRIT 👑" }, 
+                set1: "King_of_the_Summit", set2: "Shockstar_Disco", 
+                set1Name: "4pc King of the Summit", set2Name: "+ 2pc Shockstar Disco", 
+                note: { fr: "Meilleur set si vous atteignez 50% de Taux CRIT. Fournit un puissant buff d'équipe de +30% DGT CRIT.", en: "Best set if you can hit 50% CRIT Rate. Provides a massive team-wide +30% CRIT DMG buff." } 
+            },
+            { 
+                tag: { fr: "Support Général", en: "General Support" }, 
+                set1: "Astral_Voice", set2: "King_of_the_Summit", 
+                set1Name: "4pc Astral Voice", set2Name: "+ 2pc King of the Summit", 
+                note: { fr: "Excellent pour buffer les dégâts via les Assistances rapides si l'équipe le permet.", en: "Great for buffing DMG via Quick Assists if team comp allows it." } 
+            }
+        ],
+        skills: [
+            { name: "Ex", level: "12", icon: "Ex.png" }, 
+            { name: "Chain", level: "11", icon: "Ultime.png" }, 
+            { name: "Assist", level: "10", icon: "Assist.png" }, 
+            { name: "Basic", level: "8", icon: "Attaque_basic.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Impact" }, 
+                { slot: "5", label: "ATK % = DGT Physique %" }, 
+                { slot: "4", label: "Taux CRIT (Build CRIT) / Adre. d'Anomalie (Build Anomalie)" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT = DGT CRIT", highlight: true }, 
+                { label: "ATK %", highlight: true }, 
+                { label: "PEN", highlight: false }, 
+                { label: "Flat ATK", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Option Stun S (109.57%)", name: "Blazing Laurel", img: "W-Engine_Blazing_Laurel.png" }, 
+            { tag: "Signature (100%)", name: "Box Cutter", img: "W-Engine_Box_Cutter.png" }, 
+            { tag: "F2P Craftable A", name: "Steam Oven", img: "W-Engine_Steam_Oven.png" }, 
+            { tag: "Alternative S", name: "Hellfire Gears", img: "W-Engine_Hellfire_Gears.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Synergie Rupture", en: "Rupture Synergy" }, members: [ { img: "Manato.png", color: "#f05432", initial: "M" }, { img: "Pulchra.png", color: "#e8a838", initial: "P" }, { img: "Yixuan.png", color: "#5d57a6", initial: "Y" } ] },
+            { name: "TEAM 02", tag: { fr: "Physique Off-field", en: "Physical Off-field" }, members: [ { img: "Soldier 0 Anby.png", color: "#3182eb", initial: "S0" }, { img: "Pulchra.png", color: "#e8a838", initial: "P" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 03", tag: { fr: "Support Attaque", en: "Attack Support" }, members: [ { img: "Nekomata.png", color: "#e8a838", initial: "N" }, { img: "Pulchra.png", color: "#e8a838", initial: "P" }, { img: "Nicole.png", color: "#f23c8a", initial: "N" } ] }
+        ]
+    },
+    "Ju Fufu": {
+        color: "#f05432", element: "Fire", rank: "S", factionTitle: { fr: "Cimes de Yunkui", en: "Yunkui Peaks" },
+        stats: [ 
+            { label: "Impact", value: "139 - 160+" }, 
+            { label: "Attaque", value: "3100 - 3400" }, 
+            { label: "Taux Crit", value: "≥ 50 %" } 
+        ],
+        discs: [
+            { 
+                tag: { fr: "Stun Optimal 👑", en: "Best Stun 👑" }, 
+                set1: "King_of_the_Summit", set2: "Shockstar_Disco", 
+                set1Name: "4pc King of the Summit", set2Name: "+ 2pc Shockstar Disco", 
+                note: { fr: "Meilleur set si l'équipe a besoin du buff de DGT CRIT (nécessite 50% de Taux CRIT).", en: "Best set if the squad needs the CRIT DMG buff (requires 50% CRIT Rate)." } 
+            },
+            { 
+                tag: { fr: "Alternative Soutien", en: "Support Alternative" }, 
+                set1: "Swing_Jazz", set2: "King_of_the_Summit", 
+                set1Name: "4pc Swing Jazz", set2Name: "+ 2pc King of the Summit", 
+                note: { fr: "Confère un buff de dégâts de 15% à l'équipe. À utiliser si un autre membre possède déjà King of the Summit.", en: "Grants a 15% team DMG buff. Use if King of the Summit is already equipped by a teammate." } 
+            }
+        ],
+        skills: [
+            { name: "Chain", level: "12", icon: "Ultime.png" }, 
+            { name: "Ex", level: "11", icon: "Ex.png" }, 
+            { name: "Basic", level: "11", icon: "Attaque_basic.png" }, 
+            { name: "Assist", level: "8", icon: "Assist.png" }, 
+            { name: "Dodge", level: "6", icon: "Esquive.png" }
+        ],
+        statPriority: { 
+            main: [ 
+                { slot: "6", label: "Impact = ATK %" }, 
+                { slot: "5", label: "ATK %" }, 
+                { slot: "4", label: "Taux CRIT = ATK %" } 
+            ], 
+            sub: [ 
+                { label: "Taux CRIT (jusqu'à 50%)", highlight: true }, 
+                { label: "ATK / Flat ATK (jusqu'à 3400)", highlight: true }, 
+                { label: "DGT CRIT", highlight: false }, 
+                { label: "PEN", highlight: false } 
+            ] 
+        },
+        engines: [
+            { tag: "Signature (100 %)", name: "Roaring Fur-nace", img: "W-Engine_Roaring_Fur-nace.png" }, 
+            { tag: "Meilleure Option S (107.82%)", name: "Blazing Laurel", img: "W-Engine_Blazing_Laurel.png" }, 
+            { tag: "Alternative S (99.54%)", name: "Hellfire Gears", img: "W-Engine_Hellfire_Gears.png" }, 
+            { tag: "F2P Craftable A", name: "Precious Fossilized Core", img: "W-Engine_Precious_Fossilized.png" }
+        ],
+        teams: [
+            { name: "TEAM 01", tag: { fr: "Synergie Rupture 👑", en: "Rupture Synergy 👑" }, members: [ { img: "Yixuan.png", color: "#5d57a6", initial: "Y" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" }, { img: "Lucia.png", color: "#f23c8a", initial: "L" } ] },
+            { name: "TEAM 02", tag: { fr: "Off-field Stun", en: "Off-field Stun" }, members: [ { img: "Evelyn.png", color: "#f05432", initial: "E" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" }, { img: "Astra.png", color: "#f23c8a", initial: "A" } ] },
+            { name: "TEAM 03", tag: { fr: "Double Stun", en: "Dual Stun" }, members: [ { img: "Lighter.png", color: "#f05432", initial: "L" }, { img: "Ju Fufu.png", color: "#f05432", initial: "J" }, { img: "Trigger.png", color: "#3182eb", initial: "T" } ] }
+        ]
+    },
     "Hugo": {
         color: "#3bbedb", element: "Ice", rank: "S", factionTitle: { fr: "Oiseaux-moqueurs", en: "Mockingbirds" },
         stats: [ { label: "Attaque", value: "2600 - 3000+" }, { label: "Taux Crit", value: "70 - 88%" }, { label: "Dégât Crit", value: "160 - 200%+" } ],
