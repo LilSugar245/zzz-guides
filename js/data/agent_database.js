@@ -575,7 +575,11 @@ export const agentDatabase = {
         color: "#f23c8a", element: "Ether", rank: "S", factionTitle: { fr: "Division de l'Ordre urbain", en: "Public Security" },
         stats: [ 
             { label: "DGT CRIT", value: "160 - 180 %+" }, 
-            { label: "Taux Crit", value: "60 - 70 % (Max 55% avec Nicole M6)" }, 
+            { 
+                label: "Taux Crit", 
+                value: "60 - 70 %", 
+                note: { fr: "Max 55% avec Nicole M6", en: "Max 55% with Nicole M6" } 
+            }, 
             { label: "Attaque", value: "3000+" } 
         ],
         discs: [
